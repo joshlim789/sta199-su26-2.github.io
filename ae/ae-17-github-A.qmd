@@ -28,7 +28,8 @@ The data represent the scores of every dive during the final rounds of the 2024 
 
 ```{r}
 #| label: glimpse-data
-#| diving_raw <- read_csv("data/diving.csv")
+diving_raw <- read_csv("data/diving.csv")
+
 diving <- diving_raw |> 
   mutate(dive_number = str_c("Dive_", dive_number)) |> 
   select(athlete, country, event, dive_number, points) |> 
