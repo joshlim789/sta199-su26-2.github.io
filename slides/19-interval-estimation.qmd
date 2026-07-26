@@ -20,21 +20,8 @@ library(openintro)
 library(scales)      # for pretty axis labels
 library(glue)        # for constructing character strings
 library(knitr)       # for neatly formatted tables
-todays_ae <- "ae-17-duke-forest-bootstrap"
+todays_ae <- "ae-17-diving-into-paris"
 ```
-
-# Admin
-
-## The home stretch {.small .scrollable}
-
-::: incremental
--   Today: lecture on confidence intervals;
--   Tomorrow: lecture on hypothesis testing;
--   Thursday: Lab 6 (last one!), due Sunday by 11:59pm (deadline firm if you want graded feedback by the final);
--   Wednesday: wrap-up lecture on inference;
--   Thursday: lecture on TBD, depending on general vibes / exam readiness this week;
--   Friday: no class -- Juneteenth!
-:::
 
 # Statistics
 
@@ -600,7 +587,7 @@ df_boot_samples_5 <- new_loans |>
 
 ## Different data set $\rightarrow$ different estimates
 
-::::: columns
+::: columns
 ::: {.column width="49%"}
 ```{r}
 #| echo: false
@@ -663,11 +650,11 @@ estimates |>
   theme(title = element_text(size = 20, face = "bold"))
 ```
 :::
-:::::
+:::
 
 ## Different data set $\rightarrow$ different estimates
 
-::::: columns
+::: columns
 ::: {.column width="49%"}
 ```{r}
 #| echo: false
@@ -730,11 +717,11 @@ estimates |>
   theme(title = element_text(size = 20, face = "bold"))
 ```
 :::
-:::::
+:::
 
 ## Different data set $\rightarrow$ different estimates
 
-::::: columns
+::: columns
 ::: {.column width="49%"}
 ```{r}
 #| echo: false
@@ -797,11 +784,11 @@ estimates |>
   theme(title = element_text(size = 20, face = "bold"))
 ```
 :::
-:::::
+:::
 
 ## Different data set $\rightarrow$ different estimates
 
-::::: columns
+::: columns
 ::: {.column width="49%"}
 ```{r}
 #| echo: false
@@ -864,11 +851,11 @@ estimates |>
   theme(title = element_text(size = 20, face = "bold"))
 ```
 :::
-:::::
+:::
 
 ## Different data set $\rightarrow$ different estimates
 
-::::: columns
+::: columns
 ::: {.column width="49%"}
 ```{r}
 #| echo: false
@@ -931,11 +918,11 @@ estimates |>
   theme(title = element_text(size = 20, face = "bold"))
 ```
 :::
-:::::
+:::
 
 ## Different data set $\rightarrow$ different estimates
 
-::::: columns
+::: columns
 ::: {.column width="49%"}
 ```{r}
 #| echo: false
@@ -998,7 +985,7 @@ estimates |>
   theme(title = element_text(size = 20, face = "bold"))
 ```
 :::
-:::::
+:::
 
 ## You get the idea
 
@@ -1020,7 +1007,7 @@ df_boot_samples_100 <- new_loans |>
   generate(reps = 200, type = "bootstrap")
 ```
 
-::::: columns
+::: columns
 ::: {.column width="49%"}
 ```{r}
 #| echo: false
@@ -1060,7 +1047,7 @@ df_boot_samples_100_hist <- ggplot(df_boot_samples_100_fit |> filter(term == "lo
 df_boot_samples_100_hist
 ```
 :::
-:::::
+:::
 
 The amount of variation (i.e., "spread") in the histogram tells us something about the uncertainty, and gives us a range of likely values.
 
@@ -1141,7 +1128,7 @@ So now what?
 
 ## Toy: Bootstrap samples 1 {.scrollable}
 
-::::: columns
+::: columns
 ::: {.column width="44%"}
 Original data
 
@@ -1189,11 +1176,11 @@ linear_reg() |>
   select(term, estimate)
 ```
 :::
-:::::
+:::
 
 ## Bootstrap samples 2 {.scrollable}
 
-::::: columns
+::: columns
 ::: {.column width="44%"}
 Original data
 
@@ -1232,11 +1219,11 @@ linear_reg() |>
   select(term, estimate)
 ```
 :::
-:::::
+:::
 
 ## Bootstrap samples 3 {.scrollable}
 
-::::: columns
+::: columns
 ::: {.column width="44%"}
 Original data
 
@@ -1275,38 +1262,40 @@ linear_reg() |>
   select(term, estimate)
 ```
 :::
-:::::
+:::
 
 # Interval estimation
 
-## Data: Houses in Duke Forest {.smaller}
+## Data: Diving at the 2024 Paris Olympics {.smaller}
 
-::::: columns
-::: {.column width="50%"}
--   Data on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020
--   Scraped from Zillow
--   Source: [`openintro::duke_forest`](http://openintrostat.github.io/openintro/reference/duke_forest.html)
-:::
+-   Data on scores from every dive in the final rounds of the 2024 Paris Olympic games diving events
+-   Scraped from Wikipedia and the Olympics website
+-   Each diver performs six dives
 
-::: {.column width="50%"}
-![](img/19/duke_forest_home.jpg){fig-alt="Home in Duke Forest"}
-:::
-:::::
+**Goal**: Use a diver's running total of their first 5 dives to understand variability in the score of their final dive.
 
-**Goal**: Use the area (in square feet) to understand variability in the price of houses in Duke Forest.
+```{r}
+#| echo: false
+#| message: false
+diving_raw <- read_csv("data/diving.csv")
+diving <- diving_raw |>
+  mutate(dive_number = str_c("Dive_", dive_number)) |>
+  select(athlete, country, event, dive_number, points) |>
+  pivot_wider(names_from = dive_number, values_from = points) |>
+  mutate(running_total = Dive_1 + Dive_2 + Dive_3 + Dive_4 + Dive_5)
+```
 
 ## Exploratory data analysis
 
 ```{r}
 #| code-fold: true
-ggplot(duke_forest, aes(x = area, y = price)) +
+ggplot(diving, aes(x = running_total, y = Dive_6)) +
   geom_point(alpha = 0.7) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
-    title = "Price and area of houses in Duke Forest"
-  ) +
-  scale_y_continuous(labels = label_dollar()) 
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
+    title = "Dive 6 score vs. running total at the 2024 Paris Olympics"
+  )
 ```
 
 ## Modeling {.smaller}
@@ -1315,34 +1304,34 @@ ggplot(duke_forest, aes(x = area, y = price)) +
 #| echo: true
 #| code-line-numbers: "|5|6"
 
-df_fit <- linear_reg() |>
-  fit(price ~ area, data = duke_forest)
+diving_fit <- linear_reg() |>
+  fit(Dive_6 ~ running_total, data = diving)
 
-tidy(df_fit) |>
-  kable(digits = 2) # neatly format table to 2 digits
+tidy(diving_fit) |>
+  kable(digits = 2)
 ```
 
 . . .
 
 ```{r}
 #| echo: false
-intercept <- tidy(df_fit) |> filter(term == "(Intercept)") |> pull(estimate) |> round()
-slope <- tidy(df_fit) |> filter(term == "area") |> pull(estimate) |> round()
+intercept <- tidy(diving_fit) |> filter(term == "(Intercept)") |> pull(estimate) |> round(2)
+slope <- tidy(diving_fit) |> filter(term == "running_total") |> pull(estimate) |> round(2)
 ```
 
--   **Intercept:** Duke Forest houses that are 0 square feet are expected to sell for `r dollar(intercept)`, on average.
+-   **Intercept:** A diver with a running total of 0 is expected to score `r intercept` on their final dive, on average.
     -   Is this interpretation useful?
--   **Slope:** For each additional square foot, we expect the sale price of Duke Forest houses to be higher by `r dollar(slope)`, on average.
+-   **Slope:** For each additional point in the running total, we expect the final dive score to be higher by `r slope` points, on average.
 
 ## From sample to population {.smaller}
 
-> For each additional square foot, we expect the sale price of Duke Forest houses to be higher by `r dollar(slope)`, on average.
+> For each additional point in the running total, we expect the final dive score to be higher by `r slope` points, on average.
 
 <br>
 
--   This estimate is valid for the single sample of `r nrow(duke_forest)` houses.
--   But what if we're not interested quantifying the relationship between the size and price of a house in this single sample?
--   What if we want to say something about the relationship between these variables for all houses in Duke Forest?
+-   This estimate is valid for the single sample of `r nrow(diving)` divers.
+-   But what if we're not interested in quantifying this relationship only in this sample?
+-   What if we want to say something about the relationship between these variables for all competitive divers?
 
 ## Statistical inference {.smaller}
 
@@ -1367,18 +1356,14 @@ slope <- tidy(df_fit) |> filter(term == "area") |> pull(estimate) |> round()
 
 ## Confidence interval for the slope {.smaller}
 
-A confidence interval will allow us to make a statement like "*For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by `r dollar(slope)`, plus or minus X dollars.*"
+A confidence interval will allow us to make a statement like "*For each additional point in the running total, the model predicts the final dive score to be higher, on average, by `r slope` points, plus or minus X points.*"
 
 . . .
 
--   Should X be \$10?
-    \$100?
-    \$1000?
+-   Should X be 0.01? 0.1? 1?
 
--   If we were to take another sample of `r nrow(duke_forest)` would we expect the slope calculated based on that sample to be exactly `r dollar(slope)`?
-    Off by \$10?
-    \$100?
-    \$1000?
+-   If we were to take another sample of `r nrow(diving)` divers, would we expect the slope calculated based on that sample to be exactly `r slope`?
+    Off by 0.01? 0.1? 1?
 
 -   The answer depends on how variable (from one sample to another sample) the sample statistic (the slope) is
 
@@ -1402,31 +1387,31 @@ A confidence interval will allow us to make a statement like "*For each addition
 #| echo: false
 set.seed(119)
 
-df_boot_samples_5 <- duke_forest |>
-  specify(price ~ area) |>
+diving_boot_samples_5 <- diving |>
+  specify(Dive_6 ~ running_total) |>
   generate(reps = 5, type = "bootstrap")
 ```
 
 ## Bootstrap sample 1
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_obs <- ggplot(duke_forest, aes(x = area, y = price)) +
+p_diving_obs <- ggplot(diving, aes(x = running_total, y = Dive_6)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "deeppink") +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
-    title = "Price and area of houses in Duke Forest"
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
+    title = "Dive 6 score vs. running total"
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 
-p_df_obs
+p_diving_obs
 ```
 :::
 
@@ -1437,30 +1422,30 @@ p_df_obs
 #| message: false
 replicate_no = 1
 
-ggplot(df_boot_samples_5 |> filter(replicate == replicate_no), 
-       aes(x = area, y = price)) +
+ggplot(diving_boot_samples_5 |> filter(replicate == replicate_no),
+       aes(x = running_total, y = Dive_6)) +
   geom_point(alpha = 0.5) +
   geom_line(stat = "smooth", method = "lm", se = FALSE, alpha = 0.8) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
     title = glue("Bootstrap sample {replicate_no}")
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 ```
 :::
-:::::
+:::
 
 ## Bootstrap sample 2
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_obs
+p_diving_obs
 ```
 :::
 
@@ -1471,30 +1456,30 @@ p_df_obs
 #| message: false
 replicate_no = 2
 
-ggplot(df_boot_samples_5 |> filter(replicate == replicate_no), 
-       aes(x = area, y = price)) +
+ggplot(diving_boot_samples_5 |> filter(replicate == replicate_no),
+       aes(x = running_total, y = Dive_6)) +
   geom_point(alpha = 0.5) +
   geom_line(stat = "smooth", method = "lm", se = FALSE, alpha = 0.8) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
     title = glue("Bootstrap sample {replicate_no}")
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 ```
 :::
-:::::
+:::
 
 ## Bootstrap sample 3
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_obs
+p_diving_obs
 ```
 :::
 
@@ -1505,30 +1490,30 @@ p_df_obs
 #| message: false
 replicate_no = 3
 
-ggplot(df_boot_samples_5 |> filter(replicate == replicate_no), 
-       aes(x = area, y = price)) +
+ggplot(diving_boot_samples_5 |> filter(replicate == replicate_no),
+       aes(x = running_total, y = Dive_6)) +
   geom_point(alpha = 0.5) +
   geom_line(stat = "smooth", method = "lm", se = FALSE, alpha = 0.8) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
     title = glue("Bootstrap sample {replicate_no}")
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 ```
 :::
-:::::
+:::
 
 ## Bootstrap sample 4
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_obs
+p_diving_obs
 ```
 :::
 
@@ -1539,30 +1524,30 @@ p_df_obs
 #| message: false
 replicate_no = 4
 
-ggplot(df_boot_samples_5 |> filter(replicate == replicate_no), 
-       aes(x = area, y = price)) +
+ggplot(diving_boot_samples_5 |> filter(replicate == replicate_no),
+       aes(x = running_total, y = Dive_6)) +
   geom_point(alpha = 0.5) +
   geom_line(stat = "smooth", method = "lm", se = FALSE, alpha = 0.8) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
     title = glue("Bootstrap sample {replicate_no}")
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 ```
 :::
-:::::
+:::
 
 ## Bootstrap sample 5
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_obs
+p_diving_obs
 ```
 :::
 
@@ -1573,20 +1558,20 @@ p_df_obs
 #| message: false
 replicate_no = 5
 
-ggplot(df_boot_samples_5 |> filter(replicate == replicate_no), 
-       aes(x = area, y = price)) +
+ggplot(diving_boot_samples_5 |> filter(replicate == replicate_no),
+       aes(x = running_total, y = Dive_6)) +
   geom_point(alpha = 0.5) +
   geom_line(stat = "smooth", method = "lm", se = FALSE, alpha = 0.8) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
     title = glue("Bootstrap sample {replicate_no}")
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 ```
 :::
-:::::
+:::
 
 . . .
 
@@ -1594,13 +1579,13 @@ ggplot(df_boot_samples_5 |> filter(replicate == replicate_no),
 
 ## Bootstrap samples 1 - 5
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_obs
+p_diving_obs
 ```
 :::
 
@@ -1609,18 +1594,18 @@ p_df_obs
 #| echo: false
 #| out-width: "100%"
 #| message: false
-ggplot(df_boot_samples_5, aes(x = area, y = price, group = replicate)) +
+ggplot(diving_boot_samples_5, aes(x = running_total, y = Dive_6, group = replicate)) +
   geom_line(stat = "smooth", method = "lm", se = FALSE, alpha = 0.5) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
     title = glue("Bootstrap samples 1 - 5")
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 ```
 :::
-:::::
+:::
 
 ## Bootstrap samples 1 - 100
 
@@ -1629,18 +1614,18 @@ ggplot(df_boot_samples_5, aes(x = area, y = price, group = replicate)) +
 #| message: false
 set.seed(119)
 
-df_boot_samples_100 <- duke_forest |>
-  specify(price ~ area) |>
+diving_boot_samples_100 <- diving |>
+  specify(Dive_6 ~ running_total) |>
   generate(reps = 100, type = "bootstrap")
 ```
 
-::::: columns
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_obs
+p_diving_obs
 ```
 :::
 
@@ -1649,92 +1634,91 @@ p_df_obs
 #| echo: false
 #| out-width: "100%"
 #| message: false
-p_df_boot_samples_100 <- ggplot(df_boot_samples_100, aes(x = area, y = price, group = replicate)) +
+p_diving_boot_samples_100 <- ggplot(diving_boot_samples_100, aes(x = running_total, y = Dive_6, group = replicate)) +
   geom_line(stat = "smooth", method = "lm", se = FALSE, alpha = 0.05) +
   labs(
-    x = "Area (square feet)",
-    y = "Sale price (USD)",
+    x = "Running total (dives 1–5)",
+    y = "Dive 6 score",
     title = glue("Bootstrap samples 1 - 100")
   ) +
-  scale_y_continuous(limits = c(90000, 1550000), labels = label_dollar()) +
-  scale_x_continuous(limits = c(1000, 6500), labels = label_number())
+  scale_y_continuous(limits = c(40, 110)) +
+  scale_x_continuous(limits = c(240, 480))
 
-p_df_boot_samples_100
+p_diving_boot_samples_100
 ```
 :::
-:::::
+:::
 
 ## Slopes of bootstrap samples {.small .scrollable}
 
 ::: task
-**Fill in the blank:** For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by `r dollar(slope)`, plus or minus \_\_\_ dollars.
+**Fill in the blank:** For each additional point in the running total, the model predicts the final dive score to be higher, on average, by `r slope` points, plus or minus \_\_\_ points.
 :::
 
 ```{r}
 #| echo: false
 #| message: false
-p_df_boot_samples_100 +
+p_diving_boot_samples_100 +
   geom_abline(intercept = intercept, slope = slope, color = "deeppink")
 ```
 
 ## Slopes of bootstrap samples {.small .scrollable}
 
 ::: task
-**Fill in the blank:** For each additional square foot, we expect the sale price of Duke Forest houses to be higher, on average, by `r dollar(slope)`, plus or minus \_\_\_ dollars.
+**Fill in the blank:** For each additional point in the running total, we expect the final dive score to be higher, on average, by `r slope` points, plus or minus \_\_\_ points.
 :::
 
 ```{r}
 #| echo: false
-df_boot_samples_100_fit <- df_boot_samples_100 |>
+diving_boot_samples_100_fit <- diving_boot_samples_100 |>
   fit()
 
-df_boot_samples_100_hist <- ggplot(df_boot_samples_100_fit |> filter(term == "area"), aes(x = estimate)) +
-  geom_histogram(binwidth = 10, color = "white") +
+diving_boot_samples_100_hist <- ggplot(diving_boot_samples_100_fit |> filter(term == "running_total"), aes(x = estimate)) +
+  geom_histogram(binwidth = 0.01, color = "white") +
   geom_vline(xintercept = slope, color = "deeppink", linewidth = 1) +
   labs(x = "Slope", y = "Count",
-       title = "Slopes of 100 bootstrap samples") +
-  scale_x_continuous(labels = label_dollar())
+       title = "Slopes of 100 bootstrap samples")
 
-df_boot_samples_100_hist
+diving_boot_samples_100_hist
 ```
 
 ## Confidence level {.smaller .scrollable}
 
 ::: task
-How confident are you that the true slope is between \$0 and \$250?
-How about \$150 and \$170?
-How about \$90 and \$210?
+How confident are you that the true slope is between 0 and 0.5?
+How about 0.1 and 0.3?
+How about 0.05 and 0.25?
 :::
 
 ```{r}
 #| echo: false
-df_boot_samples_100_hist
+diving_boot_samples_100_hist
 ```
 
 ## 95% confidence interval {.smaller .scrollable}
 
 ```{r}
 #| echo: false
-lower <- df_boot_samples_100_fit |>
+lower <- diving_boot_samples_100_fit |>
   ungroup() |>
-  filter(term == "area") |>
+  filter(term == "running_total") |>
   summarise(quantile(estimate, 0.025)) |>
   pull()
 
-upper <- df_boot_samples_100_fit |>
+upper <- diving_boot_samples_100_fit |>
   ungroup() |>
-  filter(term == "area") |>
+  filter(term == "running_total") |>
   summarise(quantile(estimate, 0.975)) |>
   pull()
 
-df_boot_samples_100_hist +
+diving_boot_samples_100_hist +
   geom_vline(xintercept = lower, color = "cornflowerblue", lwd = 1, linetype = "dashed") +
   geom_vline(xintercept = upper, color = "cornflowerblue", lwd = 1, linetype = "dashed")
 ```
 
 ::: incremental
 -   A 95% confidence interval is bounded by the middle 95% of the bootstrap distribution
--   "We are 95% confident that for each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by `r dollar(lower)` to `r dollar(upper)`."
+-   "We are 95% confident that for each additional point in the running total, the model predicts the final dive score to be higher, on average, by `r round(lower, 2)` to `r round(upper, 2)` points."
 :::
 
 ## Where do the bounds come from? {.scrollable}
@@ -1774,8 +1758,8 @@ Calculate the observed slope:
 ```{r}
 #| echo: true
 
-observed_fit <- duke_forest |>
-  specify(price ~ area) |>
+observed_fit <- diving |>
+  specify(Dive_6 ~ running_total) |>
   fit()
 
 observed_fit
@@ -1793,8 +1777,8 @@ Take `100` bootstrap samples and have R fit models to each one:
 
 set.seed(1120)
 
-boot_fits <- duke_forest |>
-  specify(price ~ area) |>
+boot_fits <- diving |>
+  specify(Dive_6 ~ running_total) |>
   generate(reps = 100, type = "bootstrap") |>
   fit()
 
@@ -1810,8 +1794,8 @@ boot_fits
 #| code-line-numbers: "4,5"
 
 get_confidence_interval(
-  boot_fits, 
-  point_estimate = observed_fit, 
+  boot_fits,
+  point_estimate = observed_fit,
   level = 0.95,
   type = "percentile" # default method
 )
@@ -1848,8 +1832,8 @@ How would you modify it for a 99% confidence interval?
 #| code-line-numbers: "|4"
 
 get_confidence_interval(
-  boot_fits, 
-  point_estimate = observed_fit, 
+  boot_fits,
+  point_estimate = observed_fit,
   level = 0.95,
   type = "percentile"
 )
@@ -1862,13 +1846,13 @@ get_confidence_interval(
 
 ## confidence level: 90%
 get_confidence_interval(
-  boot_fits, point_estimate = observed_fit, 
+  boot_fits, point_estimate = observed_fit,
   level = 0.90, type = "percentile"
 )
 
 ## confidence level: 99%
 get_confidence_interval(
-  boot_fits, point_estimate = observed_fit, 
+  boot_fits, point_estimate = observed_fit,
   level = 0.99, type = "percentile"
 )
 ```

@@ -1,5 +1,5 @@
 ---
-title: "AE 17: Houses in Duke Forest"
+title: "AE 17: Diving back into Paris 2024"
 draft: true
 subtitle: "Suggested answers"
 format:
@@ -11,7 +11,7 @@ In this application exercise, we will use bootstrapping to construct confidence 
 
 ## Packages
 
-We will use **tidyverse** and **tidymodels** for data exploration and modeling, respectively, and the **openintro** package for the data, and the **knitr** package for formatting tables.
+We will use **tidyverse** and **tidymodels** for data exploration and modeling and the **knitr** package for formatting tables. The dataset was scraped from Wikipedia and the Olympics website. 
 
 ```{r}
 #| label: load-packages
@@ -24,12 +24,21 @@ library(knitr)
 
 ## Data
 
-The data are on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020.
-It was originally scraped from Zillow, and can be found in the `duke_forest` data set in the **openintro** R package.
+The data represent the scores of every dive during the final rounds of the 2024 Paris Olympic games diving events. Each diver performs six dives. Suppose we are interested in how well we can predict a diver's last round dive score from his running total of five dives (i.e. is there a "streak" in diving.)
 
 ```{r}
 #| label: glimpse-data
-glimpse(duke_forest)
+#| diving_raw <- read_csv("data/diving.csv")
+diving <- diving_raw |> 
+  mutate(dive_number = str_c("Dive_", dive_number)) |> 
+  select(athlete, country, event, dive_number, points) |> 
+  pivot_wider(
+    names_from = dive_number,
+    values_from = points
+  ) |> 
+  mutate(running_total = Dive_1 + Dive_2 + Dive_3 + Dive_4 + Dive_5)
+
+glimpse(diving)
 ```
 
 ## Model
@@ -38,10 +47,10 @@ glimpse(duke_forest)
 #| label: fit-model
 #| message: false
 #| warning: false
-df_fit <- linear_reg() |>
-  fit(price ~ area, data = duke_forest)
+diving_fit <- linear_reg() |>
+  fit(Dive_6 ~ running_total, data = diving)
 
-tidy(df_fit) |>
+tidy(diving_fit) |>
   kable(digits = 2)
 ```
 
@@ -51,8 +60,8 @@ tidy(df_fit) |>
 
 ```{r}
 #| label: observed-fit
-observed_fit <- duke_forest |>
-  specify(price ~ area) |>
+observed_fit <- diving |>
+  specify(Dive_6 ~ running_total) |>
   fit()
 
 observed_fit
@@ -66,10 +75,10 @@ Fill in the code, then set `eval: true` .
 #| label: bootstrap
 #| eval: true
 n = 100
-set.seed(20241115)
+set.seed(24601)
 
-boot_fits <- duke_forest |>
-  specify(price ~ area) |>
+boot_fits <- diving |>
+  specify(Dive_6 ~ running_total) |>
   generate(reps = n, type = "bootstrap") |>
   fit()
 
@@ -143,3 +152,7 @@ get_confidence_interval(
 -   If we want to be very certain that we capture the population parameter, should we use a wider or a narrower interval? What drawbacks are associated with using a wider interval?
 
 A wider interval; the drawback is it's less precise
+
+
+
+
