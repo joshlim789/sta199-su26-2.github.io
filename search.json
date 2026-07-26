@@ -399,6 +399,48 @@
     "text": "Let’s now pivot wider!\n\n\nDemo: Just like you can pivot longer, you can pivot wider. Let’s convert our longer data frame back into the wider one in a single pipeline.\n\n\n# add your code here"
   },
   {
+    "objectID": "ae/ae-17-github.html",
+    "href": "ae/ae-17-github.html",
+    "title": "AE 17: Diving back into Paris 2024",
+    "section": "",
+    "text": "In this application exercise, we will use bootstrapping to construct confidence intervals."
+  },
+  {
+    "objectID": "ae/ae-17-github.html#packages",
+    "href": "ae/ae-17-github.html#packages",
+    "title": "AE 17: Diving back into Paris 2024",
+    "section": "Packages",
+    "text": "Packages\nWe will use tidyverse and tidymodels for data exploration and modeling and the knitr package for formatting tables. The dataset was scraped from Wikipedia and the Olympics website.\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(openintro)\nlibrary(knitr)"
+  },
+  {
+    "objectID": "ae/ae-17-github.html#data",
+    "href": "ae/ae-17-github.html#data",
+    "title": "AE 17: Diving back into Paris 2024",
+    "section": "Data",
+    "text": "Data\nThe data represent the scores of every dive during the final rounds of the 2024 Paris Olympic games diving events. Each diver performs six dives. Suppose we are interested in how well we can predict a diver’s last round dive score from their running total of five dives (i.e. is there a “streak” in diving?)\n\ndiving_raw &lt;- read_csv(\"data/diving.csv\")\n\nRows: 240 Columns: 8\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (5): athlete, country, country_code, event, note\ndbl (3): dive_number, points, final_rank\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndiving &lt;- diving_raw |&gt;\n  mutate(dive_number = str_c(\"Dive_\", dive_number)) |&gt;\n  select(athlete, country, event, dive_number, points) |&gt;\n  pivot_wider(\n    names_from = dive_number,\n    values_from = points\n  ) |&gt;\n  mutate(running_total = Dive_1 + Dive_2 + Dive_3 + Dive_4 + Dive_5)\n\nglimpse(diving)\n\nRows: 40\nColumns: 10\n$ athlete       &lt;chr&gt; \"Xie Siyi\", \"Wang Zongyuan\", \"Osmar Olvera\", \"Carson Tyl…\n$ country       &lt;chr&gt; \"China\", \"China\", \"Mexico\", \"United States\", \"Great Brit…\n$ event         &lt;chr&gt; \"3m Springboard\", \"3m Springboard\", \"3m Springboard\", \"3…\n$ Dive_1        &lt;dbl&gt; 86.7, 81.6, 79.9, 76.5, 76.5, 49.3, 74.8, 73.1, 76.5, 65…\n$ Dive_2        &lt;dbl&gt; 79.20, 91.00, 89.25, 67.50, 64.60, 71.40, 84.00, 81.60, …\n$ Dive_3        &lt;dbl&gt; 97.20, 95.55, 63.00, 69.75, 68.25, 79.95, 35.70, 67.50, …\n$ Dive_4        &lt;dbl&gt; 91.00, 89.25, 75.85, 72.00, 74.10, 72.20, 72.15, 68.25, …\n$ Dive_5        &lt;dbl&gt; 88.80, 70.20, 98.80, 64.75, 70.20, 72.00, 74.10, 57.75, …\n$ Dive_6        &lt;dbl&gt; 100.70, 102.60, 93.60, 78.75, 74.10, 77.00, 70.20, 47.50…\n$ running_total &lt;dbl&gt; 442.90, 427.60, 406.80, 350.50, 353.65, 344.85, 340.75, …"
+  },
+  {
+    "objectID": "ae/ae-17-github.html#model",
+    "href": "ae/ae-17-github.html#model",
+    "title": "AE 17: Diving back into Paris 2024",
+    "section": "Model",
+    "text": "Model\n\ndiving_fit &lt;- linear_reg() |&gt;\n  fit(Dive_6 ~ running_total, data = diving)\n\ntidy(diving_fit) |&gt;\n  kable(digits = 2)\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n13.33\n14.47\n0.92\n0.36\n\n\nrunning_total\n0.19\n0.04\n4.57\n0.00"
+  },
+  {
+    "objectID": "ae/ae-17-github.html#bootstrap-confidence-interval",
+    "href": "ae/ae-17-github.html#bootstrap-confidence-interval",
+    "title": "AE 17: Diving back into Paris 2024",
+    "section": "Bootstrap confidence interval",
+    "text": "Bootstrap confidence interval\n1. Calculate the observed fit (slope)\n\n# add code here\n\n2. Take n bootstrap samples and fit models to each one.\nFill in the code, then set eval: true.\n\nn = 100\nset.seed(24601)\n\nboot_fits &lt;- ______ |&gt;\n  specify(______) |&gt;\n  generate(reps = ____, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n\nWhy do we set a seed before taking the bootstrap samples?\nMake a histogram of the bootstrap samples to visualize the bootstrap distribution.\n\n\n# add code here\n\n3. Compute the 95% confidence interval as the middle 95% of the bootstrap distribution\nFill in the code, then set eval: true.\n\nget_confidence_interval(\n  boot_fits,\n  point_estimate = _____,\n  level = ____,\n  type = \"percentile\"\n)"
+  },
+  {
+    "objectID": "ae/ae-17-github.html#changing-confidence-level",
+    "href": "ae/ae-17-github.html#changing-confidence-level",
+    "title": "AE 17: Diving back into Paris 2024",
+    "section": "Changing confidence level",
+    "text": "Changing confidence level\nModify the code from Step 3 to create a 90% confidence interval.\n\n# add code here\n\nModify the code from Step 3 to create a 99% confidence interval.\n\n# add code here\n\n\nWhich confidence level produces the most accurate confidence interval (90%, 95%, 99%)? Explain.\nWhich confidence level produces the most precise confidence interval (90%, 95%, 99%)? Explain.\nIf we want to be very certain that we capture the population parameter, should we use a wider or a narrower interval? What drawbacks are associated with using a wider interval?"
+  },
+  {
     "objectID": "ae/ae-09-github.html",
     "href": "ae/ae-09-github.html",
     "title": "AE 09: Data Imports & Exports",
@@ -4795,13 +4837,6 @@
     "text": "How do we negotiate the trade-off?\nUnless otherwise specified, we will use a discernibility level \\(\\alpha = 0.05\\); you may see this worded as “What is your conclusion at the 5% discernibility level?” or functionally similar"
   },
   {
-    "objectID": "slides/19-interval-estimation-slides.html#the-home-stretch",
-    "href": "slides/19-interval-estimation-slides.html#the-home-stretch",
-    "title": "Interval Estimation",
-    "section": "The home stretch",
-    "text": "The home stretch\n\n\nToday: lecture on confidence intervals;\nTomorrow: lecture on hypothesis testing;\nThursday: Lab 6 (last one!), due Sunday by 11:59pm (deadline firm if you want graded feedback by the final);\nWednesday: wrap-up lecture on inference;\nThursday: lecture on TBD, depending on general vibes / exam readiness this week;\nFriday: no class – Juneteenth!"
-  },
-  {
     "objectID": "slides/19-interval-estimation-slides.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "href": "slides/19-interval-estimation-slides.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "title": "Interval Estimation",
@@ -5138,32 +5173,32 @@
     "text": "Bootstrap samples 3\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     6 -0.679 -0.961\n2     1  0.432  1.53 \n3     5  0.327  0.820\n4     6 -0.679 -0.961\n5     6 -0.679 -0.961\n6     5  0.327  0.820\n\n\nDifferent data &gt;&gt; new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.357\n2 x              1.96"
   },
   {
-    "objectID": "slides/19-interval-estimation-slides.html#data-houses-in-duke-forest",
-    "href": "slides/19-interval-estimation-slides.html#data-houses-in-duke-forest",
+    "objectID": "slides/19-interval-estimation-slides.html#data-diving-at-the-2024-paris-olympics",
+    "href": "slides/19-interval-estimation-slides.html#data-diving-at-the-2024-paris-olympics",
     "title": "Interval Estimation",
-    "section": "Data: Houses in Duke Forest",
-    "text": "Data: Houses in Duke Forest\n\n\n\nData on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020\nScraped from Zillow\nSource: openintro::duke_forest\n\n\n\n\n\nGoal: Use the area (in square feet) to understand variability in the price of houses in Duke Forest."
+    "section": "Data: Diving at the 2024 Paris Olympics",
+    "text": "Data: Diving at the 2024 Paris Olympics\n\nData on scores from every dive in the final rounds of the 2024 Paris Olympic games diving events\nScraped from Wikipedia and the Olympics website\nEach diver performs six dives\n\nGoal: Use a diver’s running total of their first 5 dives to understand variability in the score of their final dive."
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#exploratory-data-analysis",
     "href": "slides/19-interval-estimation-slides.html#exploratory-data-analysis",
     "title": "Interval Estimation",
     "section": "Exploratory data analysis",
-    "text": "Exploratory data analysis\n\nCodeggplot(duke_forest, aes(x = area, y = price)) +\n  geom_point(alpha = 0.7) +\n  labs(\n    x = \"Area (square feet)\",\n    y = \"Sale price (USD)\",\n    title = \"Price and area of houses in Duke Forest\"\n  ) +\n  scale_y_continuous(labels = label_dollar())"
+    "text": "Exploratory data analysis\n\nCodeggplot(diving, aes(x = running_total, y = Dive_6)) +\n  geom_point(alpha = 0.7) +\n  labs(\n    x = \"Running total (dives 1–5)\",\n    y = \"Dive 6 score\",\n    title = \"Dive 6 score vs. running total at the 2024 Paris Olympics\"\n  )"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#modeling",
     "href": "slides/19-interval-estimation-slides.html#modeling",
     "title": "Interval Estimation",
     "section": "Modeling",
-    "text": "Modeling\n\ndf_fit &lt;- linear_reg() |&gt;\n  fit(price ~ area, data = duke_forest)\n\ntidy(df_fit) |&gt;\n  kable(digits = 2) # neatly format table to 2 digits\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n116652.33\n53302.46\n2.19\n0.03\n\n\narea\n159.48\n18.17\n8.78\n0.00\n\n\n\n\n\n\n\n\nIntercept: Duke Forest houses that are 0 square feet are expected to sell for $116,652, on average.\n\nIs this interpretation useful?\n\n\n\nSlope: For each additional square foot, we expect the sale price of Duke Forest houses to be higher by $159, on average."
+    "text": "Modeling\n\ndiving_fit &lt;- linear_reg() |&gt;\n  fit(Dive_6 ~ running_total, data = diving)\n\ntidy(diving_fit) |&gt;\n  kable(digits = 2)\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n13.33\n14.47\n0.92\n0.36\n\n\nrunning_total\n0.19\n0.04\n4.57\n0.00\n\n\n\n\n\n\n\n\nIntercept: A diver with a running total of 0 is expected to score 13.33 on their final dive, on average.\n\nIs this interpretation useful?\n\n\n\nSlope: For each additional point in the running total, we expect the final dive score to be higher by 0.19 points, on average."
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#from-sample-to-population",
     "href": "slides/19-interval-estimation-slides.html#from-sample-to-population",
     "title": "Interval Estimation",
     "section": "From sample to population",
-    "text": "From sample to population\n\nFor each additional square foot, we expect the sale price of Duke Forest houses to be higher by $159, on average.\n\n\n\nThis estimate is valid for the single sample of 98 houses.\nBut what if we’re not interested quantifying the relationship between the size and price of a house in this single sample?\nWhat if we want to say something about the relationship between these variables for all houses in Duke Forest?"
+    "text": "From sample to population\n\nFor each additional point in the running total, we expect the final dive score to be higher by 0.19 points, on average.\n\n\n\nThis estimate is valid for the single sample of 40 divers.\nBut what if we’re not interested in quantifying this relationship only in this sample?\nWhat if we want to say something about the relationship between these variables for all competitive divers?"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#statistical-inference",
@@ -5191,7 +5226,7 @@
     "href": "slides/19-interval-estimation-slides.html#confidence-interval-for-the-slope",
     "title": "Interval Estimation",
     "section": "Confidence interval for the slope",
-    "text": "Confidence interval for the slope\nA confidence interval will allow us to make a statement like “For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus X dollars.”\n\n\nShould X be $10? $100? $1000?\nIf we were to take another sample of 98 would we expect the slope calculated based on that sample to be exactly $159? Off by $10? $100? $1000?\nThe answer depends on how variable (from one sample to another sample) the sample statistic (the slope) is\nWe need a way to quantify the variability of the sample statistic"
+    "text": "Confidence interval for the slope\nA confidence interval will allow us to make a statement like “For each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.19 points, plus or minus X points.”\n\n\nShould X be 0.01? 0.1? 1?\nIf we were to take another sample of 40 divers, would we expect the slope calculated based on that sample to be exactly 0.19? Off by 0.01? 0.1? 1?\nThe answer depends on how variable (from one sample to another sample) the sample statistic (the slope) is\nWe need a way to quantify the variability of the sample statistic"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#quantify-the-variability-of-the-slope",
@@ -5254,28 +5289,28 @@
     "href": "slides/19-interval-estimation-slides.html#slopes-of-bootstrap-samples",
     "title": "Interval Estimation",
     "section": "Slopes of bootstrap samples",
-    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus ___ dollars."
+    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.19 points, plus or minus ___ points."
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#slopes-of-bootstrap-samples-1",
     "href": "slides/19-interval-estimation-slides.html#slopes-of-bootstrap-samples-1",
     "title": "Interval Estimation",
     "section": "Slopes of bootstrap samples",
-    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional square foot, we expect the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus ___ dollars."
+    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional point in the running total, we expect the final dive score to be higher, on average, by 0.19 points, plus or minus ___ points."
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#confidence-level",
     "href": "slides/19-interval-estimation-slides.html#confidence-level",
     "title": "Interval Estimation",
     "section": "Confidence level",
-    "text": "Confidence level\n\nHow confident are you that the true slope is between $0 and $250? How about $150 and $170? How about $90 and $210?"
+    "text": "Confidence level\n\nHow confident are you that the true slope is between 0 and 0.5? How about 0.1 and 0.3? How about 0.05 and 0.25?"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#confidence-interval-1",
     "href": "slides/19-interval-estimation-slides.html#confidence-interval-1",
     "title": "Interval Estimation",
     "section": "95% confidence interval",
-    "text": "95% confidence interval\n\n\n\n\n\n\n\n\n\n\nA 95% confidence interval is bounded by the middle 95% of the bootstrap distribution\n“We are 95% confident that for each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $90.43 to $205.77.”"
+    "text": "95% confidence interval\n\n\n\n\n\n\n\n\n\n\nA 95% confidence interval is bounded by the middle 95% of the bootstrap distribution\n“We are 95% confident that for each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.12 to 0.26 points.”"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#where-do-the-bounds-come-from",
@@ -5285,32 +5320,32 @@
     "text": "Where do the bounds come from?\nQuantiles!\n\n\nThink IQR! 50% of the bootstrap distribution is between the 25% quantile on the left and the 75% quantile on the right. But we want more than 50%\n90% of the bootstrap distribution is between the 5% quantile on the left and the 95% quantile on the right;\n95% of the bootstrap distribution is between the 2.5% quantile on the left and the 97.5% quantile on the right;\nAnd so on."
   },
   {
-    "objectID": "slides/19-interval-estimation-slides.html#ae-17-duke-forest-bootstrap",
-    "href": "slides/19-interval-estimation-slides.html#ae-17-duke-forest-bootstrap",
+    "objectID": "slides/19-interval-estimation-slides.html#ae-17-diving-into-paris",
+    "href": "slides/19-interval-estimation-slides.html#ae-17-diving-into-paris",
     "title": "Interval Estimation",
-    "section": "ae-17-duke-forest-bootstrap",
-    "text": "ae-17-duke-forest-bootstrap\n\n\nGo to your ae project in RStudio.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.\nIf you haven’t yet done so, click Pull to get today’s application exercise file: ae-17-duke-forest-bootstrap.qmd.\nWork through the application exercise in class, and render, commit, and push your edits."
+    "section": "ae-17-diving-into-paris",
+    "text": "ae-17-diving-into-paris\n\n\nGo to your ae project in RStudio.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.\nIf you haven’t yet done so, click Pull to get today’s application exercise file: ae-17-diving-into-paris.qmd.\nWork through the application exercise in class, and render, commit, and push your edits."
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-i",
     "href": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-i",
     "title": "Interval Estimation",
     "section": "Computing the CI for the slope I",
-    "text": "Computing the CI for the slope I\nCalculate the observed slope:\n\nobserved_fit &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept  116652.\n2 area          159.\n\n\n\nAside: I don’t know why, but one quirk of tidymodels is that, when you are fitting a model for use in CI construction, you’ll use df |&gt; specify(y ~ x) |&gt; fit(); when you’re fitting a model for general inference, you’ll use linear_reg |&gt; fit(y ~ x, data = df)"
+    "text": "Computing the CI for the slope I\nCalculate the observed slope:\n\nobserved_fit &lt;- diving |&gt;\n  specify(Dive_6 ~ running_total) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term          estimate\n  &lt;chr&gt;            &lt;dbl&gt;\n1 intercept       13.3  \n2 running_total    0.189\n\n\n\nAside: I don’t know why, but one quirk of tidymodels is that, when you are fitting a model for use in CI construction, you’ll use df |&gt; specify(y ~ x) |&gt; fit(); when you’re fitting a model for general inference, you’ll use linear_reg |&gt; fit(y ~ x, data = df)"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-ii",
     "href": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-ii",
     "title": "Interval Estimation",
     "section": "Computing the CI for the slope II",
-    "text": "Computing the CI for the slope II\nTake 100 bootstrap samples and have R fit models to each one:\n\nset.seed(1120)\n\nboot_fits &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 200 × 3\n# Groups:   replicate [100]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept   47819.\n 2         1 area          191.\n 3         2 intercept  144645.\n 4         2 area          134.\n 5         3 intercept  114008.\n 6         3 area          161.\n 7         4 intercept  100639.\n 8         4 area          166.\n 9         5 intercept  215264.\n10         5 area          125.\n# ℹ 190 more rows"
+    "text": "Computing the CI for the slope II\nTake 100 bootstrap samples and have R fit models to each one:\n\nset.seed(1120)\n\nboot_fits &lt;- diving |&gt;\n  specify(Dive_6 ~ running_total) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 200 × 3\n# Groups:   replicate [100]\n   replicate term          estimate\n       &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;\n 1         1 intercept       -9.05 \n 2         1 running_total    0.254\n 3         2 intercept      -21.1  \n 4         2 running_total    0.287\n 5         3 intercept        4.36 \n 6         3 running_total    0.209\n 7         4 intercept        2.89 \n 8         4 running_total    0.222\n 9         5 intercept       11.6  \n10         5 running_total    0.197\n# ℹ 190 more rows"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-iii",
     "href": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-iii",
     "title": "Interval Estimation",
     "section": "Computing the CI for the slope III",
-    "text": "Computing the CI for the slope III\nPercentile method: Compute the 95% CI as the middle 95% of the bootstrap distribution:\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\" # default method\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
+    "text": "Computing the CI for the slope III\nPercentile method: Compute the 95% CI as the middle 95% of the bootstrap distribution:\n\nget_confidence_interval(\n  boot_fits,\n  point_estimate = observed_fit,\n  level = 0.95,\n  type = \"percentile\" # default method\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept      -18.9     33.1  \n2 running_total    0.129    0.282"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#precision-vs.-accuracy",
@@ -5331,14 +5366,14 @@
     "href": "slides/19-interval-estimation-slides.html#changing-confidence-level",
     "title": "Interval Estimation",
     "section": "Changing confidence level",
-    "text": "Changing confidence level\n\nHow would you modify the following code to calculate a 90% confidence interval? How would you modify it for a 99% confidence interval?\n\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
+    "text": "Changing confidence level\n\nHow would you modify the following code to calculate a 90% confidence interval? How would you modify it for a 99% confidence interval?\n\n\nget_confidence_interval(\n  boot_fits,\n  point_estimate = observed_fit,\n  level = 0.95,\n  type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept      -18.9     33.1  \n2 running_total    0.129    0.282"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#changing-confidence-level-1",
     "href": "slides/19-interval-estimation-slides.html#changing-confidence-level-1",
     "title": "Interval Estimation",
     "section": "Changing confidence level",
-    "text": "Changing confidence level\n\n## confidence level: 90%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.90, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          104.     212.\n2 intercept  -24380.  256730.\n\n## confidence level: 99%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.99, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          56.3     226.\n2 intercept -61950.   370395."
+    "text": "Changing confidence level\n\n## confidence level: 90%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit,\n  level = 0.90, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept      -15.0     29.1  \n2 running_total    0.140    0.266\n\n## confidence level: 99%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit,\n  level = 0.99, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept     -24.8      51.6  \n2 running_total   0.0796    0.304"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#recap",
@@ -5352,21 +5387,14 @@
     "href": "slides/19-interval-estimation.html",
     "title": "Interval Estimation",
     "section": "",
-    "text": "Today: lecture on confidence intervals;\nTomorrow: lecture on hypothesis testing;\nThursday: Lab 6 (last one!), due Sunday by 11:59pm (deadline firm if you want graded feedback by the final);\nWednesday: wrap-up lecture on inference;\nThursday: lecture on TBD, depending on general vibes / exam readiness this week;\nFriday: no class – Juneteenth!"
-  },
-  {
-    "objectID": "slides/19-interval-estimation.html#the-home-stretch",
-    "href": "slides/19-interval-estimation.html#the-home-stretch",
-    "title": "Interval Estimation",
-    "section": "",
-    "text": "Today: lecture on confidence intervals;\nTomorrow: lecture on hypothesis testing;\nThursday: Lab 6 (last one!), due Sunday by 11:59pm (deadline firm if you want graded feedback by the final);\nWednesday: wrap-up lecture on inference;\nThursday: lecture on TBD, depending on general vibes / exam readiness this week;\nFriday: no class – Juneteenth!"
+    "text": "What kind of uncertainty?\n\nHow do you quantify it?\nThese are surprisingly spicy and controversial questions in statistics!\nWith the short time remaining, we will focus on quantifying one specific type of uncertainty…"
   },
   {
     "objectID": "slides/19-interval-estimation.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "href": "slides/19-interval-estimation.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "title": "Interval Estimation",
-    "section": "Our goal: quantify uncertainty to help make informed decisions",
-    "text": "Our goal: quantify uncertainty to help make informed decisions\n\nWhat kind of uncertainty?\n\nHow do you quantify it?\nThese are surprisingly spicy and controversial questions in statistics!\nWith the short time remaining, we will focus on quantifying one specific type of uncertainty…"
+    "section": "",
+    "text": "What kind of uncertainty?\n\nHow do you quantify it?\nThese are surprisingly spicy and controversial questions in statistics!\nWith the short time remaining, we will focus on quantifying one specific type of uncertainty…"
   },
   {
     "objectID": "slides/19-interval-estimation.html#sampling-uncertainty",
@@ -5698,32 +5726,32 @@
     "text": "Bootstrap samples 3\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     6 -0.679 -0.961\n2     1  0.432  1.53 \n3     5  0.327  0.820\n4     6 -0.679 -0.961\n5     6 -0.679 -0.961\n6     5  0.327  0.820\n\n\nDifferent data &gt;&gt; new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.357\n2 x              1.96"
   },
   {
-    "objectID": "slides/19-interval-estimation.html#data-houses-in-duke-forest",
-    "href": "slides/19-interval-estimation.html#data-houses-in-duke-forest",
+    "objectID": "slides/19-interval-estimation.html#data-diving-at-the-2024-paris-olympics",
+    "href": "slides/19-interval-estimation.html#data-diving-at-the-2024-paris-olympics",
     "title": "Interval Estimation",
-    "section": "Data: Houses in Duke Forest",
-    "text": "Data: Houses in Duke Forest\n\n\n\nData on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020\nScraped from Zillow\nSource: openintro::duke_forest\n\n\n\n\n\n\nGoal: Use the area (in square feet) to understand variability in the price of houses in Duke Forest."
+    "section": "Data: Diving at the 2024 Paris Olympics",
+    "text": "Data: Diving at the 2024 Paris Olympics\n\nData on scores from every dive in the final rounds of the 2024 Paris Olympic games diving events\nScraped from Wikipedia and the Olympics website\nEach diver performs six dives\n\nGoal: Use a diver’s running total of their first 5 dives to understand variability in the score of their final dive."
   },
   {
     "objectID": "slides/19-interval-estimation.html#exploratory-data-analysis",
     "href": "slides/19-interval-estimation.html#exploratory-data-analysis",
     "title": "Interval Estimation",
     "section": "Exploratory data analysis",
-    "text": "Exploratory data analysis\n\nCodeggplot(duke_forest, aes(x = area, y = price)) +\n  geom_point(alpha = 0.7) +\n  labs(\n    x = \"Area (square feet)\",\n    y = \"Sale price (USD)\",\n    title = \"Price and area of houses in Duke Forest\"\n  ) +\n  scale_y_continuous(labels = label_dollar())"
+    "text": "Exploratory data analysis\n\nCodeggplot(diving, aes(x = running_total, y = Dive_6)) +\n  geom_point(alpha = 0.7) +\n  labs(\n    x = \"Running total (dives 1–5)\",\n    y = \"Dive 6 score\",\n    title = \"Dive 6 score vs. running total at the 2024 Paris Olympics\"\n  )"
   },
   {
     "objectID": "slides/19-interval-estimation.html#modeling",
     "href": "slides/19-interval-estimation.html#modeling",
     "title": "Interval Estimation",
     "section": "Modeling",
-    "text": "Modeling\n\ndf_fit &lt;- linear_reg() |&gt;\n  fit(price ~ area, data = duke_forest)\n\ntidy(df_fit) |&gt;\n  kable(digits = 2) # neatly format table to 2 digits\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n116652.33\n53302.46\n2.19\n0.03\n\n\narea\n159.48\n18.17\n8.78\n0.00\n\n\n\n\n\n. . .\n\n\nIntercept: Duke Forest houses that are 0 square feet are expected to sell for $116,652, on average.\n\nIs this interpretation useful?\n\n\n\nSlope: For each additional square foot, we expect the sale price of Duke Forest houses to be higher by $159, on average."
+    "text": "Modeling\n\ndiving_fit &lt;- linear_reg() |&gt;\n  fit(Dive_6 ~ running_total, data = diving)\n\ntidy(diving_fit) |&gt;\n  kable(digits = 2)\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n13.33\n14.47\n0.92\n0.36\n\n\nrunning_total\n0.19\n0.04\n4.57\n0.00\n\n\n\n\n\n. . .\n\n\nIntercept: A diver with a running total of 0 is expected to score 13.33 on their final dive, on average.\n\nIs this interpretation useful?\n\n\n\nSlope: For each additional point in the running total, we expect the final dive score to be higher by 0.19 points, on average."
   },
   {
     "objectID": "slides/19-interval-estimation.html#from-sample-to-population",
     "href": "slides/19-interval-estimation.html#from-sample-to-population",
     "title": "Interval Estimation",
     "section": "From sample to population",
-    "text": "From sample to population\n\nFor each additional square foot, we expect the sale price of Duke Forest houses to be higher by $159, on average.\n\n\n\nThis estimate is valid for the single sample of 98 houses.\nBut what if we’re not interested quantifying the relationship between the size and price of a house in this single sample?\nWhat if we want to say something about the relationship between these variables for all houses in Duke Forest?"
+    "text": "From sample to population\n\nFor each additional point in the running total, we expect the final dive score to be higher by 0.19 points, on average.\n\n\n\nThis estimate is valid for the single sample of 40 divers.\nBut what if we’re not interested in quantifying this relationship only in this sample?\nWhat if we want to say something about the relationship between these variables for all competitive divers?"
   },
   {
     "objectID": "slides/19-interval-estimation.html#statistical-inference",
@@ -5751,7 +5779,7 @@
     "href": "slides/19-interval-estimation.html#confidence-interval-for-the-slope",
     "title": "Interval Estimation",
     "section": "Confidence interval for the slope",
-    "text": "Confidence interval for the slope\nA confidence interval will allow us to make a statement like “For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus X dollars.”\n. . .\n\nShould X be $10? $100? $1000?\nIf we were to take another sample of 98 would we expect the slope calculated based on that sample to be exactly $159? Off by $10? $100? $1000?\nThe answer depends on how variable (from one sample to another sample) the sample statistic (the slope) is\nWe need a way to quantify the variability of the sample statistic"
+    "text": "Confidence interval for the slope\nA confidence interval will allow us to make a statement like “For each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.19 points, plus or minus X points.”\n. . .\n\nShould X be 0.01? 0.1? 1?\nIf we were to take another sample of 40 divers, would we expect the slope calculated based on that sample to be exactly 0.19? Off by 0.01? 0.1? 1?\nThe answer depends on how variable (from one sample to another sample) the sample statistic (the slope) is\nWe need a way to quantify the variability of the sample statistic"
   },
   {
     "objectID": "slides/19-interval-estimation.html#quantify-the-variability-of-the-slope",
@@ -5814,28 +5842,28 @@
     "href": "slides/19-interval-estimation.html#slopes-of-bootstrap-samples",
     "title": "Interval Estimation",
     "section": "Slopes of bootstrap samples",
-    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus ___ dollars."
+    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.19 points, plus or minus ___ points."
   },
   {
     "objectID": "slides/19-interval-estimation.html#slopes-of-bootstrap-samples-1",
     "href": "slides/19-interval-estimation.html#slopes-of-bootstrap-samples-1",
     "title": "Interval Estimation",
     "section": "Slopes of bootstrap samples",
-    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional square foot, we expect the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus ___ dollars."
+    "text": "Slopes of bootstrap samples\n\nFill in the blank: For each additional point in the running total, we expect the final dive score to be higher, on average, by 0.19 points, plus or minus ___ points."
   },
   {
     "objectID": "slides/19-interval-estimation.html#confidence-level",
     "href": "slides/19-interval-estimation.html#confidence-level",
     "title": "Interval Estimation",
     "section": "Confidence level",
-    "text": "Confidence level\n\nHow confident are you that the true slope is between $0 and $250? How about $150 and $170? How about $90 and $210?"
+    "text": "Confidence level\n\nHow confident are you that the true slope is between 0 and 0.5? How about 0.1 and 0.3? How about 0.05 and 0.25?"
   },
   {
     "objectID": "slides/19-interval-estimation.html#confidence-interval-1",
     "href": "slides/19-interval-estimation.html#confidence-interval-1",
     "title": "Interval Estimation",
     "section": "95% confidence interval",
-    "text": "95% confidence interval\n\n\n\n\n\n\n\n\n\n\nA 95% confidence interval is bounded by the middle 95% of the bootstrap distribution\n“We are 95% confident that for each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $90.43 to $205.77.”"
+    "text": "95% confidence interval\n\n\n\n\n\n\n\n\n\n\nA 95% confidence interval is bounded by the middle 95% of the bootstrap distribution\n“We are 95% confident that for each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.12 to 0.26 points.”"
   },
   {
     "objectID": "slides/19-interval-estimation.html#where-do-the-bounds-come-from",
@@ -5845,32 +5873,32 @@
     "text": "Where do the bounds come from?\nQuantiles!\n\n\nThink IQR! 50% of the bootstrap distribution is between the 25% quantile on the left and the 75% quantile on the right. But we want more than 50%\n90% of the bootstrap distribution is between the 5% quantile on the left and the 95% quantile on the right;\n95% of the bootstrap distribution is between the 2.5% quantile on the left and the 97.5% quantile on the right;\nAnd so on."
   },
   {
-    "objectID": "slides/19-interval-estimation.html#ae-17-duke-forest-bootstrap",
-    "href": "slides/19-interval-estimation.html#ae-17-duke-forest-bootstrap",
+    "objectID": "slides/19-interval-estimation.html#ae-17-diving-into-paris",
+    "href": "slides/19-interval-estimation.html#ae-17-diving-into-paris",
     "title": "Interval Estimation",
-    "section": "ae-17-duke-forest-bootstrap",
-    "text": "ae-17-duke-forest-bootstrap\n\n\nGo to your ae project in RStudio.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.\nIf you haven’t yet done so, click Pull to get today’s application exercise file: ae-17-duke-forest-bootstrap.qmd.\nWork through the application exercise in class, and render, commit, and push your edits."
+    "section": "ae-17-diving-into-paris",
+    "text": "ae-17-diving-into-paris\n\n\nGo to your ae project in RStudio.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.\nIf you haven’t yet done so, click Pull to get today’s application exercise file: ae-17-diving-into-paris.qmd.\nWork through the application exercise in class, and render, commit, and push your edits."
   },
   {
     "objectID": "slides/19-interval-estimation.html#computing-the-ci-for-the-slope-i",
     "href": "slides/19-interval-estimation.html#computing-the-ci-for-the-slope-i",
     "title": "Interval Estimation",
     "section": "Computing the CI for the slope I",
-    "text": "Computing the CI for the slope I\nCalculate the observed slope:\n\nobserved_fit &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept  116652.\n2 area          159.\n\n\n\nAside: I don’t know why, but one quirk of tidymodels is that, when you are fitting a model for use in CI construction, you’ll use df |&gt; specify(y ~ x) |&gt; fit(); when you’re fitting a model for general inference, you’ll use linear_reg |&gt; fit(y ~ x, data = df)"
+    "text": "Computing the CI for the slope I\nCalculate the observed slope:\n\nobserved_fit &lt;- diving |&gt;\n  specify(Dive_6 ~ running_total) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term          estimate\n  &lt;chr&gt;            &lt;dbl&gt;\n1 intercept       13.3  \n2 running_total    0.189\n\n\n\nAside: I don’t know why, but one quirk of tidymodels is that, when you are fitting a model for use in CI construction, you’ll use df |&gt; specify(y ~ x) |&gt; fit(); when you’re fitting a model for general inference, you’ll use linear_reg |&gt; fit(y ~ x, data = df)"
   },
   {
     "objectID": "slides/19-interval-estimation.html#computing-the-ci-for-the-slope-ii",
     "href": "slides/19-interval-estimation.html#computing-the-ci-for-the-slope-ii",
     "title": "Interval Estimation",
     "section": "Computing the CI for the slope II",
-    "text": "Computing the CI for the slope II\nTake 100 bootstrap samples and have R fit models to each one:\n\nset.seed(1120)\n\nboot_fits &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 200 × 3\n# Groups:   replicate [100]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept   47819.\n 2         1 area          191.\n 3         2 intercept  144645.\n 4         2 area          134.\n 5         3 intercept  114008.\n 6         3 area          161.\n 7         4 intercept  100639.\n 8         4 area          166.\n 9         5 intercept  215264.\n10         5 area          125.\n# ℹ 190 more rows"
+    "text": "Computing the CI for the slope II\nTake 100 bootstrap samples and have R fit models to each one:\n\nset.seed(1120)\n\nboot_fits &lt;- diving |&gt;\n  specify(Dive_6 ~ running_total) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 200 × 3\n# Groups:   replicate [100]\n   replicate term          estimate\n       &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;\n 1         1 intercept       -9.05 \n 2         1 running_total    0.254\n 3         2 intercept      -21.1  \n 4         2 running_total    0.287\n 5         3 intercept        4.36 \n 6         3 running_total    0.209\n 7         4 intercept        2.89 \n 8         4 running_total    0.222\n 9         5 intercept       11.6  \n10         5 running_total    0.197\n# ℹ 190 more rows"
   },
   {
     "objectID": "slides/19-interval-estimation.html#computing-the-ci-for-the-slope-iii",
     "href": "slides/19-interval-estimation.html#computing-the-ci-for-the-slope-iii",
     "title": "Interval Estimation",
     "section": "Computing the CI for the slope III",
-    "text": "Computing the CI for the slope III\nPercentile method: Compute the 95% CI as the middle 95% of the bootstrap distribution:\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\" # default method\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
+    "text": "Computing the CI for the slope III\nPercentile method: Compute the 95% CI as the middle 95% of the bootstrap distribution:\n\nget_confidence_interval(\n  boot_fits,\n  point_estimate = observed_fit,\n  level = 0.95,\n  type = \"percentile\" # default method\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept      -18.9     33.1  \n2 running_total    0.129    0.282"
   },
   {
     "objectID": "slides/19-interval-estimation.html#precision-vs.-accuracy",
@@ -5891,14 +5919,14 @@
     "href": "slides/19-interval-estimation.html#changing-confidence-level",
     "title": "Interval Estimation",
     "section": "Changing confidence level",
-    "text": "Changing confidence level\n\nHow would you modify the following code to calculate a 90% confidence interval? How would you modify it for a 99% confidence interval?\n\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
+    "text": "Changing confidence level\n\nHow would you modify the following code to calculate a 90% confidence interval? How would you modify it for a 99% confidence interval?\n\n\nget_confidence_interval(\n  boot_fits,\n  point_estimate = observed_fit,\n  level = 0.95,\n  type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept      -18.9     33.1  \n2 running_total    0.129    0.282"
   },
   {
     "objectID": "slides/19-interval-estimation.html#changing-confidence-level-1",
     "href": "slides/19-interval-estimation.html#changing-confidence-level-1",
     "title": "Interval Estimation",
     "section": "Changing confidence level",
-    "text": "Changing confidence level\n\n## confidence level: 90%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.90, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          104.     212.\n2 intercept  -24380.  256730.\n\n## confidence level: 99%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.99, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          56.3     226.\n2 intercept -61950.   370395."
+    "text": "Changing confidence level\n\n## confidence level: 90%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit,\n  level = 0.90, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept      -15.0     29.1  \n2 running_total    0.140    0.266\n\n## confidence level: 99%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit,\n  level = 0.99, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term          lower_ci upper_ci\n  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept     -24.8      51.6  \n2 running_total   0.0796    0.304"
   },
   {
     "objectID": "slides/19-interval-estimation.html#recap",
@@ -5940,42 +5968,42 @@
     "href": "slides/17-logistic-regression-slides.html#today-a-binary-response",
     "title": "Logistic Regression",
     "section": "Today: a binary response",
-    "text": "Today: a binary response\n\\[\ny =\n\\begin{cases}\n1 & &&\\text{eg. Yes, Win, True, Heads, Success}\\\\\n0 & &&\\text{eg. No, Lose, False, Tails, Failure}.\n\\end{cases}\n\\]"
+    "text": "Today: a binary response\n\ny =\n\\begin{cases}\n1 & &&\\text{eg. Yes, Win, True, Heads, Success}\\\\\n0 & &&\\text{eg. No, Lose, False, Tails, Failure}.\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#who-cares",
     "href": "slides/17-logistic-regression-slides.html#who-cares",
     "title": "Logistic Regression",
     "section": "Who cares?",
-    "text": "Who cares?\nIf we can model the relationship between predictors (\\(x\\)) and a binary response (\\(y\\)), we can use the model to do a special kind of prediction called classification."
+    "text": "Who cares?\nIf we can model the relationship between predictors (x) and a binary response (y), we can use the model to do a special kind of prediction called classification."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#example-is-the-e-mail-spam-or-not",
     "href": "slides/17-logistic-regression-slides.html#example-is-the-e-mail-spam-or-not",
     "title": "Logistic Regression",
     "section": "Example: is the e-mail spam or not?",
-    "text": "Example: is the e-mail spam or not?\n\\[\n\\mathbf{x}: \\text{word and character counts in an e-mail.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{it's spam}\\\\\n0 & \\text{it's legit}\n\\end{cases}\n\\]"
+    "text": "Example: is the e-mail spam or not?\n\n\\mathbf{x}: \\text{word and character counts in an e-mail.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{it's spam}\\\\\n0 & \\text{it's legit}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#example-is-it-cancer-or-not",
     "href": "slides/17-logistic-regression-slides.html#example-is-it-cancer-or-not",
     "title": "Logistic Regression",
     "section": "Example: is it cancer or not?",
-    "text": "Example: is it cancer or not?\n\\[\n\\mathbf{x}: \\text{features in a medical image.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{it's cancer}\\\\\n0 & \\text{it's healthy}\n\\end{cases}\n\\]"
+    "text": "Example: is it cancer or not?\n\n\\mathbf{x}: \\text{features in a medical image.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{it's cancer}\\\\\n0 & \\text{it's healthy}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#example-will-they-default",
     "href": "slides/17-logistic-regression-slides.html#example-will-they-default",
     "title": "Logistic Regression",
     "section": "Example: will they default?",
-    "text": "Example: will they default?\n\\[\n\\mathbf{x}: \\text{financial and demographic info about a loan applicant.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{applicant is at risk of defaulting on loan}\\\\\n0 & \\text{applicant is safe}\n\\end{cases}\n\\]"
+    "text": "Example: will they default?\n\n\\mathbf{x}: \\text{financial and demographic info about a loan applicant.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{applicant is at risk of defaulting on loan}\\\\\n0 & \\text{applicant is safe}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#example-who-said-it-taylor-swift-or-shakespeare",
     "href": "slides/17-logistic-regression-slides.html#example-who-said-it-taylor-swift-or-shakespeare",
     "title": "Logistic Regression",
     "section": "Example: Who said it: Taylor Swift, or Shakespeare?",
-    "text": "Example: Who said it: Taylor Swift, or Shakespeare?\n\\[\n\\mathbf{x}: \\text{word counts (e.g., thou, love, heartbreak), stylistic features}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{Taylor Swift}\\\\\n0 & \\text{William Shakespeare}\n\\end{cases}\n\\]"
+    "text": "Example: Who said it: Taylor Swift, or Shakespeare?\n\n\\mathbf{x}: \\text{word counts (e.g., thou, love, heartbreak), stylistic features}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{Taylor Swift}\\\\\n0 & \\text{William Shakespeare}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#how-do-we-model-this-type-of-data",
@@ -5996,28 +6024,28 @@
     "href": "slides/17-logistic-regression-slides.html#instead-s-curve-of-best-fit",
     "title": "Logistic Regression",
     "section": "Instead: S-curve of best fit",
-    "text": "Instead: S-curve of best fit\nInstead of modeling \\(y\\) directly, we model the probability that \\(y=1\\):\n\n\n\n\n\n\n\n\n\n“Given new email, what’s the probability that it’s spam?’’\n“Given new image, what’s the probability that it’s cancer?’’\n“Given new loan application, what’s the probability that they default?’’"
+    "text": "Instead: S-curve of best fit\nInstead of modeling y directly, we model the probability that y=1:\n\n\n\n\n\n\n\n\n\n“Given new email, what’s the probability that it’s spam?’’\n“Given new image, what’s the probability that it’s cancer?’’\n“Given new loan application, what’s the probability that they default?’’"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#why-dont-we-model-y-directly",
     "href": "slides/17-logistic-regression-slides.html#why-dont-we-model-y-directly",
     "title": "Logistic Regression",
     "section": "Why don’t we model y directly?",
-    "text": "Why don’t we model y directly?\n\n\nRecall regression with a numerical response:\n\nOur models do not output guarantees for \\(y\\), they output predictions that describe behavior on average;\n\n\n\nSimilar when modeling a binary response:\n\nOur models cannot directly guarantee that \\(y\\) will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”"
+    "text": "Why don’t we model y directly?\n\n\nRecall regression with a numerical response:\n\nOur models do not output guarantees for y, they output predictions that describe behavior on average;\n\n\n\nSimilar when modeling a binary response:\n\nOur models cannot directly guarantee that y will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#so-what-is-this-s-curve-anyway",
     "href": "slides/17-logistic-regression-slides.html#so-what-is-this-s-curve-anyway",
     "title": "Logistic Regression",
     "section": "So, what is this S-curve, anyway?",
-    "text": "So, what is this S-curve, anyway?\nIt’s the logistic function:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\\]\nIf you set \\(p = \\text{Prob}(y = 1)\\) and do some algebra, you get the simple linear model for the log-odds:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\nThis is called the logistic regression model."
+    "text": "So, what is this S-curve, anyway?\nIt’s the logistic function:\n\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\nIf you set p = \\text{Prob}(y = 1) and do some algebra, you get the simple linear model for the log-odds:\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\nThis is called the logistic regression model."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#log-odds",
     "href": "slides/17-logistic-regression-slides.html#log-odds",
     "title": "Logistic Regression",
     "section": "Log-odds?",
-    "text": "Log-odds?\n\n\\(p = \\text{Prob}(y = 1)\\) is a probability. A number between 0 and 1;\n\\(p / (1 - p)\\) is the odds. A number between 0 and \\(\\infty\\);\n\n\n“The odds of this lecture going well are 10 to 1.”\n\n\nThe log odds \\(\\log(p / (1 - p))\\) is a number between \\(-\\infty\\) and \\(\\infty\\), which is suitable for the linear model.\nWhy does this “transformation” work? The log function maps positive numbers \\((0, \\infty)\\) to all real numbers \\((-\\infty, \\infty)\\)."
+    "text": "Log-odds?\n\np = \\text{Prob}(y = 1) is a probability. A number between 0 and 1;\np / (1 - p) is the odds. A number between 0 and \\infty;\n\n\n“The odds of this lecture going well are 10 to 1.”\n\n\nThe log odds \\log(p / (1 - p)) is a number between -\\infty and \\infty, which is suitable for the linear model.\nWhy does this “transformation” work? The log function maps positive numbers (0, \\infty) to all real numbers (-\\infty, \\infty)."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#probability-to-odds",
@@ -6045,14 +6073,14 @@
     "href": "slides/17-logistic-regression-slides.html#logistic-regression",
     "title": "Logistic Regression",
     "section": "Logistic regression",
-    "text": "Logistic regression\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\n\nThe logit function \\(\\log(p / (1-p))\\) is an example of a link function that transforms the linear model to have an appropriate range;\nThis is an example of a generalized linear model"
+    "text": "Logistic regression\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\n\nThe logit function \\log(p / (1-p)) is an example of a link function that transforms the linear model to have an appropriate range;\nThis is an example of a generalized linear model"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#estimation",
     "href": "slides/17-logistic-regression-slides.html#estimation",
     "title": "Logistic Regression",
     "section": "Estimation",
-    "text": "Estimation\n\nWe estimate the parameters \\(\\beta_0,\\,\\beta_1\\) using maximum likelihood (don’t worry about it) to get the “best fitting” S-curve;\nThe fitted model is\n\n\\[\n\\log\\left(\\frac{\\\\hat{p}}{1-\\\\hat{p}}\\right)\n=\nb_0+b_1x.\n\\]"
+    "text": "Estimation\n\nWe estimate the parameters \\beta_0,\\,\\beta_1 using maximum likelihood (don’t worry about it) to get the “best fitting” S-curve;\nThe fitted model is\n\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\nb_0+b_1x."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#todays-data",
@@ -6066,28 +6094,28 @@
     "href": "slides/17-logistic-regression-slides.html#fitting-a-logistic-model",
     "title": "Logistic Regression",
     "section": "Fitting a logistic model",
-    "text": "Fitting a logistic model\n\nlogistic_fit &lt;- logistic_reg() |&gt;\n  fit(spam ~ exclaim_mess, data = email)\n\ntidy(logistic_fit)\n\n# A tibble: 2 × 5\n  term          estimate std.error statistic p.value\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)  -2.27      0.0553     -41.1     0    \n2 exclaim_mess  0.000272  0.000949     0.287   0.774\n\n\nFitted equation for the log-odds:\n\\[\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\\]"
+    "text": "Fitting a logistic model\n\nlogistic_fit &lt;- logistic_reg() |&gt;\n  fit(spam ~ exclaim_mess, data = email)\n\ntidy(logistic_fit)\n\n# A tibble: 2 × 5\n  term          estimate std.error statistic p.value\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)  -2.27      0.0553     -41.1     0    \n2 exclaim_mess  0.000272  0.000949     0.287   0.774\n\n\nFitted equation for the log-odds:\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#interpreting-the-intercept",
     "href": "slides/17-logistic-regression-slides.html#interpreting-the-intercept",
     "title": "Logistic Regression",
     "section": "Interpreting the intercept",
-    "text": "Interpreting the intercept\nIf exclaim_mess = 0, then\n\\[\n\\\\hat{p}=\\widehat{P(y=1)}=\\frac{e^{-2.27}}{1+e^{-2.27}}\\approx 0.09.\n\\]\nSo, our model predicts that an email with no exclamation marks has a 9% probability of being spam."
+    "text": "Interpreting the intercept\nIf exclaim_mess = 0, then\n\n\\hat{p}=\\widehat{P(y=1)}=\\frac{e^{-2.27}}{1+e^{-2.27}}\\approx 0.09.\n\nSo, our model predicts that an email with no exclamation marks has a 9% probability of being spam."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#interpreting-the-slope-is-tricky",
     "href": "slides/17-logistic-regression-slides.html#interpreting-the-slope-is-tricky",
     "title": "Logistic Regression",
     "section": "Interpreting the slope is tricky",
-    "text": "Interpreting the slope is tricky\nRecall:\n\\[\n\\log\\left(\\frac{\\\\hat{p}}{1-\\\\hat{p}}\\right)\n=\nb_0+b_1x.\n\\]\n\nAlternatively:\n\\[\n\\frac{\\\\hat{p}}{1-\\\\hat{p}}\n=\ne^{b_0+b_1x}\n=\n\\color{blue}{e^{b_0}e^{b_1x}}\n.\n\\]\n\n\nIf we increase \\(x\\) by one unit, we have:\n\\[\n\\frac{\\\\hat{p}}{1-\\\\hat{p}}\n=\ne^{b_0}e^{b_1(x+1)}\n=\ne^{b_0}e^{b_1x+b_1}\n=\n{\\color{blue}{e^{b_0}e^{b_1x}}}{\\color{red}{e^{b_1}}}\n.\n\\]\n\n\nA one unit increase in \\(x\\) is associated with a change in odds by a factor of \\(e^{b_1}\\). Gross!"
+    "text": "Interpreting the slope is tricky\nRecall:\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\nb_0+b_1x.\n\n\nAlternatively:\n\n\\frac{\\hat{p}}{1-\\hat{p}}\n=\ne^{b_0+b_1x}\n=\n\\color{blue}{e^{b_0}e^{b_1x}}\n.\n\n\n\nIf we increase x by one unit, we have:\n\n\\frac{\\hat{p}}{1-\\hat{p}}\n=\ne^{b_0}e^{b_1(x+1)}\n=\ne^{b_0}e^{b_1x+b_1}\n=\n{\\color{blue}{e^{b_0}e^{b_1x}}}{\\color{red}{e^{b_1}}}\n.\n\n\n\nA one unit increase in x is associated with a change in odds by a factor of e^{b_1}. Gross!"
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#back-to-the-example",
     "href": "slides/17-logistic-regression-slides.html#back-to-the-example",
     "title": "Logistic Regression",
     "section": "Back to the example…",
-    "text": "Back to the example…\n\\[\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\\]\nIf the email has an additional exclamation mark, we predict the odds of an email being spam to be higher by a multiplicative factor of \\(e^{0.000272}\\approx 1.000272\\) on average."
+    "text": "Back to the example…\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\nIf the email has an additional exclamation mark, we predict the odds of an email being spam to be higher by a multiplicative factor of e^{0.000272}\\approx 1.000272 on average."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#logistic-regression---classification",
@@ -6101,42 +6129,42 @@
     "href": "slides/17-logistic-regression-slides.html#step-0-fit-the-model",
     "title": "Logistic Regression",
     "section": "Step 0: fit the model",
-    "text": "Step 0: fit the model\nSelect a number \\(0 &lt; p^* &lt; 1\\):\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\)."
+    "text": "Step 0: fit the model\nSelect a number 0 &lt; p^* &lt; 1:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#step-1-pick-a-threshold",
     "href": "slides/17-logistic-regression-slides.html#step-1-pick-a-threshold",
     "title": "Logistic Regression",
     "section": "Step 1: pick a threshold",
-    "text": "Step 1: pick a threshold\nSelect a number \\(0 &lt; p^* &lt; 1\\):\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\)."
+    "text": "Step 1: pick a threshold\nSelect a number 0 &lt; p^* &lt; 1:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#step-2-find-the-decision-boundary",
     "href": "slides/17-logistic-regression-slides.html#step-2-find-the-decision-boundary",
     "title": "Logistic Regression",
     "section": "Step 2: find the “decision boundary”",
-    "text": "Step 2: find the “decision boundary”\nSolve for the x-value that matches the threshold:\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\)."
+    "text": "Step 2: find the “decision boundary”\nSolve for the x-value that matches the threshold:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#step-3-classify-a-new-arrival",
     "href": "slides/17-logistic-regression-slides.html#step-3-classify-a-new-arrival",
     "title": "Logistic Regression",
     "section": "Step 3: classify a new arrival",
-    "text": "Step 3: classify a new arrival\nA new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "Step 3: classify a new arrival\nA new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#lets-change-the-threshold",
     "href": "slides/17-logistic-regression-slides.html#lets-change-the-threshold",
     "title": "Logistic Regression",
     "section": "Let’s change the threshold",
-    "text": "Let’s change the threshold\nA new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "Let’s change the threshold\nA new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#lets-change-the-threshold-1",
     "href": "slides/17-logistic-regression-slides.html#lets-change-the-threshold-1",
     "title": "Logistic Regression",
     "section": "Let’s change the threshold",
-    "text": "Let’s change the threshold\nA new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "Let’s change the threshold\nA new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#nothing-special-about-one-predictor",
@@ -6150,28 +6178,28 @@
     "href": "slides/17-logistic-regression-slides.html#multiple-logistic-regression",
     "title": "Logistic Regression",
     "section": "“Multiple” logistic regression",
-    "text": "“Multiple” logistic regression\nFor the log-odds, a multiple linear regression:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m.\n\\] On the probability scale:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}{1+e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}.\n\\]"
+    "text": "“Multiple” logistic regression\nFor the log-odds, a multiple linear regression:\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m.\n On the probability scale:\n\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}{1+e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#decision-boundary-again",
     "href": "slides/17-logistic-regression-slides.html#decision-boundary-again",
     "title": "Logistic Regression",
     "section": "Decision boundary, again",
-    "text": "Decision boundary, again\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "Decision boundary, again\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#decision-boundary-again-1",
     "href": "slides/17-logistic-regression-slides.html#decision-boundary-again-1",
     "title": "Logistic Regression",
     "section": "Decision boundary, again",
-    "text": "Decision boundary, again\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "Decision boundary, again\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#decision-boundary-again-2",
     "href": "slides/17-logistic-regression-slides.html#decision-boundary-again-2",
     "title": "Logistic Regression",
     "section": "Decision boundary, again",
-    "text": "Decision boundary, again\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "Decision boundary, again\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression-slides.html#note-the-classifier-isnt-perfect",
@@ -6206,7 +6234,7 @@
     "href": "slides/17-logistic-regression.html",
     "title": "Logistic Regression",
     "section": "",
-    "text": "We have been studying regression:\n\nWhat combinations of data types have we seen?\nWhat did the picture look like?\n\nNumerical response and one numerical predictor:\n\n\n\n\n\n\n\n\n\nNumerical response and one categorical predictor (two levels):\n\n\n\n\n\n\n\n\n\nNumerical response; numerical and categorical predictors:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\ny =\n\\begin{cases}\n1 & &&\\text{eg. Yes, Win, True, Heads, Success}\\\\\n0 & &&\\text{eg. No, Lose, False, Tails, Failure}.\n\\end{cases}\n\\]\n\n\n\n\n\n\n\n\n\nIf we can model the relationship between predictors (\\(x\\)) and a binary response (\\(y\\)), we can use the model to do a special kind of prediction called classification.\n\n\\[\n\\mathbf{x}: \\text{word and character counts in an e-mail.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{it's spam}\\\\\n0 & \\text{it's legit}\n\\end{cases}\n\\]\n\n\\[\n\\mathbf{x}: \\text{features in a medical image.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{it's cancer}\\\\\n0 & \\text{it's healthy}\n\\end{cases}\n\\]\n\n\\[\n\\mathbf{x}: \\text{financial and demographic info about a loan applicant.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{applicant is at risk of defaulting on loan}\\\\\n0 & \\text{applicant is safe}\n\\end{cases}\n\\]\n\n\\[\n\\mathbf{x}: \\text{word counts (e.g., thou, love, heartbreak), stylistic features}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{Taylor Swift}\\\\\n0 & \\text{William Shakespeare}\n\\end{cases}\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstead of modeling \\(y\\) directly, we model the probability that \\(y=1\\):\n\n\n\n\n\n\n\n\n\n“Given new email, what’s the probability that it’s spam?’’\n“Given new image, what’s the probability that it’s cancer?’’\n“Given new loan application, what’s the probability that they default?’’\n\n\n\nRecall regression with a numerical response:\n\nOur models do not output guarantees for \\(y\\), they output predictions that describe behavior on average;\n\n\n\nSimilar when modeling a binary response:\n\nOur models cannot directly guarantee that \\(y\\) will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”\n\n\n\nIt’s the logistic function:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\\]\nIf you set \\(p = \\text{Prob}(y = 1)\\) and do some algebra, you get the simple linear model for the log-odds:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\nThis is called the logistic regression model.\n\n\n\\(p = \\text{Prob}(y = 1)\\) is a probability. A number between 0 and 1;\n\\(p / (1 - p)\\) is the odds. A number between 0 and \\(\\infty\\);\n\n\n“The odds of this lecture going well are 10 to 1.”\n\n\nThe log odds \\(\\log(p / (1 - p))\\) is a number between \\(-\\infty\\) and \\(\\infty\\), which is suitable for the linear model.\nWhy does this “transformation” work? The log function maps positive numbers \\((0, \\infty)\\) to all real numbers \\((-\\infty, \\infty)\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\n\nThe logit function \\(\\log(p / (1-p))\\) is an example of a link function that transforms the linear model to have an appropriate range;\nThis is an example of a generalized linear model\n\n\nWe estimate the parameters \\(\\beta_0,\\,\\beta_1\\) using maximum likelihood (don’t worry about it) to get the “best fitting” S-curve;\nThe fitted model is\n\n\\[\n\\log\\left(\\frac{\\\\hat{p}}{1-\\\\hat{p}}\\right)\n=\nb_0+b_1x.\n\\]\n\n\nemail |&gt; \n  dplyr::select(c(spam, dollar, viagra, winner, password, exclaim_mess)) |&gt; \n  glimpse()\n\nRows: 3,921\nColumns: 6\n$ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ dollar       &lt;dbl&gt; 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,…\n$ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no, no,…\n$ password     &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ exclaim_mess &lt;dbl&gt; 0, 1, 6, 48, 1, 1, 1, 18, 1, 0, 2, 1, 0, 10, 4,…\n\n\n\n\nlogistic_fit &lt;- logistic_reg() |&gt;\n  fit(spam ~ exclaim_mess, data = email)\n\ntidy(logistic_fit)\n\n# A tibble: 2 × 5\n  term          estimate std.error statistic p.value\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)  -2.27      0.0553     -41.1     0    \n2 exclaim_mess  0.000272  0.000949     0.287   0.774\n\n\nFitted equation for the log-odds:\n\\[\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\\]\n\nIf exclaim_mess = 0, then\n\\[\n\\\\hat{p}=\\widehat{P(y=1)}=\\frac{e^{-2.27}}{1+e^{-2.27}}\\approx 0.09.\n\\]\nSo, our model predicts that an email with no exclamation marks has a 9% probability of being spam.\n\nRecall:\n\\[\n\\log\\left(\\frac{\\\\hat{p}}{1-\\\\hat{p}}\\right)\n=\nb_0+b_1x.\n\\]\n. . .\nAlternatively:\n\\[\n\\frac{\\\\hat{p}}{1-\\\\hat{p}}\n=\ne^{b_0+b_1x}\n=\n\\color{blue}{e^{b_0}e^{b_1x}}\n.\n\\]\n. . .\nIf we increase \\(x\\) by one unit, we have:\n\\[\n\\frac{\\\\hat{p}}{1-\\\\hat{p}}\n=\ne^{b_0}e^{b_1(x+1)}\n=\ne^{b_0}e^{b_1x+b_1}\n=\n{\\color{blue}{e^{b_0}e^{b_1x}}}{\\color{red}{e^{b_1}}}\n.\n\\]\n. . .\nA one unit increase in \\(x\\) is associated with a change in odds by a factor of \\(e^{b_1}\\). Gross!\n\n\\[\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\\]\nIf the email has an additional exclamation mark, we predict the odds of an email being spam to be higher by a multiplicative factor of \\(e^{0.000272}\\approx 1.000272\\) on average.\n\n\nSelect a number \\(0 &lt; p^* &lt; 1\\):\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\).\n\nSelect a number \\(0 &lt; p^* &lt; 1\\):\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\).\n\nSolve for the x-value that matches the threshold:\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\).\n\nA new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person.\n\nA new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person.\n\nA new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person.\n\nTwo numerical predictors and one binary response:\n\n\n\n\n\n\n\n\n\nFor the log-odds, a multiple linear regression:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m.\n\\] On the probability scale:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}{1+e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}.\n\\]\n\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person.\n\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person.\n\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person.\n\n\n\n\n\n\n\n\n\n\nThere are blue points in the orange region: spam (1) emails misclassified as legit (0);\nThere are orange points in the blue region: legit (0) emails misclassified as spam (1).\n\nTo balance out the two kinds of errors:\n\n\nHigh threshold &gt;&gt; Hard to classify as 1 &gt;&gt; FP less likely; FN more likely\nLow threshold &gt;&gt; Easy to classify as 1 &gt;&gt; FP more likely; FN less likely\n\n\n\nSet p* = 0\n\nClassify every email as spam (1);\nNo false negatives, but a lot of false positives;\n\n\n\nSet p* = 1\n\nClassify every email as legit (0);\nNo false positives, but a lot of false negatives.\n\n\n\nYou pick a threshold in between to strike a balance. The exact number depends on context."
+    "text": "We have been studying regression:\n\nWhat combinations of data types have we seen?\nWhat did the picture look like?\n\nNumerical response and one numerical predictor:\n\n\n\n\n\n\n\n\n\nNumerical response and one categorical predictor (two levels):\n\n\n\n\n\n\n\n\n\nNumerical response; numerical and categorical predictors:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ny =\n\\begin{cases}\n1 & &&\\text{eg. Yes, Win, True, Heads, Success}\\\\\n0 & &&\\text{eg. No, Lose, False, Tails, Failure}.\n\\end{cases}\n\n\n\n\n\n\n\n\n\n\nIf we can model the relationship between predictors (x) and a binary response (y), we can use the model to do a special kind of prediction called classification.\n\n\n\\mathbf{x}: \\text{word and character counts in an e-mail.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{it's spam}\\\\\n0 & \\text{it's legit}\n\\end{cases}\n\n\n\n\\mathbf{x}: \\text{features in a medical image.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{it's cancer}\\\\\n0 & \\text{it's healthy}\n\\end{cases}\n\n\n\n\\mathbf{x}: \\text{financial and demographic info about a loan applicant.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{applicant is at risk of defaulting on loan}\\\\\n0 & \\text{applicant is safe}\n\\end{cases}\n\n\n\n\\mathbf{x}: \\text{word counts (e.g., thou, love, heartbreak), stylistic features}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{Taylor Swift}\\\\\n0 & \\text{William Shakespeare}\n\\end{cases}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInstead of modeling y directly, we model the probability that y=1:\n\n\n\n\n\n\n\n\n\n“Given new email, what’s the probability that it’s spam?’’\n“Given new image, what’s the probability that it’s cancer?’’\n“Given new loan application, what’s the probability that they default?’’\n\n\n\nRecall regression with a numerical response:\n\nOur models do not output guarantees for y, they output predictions that describe behavior on average;\n\n\n\nSimilar when modeling a binary response:\n\nOur models cannot directly guarantee that y will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”\n\n\n\nIt’s the logistic function:\n\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\nIf you set p = \\text{Prob}(y = 1) and do some algebra, you get the simple linear model for the log-odds:\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\nThis is called the logistic regression model.\n\n\np = \\text{Prob}(y = 1) is a probability. A number between 0 and 1;\np / (1 - p) is the odds. A number between 0 and \\infty;\n\n\n“The odds of this lecture going well are 10 to 1.”\n\n\nThe log odds \\log(p / (1 - p)) is a number between -\\infty and \\infty, which is suitable for the linear model.\nWhy does this “transformation” work? The log function maps positive numbers (0, \\infty) to all real numbers (-\\infty, \\infty).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\n\nThe logit function \\log(p / (1-p)) is an example of a link function that transforms the linear model to have an appropriate range;\nThis is an example of a generalized linear model\n\n\nWe estimate the parameters \\beta_0,\\,\\beta_1 using maximum likelihood (don’t worry about it) to get the “best fitting” S-curve;\nThe fitted model is\n\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\nb_0+b_1x.\n\n\n\nemail |&gt; \n  dplyr::select(c(spam, dollar, viagra, winner, password, exclaim_mess)) |&gt; \n  glimpse()\n\nRows: 3,921\nColumns: 6\n$ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ dollar       &lt;dbl&gt; 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,…\n$ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no, no,…\n$ password     &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ exclaim_mess &lt;dbl&gt; 0, 1, 6, 48, 1, 1, 1, 18, 1, 0, 2, 1, 0, 10, 4,…\n\n\n\n\nlogistic_fit &lt;- logistic_reg() |&gt;\n  fit(spam ~ exclaim_mess, data = email)\n\ntidy(logistic_fit)\n\n# A tibble: 2 × 5\n  term          estimate std.error statistic p.value\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)  -2.27      0.0553     -41.1     0    \n2 exclaim_mess  0.000272  0.000949     0.287   0.774\n\n\nFitted equation for the log-odds:\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\n\nIf exclaim_mess = 0, then\n\n\\hat{p}=\\widehat{P(y=1)}=\\frac{e^{-2.27}}{1+e^{-2.27}}\\approx 0.09.\n\nSo, our model predicts that an email with no exclamation marks has a 9% probability of being spam.\n\nRecall:\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\nb_0+b_1x.\n\n. . .\nAlternatively:\n\n\\frac{\\hat{p}}{1-\\hat{p}}\n=\ne^{b_0+b_1x}\n=\n\\color{blue}{e^{b_0}e^{b_1x}}\n.\n\n. . .\nIf we increase x by one unit, we have:\n\n\\frac{\\hat{p}}{1-\\hat{p}}\n=\ne^{b_0}e^{b_1(x+1)}\n=\ne^{b_0}e^{b_1x+b_1}\n=\n{\\color{blue}{e^{b_0}e^{b_1x}}}{\\color{red}{e^{b_1}}}\n.\n\n. . .\nA one unit increase in x is associated with a change in odds by a factor of e^{b_1}. Gross!\n\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\nIf the email has an additional exclamation mark, we predict the odds of an email being spam to be higher by a multiplicative factor of e^{0.000272}\\approx 1.000272 on average.\n\n\nSelect a number 0 &lt; p^* &lt; 1:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1.\n\nSelect a number 0 &lt; p^* &lt; 1:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1.\n\nSolve for the x-value that matches the threshold:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1.\n\nA new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person.\n\nA new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person.\n\nA new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person.\n\nTwo numerical predictors and one binary response:\n\n\n\n\n\n\n\n\n\nFor the log-odds, a multiple linear regression:\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m.\n On the probability scale:\n\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}{1+e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}.\n\n\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person.\n\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person.\n\nIt’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person.\n\n\n\n\n\n\n\n\n\n\nThere are blue points in the orange region: spam (1) emails misclassified as legit (0);\nThere are orange points in the blue region: legit (0) emails misclassified as spam (1).\n\nTo balance out the two kinds of errors:\n\n\nHigh threshold &gt;&gt; Hard to classify as 1 &gt;&gt; FP less likely; FN more likely\nLow threshold &gt;&gt; Easy to classify as 1 &gt;&gt; FP more likely; FN less likely\n\n\n\nSet p* = 0\n\nClassify every email as spam (1);\nNo false negatives, but a lot of false positives;\n\n\n\nSet p* = 1\n\nClassify every email as legit (0);\nNo false positives, but a lot of false negatives.\n\n\n\nYou pick a threshold in between to strike a balance. The exact number depends on context."
   },
   {
     "objectID": "slides/17-logistic-regression.html#thus-far",
@@ -6241,84 +6269,84 @@
     "href": "slides/17-logistic-regression.html#today-a-binary-response",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\[\ny =\n\\begin{cases}\n1 & &&\\text{eg. Yes, Win, True, Heads, Success}\\\\\n0 & &&\\text{eg. No, Lose, False, Tails, Failure}.\n\\end{cases}\n\\]"
+    "text": "y =\n\\begin{cases}\n1 & &&\\text{eg. Yes, Win, True, Heads, Success}\\\\\n0 & &&\\text{eg. No, Lose, False, Tails, Failure}.\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression.html#who-cares",
     "href": "slides/17-logistic-regression.html#who-cares",
     "title": "Logistic Regression",
     "section": "",
-    "text": "If we can model the relationship between predictors (\\(x\\)) and a binary response (\\(y\\)), we can use the model to do a special kind of prediction called classification."
+    "text": "If we can model the relationship between predictors (x) and a binary response (y), we can use the model to do a special kind of prediction called classification."
   },
   {
     "objectID": "slides/17-logistic-regression.html#example-is-the-e-mail-spam-or-not",
     "href": "slides/17-logistic-regression.html#example-is-the-e-mail-spam-or-not",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\[\n\\mathbf{x}: \\text{word and character counts in an e-mail.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{it's spam}\\\\\n0 & \\text{it's legit}\n\\end{cases}\n\\]"
+    "text": "\\mathbf{x}: \\text{word and character counts in an e-mail.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{it's spam}\\\\\n0 & \\text{it's legit}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression.html#example-is-it-cancer-or-not",
     "href": "slides/17-logistic-regression.html#example-is-it-cancer-or-not",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\[\n\\mathbf{x}: \\text{features in a medical image.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{it's cancer}\\\\\n0 & \\text{it's healthy}\n\\end{cases}\n\\]"
+    "text": "\\mathbf{x}: \\text{features in a medical image.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{it's cancer}\\\\\n0 & \\text{it's healthy}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression.html#example-will-they-default",
     "href": "slides/17-logistic-regression.html#example-will-they-default",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\[\n\\mathbf{x}: \\text{financial and demographic info about a loan applicant.}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{applicant is at risk of defaulting on loan}\\\\\n0 & \\text{applicant is safe}\n\\end{cases}\n\\]"
+    "text": "\\mathbf{x}: \\text{financial and demographic info about a loan applicant.}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{applicant is at risk of defaulting on loan}\\\\\n0 & \\text{applicant is safe}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression.html#example-who-said-it-taylor-swift-or-shakespeare",
     "href": "slides/17-logistic-regression.html#example-who-said-it-taylor-swift-or-shakespeare",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\[\n\\mathbf{x}: \\text{word counts (e.g., thou, love, heartbreak), stylistic features}\n\\]\n\n\n\n\n\\[\ny\n=\n\\begin{cases}\n1 & \\text{Taylor Swift}\\\\\n0 & \\text{William Shakespeare}\n\\end{cases}\n\\]"
+    "text": "\\mathbf{x}: \\text{word counts (e.g., thou, love, heartbreak), stylistic features}\n\n\n\n\n\n\ny\n=\n\\begin{cases}\n1 & \\text{Taylor Swift}\\\\\n0 & \\text{William Shakespeare}\n\\end{cases}"
   },
   {
     "objectID": "slides/17-logistic-regression.html#instead-s-curve-of-best-fit",
     "href": "slides/17-logistic-regression.html#instead-s-curve-of-best-fit",
     "title": "Logistic Regression",
     "section": "",
-    "text": "Instead of modeling \\(y\\) directly, we model the probability that \\(y=1\\):\n\n\n\n\n\n\n\n\n\n“Given new email, what’s the probability that it’s spam?’’\n“Given new image, what’s the probability that it’s cancer?’’\n“Given new loan application, what’s the probability that they default?’’"
+    "text": "Instead of modeling y directly, we model the probability that y=1:\n\n\n\n\n\n\n\n\n\n“Given new email, what’s the probability that it’s spam?’’\n“Given new image, what’s the probability that it’s cancer?’’\n“Given new loan application, what’s the probability that they default?’’"
   },
   {
     "objectID": "slides/17-logistic-regression.html#why-dont-we-model-y-directly",
     "href": "slides/17-logistic-regression.html#why-dont-we-model-y-directly",
     "title": "Logistic Regression",
     "section": "",
-    "text": "Recall regression with a numerical response:\n\nOur models do not output guarantees for \\(y\\), they output predictions that describe behavior on average;\n\n\n\nSimilar when modeling a binary response:\n\nOur models cannot directly guarantee that \\(y\\) will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”"
+    "text": "Recall regression with a numerical response:\n\nOur models do not output guarantees for y, they output predictions that describe behavior on average;\n\n\n\nSimilar when modeling a binary response:\n\nOur models cannot directly guarantee that y will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”"
   },
   {
     "objectID": "slides/17-logistic-regression.html#so-what-is-this-s-curve-anyway",
     "href": "slides/17-logistic-regression.html#so-what-is-this-s-curve-anyway",
     "title": "Logistic Regression",
     "section": "",
-    "text": "It’s the logistic function:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\\]\nIf you set \\(p = \\text{Prob}(y = 1)\\) and do some algebra, you get the simple linear model for the log-odds:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\nThis is called the logistic regression model."
+    "text": "It’s the logistic function:\n\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x}}{1+e^{\\beta_0+\\beta_1x}}.\n\nIf you set p = \\text{Prob}(y = 1) and do some algebra, you get the simple linear model for the log-odds:\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\nThis is called the logistic regression model."
   },
   {
     "objectID": "slides/17-logistic-regression.html#log-odds",
     "href": "slides/17-logistic-regression.html#log-odds",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\(p = \\text{Prob}(y = 1)\\) is a probability. A number between 0 and 1;\n\\(p / (1 - p)\\) is the odds. A number between 0 and \\(\\infty\\);\n\n\n“The odds of this lecture going well are 10 to 1.”\n\n\nThe log odds \\(\\log(p / (1 - p))\\) is a number between \\(-\\infty\\) and \\(\\infty\\), which is suitable for the linear model.\nWhy does this “transformation” work? The log function maps positive numbers \\((0, \\infty)\\) to all real numbers \\((-\\infty, \\infty)\\)."
+    "text": "p = \\text{Prob}(y = 1) is a probability. A number between 0 and 1;\np / (1 - p) is the odds. A number between 0 and \\infty;\n\n\n“The odds of this lecture going well are 10 to 1.”\n\n\nThe log odds \\log(p / (1 - p)) is a number between -\\infty and \\infty, which is suitable for the linear model.\nWhy does this “transformation” work? The log function maps positive numbers (0, \\infty) to all real numbers (-\\infty, \\infty)."
   },
   {
     "objectID": "slides/17-logistic-regression.html#logistic-regression",
     "href": "slides/17-logistic-regression.html#logistic-regression",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\\]\n\nThe logit function \\(\\log(p / (1-p))\\) is an example of a link function that transforms the linear model to have an appropriate range;\nThis is an example of a generalized linear model"
+    "text": "\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x.\n\n\nThe logit function \\log(p / (1-p)) is an example of a link function that transforms the linear model to have an appropriate range;\nThis is an example of a generalized linear model"
   },
   {
     "objectID": "slides/17-logistic-regression.html#estimation",
     "href": "slides/17-logistic-regression.html#estimation",
     "title": "Logistic Regression",
     "section": "",
-    "text": "We estimate the parameters \\(\\beta_0,\\,\\beta_1\\) using maximum likelihood (don’t worry about it) to get the “best fitting” S-curve;\nThe fitted model is\n\n\\[\n\\log\\left(\\frac{\\\\hat{p}}{1-\\\\hat{p}}\\right)\n=\nb_0+b_1x.\n\\]"
+    "text": "We estimate the parameters \\beta_0,\\,\\beta_1 using maximum likelihood (don’t worry about it) to get the “best fitting” S-curve;\nThe fitted model is\n\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\nb_0+b_1x."
   },
   {
     "objectID": "slides/17-logistic-regression.html#todays-data",
@@ -6332,70 +6360,70 @@
     "href": "slides/17-logistic-regression.html#fitting-a-logistic-model",
     "title": "Logistic Regression",
     "section": "",
-    "text": "logistic_fit &lt;- logistic_reg() |&gt;\n  fit(spam ~ exclaim_mess, data = email)\n\ntidy(logistic_fit)\n\n# A tibble: 2 × 5\n  term          estimate std.error statistic p.value\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)  -2.27      0.0553     -41.1     0    \n2 exclaim_mess  0.000272  0.000949     0.287   0.774\n\n\nFitted equation for the log-odds:\n\\[\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\\]"
+    "text": "logistic_fit &lt;- logistic_reg() |&gt;\n  fit(spam ~ exclaim_mess, data = email)\n\ntidy(logistic_fit)\n\n# A tibble: 2 × 5\n  term          estimate std.error statistic p.value\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)  -2.27      0.0553     -41.1     0    \n2 exclaim_mess  0.000272  0.000949     0.287   0.774\n\n\nFitted equation for the log-odds:\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess"
   },
   {
     "objectID": "slides/17-logistic-regression.html#interpreting-the-intercept",
     "href": "slides/17-logistic-regression.html#interpreting-the-intercept",
     "title": "Logistic Regression",
     "section": "",
-    "text": "If exclaim_mess = 0, then\n\\[\n\\\\hat{p}=\\widehat{P(y=1)}=\\frac{e^{-2.27}}{1+e^{-2.27}}\\approx 0.09.\n\\]\nSo, our model predicts that an email with no exclamation marks has a 9% probability of being spam."
+    "text": "If exclaim_mess = 0, then\n\n\\hat{p}=\\widehat{P(y=1)}=\\frac{e^{-2.27}}{1+e^{-2.27}}\\approx 0.09.\n\nSo, our model predicts that an email with no exclamation marks has a 9% probability of being spam."
   },
   {
     "objectID": "slides/17-logistic-regression.html#interpreting-the-slope-is-tricky",
     "href": "slides/17-logistic-regression.html#interpreting-the-slope-is-tricky",
     "title": "Logistic Regression",
     "section": "",
-    "text": "Recall:\n\\[\n\\log\\left(\\frac{\\\\hat{p}}{1-\\\\hat{p}}\\right)\n=\nb_0+b_1x.\n\\]\n. . .\nAlternatively:\n\\[\n\\frac{\\\\hat{p}}{1-\\\\hat{p}}\n=\ne^{b_0+b_1x}\n=\n\\color{blue}{e^{b_0}e^{b_1x}}\n.\n\\]\n. . .\nIf we increase \\(x\\) by one unit, we have:\n\\[\n\\frac{\\\\hat{p}}{1-\\\\hat{p}}\n=\ne^{b_0}e^{b_1(x+1)}\n=\ne^{b_0}e^{b_1x+b_1}\n=\n{\\color{blue}{e^{b_0}e^{b_1x}}}{\\color{red}{e^{b_1}}}\n.\n\\]\n. . .\nA one unit increase in \\(x\\) is associated with a change in odds by a factor of \\(e^{b_1}\\). Gross!"
+    "text": "Recall:\n\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\nb_0+b_1x.\n\n. . .\nAlternatively:\n\n\\frac{\\hat{p}}{1-\\hat{p}}\n=\ne^{b_0+b_1x}\n=\n\\color{blue}{e^{b_0}e^{b_1x}}\n.\n\n. . .\nIf we increase x by one unit, we have:\n\n\\frac{\\hat{p}}{1-\\hat{p}}\n=\ne^{b_0}e^{b_1(x+1)}\n=\ne^{b_0}e^{b_1x+b_1}\n=\n{\\color{blue}{e^{b_0}e^{b_1x}}}{\\color{red}{e^{b_1}}}\n.\n\n. . .\nA one unit increase in x is associated with a change in odds by a factor of e^{b_1}. Gross!"
   },
   {
     "objectID": "slides/17-logistic-regression.html#back-to-the-example",
     "href": "slides/17-logistic-regression.html#back-to-the-example",
     "title": "Logistic Regression",
     "section": "",
-    "text": "\\[\n\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\\]\nIf the email has an additional exclamation mark, we predict the odds of an email being spam to be higher by a multiplicative factor of \\(e^{0.000272}\\approx 1.000272\\) on average."
+    "text": "\\log\\left(\\frac{\\hat{p}}{1-\\hat{p}}\\right)\n=\n-2.27\n+\n0.000272\\times exclaim~mess\n\nIf the email has an additional exclamation mark, we predict the odds of an email being spam to be higher by a multiplicative factor of e^{0.000272}\\approx 1.000272 on average."
   },
   {
     "objectID": "slides/17-logistic-regression.html#step-0-fit-the-model",
     "href": "slides/17-logistic-regression.html#step-0-fit-the-model",
     "title": "Logistic Regression",
     "section": "",
-    "text": "Select a number \\(0 &lt; p^* &lt; 1\\):\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\)."
+    "text": "Select a number 0 &lt; p^* &lt; 1:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1."
   },
   {
     "objectID": "slides/17-logistic-regression.html#step-1-pick-a-threshold",
     "href": "slides/17-logistic-regression.html#step-1-pick-a-threshold",
     "title": "Logistic Regression",
     "section": "",
-    "text": "Select a number \\(0 &lt; p^* &lt; 1\\):\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\)."
+    "text": "Select a number 0 &lt; p^* &lt; 1:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1."
   },
   {
     "objectID": "slides/17-logistic-regression.html#step-2-find-the-decision-boundary",
     "href": "slides/17-logistic-regression.html#step-2-find-the-decision-boundary",
     "title": "Logistic Regression",
     "section": "",
-    "text": "Solve for the x-value that matches the threshold:\n\n\n\n\n\n\n\n\n\nif \\(\\text{Prob}(y=1)\\leq p^*\\), then predict \\(\\widehat{y}=0\\);\nif \\(\\text{Prob}(y=1)&gt; p^*\\), then predict \\(\\widehat{y}=1\\)."
+    "text": "Solve for the x-value that matches the threshold:\n\n\n\n\n\n\n\n\n\nif \\text{Prob}(y=1)\\leq p^*, then predict \\widehat{y}=0;\nif \\text{Prob}(y=1)&gt; p^*, then predict \\widehat{y}=1."
   },
   {
     "objectID": "slides/17-logistic-regression.html#step-3-classify-a-new-arrival",
     "href": "slides/17-logistic-regression.html#step-3-classify-a-new-arrival",
     "title": "Logistic Regression",
     "section": "",
-    "text": "A new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "A new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression.html#lets-change-the-threshold",
     "href": "slides/17-logistic-regression.html#lets-change-the-threshold",
     "title": "Logistic Regression",
     "section": "",
-    "text": "A new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "A new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression.html#lets-change-the-threshold-1",
     "href": "slides/17-logistic-regression.html#lets-change-the-threshold-1",
     "title": "Logistic Regression",
     "section": "",
-    "text": "A new person shows up with \\(x_{\\text{new}}\\). Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif \\(x_{\\text{new}} \\leq x^\\star\\), then \\(\\text{Prob}(y=1)\\leq p^*\\), so predict \\(\\widehat{y}=0\\) for the new person;\nif \\(x_{\\text{new}} &gt; x^\\star\\), then \\(\\text{Prob}(y=1)&gt; p^*\\), so predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "A new person shows up with x_{\\text{new}}. Which side of the boundary are they on?\n\n\n\n\n\n\n\n\n\nif x_{\\text{new}} \\leq x^\\star, then \\text{Prob}(y=1)\\leq p^*, so predict \\widehat{y}=0 for the new person;\nif x_{\\text{new}} &gt; x^\\star, then \\text{Prob}(y=1)&gt; p^*, so predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression.html#nothing-special-about-one-predictor",
@@ -6409,28 +6437,28 @@
     "href": "slides/17-logistic-regression.html#multiple-logistic-regression",
     "title": "Logistic Regression",
     "section": "",
-    "text": "For the log-odds, a multiple linear regression:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m.\n\\] On the probability scale:\n\\[\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}{1+e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}.\n\\]"
+    "text": "For the log-odds, a multiple linear regression:\n\n\\log\\left(\\frac{p}{1-p}\\right)\n=\n\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m.\n On the probability scale:\n\n\\text{Prob}(y = 1)\n=\n\\frac{e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}{1+e^{\\beta_0+\\beta_1x_1+\\beta_2x_2+...+\\beta_mx_m}}."
   },
   {
     "objectID": "slides/17-logistic-regression.html#decision-boundary-again",
     "href": "slides/17-logistic-regression.html#decision-boundary-again",
     "title": "Logistic Regression",
     "section": "",
-    "text": "It’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "It’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression.html#decision-boundary-again-1",
     "href": "slides/17-logistic-regression.html#decision-boundary-again-1",
     "title": "Logistic Regression",
     "section": "",
-    "text": "It’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "It’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression.html#decision-boundary-again-2",
     "href": "slides/17-logistic-regression.html#decision-boundary-again-2",
     "title": "Logistic Regression",
     "section": "",
-    "text": "It’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new \\((x_1,\\,x_2)\\) below, \\(\\text{Prob}(y=1)\\leq p^*\\). Predict \\(\\widehat{y}=0\\) for the new person;\nif new \\((x_1,\\,x_2)\\) above, \\(\\text{Prob}(y=1)&gt; p^*\\). Predict \\(\\widehat{y}=1\\) for the new person."
+    "text": "It’s linear! Consider two numerical predictors:\n\n\n\n\n\n\n\n\n\nif new (x_1,\\,x_2) below, \\text{Prob}(y=1)\\leq p^*. Predict \\widehat{y}=0 for the new person;\nif new (x_1,\\,x_2) above, \\text{Prob}(y=1)&gt; p^*. Predict \\widehat{y}=1 for the new person."
   },
   {
     "objectID": "slides/17-logistic-regression.html#note-the-classifier-isnt-perfect",
@@ -7011,7 +7039,7 @@
     "href": "slides/03-grammar-of-data-transformation-slides.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 How to Lose a …  2003  358160165    63304348  5.66 FAIL   men       \n2 The Constant G…  2005  136792696    30422345  4.50 PASS   ok        \n3 The Craft        1996  119465080    22277474  5.36 PASS   ok        \n4 In the Cut       2003   35970924    15193043  2.37 PASS   ok        \n5 The Conspirator  2010   29318280    26705796  1.10 FAIL   dubious"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 The Village      2004  458549396    88398934  5.19 PASS   ok        \n2 Brothers         2009   79896846    28229022  2.83 PASS   ok        \n3 Children of Men  2006  121361604    87840522  1.38 PASS   ok        \n4 Hostel: Part II  2007   57470621     8426576  6.82 PASS   ok        \n5 The Transporter  2002   89659272    27198764  3.30 FAIL   nowomen"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation-slides.html#filter",
@@ -7270,7 +7298,7 @@
     "href": "slides/03-grammar-of-data-transformation.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 How to Lose a …  2003  358160165    63304348  5.66 FAIL   men       \n2 The Constant G…  2005  136792696    30422345  4.50 PASS   ok        \n3 The Craft        1996  119465080    22277474  5.36 PASS   ok        \n4 In the Cut       2003   35970924    15193043  2.37 PASS   ok        \n5 The Conspirator  2010   29318280    26705796  1.10 FAIL   dubious"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 The Village      2004  458549396    88398934  5.19 PASS   ok        \n2 Brothers         2009   79896846    28229022  2.83 PASS   ok        \n3 Children of Men  2006  121361604    87840522  1.38 PASS   ok        \n4 Hostel: Part II  2007   57470621     8426576  6.82 PASS   ok        \n5 The Transporter  2002   89659272    27198764  3.30 FAIL   nowomen"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation.html#filter",
@@ -7600,7 +7628,7 @@
     "href": "ae.html",
     "title": "Application Exercises",
     "section": "",
-    "text": "All application exercises (AEs) are due by the end of lecture (or, precisely, by 10:45 am) on the day they’re covered in lecture. To submit your AE, make at least one change to your AE, commit and then push your change to your AE repo. AEs are graded for engagement, not accuracy.\nMore AEs to be added as the semester progresses.\n\n\n\n\n\n\nTitle\n\n\nSubtitle\n\n\n\n\n\n\nAE 00: Make a GitHub\n\n\n \n\n\n\n\nAE 01: Meet the penguins\n\n\n \n\n\n\n\nAE 02: Penguin peekaboo\n\n\nSuggested answers\n\n\n\n\nAE 02: Penguin peekaboo\n\n\n \n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\nSuggested answers\n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\n \n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\n \n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\nSuggested answers\n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\n \n\n\n\n\nAE 06: Tidying Stat Sci\n\n\nSuggested answers\n\n\n\n\nAE 06: Tidying Stat Sci\n\n\n \n\n\n\n\nAE 07: Joining\n\n\nSuggested answers\n\n\n\n\nAE 07: Joining\n\n\n \n\n\n\n\nAE 08: Durham climate + factors\n\n\nSuggested answers\n\n\n\n\nAE 08: Durham climate + factors\n\n\n \n\n\n\n\nAE 09: Data Imports & Exports\n\n\nSuggested answers\n\n\n\n\nAE 09: Data Imports & Exports\n\n\n \n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\nSuggested answers\n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\n \n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\nSuggested answers\n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\n \n\n\n\n\nAE 12: Modeling fish 🐟\n\n\nSuggested answers\n\n\n\n\nAE 12: Modeling fish 🐟\n\n\n \n\n\n\n\nAE 13: Modeling penguins\n\n\nSuggested answers\n\n\n\n\nAE 13: Modeling penguins\n\n\n \n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\nSuggested answers\n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\n \n\n\n\n\nAE 15: Building a spam filter\n\n\nSuggested answers\n\n\n\n\nAE 15: Building a spam filter\n\n\n \n\n\n\n\n\nNo matching items",
+    "text": "All application exercises (AEs) are due by the end of lecture (or, precisely, by 10:45 am) on the day they’re covered in lecture. To submit your AE, make at least one change to your AE, commit and then push your change to your AE repo. AEs are graded for engagement, not accuracy.\nMore AEs to be added as the semester progresses.\n\n\n\n\n\n\nTitle\n\n\nSubtitle\n\n\n\n\n\n\nAE 00: Make a GitHub\n\n\n \n\n\n\n\nAE 01: Meet the penguins\n\n\n \n\n\n\n\nAE 02: Penguin peekaboo\n\n\nSuggested answers\n\n\n\n\nAE 02: Penguin peekaboo\n\n\n \n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\nSuggested answers\n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\n \n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\n \n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\nSuggested answers\n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\n \n\n\n\n\nAE 06: Tidying Stat Sci\n\n\nSuggested answers\n\n\n\n\nAE 06: Tidying Stat Sci\n\n\n \n\n\n\n\nAE 07: Joining\n\n\nSuggested answers\n\n\n\n\nAE 07: Joining\n\n\n \n\n\n\n\nAE 08: Durham climate + factors\n\n\nSuggested answers\n\n\n\n\nAE 08: Durham climate + factors\n\n\n \n\n\n\n\nAE 09: Data Imports & Exports\n\n\nSuggested answers\n\n\n\n\nAE 09: Data Imports & Exports\n\n\n \n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\nSuggested answers\n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\n \n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\nSuggested answers\n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\n \n\n\n\n\nAE 12: Modeling fish 🐟\n\n\nSuggested answers\n\n\n\n\nAE 12: Modeling fish 🐟\n\n\n \n\n\n\n\nAE 13: Modeling penguins\n\n\nSuggested answers\n\n\n\n\nAE 13: Modeling penguins\n\n\n \n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\nSuggested answers\n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\n \n\n\n\n\nAE 15: Building a spam filter\n\n\nSuggested answers\n\n\n\n\nAE 15: Building a spam filter\n\n\n \n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\n \n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Application Exercises"
     ]

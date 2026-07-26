@@ -96,6 +96,20 @@
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
 <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-1f377f1ccadea7e9b0e26a49b7195540.css">
+<script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -258,13 +272,13 @@ Josh Lim
 </div>
 </div>
 </section><section id="today-a-binary-response" class="slide level2 smaller"><h2>Today: a <em>binary</em> response</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 y =
 \begin{cases}
 1 &amp; &amp;&amp;\text{eg. Yes, Win, True, Heads, Success}\\
 0 &amp; &amp;&amp;\text{eg. No, Lose, False, Tails, Failure}.
 \end{cases}
-\]</span></p>
+</span></p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -274,71 +288,71 @@ y =
 </div>
 </div>
 </section><section id="who-cares" class="slide level2"><h2>Who cares?</h2>
-<p>If we can model the relationship between predictors (<span class="math inline">\(x\)</span>) and a binary response (<span class="math inline">\(y\)</span>), we can use the model to do a special kind of prediction called <em>classification</em>.</p>
+<p>If we can model the relationship between predictors (<span class="math inline">x</span>) and a binary response (<span class="math inline">y</span>), we can use the model to do a special kind of prediction called <em>classification</em>.</p>
 </section><section id="example-is-the-e-mail-spam-or-not" class="slide level2 smaller"><h2>Example: is the e-mail spam or not?</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{x}: \text{word and character counts in an e-mail.}
-\]</span></p>
+</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="img/17/spam.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
-<p><span class="math display">\[
+<p><span class="math display">
 y
 =
 \begin{cases}
 1 &amp; \text{it's spam}\\
 0 &amp; \text{it's legit}
 \end{cases}
-\]</span></p>
+</span></p>
 </section><section id="example-is-it-cancer-or-not" class="slide level2 smaller"><h2>Example: is it cancer or not?</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{x}: \text{features in a medical image.}
-\]</span></p>
+</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="img/17/head-neck.jpg" class="quarto-figure quarto-figure-center"></p>
 </figure>
 </div>
-<p><span class="math display">\[
+<p><span class="math display">
 y
 =
 \begin{cases}
 1 &amp; \text{it's cancer}\\
 0 &amp; \text{it's healthy}
 \end{cases}
-\]</span></p>
+</span></p>
 </section><section id="example-will-they-default" class="slide level2 smaller"><h2>Example: will they default?</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{x}: \text{financial and demographic info about a loan applicant.}
-\]</span></p>
+</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="img/17/fico.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
-<p><span class="math display">\[
+<p><span class="math display">
 y
 =
 \begin{cases}
 1 &amp; \text{applicant is at risk of defaulting on loan}\\
 0 &amp; \text{applicant is safe}
 \end{cases}
-\]</span></p>
+</span></p>
 </section><section id="example-who-said-it-taylor-swift-or-shakespeare" class="slide level2 smaller"><h2>Example: Who said it: Taylor Swift, or Shakespeare?</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{x}: \text{word counts (e.g., thou, love, heartbreak), stylistic features}
-\]</span></p>
+</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="img/17/tswift.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
-<p><span class="math display">\[
+<p><span class="math display">
 y
 =
 \begin{cases}
 1 &amp; \text{Taylor Swift}\\
 0 &amp; \text{William Shakespeare}
 \end{cases}
-\]</span></p>
+</span></p>
 </section><section id="how-do-we-model-this-type-of-data" class="slide level2"><h2>How do we model this type of data?</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -358,7 +372,7 @@ y
 </div>
 </div>
 </section><section id="instead-s-curve-of-best-fit" class="slide level2 smaller"><h2>Instead: S-curve of best fit</h2>
-<p>Instead of modeling <span class="math inline">\(y\)</span> directly, we model the probability that <span class="math inline">\(y=1\)</span>:</p>
+<p>Instead of modeling <span class="math inline">y</span> directly, we model the probability that <span class="math inline">y=1</span>:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -376,40 +390,40 @@ y
 <li>
 <p><strong>Recall regression with a numerical response</strong>:</p>
 <ul>
-<li>Our models do not output <em>guarantees</em> for <span class="math inline">\(y\)</span>, they output predictions that describe behavior <em>on average</em>;</li>
+<li>Our models do not output <em>guarantees</em> for <span class="math inline">y</span>, they output predictions that describe behavior <em>on average</em>;</li>
 </ul>
 </li>
 <li>
 <p><strong>Similar when modeling a binary response</strong>:</p>
 <ul>
-<li>Our models cannot directly guarantee that <span class="math inline">\(y\)</span> will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”</li>
+<li>Our models cannot directly guarantee that <span class="math inline">y</span> will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”</li>
 </ul>
 </li>
 </ul></section><section id="so-what-is-this-s-curve-anyway" class="slide level2"><h2>So, what is this S-curve, anyway?</h2>
 <p>It’s the <em>logistic function</em>:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \text{Prob}(y = 1)
 =
 \frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}.
-\]</span></p>
-<p>If you set <span class="math inline">\(p = \text{Prob}(y = 1)\)</span> and do some algebra, you get the simple linear model for the <em>log-odds</em>:</p>
-<p><span class="math display">\[
+</span></p>
+<p>If you set <span class="math inline">p = \text{Prob}(y = 1)</span> and do some algebra, you get the simple linear model for the <em>log-odds</em>:</p>
+<p><span class="math display">
 \log\left(\frac{p}{1-p}\right)
 =
 \beta_0+\beta_1x.
-\]</span></p>
+</span></p>
 <p>This is called the <em>logistic regression</em> model.</p>
 </section><section id="log-odds" class="slide level2 medium scrollable"><h2>Log-odds?</h2>
 <ul>
-<li><p><span class="math inline">\(p = \text{Prob}(y = 1)\)</span> is a probability. A number between 0 and 1;</p></li>
-<li><p><span class="math inline">\(p / (1 - p)\)</span> is the odds. A number between 0 and <span class="math inline">\(\infty\)</span>;</p></li>
+<li><p><span class="math inline">p = \text{Prob}(y = 1)</span> is a probability. A number between 0 and 1;</p></li>
+<li><p><span class="math inline">p / (1 - p)</span> is the odds. A number between 0 and <span class="math inline">\infty</span>;</p></li>
 </ul>
 <blockquote>
 <p>“The odds of this lecture going well are 10 to 1.”</p>
 </blockquote>
 <ul>
-<li><p>The log odds <span class="math inline">\(\log(p / (1 - p))\)</span> is a number between <span class="math inline">\(-\infty\)</span> and <span class="math inline">\(\infty\)</span>, which is suitable for the linear model.</p></li>
-<li><p>Why does this “transformation” work? The log function maps positive numbers <span class="math inline">\((0, \infty)\)</span> to all real numbers <span class="math inline">\((-\infty, \infty)\)</span>.</p></li>
+<li><p>The log odds <span class="math inline">\log(p / (1 - p))</span> is a number between <span class="math inline">-\infty</span> and <span class="math inline">\infty</span>, which is suitable for the linear model.</p></li>
+<li><p>Why does this “transformation” work? The log function maps positive numbers <span class="math inline">(0, \infty)</span> to all real numbers <span class="math inline">(-\infty, \infty)</span>.</p></li>
 </ul></section><section id="probability-to-odds" class="slide level2"><h2>Probability to odds</h2>
 <div class="cell">
 <div class="cell-output-display">
@@ -438,24 +452,24 @@ y
 </div>
 </div>
 </section><section id="logistic-regression" class="slide level2"><h2>Logistic regression</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \log\left(\frac{p}{1-p}\right)
 =
 \beta_0+\beta_1x.
-\]</span></p>
+</span></p>
 <ul>
-<li><p>The <em>logit</em> function <span class="math inline">\(\log(p / (1-p))\)</span> is an example of a <em>link function</em> that transforms the linear model to have an appropriate range;</p></li>
+<li><p>The <em>logit</em> function <span class="math inline">\log(p / (1-p))</span> is an example of a <em>link function</em> that transforms the linear model to have an appropriate range;</p></li>
 <li><p>This is an example of a <em>generalized linear model</em></p></li>
 </ul></section><section id="estimation" class="slide level2"><h2>Estimation</h2>
 <ul>
-<li><p>We estimate the parameters <span class="math inline">\(\beta_0,\,\beta_1\)</span> using <em>maximum likelihood</em> (don’t worry about it) to get the “best fitting” S-curve;</p></li>
+<li><p>We estimate the parameters <span class="math inline">\beta_0,\,\beta_1</span> using <em>maximum likelihood</em> (don’t worry about it) to get the “best fitting” S-curve;</p></li>
 <li><p>The fitted model is</p></li>
 </ul>
-<p><span class="math display">\[
-\log\left(\frac{\\hat{p}}{1-\\hat{p}}\right)
+<p><span class="math display">
+\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
 =
 b_0+b_1x.
-\]</span></p>
+</span></p>
 </section><section id="todays-data" class="slide level2 smaller"><h2>Today’s data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>email <span class="sc">|&gt;</span> </span>
@@ -487,41 +501,41 @@ $ exclaim_mess &lt;dbl&gt; 0, 1, 6, 48, 1, 1, 1, 18, 1, 0, 2, 1, 0, 10, 4,…</c
 </div>
 </div>
 <p>Fitted equation for the log-odds:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \log\left(\frac{\hat{p}}{1-\hat{p}}\right)
 =
 -2.27
 +
 0.000272\times exclaim~mess
-\]</span></p>
+</span></p>
 </section><section id="interpreting-the-intercept" class="slide level2"><h2>Interpreting the intercept</h2>
 <p>If <code>exclaim_mess = 0</code>, then</p>
-<p><span class="math display">\[
-\\hat{p}=\widehat{P(y=1)}=\frac{e^{-2.27}}{1+e^{-2.27}}\approx 0.09.
-\]</span></p>
+<p><span class="math display">
+\hat{p}=\widehat{P(y=1)}=\frac{e^{-2.27}}{1+e^{-2.27}}\approx 0.09.
+</span></p>
 <p>So, our model predicts that an email with no exclamation marks has a 9% probability of being spam.</p>
 </section><section id="interpreting-the-slope-is-tricky" class="slide level2 scrollable"><h2>Interpreting the slope is tricky</h2>
 <p>Recall:</p>
-<p><span class="math display">\[
-\log\left(\frac{\\hat{p}}{1-\\hat{p}}\right)
+<p><span class="math display">
+\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
 =
 b_0+b_1x.
-\]</span></p>
+</span></p>
 <div class="fragment">
 <p>Alternatively:</p>
-<p><span class="math display">\[
-\frac{\\hat{p}}{1-\\hat{p}}
+<p><span class="math display">
+\frac{\hat{p}}{1-\hat{p}}
 =
 e^{b_0+b_1x}
 =
 \color{blue}{e^{b_0}e^{b_1x}}
 .
-\]</span></p>
+</span></p>
 </div>
 <div class="fragment">
-<p>If we increase <span class="math inline">\(x\)</span> by one unit, we have:</p>
-<p><span class="math display">\[
-\frac{\\hat{p}}{1-\\hat{p}}
+<p>If we increase <span class="math inline">x</span> by one unit, we have:</p>
+<p><span class="math display">
+\frac{\hat{p}}{1-\hat{p}}
 =
 e^{b_0}e^{b_1(x+1)}
 =
@@ -529,23 +543,23 @@ e^{b_0}e^{b_1x+b_1}
 =
 {\color{blue}{e^{b_0}e^{b_1x}}}{\color{red}{e^{b_1}}}
 .
-\]</span></p>
+</span></p>
 </div>
 <div class="fragment">
-<p>A one unit increase in <span class="math inline">\(x\)</span> is associated with a change in odds by a factor of <span class="math inline">\(e^{b_1}\)</span>. Gross!</p>
+<p>A one unit increase in <span class="math inline">x</span> is associated with a change in odds by a factor of <span class="math inline">e^{b_1}</span>. Gross!</p>
 </div>
 </section><section id="back-to-the-example" class="slide level2"><h2>Back to the example…</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \log\left(\frac{\hat{p}}{1-\hat{p}}\right)
 =
 -2.27
 +
 0.000272\times exclaim~mess
-\]</span></p>
-<p>If the email has an additional exclamation mark, we predict the odds of an email being spam to be <strong>higher</strong> by a multiplicative factor of <span class="math inline">\(e^{0.000272}\approx 1.000272\)</span> on average.</p>
+</span></p>
+<p>If the email has an additional exclamation mark, we predict the odds of an email being spam to be <strong>higher</strong> by a multiplicative factor of <span class="math inline">e^{0.000272}\approx 1.000272</span> on average.</p>
 </section><section id="logistic-regression---classification" class="slide level2"><h2>Logistic regression -&gt; classification?</h2>
 </section><section id="step-0-fit-the-model" class="slide level2 small scrollable"><h2>Step 0: fit the model</h2>
-<p>Select a number <span class="math inline">\(0 &lt; p^* &lt; 1\)</span>:</p>
+<p>Select a number <span class="math inline">0 &lt; p^* &lt; 1</span>:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -555,10 +569,10 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>, then predict <span class="math inline">\(\widehat{y}=0\)</span>;</li>
-<li>if <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>, then predict <span class="math inline">\(\widehat{y}=1\)</span>.</li>
+<li>if <span class="math inline">\text{Prob}(y=1)\leq p^*</span>, then predict <span class="math inline">\widehat{y}=0</span>;</li>
+<li>if <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>, then predict <span class="math inline">\widehat{y}=1</span>.</li>
 </ul></section><section id="step-1-pick-a-threshold" class="slide level2 small scrollable"><h2>Step 1: pick a threshold</h2>
-<p>Select a number <span class="math inline">\(0 &lt; p^* &lt; 1\)</span>:</p>
+<p>Select a number <span class="math inline">0 &lt; p^* &lt; 1</span>:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -568,8 +582,8 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>, then predict <span class="math inline">\(\widehat{y}=0\)</span>;</li>
-<li>if <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>, then predict <span class="math inline">\(\widehat{y}=1\)</span>.</li>
+<li>if <span class="math inline">\text{Prob}(y=1)\leq p^*</span>, then predict <span class="math inline">\widehat{y}=0</span>;</li>
+<li>if <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>, then predict <span class="math inline">\widehat{y}=1</span>.</li>
 </ul></section><section id="step-2-find-the-decision-boundary" class="slide level2 small scrollable"><h2>Step 2: find the “decision boundary”</h2>
 <p>Solve for the x-value that matches the threshold:</p>
 <div class="cell">
@@ -581,10 +595,10 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>, then predict <span class="math inline">\(\widehat{y}=0\)</span>;</li>
-<li>if <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>, then predict <span class="math inline">\(\widehat{y}=1\)</span>.</li>
+<li>if <span class="math inline">\text{Prob}(y=1)\leq p^*</span>, then predict <span class="math inline">\widehat{y}=0</span>;</li>
+<li>if <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>, then predict <span class="math inline">\widehat{y}=1</span>.</li>
 </ul></section><section id="step-3-classify-a-new-arrival" class="slide level2 small scrollable"><h2>Step 3: classify a new arrival</h2>
-<p>A new person shows up with <span class="math inline">\(x_{\text{new}}\)</span>. Which side of the boundary are they on?</p>
+<p>A new person shows up with <span class="math inline">x_{\text{new}}</span>. Which side of the boundary are they on?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -594,10 +608,10 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if <span class="math inline">\(x_{\text{new}} \leq x^\star\)</span>, then <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>, so predict <span class="math inline">\(\widehat{y}=0\)</span> for the new person;</li>
-<li>if <span class="math inline">\(x_{\text{new}} &gt; x^\star\)</span>, then <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>, so predict <span class="math inline">\(\widehat{y}=1\)</span> for the new person.</li>
+<li>if <span class="math inline">x_{\text{new}} \leq x^\star</span>, then <span class="math inline">\text{Prob}(y=1)\leq p^*</span>, so predict <span class="math inline">\widehat{y}=0</span> for the new person;</li>
+<li>if <span class="math inline">x_{\text{new}} &gt; x^\star</span>, then <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>, so predict <span class="math inline">\widehat{y}=1</span> for the new person.</li>
 </ul></section><section id="lets-change-the-threshold" class="slide level2 small scrollable"><h2>Let’s change the threshold</h2>
-<p>A new person shows up with <span class="math inline">\(x_{\text{new}}\)</span>. Which side of the boundary are they on?</p>
+<p>A new person shows up with <span class="math inline">x_{\text{new}}</span>. Which side of the boundary are they on?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -607,10 +621,10 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if <span class="math inline">\(x_{\text{new}} \leq x^\star\)</span>, then <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>, so predict <span class="math inline">\(\widehat{y}=0\)</span> for the new person;</li>
-<li>if <span class="math inline">\(x_{\text{new}} &gt; x^\star\)</span>, then <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>, so predict <span class="math inline">\(\widehat{y}=1\)</span> for the new person.</li>
+<li>if <span class="math inline">x_{\text{new}} \leq x^\star</span>, then <span class="math inline">\text{Prob}(y=1)\leq p^*</span>, so predict <span class="math inline">\widehat{y}=0</span> for the new person;</li>
+<li>if <span class="math inline">x_{\text{new}} &gt; x^\star</span>, then <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>, so predict <span class="math inline">\widehat{y}=1</span> for the new person.</li>
 </ul></section><section id="lets-change-the-threshold-1" class="slide level2 small scrollable"><h2>Let’s change the threshold</h2>
-<p>A new person shows up with <span class="math inline">\(x_{\text{new}}\)</span>. Which side of the boundary are they on?</p>
+<p>A new person shows up with <span class="math inline">x_{\text{new}}</span>. Which side of the boundary are they on?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -620,8 +634,8 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if <span class="math inline">\(x_{\text{new}} \leq x^\star\)</span>, then <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>, so predict <span class="math inline">\(\widehat{y}=0\)</span> for the new person;</li>
-<li>if <span class="math inline">\(x_{\text{new}} &gt; x^\star\)</span>, then <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>, so predict <span class="math inline">\(\widehat{y}=1\)</span> for the new person.</li>
+<li>if <span class="math inline">x_{\text{new}} \leq x^\star</span>, then <span class="math inline">\text{Prob}(y=1)\leq p^*</span>, so predict <span class="math inline">\widehat{y}=0</span> for the new person;</li>
+<li>if <span class="math inline">x_{\text{new}} &gt; x^\star</span>, then <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>, so predict <span class="math inline">\widehat{y}=1</span> for the new person.</li>
 </ul></section><section id="nothing-special-about-one-predictor" class="slide level2 smaller"><h2>Nothing special about one predictor…</h2>
 <p>Two numerical predictors and one binary response:</p>
 <div class="cell">
@@ -634,16 +648,16 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </section><section id="multiple-logistic-regression" class="slide level2"><h2>“Multiple” logistic regression</h2>
 <p>For the log-odds, a <em>multiple</em> linear regression:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \log\left(\frac{p}{1-p}\right)
 =
 \beta_0+\beta_1x_1+\beta_2x_2+...+\beta_mx_m.
-\]</span> On the probability scale:</p>
-<p><span class="math display">\[
+</span> On the probability scale:</p>
+<p><span class="math display">
 \text{Prob}(y = 1)
 =
 \frac{e^{\beta_0+\beta_1x_1+\beta_2x_2+...+\beta_mx_m}}{1+e^{\beta_0+\beta_1x_1+\beta_2x_2+...+\beta_mx_m}}.
-\]</span></p>
+</span></p>
 </section><section id="decision-boundary-again" class="slide level2 small scrollable"><h2>Decision boundary, again</h2>
 <p>It’s linear! Consider two numerical predictors:</p>
 <div class="cell" data-layout-align="center">
@@ -655,8 +669,8 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if new <span class="math inline">\((x_1,\,x_2)\)</span> below, <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>. Predict <span class="math inline">\(\widehat{y}=0\)</span> for the new person;</li>
-<li>if new <span class="math inline">\((x_1,\,x_2)\)</span> above, <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>. Predict <span class="math inline">\(\widehat{y}=1\)</span> for the new person.</li>
+<li>if new <span class="math inline">(x_1,\,x_2)</span> below, <span class="math inline">\text{Prob}(y=1)\leq p^*</span>. Predict <span class="math inline">\widehat{y}=0</span> for the new person;</li>
+<li>if new <span class="math inline">(x_1,\,x_2)</span> above, <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>. Predict <span class="math inline">\widehat{y}=1</span> for the new person.</li>
 </ul></section><section id="decision-boundary-again-1" class="slide level2 small scrollable"><h2>Decision boundary, again</h2>
 <p>It’s linear! Consider two numerical predictors:</p>
 <div class="cell" data-layout-align="center">
@@ -668,8 +682,8 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if new <span class="math inline">\((x_1,\,x_2)\)</span> below, <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>. Predict <span class="math inline">\(\widehat{y}=0\)</span> for the new person;</li>
-<li>if new <span class="math inline">\((x_1,\,x_2)\)</span> above, <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>. Predict <span class="math inline">\(\widehat{y}=1\)</span> for the new person.</li>
+<li>if new <span class="math inline">(x_1,\,x_2)</span> below, <span class="math inline">\text{Prob}(y=1)\leq p^*</span>. Predict <span class="math inline">\widehat{y}=0</span> for the new person;</li>
+<li>if new <span class="math inline">(x_1,\,x_2)</span> above, <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>. Predict <span class="math inline">\widehat{y}=1</span> for the new person.</li>
 </ul></section><section id="decision-boundary-again-2" class="slide level2 small scrollable"><h2>Decision boundary, again</h2>
 <p>It’s linear! Consider two numerical predictors:</p>
 <div class="cell" data-layout-align="center">
@@ -681,8 +695,8 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div>
 <ul>
-<li>if new <span class="math inline">\((x_1,\,x_2)\)</span> below, <span class="math inline">\(\text{Prob}(y=1)\leq p^*\)</span>. Predict <span class="math inline">\(\widehat{y}=0\)</span> for the new person;</li>
-<li>if new <span class="math inline">\((x_1,\,x_2)\)</span> above, <span class="math inline">\(\text{Prob}(y=1)&gt; p^*\)</span>. Predict <span class="math inline">\(\widehat{y}=1\)</span> for the new person.</li>
+<li>if new <span class="math inline">(x_1,\,x_2)</span> below, <span class="math inline">\text{Prob}(y=1)\leq p^*</span>. Predict <span class="math inline">\widehat{y}=0</span> for the new person;</li>
+<li>if new <span class="math inline">(x_1,\,x_2)</span> above, <span class="math inline">\text{Prob}(y=1)&gt; p^*</span>. Predict <span class="math inline">\widehat{y}=1</span> for the new person.</li>
 </ul></section><section id="note-the-classifier-isnt-perfect" class="slide level2 small scrollable"><h2>Note: the classifier isn’t perfect</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -731,7 +745,7 @@ e^{b_0}e^{b_1x+b_1}
 </div>
 </div></div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -896,27 +910,9 @@ e^{b_0}e^{b_1x+b_1}
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

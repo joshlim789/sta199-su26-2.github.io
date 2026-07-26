@@ -215,20 +215,7 @@ Josh Lim
 </div>
 
   <p class="date">July 29, 2026</p>
-</section><section><section id="admin" class="title-slide slide level1 center"><h1>Admin</h1>
-
-</section><section id="the-home-stretch" class="slide level2 small scrollable"><h2>The home stretch</h2>
-<div>
-<ul>
-<li class="fragment">Today: lecture on confidence intervals;</li>
-<li class="fragment">Tomorrow: lecture on hypothesis testing;</li>
-<li class="fragment">Thursday: Lab 6 (last one!), due Sunday by 11:59pm (deadline firm if you want graded feedback by the final);</li>
-<li class="fragment">Wednesday: wrap-up lecture on inference;</li>
-<li class="fragment">Thursday: lecture on TBD, depending on general vibes / exam readiness this week;</li>
-<li class="fragment">Friday: no class – Juneteenth!</li>
-</ul>
-</div>
-</section></section><section><section id="statistics" class="title-slide slide level1 center"><h1>Statistics</h1>
+</section><section><section id="statistics" class="title-slide slide level1 center"><h1>Statistics</h1>
 
 </section><section id="our-goal-quantify-uncertainty-to-help-make-informed-decisions" class="slide level2"><h2>Our goal: quantify uncertainty to help make <strong>informed</strong> decisions</h2>
 <ul>
@@ -914,43 +901,36 @@ Josh Lim
 </div></div>
 </section></section><section><section id="interval-estimation" class="title-slide slide level1 center"><h1>Interval estimation</h1>
 
-</section><section id="data-houses-in-duke-forest" class="slide level2 smaller"><h2>Data: Houses in Duke Forest</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
+</section><section id="data-diving-at-the-2024-paris-olympics" class="slide level2 smaller"><h2>Data: Diving at the 2024 Paris Olympics</h2>
 <ul>
-<li>Data on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020</li>
-<li>Scraped from Zillow</li>
-<li>Source: <a href="http://openintrostat.github.io/openintro/reference/duke_forest.html"><code>openintro::duke_forest</code></a>
-</li>
+<li>Data on scores from every dive in the final rounds of the 2024 Paris Olympic games diving events</li>
+<li>Scraped from Wikipedia and the Olympics website</li>
+<li>Each diver performs six dives</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<p><img data-src="img/19/duke_forest_home.jpg" alt="Home in Duke Forest"></p>
-</div></div>
-<p><strong>Goal</strong>: Use the area (in square feet) to understand variability in the price of houses in Duke Forest.</p>
+<p><strong>Goal</strong>: Use a diver’s running total of their first 5 dives to understand variability in the score of their final dive.</p>
 </section><section id="exploratory-data-analysis" class="slide level2"><h2>Exploratory data analysis</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(duke_forest, <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(diving, <span class="fu">aes</span>(<span class="at">x =</span> running_total, <span class="at">y =</span> Dive_6)) <span class="sc">+</span></span>
 <span id="cb19-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb19-3"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-4"><a></a>    <span class="at">x =</span> <span class="st">"Area (square feet)"</span>,</span>
-<span id="cb19-5"><a></a>    <span class="at">y =</span> <span class="st">"Sale price (USD)"</span>,</span>
-<span id="cb19-6"><a></a>    <span class="at">title =</span> <span class="st">"Price and area of houses in Duke Forest"</span></span>
-<span id="cb19-7"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb19-8"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a></a>    <span class="at">x =</span> <span class="st">"Running total (dives 1–5)"</span>,</span>
+<span id="cb19-5"><a></a>    <span class="at">y =</span> <span class="st">"Dive 6 score"</span>,</span>
+<span id="cb19-6"><a></a>    <span class="at">title =</span> <span class="st">"Dive 6 score vs. running total at the 2024 Paris Olympics"</span></span>
+<span id="cb19-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-47-1.png" width="960"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-48-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </section><section id="modeling" class="slide level2 smaller"><h2>Modeling</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>df_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a></a>  <span class="fu">fit</span>(price <span class="sc">~</span> area, <span class="at">data =</span> duke_forest)</span>
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>diving_fit <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">fit</span>(Dive_6 <span class="sc">~</span> running_total, <span class="at">data =</span> diving)</span>
 <span id="cb20-3"><a></a></span>
-<span id="cb20-4"><a></a><span class="fu">tidy</span>(df_fit) <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># neatly format table to 2 digits</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-4"><a></a><span class="fu">tidy</span>(diving_fit) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <thead><tr class="header">
@@ -963,16 +943,16 @@ Josh Lim
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">116652.33</td>
-<td style="text-align: right;">53302.46</td>
-<td style="text-align: right;">2.19</td>
-<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">13.33</td>
+<td style="text-align: right;">14.47</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.36</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">area</td>
-<td style="text-align: right;">159.48</td>
-<td style="text-align: right;">18.17</td>
-<td style="text-align: right;">8.78</td>
+<td style="text-align: left;">running_total</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">4.57</td>
 <td style="text-align: right;">0.00</td>
 </tr>
 </tbody>
@@ -982,24 +962,24 @@ Josh Lim
 <div class="fragment">
 <ul>
 <li>
-<strong>Intercept:</strong> Duke Forest houses that are 0 square feet are expected to sell for $116,652, on average.
+<strong>Intercept:</strong> A diver with a running total of 0 is expected to score 13.33 on their final dive, on average.
 <ul>
 <li>Is this interpretation useful?</li>
 </ul>
 </li>
 <li>
-<strong>Slope:</strong> For each additional square foot, we expect the sale price of Duke Forest houses to be higher by $159, on average.</li>
+<strong>Slope:</strong> For each additional point in the running total, we expect the final dive score to be higher by 0.19 points, on average.</li>
 </ul>
 </div>
 </section><section id="from-sample-to-population" class="slide level2 smaller"><h2>From sample to population</h2>
 <blockquote>
-<p>For each additional square foot, we expect the sale price of Duke Forest houses to be higher by $159, on average.</p>
+<p>For each additional point in the running total, we expect the final dive score to be higher by 0.19 points, on average.</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li>This estimate is valid for the single sample of 98 houses.</li>
-<li>But what if we’re not interested quantifying the relationship between the size and price of a house in this single sample?</li>
-<li>What if we want to say something about the relationship between these variables for all houses in Duke Forest?</li>
+<li>This estimate is valid for the single sample of 40 divers.</li>
+<li>But what if we’re not interested in quantifying this relationship only in this sample?</li>
+<li>What if we want to say something about the relationship between these variables for all competitive divers?</li>
 </ul></section><section id="statistical-inference" class="slide level2 smaller"><h2>Statistical inference</h2>
 <ul>
 <li><p><strong>Statistical inference</strong> provide methods and tools so we can use the single observed sample to make valid statements (inferences) about the population it comes from</p></li>
@@ -1022,11 +1002,11 @@ Josh Lim
 </ul>
 </div>
 </section><section id="confidence-interval-for-the-slope" class="slide level2 smaller"><h2>Confidence interval for the slope</h2>
-<p>A confidence interval will allow us to make a statement like “<em>For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus X dollars.</em>”</p>
+<p>A confidence interval will allow us to make a statement like “<em>For each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.19 points, plus or minus X points.</em>”</p>
 <div class="fragment">
 <ul>
-<li><p>Should X be $10? $100? $1000?</p></li>
-<li><p>If we were to take another sample of 98 would we expect the slope calculated based on that sample to be exactly $159? Off by $10? $100? $1000?</p></li>
+<li><p>Should X be 0.01? 0.1? 1?</p></li>
+<li><p>If we were to take another sample of 40 divers, would we expect the slope calculated based on that sample to be exactly 0.19? Off by 0.01? 0.1? 1?</p></li>
 <li><p>The answer depends on how variable (from one sample to another sample) the sample statistic (the slope) is</p></li>
 <li><p>We need a way to quantify the variability of the sample statistic</p></li>
 </ul>
@@ -1057,7 +1037,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-51-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-52-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1066,7 +1046,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-52-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-53-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1078,7 +1058,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-53-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-54-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1087,7 +1067,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-54-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-55-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1099,7 +1079,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-55-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-56-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1108,7 +1088,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-56-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-57-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1120,7 +1100,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-57-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-58-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1129,7 +1109,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-58-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-59-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1141,7 +1121,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-59-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-60-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1150,7 +1130,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-60-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-61-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1165,7 +1145,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-61-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-62-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1174,7 +1154,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-62-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-63-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1186,7 +1166,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-64-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-65-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1195,7 +1175,7 @@ Josh Lim
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-65-1.png" style="width:100.0%"></p>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-66-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1203,19 +1183,7 @@ Josh Lim
 </div></div>
 </section><section id="slopes-of-bootstrap-samples" class="slide level2 small scrollable"><h2>Slopes of bootstrap samples</h2>
 <div class="task">
-<p><strong>Fill in the blank:</strong> For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus ___ dollars.</p>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-66-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="slopes-of-bootstrap-samples-1" class="slide level2 small scrollable"><h2>Slopes of bootstrap samples</h2>
-<div class="task">
-<p><strong>Fill in the blank:</strong> For each additional square foot, we expect the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus ___ dollars.</p>
+<p><strong>Fill in the blank:</strong> For each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.19 points, plus or minus ___ points.</p>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1225,9 +1193,9 @@ Josh Lim
 </div>
 </div>
 </div>
-</section><section id="confidence-level" class="slide level2 smaller scrollable"><h2>Confidence level</h2>
+</section><section id="slopes-of-bootstrap-samples-1" class="slide level2 small scrollable"><h2>Slopes of bootstrap samples</h2>
 <div class="task">
-<p>How confident are you that the true slope is between $0 and $250? How about $150 and $170? How about $90 and $210?</p>
+<p><strong>Fill in the blank:</strong> For each additional point in the running total, we expect the final dive score to be higher, on average, by 0.19 points, plus or minus ___ points.</p>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1237,7 +1205,10 @@ Josh Lim
 </div>
 </div>
 </div>
-</section><section id="confidence-interval-1" class="slide level2 smaller scrollable"><h2>95% confidence interval</h2>
+</section><section id="confidence-level" class="slide level2 smaller scrollable"><h2>Confidence level</h2>
+<div class="task">
+<p>How confident are you that the true slope is between 0 and 0.5? How about 0.1 and 0.3? How about 0.05 and 0.25?</p>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -1246,10 +1217,19 @@ Josh Lim
 </div>
 </div>
 </div>
+</section><section id="confidence-interval-1" class="slide level2 smaller scrollable"><h2>95% confidence interval</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="19-interval-estimation_files/figure-revealjs/unnamed-chunk-70-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
 <div>
 <ul>
 <li class="fragment">A 95% confidence interval is bounded by the middle 95% of the bootstrap distribution</li>
-<li class="fragment">“We are 95% confident that for each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $90.43 to $205.77.”</li>
+<li class="fragment">“We are 95% confident that for each additional point in the running total, the model predicts the final dive score to be higher, on average, by 0.12 to 0.26 points.”</li>
 </ul>
 </div>
 </section><section id="where-do-the-bounds-come-from" class="slide level2 scrollable"><h2>Where do the bounds come from?</h2>
@@ -1264,29 +1244,29 @@ Josh Lim
 </div>
 </section></section><section><section id="application-exercise" class="title-slide slide level1 center"><h1>Application exercise</h1>
 
-</section><section id="ae-17-duke-forest-bootstrap" class="slide level2 smaller"><h2>ae-17-duke-forest-bootstrap</h2>
+</section><section id="ae-17-diving-into-paris" class="slide level2 smaller"><h2>ae-17-diving-into-paris</h2>
 <div class="appex">
 <ul>
 <li><p>Go to your ae project in RStudio.</p></li>
 <li><p>If you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.</p></li>
-<li><p>If you haven’t yet done so, click Pull to get today’s application exercise file: <em>ae-17-duke-forest-bootstrap.qmd</em>.</p></li>
+<li><p>If you haven’t yet done so, click Pull to get today’s application exercise file: <em>ae-17-diving-into-paris.qmd</em>.</p></li>
 <li><p>Work through the application exercise in class, and render, commit, and push your edits.</p></li>
 </ul>
 </div>
 </section><section id="computing-the-ci-for-the-slope-i" class="slide level2 scrollable"><h2>Computing the CI for the slope I</h2>
 <p>Calculate the observed slope:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>observed_fit <span class="ot">&lt;-</span> duke_forest <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a></a>  <span class="fu">specify</span>(price <span class="sc">~</span> area) <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>observed_fit <span class="ot">&lt;-</span> diving <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">specify</span>(Dive_6 <span class="sc">~</span> running_total) <span class="sc">|&gt;</span></span>
 <span id="cb21-3"><a></a>  <span class="fu">fit</span>()</span>
 <span id="cb21-4"><a></a></span>
 <span id="cb21-5"><a></a>observed_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
-  term      estimate
-  &lt;chr&gt;        &lt;dbl&gt;
-1 intercept  116652.
-2 area          159.</code></pre>
+  term          estimate
+  &lt;chr&gt;            &lt;dbl&gt;
+1 intercept       13.3  
+2 running_total    0.189</code></pre>
 </div>
 </div>
 <blockquote>
@@ -1297,8 +1277,8 @@ Josh Lim
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23" data-code-line-numbers="1,5,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1120</span>)</span>
 <span id="cb23-2"><a></a></span>
-<span id="cb23-3"><a></a>boot_fits <span class="ot">&lt;-</span> duke_forest <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a></a>  <span class="fu">specify</span>(price <span class="sc">~</span> area) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a></a>boot_fits <span class="ot">&lt;-</span> diving <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a></a>  <span class="fu">specify</span>(Dive_6 <span class="sc">~</span> running_total) <span class="sc">|&gt;</span></span>
 <span id="cb23-5"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">100</span>, <span class="at">type =</span> <span class="st">"bootstrap"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb23-6"><a></a>  <span class="fu">fit</span>()</span>
 <span id="cb23-7"><a></a></span>
@@ -1306,18 +1286,18 @@ Josh Lim
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 200 × 3
 # Groups:   replicate [100]
-   replicate term      estimate
-       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;
- 1         1 intercept   47819.
- 2         1 area          191.
- 3         2 intercept  144645.
- 4         2 area          134.
- 5         3 intercept  114008.
- 6         3 area          161.
- 7         4 intercept  100639.
- 8         4 area          166.
- 9         5 intercept  215264.
-10         5 area          125.
+   replicate term          estimate
+       &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
+ 1         1 intercept       -9.05 
+ 2         1 running_total    0.254
+ 3         2 intercept      -21.1  
+ 4         2 running_total    0.287
+ 5         3 intercept        4.36 
+ 6         3 running_total    0.209
+ 7         4 intercept        2.89 
+ 8         4 running_total    0.222
+ 9         5 intercept       11.6  
+10         5 running_total    0.197
 # ℹ 190 more rows</code></pre>
 </div>
 </div>
@@ -1325,17 +1305,17 @@ Josh Lim
 <p><strong>Percentile method:</strong> Compute the 95% CI as the middle 95% of the bootstrap distribution:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25" data-code-line-numbers="4,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">get_confidence_interval</span>(</span>
-<span id="cb25-2"><a></a>  boot_fits, </span>
-<span id="cb25-3"><a></a>  <span class="at">point_estimate =</span> observed_fit, </span>
+<span id="cb25-2"><a></a>  boot_fits,</span>
+<span id="cb25-3"><a></a>  <span class="at">point_estimate =</span> observed_fit,</span>
 <span id="cb25-4"><a></a>  <span class="at">level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb25-5"><a></a>  <span class="at">type =</span> <span class="st">"percentile"</span> <span class="co"># default method</span></span>
 <span id="cb25-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
-  term      lower_ci upper_ci
-  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-1 area          92.1     223.
-2 intercept -36765.   296528.</code></pre>
+  term          lower_ci upper_ci
+  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept      -18.9     33.1  
+2 running_total    0.129    0.282</code></pre>
 </div>
 </div>
 </section><section id="precision-vs.-accuracy" class="slide level2 smaller"><h2>Precision vs.&nbsp;accuracy</h2>
@@ -1362,44 +1342,44 @@ Josh Lim
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">get_confidence_interval</span>(</span>
-<span id="cb27-2"><a></a>  boot_fits, </span>
-<span id="cb27-3"><a></a>  <span class="at">point_estimate =</span> observed_fit, </span>
+<span id="cb27-2"><a></a>  boot_fits,</span>
+<span id="cb27-3"><a></a>  <span class="at">point_estimate =</span> observed_fit,</span>
 <span id="cb27-4"><a></a>  <span class="at">level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb27-5"><a></a>  <span class="at">type =</span> <span class="st">"percentile"</span></span>
 <span id="cb27-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
-  term      lower_ci upper_ci
-  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-1 area          92.1     223.
-2 intercept -36765.   296528.</code></pre>
+  term          lower_ci upper_ci
+  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept      -18.9     33.1  
+2 running_total    0.129    0.282</code></pre>
 </div>
 </div>
 </section><section id="changing-confidence-level-1" class="slide level2 smaller"><h2>Changing confidence level</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="do">## confidence level: 90%</span></span>
 <span id="cb29-2"><a></a><span class="fu">get_confidence_interval</span>(</span>
-<span id="cb29-3"><a></a>  boot_fits, <span class="at">point_estimate =</span> observed_fit, </span>
+<span id="cb29-3"><a></a>  boot_fits, <span class="at">point_estimate =</span> observed_fit,</span>
 <span id="cb29-4"><a></a>  <span class="at">level =</span> <span class="fl">0.90</span>, <span class="at">type =</span> <span class="st">"percentile"</span></span>
 <span id="cb29-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
-  term      lower_ci upper_ci
-  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-1 area          104.     212.
-2 intercept  -24380.  256730.</code></pre>
+  term          lower_ci upper_ci
+  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept      -15.0     29.1  
+2 running_total    0.140    0.266</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="do">## confidence level: 99%</span></span>
 <span id="cb31-2"><a></a><span class="fu">get_confidence_interval</span>(</span>
-<span id="cb31-3"><a></a>  boot_fits, <span class="at">point_estimate =</span> observed_fit, </span>
+<span id="cb31-3"><a></a>  boot_fits, <span class="at">point_estimate =</span> observed_fit,</span>
 <span id="cb31-4"><a></a>  <span class="at">level =</span> <span class="fl">0.99</span>, <span class="at">type =</span> <span class="st">"percentile"</span></span>
 <span id="cb31-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
-  term      lower_ci upper_ci
-  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-1 area          56.3     226.
-2 intercept -61950.   370395.</code></pre>
+  term          lower_ci upper_ci
+  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+1 intercept     -24.8      51.6  
+2 running_total   0.0796    0.304</code></pre>
 </div>
 </div>
 </section><section id="recap" class="slide level2 small scrollable"><h2>Recap</h2>
