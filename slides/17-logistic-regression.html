@@ -405,7 +405,8 @@ window.Quarto = {
   <li><a href="#instead-s-curve-of-best-fit" id="toc-instead-s-curve-of-best-fit" class="nav-link" data-scroll-target="#instead-s-curve-of-best-fit">Instead: S-curve of best fit</a></li>
   <li><a href="#why-dont-we-model-y-directly" id="toc-why-dont-we-model-y-directly" class="nav-link" data-scroll-target="#why-dont-we-model-y-directly">Why don’t we model y directly?</a></li>
   <li><a href="#so-what-is-this-s-curve-anyway" id="toc-so-what-is-this-s-curve-anyway" class="nav-link" data-scroll-target="#so-what-is-this-s-curve-anyway">So, what is this S-curve, anyway?</a></li>
-  <li><a href="#log-odds" id="toc-log-odds" class="nav-link" data-scroll-target="#log-odds">Log-odds?</a></li>
+  <li><a href="#but-first-a-message-from-the-capitol" id="toc-but-first-a-message-from-the-capitol" class="nav-link" data-scroll-target="#but-first-a-message-from-the-capitol">But first a message from the Capitol</a></li>
+  <li><a href="#probability-odds-log-odds" id="toc-probability-odds-log-odds" class="nav-link" data-scroll-target="#probability-odds-log-odds">Probability? Odds? Log-odds?</a></li>
   <li><a href="#probability-to-odds" id="toc-probability-to-odds" class="nav-link" data-scroll-target="#probability-to-odds">Probability to odds</a></li>
   <li><a href="#zooming-in" id="toc-zooming-in" class="nav-link" data-scroll-target="#zooming-in">Zooming in</a></li>
   <li><a href="#odds-to-log-odds" id="toc-odds-to-log-odds" class="nav-link" data-scroll-target="#odds-to-log-odds">Odds to log odds</a></li>
@@ -641,7 +642,7 @@ y
 <li>Our models cannot directly guarantee that <span class="math inline">y</span> will be zero or one. The correct analog to “on average” for a 0/1 response is “what’s the probability?”</li>
 </ul>
 </li>
-</ul></section><section id="so-what-is-this-s-curve-anyway" class="level2"><h2 class="anchored" data-anchor-id="so-what-is-this-s-curve-anyway">So, what is this S-curve, anyway?</h2>
+</ul></section><section id="so-what-is-this-s-curve-anyway" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="so-what-is-this-s-curve-anyway">So, what is this S-curve, anyway?</h2>
 <p>It’s the <em>logistic function</em>:</p>
 <p><span class="math display">
 \text{Prob}(y = 1)
@@ -655,7 +656,12 @@ y
 \beta_0+\beta_1x.
 </span></p>
 <p>This is called the <em>logistic regression</em> model.</p>
-</section><section id="log-odds" class="level2 medium scrollable"><h2 class="medium scrollable anchored" data-anchor-id="log-odds">Log-odds?</h2>
+</section><section id="but-first-a-message-from-the-capitol" class="level2"><h2 class="anchored" data-anchor-id="but-first-a-message-from-the-capitol">But first a message from the Capitol</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/17/reaping.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:150.0%"></p>
+</figure>
+</div>
+</section><section id="probability-odds-log-odds" class="level2 medium scrollable"><h2 class="medium scrollable anchored" data-anchor-id="probability-odds-log-odds">Probability? Odds? Log-odds?</h2>
 <ul>
 <li><p><span class="math inline">p = \text{Prob}(y = 1)</span> is a probability. A number between 0 and 1;</p></li>
 <li><p><span class="math inline">p / (1 - p)</span> is the odds. A number between 0 and <span class="math inline">\infty</span>;</p></li>
