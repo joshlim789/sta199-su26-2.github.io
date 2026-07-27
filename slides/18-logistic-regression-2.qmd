@@ -643,6 +643,10 @@ Be careful!
 
 # AE
 
+## ACTIVITY
+
+- Write down the approximate number of TV episodes you have watched in the past week
+
 # Logistic wrap-up (Review)
 
 ## Fitting a logistic regression model
@@ -671,7 +675,7 @@ $$
 ## Three equivalent representations {.smaller .scrollable}
 
 | Version                        | equation                                                        | Friendly LHS? | Friendly RHS? |
-|-----------------|---------------------|-----------------|-----------------|
+|-----------------|--------------------|-----------------|-----------------|
 | Probability: (0, 1)            | $$\widehat{p}=\frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}$$             | ✅            | ❌            |
 | Odds: $(0,\,\infty)$           | $$\frac{\widehat{p}}{1-\widehat{p}}=e^{b_0+b_1x}$$              | 🥴            | 🥴            |
 | Log-odds: $(-\infty,\,\infty)$ | $$\log\left(\frac{\widehat{p}}{1-\widehat{p}}\right)=b_0+b_1x$$ | ❌            | ✅            |
