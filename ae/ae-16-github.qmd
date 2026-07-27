@@ -1,6 +1,5 @@
 ---
 title: "AE 16: Forest classification 🌳🌲"
-draft: true
 format:
   html:
     self-contained: true
@@ -91,7 +90,8 @@ Name the model `forested_custom_fit` and display a tidy output of the model.
 
 ## Interpret
 
-Interpret the intercept (with respect to $\widehat{p}$) in the context of these data. Then, interpret one slope coefficient of your choice (with respect to the odds), again in the context of these data.
+Interpret the intercept (with respect to $\widehat{p}$) in the context of these data.
+Then, interpret one slope coefficient of your choice (with respect to the odds), again in the context of these data.
 
 ```{r}
 #| label: forested-interpret
