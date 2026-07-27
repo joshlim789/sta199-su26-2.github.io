@@ -1360,10 +1360,14 @@ A confidence interval will allow us to make a statement like "*For each addition
 
 . . .
 
--   Should X be 0.01? 0.1? 1?
+-   Should X be 0.01?
+    0.1?
+    1?
 
 -   If we were to take another sample of `r nrow(diving)` divers, would we expect the slope calculated based on that sample to be exactly `r slope`?
-    Off by 0.01? 0.1? 1?
+    Off by 0.01?
+    0.1?
+    1?
 
 -   The answer depends on how variable (from one sample to another sample) the sample statistic (the slope) is
 

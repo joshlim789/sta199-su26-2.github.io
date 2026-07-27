@@ -11,7 +11,8 @@ In this application exercise, we will use bootstrapping to construct confidence 
 
 ## Packages
 
-We will use **tidyverse** and **tidymodels** for data exploration and modeling and the **knitr** package for formatting tables. The dataset was scraped from Wikipedia and the Olympics website. 
+We will use **tidyverse** and **tidymodels** for data exploration and modeling and the **knitr** package for formatting tables.
+The dataset was scraped from Wikipedia and the Olympics website.
 
 ```{r}
 #| label: load-packages
@@ -24,7 +25,9 @@ library(knitr)
 
 ## Data
 
-The data represent the scores of every dive during the final rounds of the 2024 Paris Olympic games diving events. Each diver performs six dives. Suppose we are interested in how well we can predict a diver's last round dive score from his running total of five dives (i.e. is there a "streak" in diving.)
+The data represent the scores of every dive during the final rounds of the 2024 Paris Olympic games diving events.
+Each diver performs six dives.
+Suppose we are interested in how well we can predict a diver's last round dive score from his running total of five dives (i.e. is there a "streak" in diving.)
 
 ```{r}
 #| label: glimpse-data
@@ -153,7 +156,3 @@ get_confidence_interval(
 -   If we want to be very certain that we capture the population parameter, should we use a wider or a narrower interval? What drawbacks are associated with using a wider interval?
 
 A wider interval; the drawback is it's less precise
-
-
-
-

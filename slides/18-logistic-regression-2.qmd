@@ -20,6 +20,9 @@ library(openintro)
 library(forested)
 email <- openintro::email
 todays_ae <- "ae-16-forest-classification"
+
+simple_logistic_fit <- logistic_reg() |>
+  fit(spam ~ exclaim_mess, data = email)
 ```
 
 # Recap
@@ -85,6 +88,8 @@ The `augment` function takes a data frame and "augments" it by adding three new 
 The `augment` function takes a data frame and "augments" it by adding three new columns on the left that describe the model predictions for each row:
 
 ```{r}
+full_logistic_fit <- logistic_reg() |> 
+  fit(spam ~., data = email)
 log_aug_full <- augment(full_logistic_fit, email)
 log_aug_full
 ```
@@ -666,7 +671,7 @@ $$
 ## Three equivalent representations {.smaller .scrollable}
 
 | Version                        | equation                                                        | Friendly LHS? | Friendly RHS? |
-|-----------------|-----------------------|-----------------|-----------------|
+|-----------------|---------------------|-----------------|-----------------|
 | Probability: (0, 1)            | $$\widehat{p}=\frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}$$             | ✅            | ❌            |
 | Odds: $(0,\,\infty)$           | $$\frac{\widehat{p}}{1-\widehat{p}}=e^{b_0+b_1x}$$              | 🥴            | 🥴            |
 | Log-odds: $(-\infty,\,\infty)$ | $$\log\left(\frac{\widehat{p}}{1-\widehat{p}}\right)=b_0+b_1x$$ | ❌            | ✅            |
