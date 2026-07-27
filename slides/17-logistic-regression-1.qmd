@@ -298,7 +298,7 @@ points(x, y, pch = 19, cex = 0.75)
 
     -   Our models cannot directly guarantee that $y$ will be zero or one. The correct analog to "on average" for a 0/1 response is "what's the probability?"
 
-## So, what is this S-curve, anyway?
+## So, what is this S-curve, anyway? {.smaller}
 
 It's the *logistic function*:
 
@@ -318,7 +318,11 @@ $$
 
 This is called the *logistic regression* model.
 
-## Log-odds? {.medium .scrollable}
+## But first a message from the Capitol
+
+![](img/17/reaping.webp){fig-align="center" width="150%"}
+
+## Probability? Odds? Log-odds? {.medium .scrollable}
 
 -   $p = \text{Prob}(y = 1)$ is a probability.
     A number between 0 and 1;
