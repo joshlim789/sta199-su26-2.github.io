@@ -23,7 +23,12 @@ library(knitr)       # for neatly formatted tables
 todays_ae <- "ae-17-diving-into-paris"
 ```
 
-# Statistics
+## So far
+
+- Estimation: "our best guess"
+- Interpretation
+- Rinse and Repeat
+- But what about those error bars? What about those extra columns in our output tables?
 
 ## Our goal: quantify uncertainty to help make **informed** decisions
 
@@ -33,6 +38,17 @@ todays_ae <- "ae-17-diving-into-paris"
 -   With the short time remaining, we will focus on quantifying one specific type of uncertainty...
 
 # Classical sampling uncertainty
+
+## But first a message from the Capitol
+
+![](img/17/reaping.webp){fig-align="center" width="150%"}
+
+## The Reaping
+- Suppose that my 199 class is the population of interest
+- Each of you will take a sample of 3, and compute the mean
+- Do you all expect to get the same value?
+- May the odds be ever in your favor
+- What if we increased the sample size?
 
 ## Sampling uncertainty {.small .scrollable}
 
@@ -1266,6 +1282,18 @@ linear_reg() |>
 
 # Interval estimation
 
+## But first, let's dive our way back to the 2024 Paris Olympics
+
+::: columns
+::: {.column width="50%"}
+![](img/19/inward.gif){fig-align="center" width="70%"}
+:::
+
+::: {.column width="50%"}
+![](img/19/doublepike.gif){fig-align="center" width="70%"}
+:::
+:::
+
 ## Data: Diving at the 2024 Paris Olympics {.smaller}
 
 -   Data on scores from every dive in the final rounds of the 2024 Paris Olympic games diving events
@@ -1284,6 +1312,8 @@ diving <- diving_raw |>
   pivot_wider(names_from = dive_number, values_from = points) |>
   mutate(running_total = Dive_1 + Dive_2 + Dive_3 + Dive_4 + Dive_5)
 ```
+
+![](img/19/divingoly.jpg){fig-align="center" width="50%"}
 
 ## Exploratory data analysis
 
@@ -1742,18 +1772,6 @@ Quantiles!
 :::
 
 # Application exercise
-
-## `{r} todays_ae` {.smaller}
-
-::: appex
--   Go to your ae project in RStudio.
-
--   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your Git pane.
-
--   If you haven't yet done so, click Pull to get today's application exercise file: *`{r} paste0(todays_ae, ".qmd")`*.
-
--   Work through the application exercise in class, and render, commit, and push your edits.
-:::
 
 ## Computing the CI for the slope I {.scrollable}
 
