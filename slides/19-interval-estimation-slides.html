@@ -215,18 +215,34 @@ Josh Lim
 </div>
 
   <p class="date">July 29, 2026</p>
-</section><section><section id="statistics" class="title-slide slide level1 center"><h1>Statistics</h1>
-
-</section><section id="our-goal-quantify-uncertainty-to-help-make-informed-decisions" class="slide level2"><h2>Our goal: quantify uncertainty to help make <strong>informed</strong> decisions</h2>
+</section><section id="so-far" class="slide level2"><h2>So far</h2>
+<ul>
+<li>Estimation: “our best guess”</li>
+<li>Interpretation</li>
+<li>Rinse and Repeat</li>
+<li>But what about those error bars? What about those extra columns in our output tables?</li>
+</ul></section><section id="our-goal-quantify-uncertainty-to-help-make-informed-decisions" class="slide level2"><h2>Our goal: quantify uncertainty to help make <strong>informed</strong> decisions</h2>
 <ul>
 <li>What kind of uncertainty?</li>
 <li>
 <em>How</em> do you quantify it?</li>
 <li>These are surprisingly spicy and controversial questions in statistics!</li>
 <li>With the short time remaining, we will focus on quantifying one specific type of uncertainty…</li>
-</ul></section></section><section><section id="classical-sampling-uncertainty" class="title-slide slide level1 center"><h1>Classical sampling uncertainty</h1>
+</ul></section><section><section id="classical-sampling-uncertainty" class="title-slide slide level1 center"><h1>Classical sampling uncertainty</h1>
 
-</section><section id="sampling-uncertainty" class="slide level2 small scrollable"><h2>Sampling uncertainty</h2>
+</section><section id="but-first-a-message-from-the-capitol" class="slide level2"><h2>But first a message from the Capitol</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="img/17/reaping.webp" class="quarto-figure quarto-figure-center" style="width:150.0%"></p>
+</figure>
+</div>
+</section><section id="the-reaping" class="slide level2"><h2>The Reaping</h2>
+<ul>
+<li>Suppose that my 199 class is the population of interest</li>
+<li>Each of you will take a sample of 3, and compute the mean</li>
+<li>Do you all expect to get the same value?</li>
+<li>May the odds be ever in your favor</li>
+<li>What if we increased the sample size?</li>
+</ul></section><section id="sampling-uncertainty" class="slide level2 small scrollable"><h2>Sampling uncertainty</h2>
 <blockquote>
 <p>Different data give different estimates. How different?</p>
 </blockquote>
@@ -901,6 +917,19 @@ Josh Lim
 </div></div>
 </section></section><section><section id="interval-estimation" class="title-slide slide level1 center"><h1>Interval estimation</h1>
 
+</section><section id="but-first-lets-dive-our-way-back-to-the-2024-paris-olympics" class="slide level2"><h2>But first, let’s dive our way back to the 2024 Paris Olympics</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="img/19/inward.gif" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="img/19/doublepike.gif" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</div></div>
 </section><section id="data-diving-at-the-2024-paris-olympics" class="slide level2 smaller"><h2>Data: Diving at the 2024 Paris Olympics</h2>
 <ul>
 <li>Data on scores from every dive in the final rounds of the 2024 Paris Olympic games diving events</li>
@@ -908,6 +937,10 @@ Josh Lim
 <li>Each diver performs six dives</li>
 </ul>
 <p><strong>Goal</strong>: Use a diver’s running total of their first 5 dives to understand variability in the score of their final dive.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="img/19/divingoly.jpg" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
 </section><section id="exploratory-data-analysis" class="slide level2"><h2>Exploratory data analysis</h2>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(diving, <span class="fu">aes</span>(<span class="at">x =</span> running_total, <span class="at">y =</span> Dive_6)) <span class="sc">+</span></span>
@@ -1244,15 +1277,6 @@ Josh Lim
 </div>
 </section></section><section><section id="application-exercise" class="title-slide slide level1 center"><h1>Application exercise</h1>
 
-</section><section id="ae-17-diving-into-paris" class="slide level2 smaller"><h2>ae-17-diving-into-paris</h2>
-<div class="appex">
-<ul>
-<li><p>Go to your ae project in RStudio.</p></li>
-<li><p>If you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.</p></li>
-<li><p>If you haven’t yet done so, click Pull to get today’s application exercise file: <em>ae-17-diving-into-paris.qmd</em>.</p></li>
-<li><p>Work through the application exercise in class, and render, commit, and push your edits.</p></li>
-</ul>
-</div>
 </section><section id="computing-the-ci-for-the-slope-i" class="slide level2 scrollable"><h2>Computing the CI for the slope I</h2>
 <p>Calculate the observed slope:</p>
 <div class="cell">

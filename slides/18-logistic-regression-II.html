@@ -448,7 +448,12 @@ window.Quarto = {
   <li><a href="#dont-get-burned-on-this" id="toc-dont-get-burned-on-this" class="nav-link" data-scroll-target="#dont-get-burned-on-this">Don’t get burned on this!</a></li>
   </ul>
 </li>
-  <li><a href="#ae" id="toc-ae" class="nav-link" data-scroll-target="#ae">AE</a></li>
+  <li>
+<a href="#ae" id="toc-ae" class="nav-link" data-scroll-target="#ae">AE</a>
+  <ul class="collapse">
+<li><a href="#activity" id="toc-activity" class="nav-link" data-scroll-target="#activity">ACTIVITY</a></li>
+  </ul>
+</li>
   <li>
 <a href="#logistic-wrap-up-review" id="toc-logistic-wrap-up-review" class="nav-link" data-scroll-target="#logistic-wrap-up-review">Logistic wrap-up (Review)</a>
   <ul class="collapse">
@@ -888,7 +893,7 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7,107 × 20
+<pre><code># A tibble: 7,107 × 19
    forested  year elevation eastness northness roughness tree_no_tree
    &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       
  1 Yes       2005       881       90        43        63 Tree        
@@ -902,11 +907,11 @@ Note
  9 Yes       2005        52      -62        78        42 Tree        
 10 Yes       2005      2240      -67       -74        99 No tree     
 # ℹ 7,097 more rows
-# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
+# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section><section id="data-forested-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-forested-1">Data: <code>forested</code>
@@ -915,7 +920,7 @@ Note
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glimpse</span><span class="op">(</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,107
-Columns: 20
+Columns: 19
 $ forested         &lt;fct&gt; Yes, Yes, No, Yes, Yes, Yes, Yes, Yes, Yes,…
 $ year             &lt;dbl&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2…
 $ elevation        &lt;dbl&gt; 881, 113, 164, 299, 806, 736, 636, 224, 52,…
@@ -934,15 +939,14 @@ $ vapor_max        &lt;dbl&gt; 1194, 938, 754, 1164, 1254, 1331, 1275, 944…
 $ canopy_cover     &lt;dbl&gt; 50, 79, 47, 42, 59, 36, 14, 27, 82, 12, 74,…
 $ lon              &lt;dbl&gt; -118.6865, -123.0825, -122.3468, -121.9144,…
 $ lat              &lt;dbl&gt; 48.69537, 47.07991, 48.77132, 45.80776, 48.…
-$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…
-$ county           &lt;fct&gt; Ferry, Thurston, Whatcom, Skamania, Stevens…</code></pre>
+$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…</code></pre>
 </div>
 </div>
 </section><section id="data-forested-2" class="level2"><h2 class="anchored" data-anchor-id="data-forested-2">Data: <code>forested</code>
 </h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p>7107 rows and 20 columns;</p></li>
+<li><p>7107 rows and 19 columns;</p></li>
 <li><p>Each observation (row) is a plot of land;</p></li>
 <li><p>Variables include geographical and meteorological information about each plot, as well as a binary indicator <code>forested</code> (“Yes” or “No”);</p></li>
 <li><p>Given information about a plot that is easy (and cheap) to collect remotely, can we use a model to predict if a plot is forested without actually visiting it (which could be difficult and costly)?</p></li>
@@ -1058,7 +1062,7 @@ Warning
 <div class="cell">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_train</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5,330 × 20
+<pre><code># A tibble: 5,330 × 19
    forested  year elevation eastness northness roughness tree_no_tree
    &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       
  1 Yes       2017       203      -76        64        39 Tree        
@@ -1072,18 +1076,18 @@ Warning
  9 Yes       2015       410      -92       -38        81 Tree        
 10 No        2019       764        6        99        19 No tree     
 # ℹ 5,320 more rows
-# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
+# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section><section id="the-testing-data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="the-testing-data">The testing data</h2>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,777 × 20
+<pre><code># A tibble: 1,777 × 19
    forested  year elevation eastness northness roughness tree_no_tree
    &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       
  1 Yes       2005       736      -27       -96        53 Tree        
@@ -1097,11 +1101,11 @@ Warning
  9 No        2014       252       99         5       104 No tree     
 10 Yes       2014      1634       54        83        38 Tree        
 # ℹ 1,767 more rows
-# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
+# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section></section><section id="exploratory-data-analysis" class="level1"><h1>Exploratory data analysis</h1>
@@ -1255,7 +1259,7 @@ Warning
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">forested</span><span class="op">)</span> <span class="op">~</span> <span class="va">precip_annual</span>, data <span class="op">=</span> <span class="va">forested_train</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in `check_outcome()` at parsnip/R/fit_helpers.R:9:7:
+<pre><code>Error in `check_outcome()`:
 ! For a classification model, the outcome should be a
   &lt;factor&gt;, not a double vector.</code></pre>
 </div>
@@ -1296,7 +1300,10 @@ Warning
 <p>. . .</p>
 <p>Do these two things agree? If not, that isn’t an <em>error</em>, but you might make mistakes when interpreting. Be careful!</p>
 </section></section><section id="ae" class="level1"><h1>AE</h1>
-</section><section id="logistic-wrap-up-review" class="level1"><h1>Logistic wrap-up (Review)</h1>
+<section id="activity" class="level2"><h2 class="anchored" data-anchor-id="activity">ACTIVITY</h2>
+<ul>
+<li>Write down the approximate number of TV episodes you have watched in the past week</li>
+</ul></section></section><section id="logistic-wrap-up-review" class="level1"><h1>Logistic wrap-up (Review)</h1>
 <section id="fitting-a-logistic-regression-model" class="level2"><h2 class="anchored" data-anchor-id="fitting-a-logistic-regression-model">Fitting a logistic regression model</h2>
 <p>Similar syntax to linear regression:</p>
 <div class="cell">
@@ -1326,7 +1333,7 @@ precip.
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
-<col style="width: 29%">
+<col style="width: 28%">
 <col style="width: 23%">
 <col style="width: 23%">
 </colgroup>
@@ -1455,7 +1462,7 @@ precip}}}
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">forested_precip_fit</span>, <span class="va">forested_test</span><span class="op">)</span></span>
 <span><span class="va">forested_precip_aug</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,777 × 23
+<pre><code># A tibble: 1,777 × 22
    .pred_class .pred_Yes .pred_No forested  year elevation eastness
    &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
  1 No              0.366  0.634   Yes       2005       736      -27
@@ -1469,12 +1476,12 @@ precip}}}
  9 No              0.280  0.720   No        2014       252       99
 10 Yes             0.577  0.423   Yes       2014      1634       54
 # ℹ 1,767 more rows
-# ℹ 16 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,
+# ℹ 15 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,
 #   tree_no_tree &lt;fct&gt;, dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section><section id="how-did-the-model-perform" class="level2 medium"><h2 class="medium anchored" data-anchor-id="how-did-the-model-perform">How did the model perform?</h2>

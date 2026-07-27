@@ -4865,11 +4865,32 @@
     "text": "How do we negotiate the trade-off?\nUnless otherwise specified, we will use a discernibility level \\(\\alpha = 0.05\\); you may see this worded as “What is your conclusion at the 5% discernibility level?” or functionally similar"
   },
   {
+    "objectID": "slides/19-interval-estimation-slides.html#so-far",
+    "href": "slides/19-interval-estimation-slides.html#so-far",
+    "title": "Interval Estimation",
+    "section": "So far",
+    "text": "So far\n\nEstimation: “our best guess”\nInterpretation\nRinse and Repeat\nBut what about those error bars? What about those extra columns in our output tables?"
+  },
+  {
     "objectID": "slides/19-interval-estimation-slides.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "href": "slides/19-interval-estimation-slides.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "title": "Interval Estimation",
     "section": "Our goal: quantify uncertainty to help make informed decisions",
     "text": "Our goal: quantify uncertainty to help make informed decisions\n\nWhat kind of uncertainty?\n\nHow do you quantify it?\nThese are surprisingly spicy and controversial questions in statistics!\nWith the short time remaining, we will focus on quantifying one specific type of uncertainty…"
+  },
+  {
+    "objectID": "slides/19-interval-estimation-slides.html#but-first-a-message-from-the-capitol",
+    "href": "slides/19-interval-estimation-slides.html#but-first-a-message-from-the-capitol",
+    "title": "Interval Estimation",
+    "section": "But first a message from the Capitol",
+    "text": "But first a message from the Capitol"
+  },
+  {
+    "objectID": "slides/19-interval-estimation-slides.html#the-reaping",
+    "href": "slides/19-interval-estimation-slides.html#the-reaping",
+    "title": "Interval Estimation",
+    "section": "The Reaping",
+    "text": "The Reaping\n\nSuppose that my 199 class is the population of interest\nEach of you will take a sample of 3, and compute the mean\nDo you all expect to get the same value?\nMay the odds be ever in your favor\nWhat if we increased the sample size?"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#sampling-uncertainty",
@@ -5201,6 +5222,13 @@
     "text": "Bootstrap samples 3\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     6 -0.679 -0.961\n2     1  0.432  1.53 \n3     5  0.327  0.820\n4     6 -0.679 -0.961\n5     6 -0.679 -0.961\n6     5  0.327  0.820\n\n\nDifferent data &gt;&gt; new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.357\n2 x              1.96"
   },
   {
+    "objectID": "slides/19-interval-estimation-slides.html#but-first-lets-dive-our-way-back-to-the-2024-paris-olympics",
+    "href": "slides/19-interval-estimation-slides.html#but-first-lets-dive-our-way-back-to-the-2024-paris-olympics",
+    "title": "Interval Estimation",
+    "section": "But first, let’s dive our way back to the 2024 Paris Olympics",
+    "text": "But first, let’s dive our way back to the 2024 Paris Olympics"
+  },
+  {
     "objectID": "slides/19-interval-estimation-slides.html#data-diving-at-the-2024-paris-olympics",
     "href": "slides/19-interval-estimation-slides.html#data-diving-at-the-2024-paris-olympics",
     "title": "Interval Estimation",
@@ -5348,13 +5376,6 @@
     "text": "Where do the bounds come from?\nQuantiles!\n\n\nThink IQR! 50% of the bootstrap distribution is between the 25% quantile on the left and the 75% quantile on the right. But we want more than 50%\n90% of the bootstrap distribution is between the 5% quantile on the left and the 95% quantile on the right;\n95% of the bootstrap distribution is between the 2.5% quantile on the left and the 97.5% quantile on the right;\nAnd so on."
   },
   {
-    "objectID": "slides/19-interval-estimation-slides.html#ae-17-diving-into-paris",
-    "href": "slides/19-interval-estimation-slides.html#ae-17-diving-into-paris",
-    "title": "Interval Estimation",
-    "section": "ae-17-diving-into-paris",
-    "text": "ae-17-diving-into-paris\n\n\nGo to your ae project in RStudio.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.\nIf you haven’t yet done so, click Pull to get today’s application exercise file: ae-17-diving-into-paris.qmd.\nWork through the application exercise in class, and render, commit, and push your edits."
-  },
-  {
     "objectID": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-i",
     "href": "slides/19-interval-estimation-slides.html#computing-the-ci-for-the-slope-i",
     "title": "Interval Estimation",
@@ -5415,14 +5436,35 @@
     "href": "slides/19-interval-estimation.html",
     "title": "Interval Estimation",
     "section": "",
-    "text": "What kind of uncertainty?\n\nHow do you quantify it?\nThese are surprisingly spicy and controversial questions in statistics!\nWith the short time remaining, we will focus on quantifying one specific type of uncertainty…"
+    "text": "Estimation: “our best guess”\nInterpretation\nRinse and Repeat\nBut what about those error bars? What about those extra columns in our output tables?"
+  },
+  {
+    "objectID": "slides/19-interval-estimation.html#so-far",
+    "href": "slides/19-interval-estimation.html#so-far",
+    "title": "Interval Estimation",
+    "section": "",
+    "text": "Estimation: “our best guess”\nInterpretation\nRinse and Repeat\nBut what about those error bars? What about those extra columns in our output tables?"
   },
   {
     "objectID": "slides/19-interval-estimation.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "href": "slides/19-interval-estimation.html#our-goal-quantify-uncertainty-to-help-make-informed-decisions",
     "title": "Interval Estimation",
-    "section": "",
-    "text": "What kind of uncertainty?\n\nHow do you quantify it?\nThese are surprisingly spicy and controversial questions in statistics!\nWith the short time remaining, we will focus on quantifying one specific type of uncertainty…"
+    "section": "Our goal: quantify uncertainty to help make informed decisions",
+    "text": "Our goal: quantify uncertainty to help make informed decisions\n\nWhat kind of uncertainty?\n\nHow do you quantify it?\nThese are surprisingly spicy and controversial questions in statistics!\nWith the short time remaining, we will focus on quantifying one specific type of uncertainty…"
+  },
+  {
+    "objectID": "slides/19-interval-estimation.html#but-first-a-message-from-the-capitol",
+    "href": "slides/19-interval-estimation.html#but-first-a-message-from-the-capitol",
+    "title": "Interval Estimation",
+    "section": "But first a message from the Capitol",
+    "text": "But first a message from the Capitol"
+  },
+  {
+    "objectID": "slides/19-interval-estimation.html#the-reaping",
+    "href": "slides/19-interval-estimation.html#the-reaping",
+    "title": "Interval Estimation",
+    "section": "The Reaping",
+    "text": "The Reaping\n\nSuppose that my 199 class is the population of interest\nEach of you will take a sample of 3, and compute the mean\nDo you all expect to get the same value?\nMay the odds be ever in your favor\nWhat if we increased the sample size?"
   },
   {
     "objectID": "slides/19-interval-estimation.html#sampling-uncertainty",
@@ -5754,6 +5796,13 @@
     "text": "Bootstrap samples 3\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     6 -0.679 -0.961\n2     1  0.432  1.53 \n3     5  0.327  0.820\n4     6 -0.679 -0.961\n5     6 -0.679 -0.961\n6     5  0.327  0.820\n\n\nDifferent data &gt;&gt; new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.357\n2 x              1.96"
   },
   {
+    "objectID": "slides/19-interval-estimation.html#but-first-lets-dive-our-way-back-to-the-2024-paris-olympics",
+    "href": "slides/19-interval-estimation.html#but-first-lets-dive-our-way-back-to-the-2024-paris-olympics",
+    "title": "Interval Estimation",
+    "section": "But first, let’s dive our way back to the 2024 Paris Olympics",
+    "text": "But first, let’s dive our way back to the 2024 Paris Olympics"
+  },
+  {
     "objectID": "slides/19-interval-estimation.html#data-diving-at-the-2024-paris-olympics",
     "href": "slides/19-interval-estimation.html#data-diving-at-the-2024-paris-olympics",
     "title": "Interval Estimation",
@@ -5899,13 +5948,6 @@
     "title": "Interval Estimation",
     "section": "Where do the bounds come from?",
     "text": "Where do the bounds come from?\nQuantiles!\n\n\nThink IQR! 50% of the bootstrap distribution is between the 25% quantile on the left and the 75% quantile on the right. But we want more than 50%\n90% of the bootstrap distribution is between the 5% quantile on the left and the 95% quantile on the right;\n95% of the bootstrap distribution is between the 2.5% quantile on the left and the 97.5% quantile on the right;\nAnd so on."
-  },
-  {
-    "objectID": "slides/19-interval-estimation.html#ae-17-diving-into-paris",
-    "href": "slides/19-interval-estimation.html#ae-17-diving-into-paris",
-    "title": "Interval Estimation",
-    "section": "ae-17-diving-into-paris",
-    "text": "ae-17-diving-into-paris\n\n\nGo to your ae project in RStudio.\nIf you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.\nIf you haven’t yet done so, click Pull to get today’s application exercise file: ae-17-diving-into-paris.qmd.\nWork through the application exercise in class, and render, commit, and push your edits."
   },
   {
     "objectID": "slides/19-interval-estimation.html#computing-the-ci-for-the-slope-i",
@@ -7074,7 +7116,7 @@
     "href": "slides/03-grammar-of-data-transformation-slides.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Safety Not Gua…  2012    8547463      760979 11.2  PASS   ok        \n2 Dr. Dolittle 2   2001  380348488    94740909  4.01 PASS   ok        \n3 As Good as It …  1997  671328148    72561906  9.25 PASS   ok        \n4 Dark Angel (I …  1990   15592338    12480828  1.25 FAIL   nowomen   \n5 Swimming Pool    2003   41238264     9875478  4.18 PASS   ok"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Definitely, Ma…  2008   95352663     7575794 12.6  PASS   ok        \n2 Shortbus         2006    4589186     2311593  1.99 PASS   ok        \n3 About Time       2013  102648667    12000000  8.55 PASS   ok        \n4 Cabin Fever      2002   66714489     1942769 34.3  PASS   ok        \n5 Les triplettes…  2003   27526505     2532174 10.9  PASS   ok"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation-slides.html#filter",
@@ -7333,7 +7375,7 @@
     "href": "slides/03-grammar-of-data-transformation.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Safety Not Gua…  2012    8547463      760979 11.2  PASS   ok        \n2 Dr. Dolittle 2   2001  380348488    94740909  4.01 PASS   ok        \n3 As Good as It …  1997  671328148    72561906  9.25 PASS   ok        \n4 Dark Angel (I …  1990   15592338    12480828  1.25 FAIL   nowomen   \n5 Swimming Pool    2003   41238264     9875478  4.18 PASS   ok"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Definitely, Ma…  2008   95352663     7575794 12.6  PASS   ok        \n2 Shortbus         2006    4589186     2311593  1.99 PASS   ok        \n3 About Time       2013  102648667    12000000  8.55 PASS   ok        \n4 Cabin Fever      2002   66714489     1942769 34.3  PASS   ok        \n5 Les triplettes…  2003   27526505     2532174 10.9  PASS   ok"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation.html#filter",
@@ -13197,21 +13239,21 @@
     "href": "slides/18-logistic-regression-II.html#data-forested",
     "title": "Logistic Regression II",
     "section": "Data: forested\n",
-    "text": "Data: forested\n\n\nforested\n\n# A tibble: 7,107 × 20\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       881       90        43        63 Tree        \n 2 Yes       2005       113      -25        96        30 Tree        \n 3 No        2005       164      -84        53        13 Tree        \n 4 Yes       2005       299       93        34         6 No tree     \n 5 Yes       2005       806       47       -88        35 Tree        \n 6 Yes       2005       736      -27       -96        53 Tree        \n 7 Yes       2005       636      -48        87         3 No tree     \n 8 Yes       2005       224      -65       -75         9 Tree        \n 9 Yes       2005        52      -62        78        42 Tree        \n10 Yes       2005      2240      -67       -74        99 No tree     \n# ℹ 7,097 more rows\n# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "Data: forested\n\n\nforested\n\n# A tibble: 7,107 × 19\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       881       90        43        63 Tree        \n 2 Yes       2005       113      -25        96        30 Tree        \n 3 No        2005       164      -84        53        13 Tree        \n 4 Yes       2005       299       93        34         6 No tree     \n 5 Yes       2005       806       47       -88        35 Tree        \n 6 Yes       2005       736      -27       -96        53 Tree        \n 7 Yes       2005       636      -48        87         3 No tree     \n 8 Yes       2005       224      -65       -75         9 Tree        \n 9 Yes       2005        52      -62        78        42 Tree        \n10 Yes       2005      2240      -67       -74        99 No tree     \n# ℹ 7,097 more rows\n# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#data-forested-1",
     "href": "slides/18-logistic-regression-II.html#data-forested-1",
     "title": "Logistic Regression II",
     "section": "Data: forested\n",
-    "text": "Data: forested\n\n\nglimpse(forested)\n\nRows: 7,107\nColumns: 20\n$ forested         &lt;fct&gt; Yes, Yes, No, Yes, Yes, Yes, Yes, Yes, Yes,…\n$ year             &lt;dbl&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2…\n$ elevation        &lt;dbl&gt; 881, 113, 164, 299, 806, 736, 636, 224, 52,…\n$ eastness         &lt;dbl&gt; 90, -25, -84, 93, 47, -27, -48, -65, -62, -…\n$ northness        &lt;dbl&gt; 43, 96, 53, 34, -88, -96, 87, -75, 78, -74,…\n$ roughness        &lt;dbl&gt; 63, 30, 13, 6, 35, 53, 3, 9, 42, 99, 51, 19…\n$ tree_no_tree     &lt;fct&gt; Tree, Tree, Tree, No tree, Tree, Tree, No t…\n$ dew_temp         &lt;dbl&gt; 0.04, 6.40, 6.06, 4.43, 1.06, 1.35, 1.42, 6…\n$ precip_annual    &lt;dbl&gt; 466, 1710, 1297, 2545, 609, 539, 702, 1195,…\n$ temp_annual_mean &lt;dbl&gt; 6.42, 10.64, 10.07, 9.86, 7.72, 7.89, 7.61,…\n$ temp_annual_min  &lt;dbl&gt; -8.32, 1.40, 0.19, -1.20, -5.98, -6.00, -5.…\n$ temp_annual_max  &lt;dbl&gt; 12.91, 15.84, 14.42, 15.78, 13.84, 14.66, 1…\n$ temp_january_min &lt;dbl&gt; -0.08, 5.44, 5.72, 3.95, 1.60, 1.12, 0.99, …\n$ vapor_min        &lt;dbl&gt; 78, 34, 49, 67, 114, 67, 67, 31, 60, 79, 17…\n$ vapor_max        &lt;dbl&gt; 1194, 938, 754, 1164, 1254, 1331, 1275, 944…\n$ canopy_cover     &lt;dbl&gt; 50, 79, 47, 42, 59, 36, 14, 27, 82, 12, 74,…\n$ lon              &lt;dbl&gt; -118.6865, -123.0825, -122.3468, -121.9144,…\n$ lat              &lt;dbl&gt; 48.69537, 47.07991, 48.77132, 45.80776, 48.…\n$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…\n$ county           &lt;fct&gt; Ferry, Thurston, Whatcom, Skamania, Stevens…"
+    "text": "Data: forested\n\n\nglimpse(forested)\n\nRows: 7,107\nColumns: 19\n$ forested         &lt;fct&gt; Yes, Yes, No, Yes, Yes, Yes, Yes, Yes, Yes,…\n$ year             &lt;dbl&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2…\n$ elevation        &lt;dbl&gt; 881, 113, 164, 299, 806, 736, 636, 224, 52,…\n$ eastness         &lt;dbl&gt; 90, -25, -84, 93, 47, -27, -48, -65, -62, -…\n$ northness        &lt;dbl&gt; 43, 96, 53, 34, -88, -96, 87, -75, 78, -74,…\n$ roughness        &lt;dbl&gt; 63, 30, 13, 6, 35, 53, 3, 9, 42, 99, 51, 19…\n$ tree_no_tree     &lt;fct&gt; Tree, Tree, Tree, No tree, Tree, Tree, No t…\n$ dew_temp         &lt;dbl&gt; 0.04, 6.40, 6.06, 4.43, 1.06, 1.35, 1.42, 6…\n$ precip_annual    &lt;dbl&gt; 466, 1710, 1297, 2545, 609, 539, 702, 1195,…\n$ temp_annual_mean &lt;dbl&gt; 6.42, 10.64, 10.07, 9.86, 7.72, 7.89, 7.61,…\n$ temp_annual_min  &lt;dbl&gt; -8.32, 1.40, 0.19, -1.20, -5.98, -6.00, -5.…\n$ temp_annual_max  &lt;dbl&gt; 12.91, 15.84, 14.42, 15.78, 13.84, 14.66, 1…\n$ temp_january_min &lt;dbl&gt; -0.08, 5.44, 5.72, 3.95, 1.60, 1.12, 0.99, …\n$ vapor_min        &lt;dbl&gt; 78, 34, 49, 67, 114, 67, 67, 31, 60, 79, 17…\n$ vapor_max        &lt;dbl&gt; 1194, 938, 754, 1164, 1254, 1331, 1275, 944…\n$ canopy_cover     &lt;dbl&gt; 50, 79, 47, 42, 59, 36, 14, 27, 82, 12, 74,…\n$ lon              &lt;dbl&gt; -118.6865, -123.0825, -122.3468, -121.9144,…\n$ lat              &lt;dbl&gt; 48.69537, 47.07991, 48.77132, 45.80776, 48.…\n$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…"
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#data-forested-2",
     "href": "slides/18-logistic-regression-II.html#data-forested-2",
     "title": "Logistic Regression II",
     "section": "Data: forested\n",
-    "text": "Data: forested\n\n\n\n7107 rows and 20 columns;\nEach observation (row) is a plot of land;\nVariables include geographical and meteorological information about each plot, as well as a binary indicator forested (“Yes” or “No”);\nGiven information about a plot that is easy (and cheap) to collect remotely, can we use a model to predict if a plot is forested without actually visiting it (which could be difficult and costly)?"
+    "text": "Data: forested\n\n\n\n7107 rows and 19 columns;\nEach observation (row) is a plot of land;\nVariables include geographical and meteorological information about each plot, as well as a binary indicator forested (“Yes” or “No”);\nGiven information about a plot that is easy (and cheap) to collect remotely, can we use a model to predict if a plot is forested without actually visiting it (which could be difficult and costly)?"
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#outcome-and-predictors",
@@ -13288,14 +13330,14 @@
     "href": "slides/18-logistic-regression-II.html#the-training-set",
     "title": "Logistic Regression II",
     "section": "The training set",
-    "text": "The training set\n\nforested_train\n\n# A tibble: 5,330 × 20\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2017       203      -76        64        39 Tree        \n 2 No        2019         0        0         0         0 No tree     \n 3 No        2018       479        0         0         0 No tree     \n 4 Yes       2015       681       51       -85       127 No tree     \n 5 Yes       2015       909      -44       -89        42 Tree        \n 6 Yes       2012       118      -14       -98         2 Tree        \n 7 Yes       2019      1080       -3       -99       132 Tree        \n 8 Yes       2011        36       18        98        39 Tree        \n 9 Yes       2015       410      -92       -38        81 Tree        \n10 No        2019       764        6        99        19 No tree     \n# ℹ 5,320 more rows\n# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "The training set\n\nforested_train\n\n# A tibble: 5,330 × 19\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2017       203      -76        64        39 Tree        \n 2 No        2019         0        0         0         0 No tree     \n 3 No        2018       479        0         0         0 No tree     \n 4 Yes       2015       681       51       -85       127 No tree     \n 5 Yes       2015       909      -44       -89        42 Tree        \n 6 Yes       2012       118      -14       -98         2 Tree        \n 7 Yes       2019      1080       -3       -99       132 Tree        \n 8 Yes       2011        36       18        98        39 Tree        \n 9 Yes       2015       410      -92       -38        81 Tree        \n10 No        2019       764        6        99        19 No tree     \n# ℹ 5,320 more rows\n# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#the-testing-data",
     "href": "slides/18-logistic-regression-II.html#the-testing-data",
     "title": "Logistic Regression II",
     "section": "The testing data",
-    "text": "The testing data\n\nforested_test\n\n# A tibble: 1,777 × 20\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       736      -27       -96        53 Tree        \n 2 Yes       2005       787       66       -74        95 Tree        \n 3 Yes       2005      1330       99         7       212 Tree        \n 4 Yes       2005      1423       46        88       180 Tree        \n 5 Yes       2005      1038      -34       -93       183 No tree     \n 6 No        2014       542      -32       -94        19 No tree     \n 7 No        2014       290       46       -88         7 No tree     \n 8 No        2014       676      -65       -75         6 No tree     \n 9 No        2014       252       99         5       104 No tree     \n10 Yes       2014      1634       54        83        38 Tree        \n# ℹ 1,767 more rows\n# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "The testing data\n\nforested_test\n\n# A tibble: 1,777 × 19\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       736      -27       -96        53 Tree        \n 2 Yes       2005       787       66       -74        95 Tree        \n 3 Yes       2005      1330       99         7       212 Tree        \n 4 Yes       2005      1423       46        88       180 Tree        \n 5 Yes       2005      1038      -34       -93       183 No tree     \n 6 No        2014       542      -32       -94        19 No tree     \n 7 No        2014       290       46       -88         7 No tree     \n 8 No        2014       676      -65       -75         6 No tree     \n 9 No        2014       252       99         5       104 No tree     \n10 Yes       2014      1634       54        83        38 Tree        \n# ℹ 1,767 more rows\n# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#initial-questions",
@@ -13365,7 +13407,7 @@
     "href": "slides/18-logistic-regression-II.html#fyi-the-response-variable-must-be-a-factor",
     "title": "Logistic Regression II",
     "section": "FYI: the response variable must be a factor",
-    "text": "FYI: the response variable must be a factor\nforested already comes as a factor, so we’re lucky:\n\nclass(forested$forested)\n\n[1] \"factor\"\n\nlevels(forested$forested)\n\n[1] \"Yes\" \"No\" \n\n\n. . .\nBut if it didn’t, things would not work:\n\nlogistic_reg() |&gt;\n  fit(as.numeric(forested) ~ precip_annual, data = forested_train)\n\nError in `check_outcome()` at parsnip/R/fit_helpers.R:9:7:\n! For a classification model, the outcome should be a\n  &lt;factor&gt;, not a double vector."
+    "text": "FYI: the response variable must be a factor\nforested already comes as a factor, so we’re lucky:\n\nclass(forested$forested)\n\n[1] \"factor\"\n\nlevels(forested$forested)\n\n[1] \"Yes\" \"No\" \n\n\n. . .\nBut if it didn’t, things would not work:\n\nlogistic_reg() |&gt;\n  fit(as.numeric(forested) ~ precip_annual, data = forested_train)\n\nError in `check_outcome()`:\n! For a classification model, the outcome should be a\n  &lt;factor&gt;, not a double vector."
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#fyi-the-base-level-is-treated-as-failure-0",
@@ -13380,6 +13422,13 @@
     "title": "Logistic Regression II",
     "section": "Don’t get burned on this!",
     "text": "Don’t get burned on this!\nThere are two distinct but related things going on at the same time:\n\n\nYour binary response variable is a factor with two levels. There is a first level (base) and a second level;\nIn the context of your application, one of those levels is the “negative” or “zero” case (legit e-mail) and one is the “positive” or “one” case (spam e-mail).\n\n\n. . .\nDo these two things agree? If not, that isn’t an error, but you might make mistakes when interpreting. Be careful!"
+  },
+  {
+    "objectID": "slides/18-logistic-regression-II.html#activity",
+    "href": "slides/18-logistic-regression-II.html#activity",
+    "title": "Logistic Regression II",
+    "section": "ACTIVITY",
+    "text": "ACTIVITY\n\nWrite down the approximate number of TV episodes you have watched in the past week"
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#fitting-a-logistic-regression-model",
@@ -13421,7 +13470,7 @@
     "href": "slides/18-logistic-regression-II.html#generate-predictions-for-the-test-data",
     "title": "Logistic Regression II",
     "section": "Generate predictions for the test data",
-    "text": "Generate predictions for the test data\nAugment the test data frame with three new columns on the left that include model predictions (classifications and probabilities) for each row:\n\nforested_precip_aug &lt;- augment(forested_precip_fit, forested_test)\nforested_precip_aug\n\n# A tibble: 1,777 × 23\n   .pred_class .pred_Yes .pred_No forested  year elevation eastness\n   &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n 1 No              0.366  0.634   Yes       2005       736      -27\n 2 Yes             0.977  0.0227  Yes       2005       787       66\n 3 Yes             0.992  0.00808 Yes       2005      1330       99\n 4 Yes             0.994  0.00598 Yes       2005      1423       46\n 5 Yes             0.849  0.151   Yes       2005      1038      -34\n 6 No              0.261  0.739   No        2014       542      -32\n 7 No              0.243  0.757   No        2014       290       46\n 8 No              0.250  0.750   No        2014       676      -65\n 9 No              0.280  0.720   No        2014       252       99\n10 Yes             0.577  0.423   Yes       2014      1634       54\n# ℹ 1,767 more rows\n# ℹ 16 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,\n#   tree_no_tree &lt;fct&gt;, dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "Generate predictions for the test data\nAugment the test data frame with three new columns on the left that include model predictions (classifications and probabilities) for each row:\n\nforested_precip_aug &lt;- augment(forested_precip_fit, forested_test)\nforested_precip_aug\n\n# A tibble: 1,777 × 22\n   .pred_class .pred_Yes .pred_No forested  year elevation eastness\n   &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n 1 No              0.366  0.634   Yes       2005       736      -27\n 2 Yes             0.977  0.0227  Yes       2005       787       66\n 3 Yes             0.992  0.00808 Yes       2005      1330       99\n 4 Yes             0.994  0.00598 Yes       2005      1423       46\n 5 Yes             0.849  0.151   Yes       2005      1038      -34\n 6 No              0.261  0.739   No        2014       542      -32\n 7 No              0.243  0.757   No        2014       290       46\n 8 No              0.250  0.750   No        2014       676      -65\n 9 No              0.280  0.720   No        2014       252       99\n10 Yes             0.577  0.423   Yes       2014      1634       54\n# ℹ 1,767 more rows\n# ℹ 15 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,\n#   tree_no_tree &lt;fct&gt;, dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II.html#how-did-the-model-perform",
@@ -13708,21 +13757,21 @@
     "href": "slides/18-logistic-regression-II-slides.html#data-forested",
     "title": "Logistic Regression II",
     "section": "Data: forested\n",
-    "text": "Data: forested\n\n\nforested\n\n# A tibble: 7,107 × 20\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       881       90        43        63 Tree        \n 2 Yes       2005       113      -25        96        30 Tree        \n 3 No        2005       164      -84        53        13 Tree        \n 4 Yes       2005       299       93        34         6 No tree     \n 5 Yes       2005       806       47       -88        35 Tree        \n 6 Yes       2005       736      -27       -96        53 Tree        \n 7 Yes       2005       636      -48        87         3 No tree     \n 8 Yes       2005       224      -65       -75         9 Tree        \n 9 Yes       2005        52      -62        78        42 Tree        \n10 Yes       2005      2240      -67       -74        99 No tree     \n# ℹ 7,097 more rows\n# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "Data: forested\n\n\nforested\n\n# A tibble: 7,107 × 19\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       881       90        43        63 Tree        \n 2 Yes       2005       113      -25        96        30 Tree        \n 3 No        2005       164      -84        53        13 Tree        \n 4 Yes       2005       299       93        34         6 No tree     \n 5 Yes       2005       806       47       -88        35 Tree        \n 6 Yes       2005       736      -27       -96        53 Tree        \n 7 Yes       2005       636      -48        87         3 No tree     \n 8 Yes       2005       224      -65       -75         9 Tree        \n 9 Yes       2005        52      -62        78        42 Tree        \n10 Yes       2005      2240      -67       -74        99 No tree     \n# ℹ 7,097 more rows\n# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#data-forested-1",
     "href": "slides/18-logistic-regression-II-slides.html#data-forested-1",
     "title": "Logistic Regression II",
     "section": "Data: forested\n",
-    "text": "Data: forested\n\n\nglimpse(forested)\n\nRows: 7,107\nColumns: 20\n$ forested         &lt;fct&gt; Yes, Yes, No, Yes, Yes, Yes, Yes, Yes, Yes,…\n$ year             &lt;dbl&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2…\n$ elevation        &lt;dbl&gt; 881, 113, 164, 299, 806, 736, 636, 224, 52,…\n$ eastness         &lt;dbl&gt; 90, -25, -84, 93, 47, -27, -48, -65, -62, -…\n$ northness        &lt;dbl&gt; 43, 96, 53, 34, -88, -96, 87, -75, 78, -74,…\n$ roughness        &lt;dbl&gt; 63, 30, 13, 6, 35, 53, 3, 9, 42, 99, 51, 19…\n$ tree_no_tree     &lt;fct&gt; Tree, Tree, Tree, No tree, Tree, Tree, No t…\n$ dew_temp         &lt;dbl&gt; 0.04, 6.40, 6.06, 4.43, 1.06, 1.35, 1.42, 6…\n$ precip_annual    &lt;dbl&gt; 466, 1710, 1297, 2545, 609, 539, 702, 1195,…\n$ temp_annual_mean &lt;dbl&gt; 6.42, 10.64, 10.07, 9.86, 7.72, 7.89, 7.61,…\n$ temp_annual_min  &lt;dbl&gt; -8.32, 1.40, 0.19, -1.20, -5.98, -6.00, -5.…\n$ temp_annual_max  &lt;dbl&gt; 12.91, 15.84, 14.42, 15.78, 13.84, 14.66, 1…\n$ temp_january_min &lt;dbl&gt; -0.08, 5.44, 5.72, 3.95, 1.60, 1.12, 0.99, …\n$ vapor_min        &lt;dbl&gt; 78, 34, 49, 67, 114, 67, 67, 31, 60, 79, 17…\n$ vapor_max        &lt;dbl&gt; 1194, 938, 754, 1164, 1254, 1331, 1275, 944…\n$ canopy_cover     &lt;dbl&gt; 50, 79, 47, 42, 59, 36, 14, 27, 82, 12, 74,…\n$ lon              &lt;dbl&gt; -118.6865, -123.0825, -122.3468, -121.9144,…\n$ lat              &lt;dbl&gt; 48.69537, 47.07991, 48.77132, 45.80776, 48.…\n$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…\n$ county           &lt;fct&gt; Ferry, Thurston, Whatcom, Skamania, Stevens…"
+    "text": "Data: forested\n\n\nglimpse(forested)\n\nRows: 7,107\nColumns: 19\n$ forested         &lt;fct&gt; Yes, Yes, No, Yes, Yes, Yes, Yes, Yes, Yes,…\n$ year             &lt;dbl&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2…\n$ elevation        &lt;dbl&gt; 881, 113, 164, 299, 806, 736, 636, 224, 52,…\n$ eastness         &lt;dbl&gt; 90, -25, -84, 93, 47, -27, -48, -65, -62, -…\n$ northness        &lt;dbl&gt; 43, 96, 53, 34, -88, -96, 87, -75, 78, -74,…\n$ roughness        &lt;dbl&gt; 63, 30, 13, 6, 35, 53, 3, 9, 42, 99, 51, 19…\n$ tree_no_tree     &lt;fct&gt; Tree, Tree, Tree, No tree, Tree, Tree, No t…\n$ dew_temp         &lt;dbl&gt; 0.04, 6.40, 6.06, 4.43, 1.06, 1.35, 1.42, 6…\n$ precip_annual    &lt;dbl&gt; 466, 1710, 1297, 2545, 609, 539, 702, 1195,…\n$ temp_annual_mean &lt;dbl&gt; 6.42, 10.64, 10.07, 9.86, 7.72, 7.89, 7.61,…\n$ temp_annual_min  &lt;dbl&gt; -8.32, 1.40, 0.19, -1.20, -5.98, -6.00, -5.…\n$ temp_annual_max  &lt;dbl&gt; 12.91, 15.84, 14.42, 15.78, 13.84, 14.66, 1…\n$ temp_january_min &lt;dbl&gt; -0.08, 5.44, 5.72, 3.95, 1.60, 1.12, 0.99, …\n$ vapor_min        &lt;dbl&gt; 78, 34, 49, 67, 114, 67, 67, 31, 60, 79, 17…\n$ vapor_max        &lt;dbl&gt; 1194, 938, 754, 1164, 1254, 1331, 1275, 944…\n$ canopy_cover     &lt;dbl&gt; 50, 79, 47, 42, 59, 36, 14, 27, 82, 12, 74,…\n$ lon              &lt;dbl&gt; -118.6865, -123.0825, -122.3468, -121.9144,…\n$ lat              &lt;dbl&gt; 48.69537, 47.07991, 48.77132, 45.80776, 48.…\n$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…"
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#data-forested-2",
     "href": "slides/18-logistic-regression-II-slides.html#data-forested-2",
     "title": "Logistic Regression II",
     "section": "Data: forested\n",
-    "text": "Data: forested\n\n\n\n7107 rows and 20 columns;\nEach observation (row) is a plot of land;\nVariables include geographical and meteorological information about each plot, as well as a binary indicator forested (“Yes” or “No”);\nGiven information about a plot that is easy (and cheap) to collect remotely, can we use a model to predict if a plot is forested without actually visiting it (which could be difficult and costly)?"
+    "text": "Data: forested\n\n\n\n7107 rows and 19 columns;\nEach observation (row) is a plot of land;\nVariables include geographical and meteorological information about each plot, as well as a binary indicator forested (“Yes” or “No”);\nGiven information about a plot that is easy (and cheap) to collect remotely, can we use a model to predict if a plot is forested without actually visiting it (which could be difficult and costly)?"
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#outcome-and-predictors",
@@ -13799,14 +13848,14 @@
     "href": "slides/18-logistic-regression-II-slides.html#the-training-set",
     "title": "Logistic Regression II",
     "section": "The training set",
-    "text": "The training set\n\nforested_train\n\n# A tibble: 5,330 × 20\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2017       203      -76        64        39 Tree        \n 2 No        2019         0        0         0         0 No tree     \n 3 No        2018       479        0         0         0 No tree     \n 4 Yes       2015       681       51       -85       127 No tree     \n 5 Yes       2015       909      -44       -89        42 Tree        \n 6 Yes       2012       118      -14       -98         2 Tree        \n 7 Yes       2019      1080       -3       -99       132 Tree        \n 8 Yes       2011        36       18        98        39 Tree        \n 9 Yes       2015       410      -92       -38        81 Tree        \n10 No        2019       764        6        99        19 No tree     \n# ℹ 5,320 more rows\n# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "The training set\n\nforested_train\n\n# A tibble: 5,330 × 19\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2017       203      -76        64        39 Tree        \n 2 No        2019         0        0         0         0 No tree     \n 3 No        2018       479        0         0         0 No tree     \n 4 Yes       2015       681       51       -85       127 No tree     \n 5 Yes       2015       909      -44       -89        42 Tree        \n 6 Yes       2012       118      -14       -98         2 Tree        \n 7 Yes       2019      1080       -3       -99       132 Tree        \n 8 Yes       2011        36       18        98        39 Tree        \n 9 Yes       2015       410      -92       -38        81 Tree        \n10 No        2019       764        6        99        19 No tree     \n# ℹ 5,320 more rows\n# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#the-testing-data",
     "href": "slides/18-logistic-regression-II-slides.html#the-testing-data",
     "title": "Logistic Regression II",
     "section": "The testing data",
-    "text": "The testing data\n\nforested_test\n\n# A tibble: 1,777 × 20\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       736      -27       -96        53 Tree        \n 2 Yes       2005       787       66       -74        95 Tree        \n 3 Yes       2005      1330       99         7       212 Tree        \n 4 Yes       2005      1423       46        88       180 Tree        \n 5 Yes       2005      1038      -34       -93       183 No tree     \n 6 No        2014       542      -32       -94        19 No tree     \n 7 No        2014       290       46       -88         7 No tree     \n 8 No        2014       676      -65       -75         6 No tree     \n 9 No        2014       252       99         5       104 No tree     \n10 Yes       2014      1634       54        83        38 Tree        \n# ℹ 1,767 more rows\n# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "The testing data\n\nforested_test\n\n# A tibble: 1,777 × 19\n   forested  year elevation eastness northness roughness tree_no_tree\n   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       \n 1 Yes       2005       736      -27       -96        53 Tree        \n 2 Yes       2005       787       66       -74        95 Tree        \n 3 Yes       2005      1330       99         7       212 Tree        \n 4 Yes       2005      1423       46        88       180 Tree        \n 5 Yes       2005      1038      -34       -93       183 No tree     \n 6 No        2014       542      -32       -94        19 No tree     \n 7 No        2014       290       46       -88         7 No tree     \n 8 No        2014       676      -65       -75         6 No tree     \n 9 No        2014       252       99         5       104 No tree     \n10 Yes       2014      1634       54        83        38 Tree        \n# ℹ 1,767 more rows\n# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#initial-questions",
@@ -13876,7 +13925,7 @@
     "href": "slides/18-logistic-regression-II-slides.html#fyi-the-response-variable-must-be-a-factor",
     "title": "Logistic Regression II",
     "section": "FYI: the response variable must be a factor",
-    "text": "FYI: the response variable must be a factor\nforested already comes as a factor, so we’re lucky:\n\nclass(forested$forested)\n\n[1] \"factor\"\n\nlevels(forested$forested)\n\n[1] \"Yes\" \"No\" \n\n\n\nBut if it didn’t, things would not work:\n\nlogistic_reg() |&gt;\n  fit(as.numeric(forested) ~ precip_annual, data = forested_train)\n\nError in `check_outcome()` at parsnip/R/fit_helpers.R:9:7:\n! For a classification model, the outcome should be a\n  &lt;factor&gt;, not a double vector."
+    "text": "FYI: the response variable must be a factor\nforested already comes as a factor, so we’re lucky:\n\nclass(forested$forested)\n\n[1] \"factor\"\n\nlevels(forested$forested)\n\n[1] \"Yes\" \"No\" \n\n\n\nBut if it didn’t, things would not work:\n\nlogistic_reg() |&gt;\n  fit(as.numeric(forested) ~ precip_annual, data = forested_train)\n\nError in `check_outcome()`:\n! For a classification model, the outcome should be a\n  &lt;factor&gt;, not a double vector."
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#fyi-the-base-level-is-treated-as-failure-0",
@@ -13891,6 +13940,13 @@
     "title": "Logistic Regression II",
     "section": "Don’t get burned on this!",
     "text": "Don’t get burned on this!\nThere are two distinct but related things going on at the same time:\n\n\nYour binary response variable is a factor with two levels. There is a first level (base) and a second level;\nIn the context of your application, one of those levels is the “negative” or “zero” case (legit e-mail) and one is the “positive” or “one” case (spam e-mail).\n\n\n\nDo these two things agree? If not, that isn’t an error, but you might make mistakes when interpreting. Be careful!"
+  },
+  {
+    "objectID": "slides/18-logistic-regression-II-slides.html#activity",
+    "href": "slides/18-logistic-regression-II-slides.html#activity",
+    "title": "Logistic Regression II",
+    "section": "ACTIVITY",
+    "text": "ACTIVITY\n\nWrite down the approximate number of TV episodes you have watched in the past week"
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#fitting-a-logistic-regression-model",
@@ -13932,7 +13988,7 @@
     "href": "slides/18-logistic-regression-II-slides.html#generate-predictions-for-the-test-data",
     "title": "Logistic Regression II",
     "section": "Generate predictions for the test data",
-    "text": "Generate predictions for the test data\nAugment the test data frame with three new columns on the left that include model predictions (classifications and probabilities) for each row:\n\nforested_precip_aug &lt;- augment(forested_precip_fit, forested_test)\nforested_precip_aug\n\n# A tibble: 1,777 × 23\n   .pred_class .pred_Yes .pred_No forested  year elevation eastness\n   &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n 1 No              0.366  0.634   Yes       2005       736      -27\n 2 Yes             0.977  0.0227  Yes       2005       787       66\n 3 Yes             0.992  0.00808 Yes       2005      1330       99\n 4 Yes             0.994  0.00598 Yes       2005      1423       46\n 5 Yes             0.849  0.151   Yes       2005      1038      -34\n 6 No              0.261  0.739   No        2014       542      -32\n 7 No              0.243  0.757   No        2014       290       46\n 8 No              0.250  0.750   No        2014       676      -65\n 9 No              0.280  0.720   No        2014       252       99\n10 Yes             0.577  0.423   Yes       2014      1634       54\n# ℹ 1,767 more rows\n# ℹ 16 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,\n#   tree_no_tree &lt;fct&gt;, dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;, county &lt;fct&gt;"
+    "text": "Generate predictions for the test data\nAugment the test data frame with three new columns on the left that include model predictions (classifications and probabilities) for each row:\n\nforested_precip_aug &lt;- augment(forested_precip_fit, forested_test)\nforested_precip_aug\n\n# A tibble: 1,777 × 22\n   .pred_class .pred_Yes .pred_No forested  year elevation eastness\n   &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n 1 No              0.366  0.634   Yes       2005       736      -27\n 2 Yes             0.977  0.0227  Yes       2005       787       66\n 3 Yes             0.992  0.00808 Yes       2005      1330       99\n 4 Yes             0.994  0.00598 Yes       2005      1423       46\n 5 Yes             0.849  0.151   Yes       2005      1038      -34\n 6 No              0.261  0.739   No        2014       542      -32\n 7 No              0.243  0.757   No        2014       290       46\n 8 No              0.250  0.750   No        2014       676      -65\n 9 No              0.280  0.720   No        2014       252       99\n10 Yes             0.577  0.423   Yes       2014      1634       54\n# ℹ 1,767 more rows\n# ℹ 15 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,\n#   tree_no_tree &lt;fct&gt;, dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,\n#   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,\n#   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,\n#   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,\n#   land_type &lt;fct&gt;"
   },
   {
     "objectID": "slides/18-logistic-regression-II-slides.html#how-did-the-model-perform",
