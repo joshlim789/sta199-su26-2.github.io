@@ -125,10 +125,10 @@ window.Quarto = {
 </script><link rel="stylesheet" href="../style/sta199.scss">
 <meta property="og:title" content="Logistic Regression II – STA 199">
 <meta property="og:description" content="Lecture 18">
-<meta property="og:image" content="https://sta199-su26-2.github.io/slides/18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-1-1.png">
+<meta property="og:image" content="https://sta199-su26-2.github.io/slides/img/17/confusion-matrix.png">
 <meta property="og:site_name" content="STA 199">
-<meta property="og:image:height" content="960">
-<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="266">
+<meta property="og:image:width" content="900">
 <meta name="twitter:title" content="Logistic Regression II – STA 199">
 <meta name="twitter:description" content="Lecture 18">
 <meta name="twitter:image" content="https://sta199-su26-2.github.io/slides/img/twitter-card-ks.pdf">
@@ -376,14 +376,7 @@ window.Quarto = {
 <li>
 <a href="#recap" id="toc-recap" class="nav-link active" data-scroll-target="#recap">Recap</a>
   <ul class="collapse">
-<li><a href="#last-time-regression-with-a-binary-response" id="toc-last-time-regression-with-a-binary-response" class="nav-link" data-scroll-target="#last-time-regression-with-a-binary-response">Last time: regression with a binary response</a></li>
-  <li><a href="#new-model-logistic-regression" id="toc-new-model-logistic-regression" class="nav-link" data-scroll-target="#new-model-logistic-regression">New model: logistic regression</a></li>
-  <li><a href="#r-syntax-is-largely-unchanged" id="toc-r-syntax-is-largely-unchanged" class="nav-link" data-scroll-target="#r-syntax-is-largely-unchanged">R syntax is largely unchanged</a></li>
-  <li><a href="#interpretations-are-strange-and-delicate" id="toc-interpretations-are-strange-and-delicate" class="nav-link" data-scroll-target="#interpretations-are-strange-and-delicate">Interpretations are strange and delicate</a></li>
-  <li><a href="#compute-predicted-probabilities-with-the-expit-function" id="toc-compute-predicted-probabilities-with-the-expit-function" class="nav-link" data-scroll-target="#compute-predicted-probabilities-with-the-expit-function">Compute predicted <em>probabilities</em> with the expit function</a></li>
-  <li><a href="#print-exponentiated-estimates-to-screen" id="toc-print-exponentiated-estimates-to-screen" class="nav-link" data-scroll-target="#print-exponentiated-estimates-to-screen">Print exponentiated estimates to screen</a></li>
-  <li><a href="#heres-an-alternative-model" id="toc-heres-an-alternative-model" class="nav-link" data-scroll-target="#heres-an-alternative-model">Here’s an alternative model</a></li>
-  <li><a href="#classification-error" id="toc-classification-error" class="nav-link" data-scroll-target="#classification-error">Classification error</a></li>
+<li><a href="#classification-error" id="toc-classification-error" class="nav-link" data-scroll-target="#classification-error">Classification error</a></li>
   <li><a href="#jargon-false-negative-and-positive" id="toc-jargon-false-negative-and-positive" class="nav-link" data-scroll-target="#jargon-false-negative-and-positive">Jargon: False negative and positive</a></li>
   <li><a href="#jargon-sensitivity" id="toc-jargon-sensitivity" class="nav-link" data-scroll-target="#jargon-sensitivity">Jargon: Sensitivity</a></li>
   <li><a href="#jargon-specificity" id="toc-jargon-specificity" class="nav-link" data-scroll-target="#jargon-specificity">Jargon: Specificity</a></li>
@@ -455,15 +448,9 @@ window.Quarto = {
   <li><a href="#dont-get-burned-on-this" id="toc-dont-get-burned-on-this" class="nav-link" data-scroll-target="#dont-get-burned-on-this">Don’t get burned on this!</a></li>
   </ul>
 </li>
+  <li><a href="#ae" id="toc-ae" class="nav-link" data-scroll-target="#ae">AE</a></li>
   <li>
-<a href="#todays-ae" id="toc-todays-ae" class="nav-link" data-scroll-target="#todays-ae">Today’s AE</a>
-  <ul class="collapse">
-<li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
-  <li><a href="#ae-16-forest-classification" id="toc-ae-16-forest-classification" class="nav-link" data-scroll-target="#ae-16-forest-classification">ae-16-forest-classification</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#logistic-wrap-up" id="toc-logistic-wrap-up" class="nav-link" data-scroll-target="#logistic-wrap-up">Logistic wrap-up</a>
+<a href="#logistic-wrap-up-review" id="toc-logistic-wrap-up-review" class="nav-link" data-scroll-target="#logistic-wrap-up-review">Logistic wrap-up (Review)</a>
   <ul class="collapse">
 <li><a href="#fitting-a-logistic-regression-model" id="toc-fitting-a-logistic-regression-model" class="nav-link" data-scroll-target="#fitting-a-logistic-regression-model">Fitting a logistic regression model</a></li>
   <li><a href="#three-equivalent-representations" id="toc-three-equivalent-representations" class="nav-link" data-scroll-target="#three-equivalent-representations">Three equivalent representations</a></li>
@@ -529,146 +516,7 @@ window.Quarto = {
 
 
 </header><section id="recap" class="level1"><h1>Recap</h1>
-<section id="last-time-regression-with-a-binary-response" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="last-time-regression-with-a-binary-response">Last time: regression with a binary response</h2>
-<p><span class="math display">\[
-y =
-\begin{cases}
-1 &amp; &amp;&amp;\text{eg. Yes, Win, True, Heads, Success, Spam}\\
-0 &amp; &amp;&amp;\text{eg. No, Lose, False, Tails, Failure, Legit}.
-\end{cases}
-\]</span></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="new-model-logistic-regression" class="level2"><h2 class="anchored" data-anchor-id="new-model-logistic-regression">New model: logistic regression</h2>
-<p>S-curve for the probability of “success”:</p>
-<p><span class="math display">\[
-\widehat{p}
-=
-\widehat{\text{Prob}(y=1)}
-=
-\frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}.
-\]</span></p>
-<p>Linear model for the log-odds:</p>
-<p><span class="math display">\[
-\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
-=
-b_0+b_1x.
-\]</span></p>
-<p>These are equivalent.</p>
-</section><section id="r-syntax-is-largely-unchanged" class="level2 small"><h2 class="small anchored" data-anchor-id="r-syntax-is-largely-unchanged">R syntax is largely unchanged</h2>
-<p>Just use <code>logistic_reg</code> instead of <code>linear_reg</code>:</p>
-<p>. . .</p>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simple_logistic_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">fit</span><span class="op">(</span><span class="va">spam</span> <span class="op">~</span> <span class="va">exclaim_mess</span>, data <span class="op">=</span> <span class="va">email</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">tidy</span><span class="op">(</span><span class="va">simple_logistic_fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term          estimate std.error statistic p.value
-  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 (Intercept)  -2.27      0.0553     -41.1     0    
-2 exclaim_mess  0.000272  0.000949     0.287   0.774</code></pre>
-</div>
-</div>
-<p>. . .</p>
-<p>Fitted equation for the log-odds:</p>
-<p><span class="math display">\[
-\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
-=
--2.27
-+
-0.000272\times exclaim~mess
-\]</span></p>
-</section><section id="interpretations-are-strange-and-delicate" class="level2 small scrollable"><h2 class="small scrollable anchored" data-anchor-id="interpretations-are-strange-and-delicate">Interpretations are strange and delicate</h2>
-<div class="incremental">
-<ul class="incremental">
-<li><p>If <code>exclaim_mess = 0</code>, then <span class="math display">\[
-\widehat{p}=\widehat{P(y=1)}=\frac{e^{-2.27}}{1+e^{-2.27}}\approx 0.09.
-\]</span> So, our model predicts that an email with no exclamation marks has a 9% probability of being spam.</p></li>
-<li><p>If the email has an additional exclamation mark, we predict the <em>odds</em> of the email being spam to be <strong>higher</strong> by a factor of <span class="math inline">\(e^{b_1} = e^{0.000272}\approx 1.000272\)</span>, on average.</p></li>
-</ul>
-</div>
-<p>. . .</p>
-<ul>
-<li><p>The odds are <em>higher</em> because the scale factor is greater than one. If it had been 0.98, then the odds shrink and the interpretation would change to “we predict the odds to be <strong>lower</strong> by a factor of 0.98”</p></li>
-<li><p>For any slope estimate &gt; 0 (i.e., <span class="math inline">\(b_1 &gt; 0\)</span>), the multiplicative factor will be larger than 1 (use “higher” or “increase” by a factor of <span class="math inline">\(e^{b_1}\)</span>); for any slope estimate &lt; 0, the multiplicative factor will be 0 &lt; <span class="math inline">\(e^{b_1}\)</span> &lt; 1 (use “lower” or “decrease” by a factor of …); for a slope estimate of exactly 0, the multiplicative factor is <span class="math inline">\(e^0 = 1\)</span>, and so the odds remain unchanged</p></li>
-</ul></section><section id="compute-predicted-probabilities-with-the-expit-function" class="level2 small scrollable"><h2 class="small scrollable anchored" data-anchor-id="compute-predicted-probabilities-with-the-expit-function">Compute predicted <em>probabilities</em> with the expit function</h2>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">simple_logistic_fit</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span> <span class="op">==</span> <span class="st">"(Intercept)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">summarize</span><span class="op">(</span></span>
-<span>    prob0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-   prob0
-   &lt;dbl&gt;
-1 0.0934</code></pre>
-</div>
-</div>
-<ul>
-<li><p>Note: When interpreting an intercept term, be mindful of which representation of the outcome the instructions / question asks for the interpretation with respect to</p></li>
-<li>
-<p>Ex: “Interpret the intercept with respect to the <em>probability</em> of success…”</p>
-<ul>
-<li>You should be using the expit function to get just <span class="math inline">\(\widehat{p}\)</span> on the LHS!</li>
-</ul>
-</li>
-<li>
-<p>If a particular outcome is not specified, you can choose which to interpret with respect to, but be sure you’re doing the right math!</p>
-<ul>
-<li><p>Ex: It would be <strong>incorrect</strong> to state the following here: “For an email with 0 exclamation points, we predict the odds of that email being spam to be -2.27.”</p></li>
-<li><p>Why? -2.27 is the predicted <em>log-odds</em>. If you want to say something about the predicted odds, you must “un-log” your outcome i.e., compute <span class="math inline">\(e^{-2.27}\)</span></p></li>
-</ul>
-</li>
-</ul></section><section id="print-exponentiated-estimates-to-screen" class="level2 medium scrollable"><h2 class="medium scrollable anchored" data-anchor-id="print-exponentiated-estimates-to-screen">Print exponentiated estimates to screen</h2>
-<div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">simple_logistic_fit</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>exp_estimate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">term</span>, <span class="va">estimate</span>, <span class="va">exp_estimate</span>, <span class="va">std.error</span>, <span class="va">statistic</span>, <span class="va">p.value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 6
-  term          estimate exp_estimate std.error statistic p.value
-  &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 (Intercept)  -2.27            0.103  0.0553     -41.1     0    
-2 exclaim_mess  0.000272        1.00   0.000949     0.287   0.774</code></pre>
-</div>
-</div>
-</section><section id="heres-an-alternative-model" class="level2 small scrollable"><h2 class="small scrollable anchored" data-anchor-id="heres-an-alternative-model">Here’s an alternative model</h2>
-<p>Dump all the predictors in:</p>
-<blockquote class="blockquote">
-<p>Using a <code>.</code> on the RHS of the <code>~</code> in fit() will throw all columns in the data frame you supply into the model (except for the outcome column itself) as predictors. This is a time-saver and avoids the need for listing every variable manually</p>
-</blockquote>
-<div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">full_logistic_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">fit</span><span class="op">(</span><span class="va">spam</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">email</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">tidy</span><span class="op">(</span><span class="va">full_logistic_fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 22 × 5
-   term         estimate std.error statistic  p.value
-   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 (Intercept)  -9.09e+1   9.80e+3  -0.00928 9.93e- 1
- 2 to_multiple1 -2.68e+0   3.27e-1  -8.21    2.25e-16
- 3 from1        -2.19e+1   9.80e+3  -0.00224 9.98e- 1
- 4 cc            1.88e-2   2.20e-2   0.855   3.93e- 1
- 5 sent_email1  -2.07e+1   3.87e+2  -0.0536  9.57e- 1
- 6 time          8.48e-8   2.85e-8   2.98    2.92e- 3
- 7 image        -1.78e+0   5.95e-1  -3.00    2.73e- 3
- 8 attach        7.35e-1   1.44e-1   5.09    3.61e- 7
- 9 dollar       -6.85e-2   2.64e-2  -2.59    9.64e- 3
-10 winneryes     2.07e+0   3.65e-1   5.67    1.41e- 8
-# ℹ 12 more rows</code></pre>
-</div>
-</div>
-</section><section id="classification-error" class="level2"><h2 class="anchored" data-anchor-id="classification-error">Classification error</h2>
+<section id="classification-error" class="level2"><h2 class="anchored" data-anchor-id="classification-error">Classification error</h2>
 <p>There are two kinds of mistakes:</p>
 <p><img src="img/17/confusion-matrix.png" class="img-fluid"></p>
 <p>We want to avoid both, but there’s a trade-off.</p>
@@ -751,7 +599,12 @@ Tip
 </ul></section><section id="the-augment-function-1" class="level2 medium scrollable"><h2 class="medium scrollable anchored" data-anchor-id="the-augment-function-1">The augment function</h2>
 <p>The <code>augment</code> function takes a data frame and “augments” it by adding three new columns on the left that describe the model predictions for each row:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">full_logistic_fit</span>, <span class="va">email</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">full_logistic_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">fit</span><span class="op">(</span><span class="va">spam</span> <span class="op">~</span><span class="va">.</span>, data <span class="op">=</span> <span class="va">email</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">full_logistic_fit</span>, <span class="va">email</span><span class="op">)</span></span>
 <span><span class="va">log_aug_full</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,921 × 24
@@ -777,7 +630,7 @@ Tip
 </div>
 </section><section id="calculating-the-error-rates" class="level2"><h2 class="anchored" data-anchor-id="calculating-the-error-rates">Calculating the error rates</h2>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">spam</span>, <span class="va">.pred_class</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -791,7 +644,7 @@ Tip
 </div>
 </section><section id="calculating-the-error-rates-1" class="level2"><h2 class="anchored" data-anchor-id="calculating-the-error-rates-1">Calculating the error rates</h2>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">spam</span>, <span class="va">.pred_class</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">spam</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -807,7 +660,7 @@ Tip
 </div>
 </section><section id="calculating-the-error-rates-2" class="level2"><h2 class="anchored" data-anchor-id="calculating-the-error-rates-2">Calculating the error rates</h2>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">spam</span>, <span class="va">.pred_class</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">spam</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>p <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -824,7 +677,7 @@ Tip
 </div>
 </section><section id="calculating-the-error-rates-3" class="level2 scrollable"><h2 class="scrollable anchored" data-anchor-id="calculating-the-error-rates-3">Calculating the error rates</h2>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">log_aug_full</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">spam</span>, <span class="va">.pred_class</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">spam</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
@@ -849,13 +702,13 @@ Tip
 </section><section id="but-wait" class="level2 scrollable"><h2 class="scrollable anchored" data-anchor-id="but-wait">But wait!</h2>
 <p>If we change the classification threshold, we change the classifications, and we change the error rates:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-3"><a href="#cb19-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.25</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb19-4"><a href="#cb19-4"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.25</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
 # Groups:   spam [2]
@@ -869,13 +722,13 @@ Tip
 </div>
 </section><section id="classification-threshold-0.00" class="level2"><h2 class="anchored" data-anchor-id="classification-threshold-0.00">Classification threshold: 0.00</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.00</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb21-4"><a href="#cb21-4"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.00</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
 # Groups:   spam [2]
@@ -887,13 +740,13 @@ Tip
 </div>
 </section><section id="classification-threshold-0.25" class="level2"><h2 class="anchored" data-anchor-id="classification-threshold-0.25">Classification threshold: 0.25</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-3"><a href="#cb23-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.25</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.25</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
 # Groups:   spam [2]
@@ -907,13 +760,13 @@ Tip
 </div>
 </section><section id="classification-threshold-0.5" class="level2"><h2 class="anchored" data-anchor-id="classification-threshold-0.5">Classification threshold: 0.5</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb25-3"><a href="#cb25-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.50</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb25-4"><a href="#cb25-4"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.50</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb19-4"><a href="#cb19-4"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
 # Groups:   spam [2]
@@ -927,13 +780,13 @@ Tip
 </div>
 </section><section id="classification-threshold-0.75" class="level2"><h2 class="anchored" data-anchor-id="classification-threshold-0.75">Classification threshold: 0.75</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb27-3"><a href="#cb27-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb27-4"><a href="#cb27-4"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
-<span id="cb27-7"><a href="#cb27-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
 # Groups:   spam [2]
@@ -947,13 +800,13 @@ Tip
 </div>
 </section><section id="classification-threshold-1.00" class="level2"><h2 class="anchored" data-anchor-id="classification-threshold-1.00">Classification threshold: 1.00</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb29-3"><a href="#cb29-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">1.00</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb29-4"><a href="#cb29-4"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
-<span id="cb29-7"><a href="#cb29-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>log_aug_full <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_1 <span class="sc">&gt;</span> <span class="fl">1.00</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb23-4"><a href="#cb23-4"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">count</span>(spam, .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">group_by</span>(spam) <span class="sc">|&gt;</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
 # Groups:   spam [2]
@@ -967,7 +820,7 @@ Tip
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -977,7 +830,7 @@ Tip
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -993,7 +846,7 @@ Tip
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1002,7 +855,7 @@ Tip
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1033,9 +886,9 @@ Note
 </ul></section><section id="data-forested" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-forested">Data: <code>forested</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7,107 × 19
+<pre><code># A tibble: 7,107 × 20
    forested  year elevation eastness northness roughness tree_no_tree
    &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       
  1 Yes       2005       881       90        43        63 Tree        
@@ -1049,20 +902,20 @@ Note
  9 Yes       2005        52      -62        78        42 Tree        
 10 Yes       2005      2240      -67       -74        99 No tree     
 # ℹ 7,097 more rows
-# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
+# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section><section id="data-forested-1" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="data-forested-1">Data: <code>forested</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glimpse</span><span class="op">(</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glimpse</span><span class="op">(</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,107
-Columns: 19
+Columns: 20
 $ forested         &lt;fct&gt; Yes, Yes, No, Yes, Yes, Yes, Yes, Yes, Yes,…
 $ year             &lt;dbl&gt; 2005, 2005, 2005, 2005, 2005, 2005, 2005, 2…
 $ elevation        &lt;dbl&gt; 881, 113, 164, 299, 806, 736, 636, 224, 52,…
@@ -1081,14 +934,15 @@ $ vapor_max        &lt;dbl&gt; 1194, 938, 754, 1164, 1254, 1331, 1275, 944…
 $ canopy_cover     &lt;dbl&gt; 50, 79, 47, 42, 59, 36, 14, 27, 82, 12, 74,…
 $ lon              &lt;dbl&gt; -118.6865, -123.0825, -122.3468, -121.9144,…
 $ lat              &lt;dbl&gt; 48.69537, 47.07991, 48.77132, 45.80776, 48.…
-$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…</code></pre>
+$ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…
+$ county           &lt;fct&gt; Ferry, Thurston, Whatcom, Skamania, Stevens…</code></pre>
 </div>
 </div>
 </section><section id="data-forested-2" class="level2"><h2 class="anchored" data-anchor-id="data-forested-2">Data: <code>forested</code>
 </h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p>7107 rows and 19 columns;</p></li>
+<li><p>7107 rows and 20 columns;</p></li>
 <li><p>Each observation (row) is a plot of land;</p></li>
 <li><p>Variables include geographical and meteorological information about each plot, as well as a binary indicator <code>forested</code> (“Yes” or “No”);</p></li>
 <li><p>Given information about a plot that is easy (and cheap) to collect remotely, can we use a model to predict if a plot is forested without actually visiting it (which could be difficult and costly)?</p></li>
@@ -1099,7 +953,7 @@ $ land_type        &lt;fct&gt; Tree, Tree, Tree, Tree, Tree, Tree, Non-tre…</c
 <li>Outcome: <code>forested</code> - Factor, <code>Yes</code> (baseline, 0) or <code>No</code> (1)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Yes" "No" </code></pre>
 </div>
@@ -1175,7 +1029,7 @@ Warning
 </section><section id="the-initial-split" class="level2"><h2 class="anchored" data-anchor-id="the-initial-split">The initial split</h2>
 <p>By default it’s a 75%/25% training/test split.</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">847</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">847</span><span class="op">)</span></span>
 <span><span class="va">forested_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">forested</span><span class="op">)</span></span>
 <span><span class="va">forested_split</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1197,14 +1051,14 @@ Warning
 </div>
 </section><section id="accessing-the-data" class="level2"><h2 class="anchored" data-anchor-id="accessing-the-data">Accessing the data</h2>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">forested_split</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">forested_split</span><span class="op">)</span></span>
 <span><span class="va">forested_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">forested_split</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="the-training-set" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="the-training-set">The training set</h2>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_train</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_train</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5,330 × 19
+<pre><code># A tibble: 5,330 × 20
    forested  year elevation eastness northness roughness tree_no_tree
    &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       
  1 Yes       2017       203      -76        64        39 Tree        
@@ -1218,18 +1072,18 @@ Warning
  9 Yes       2015       410      -92       -38        81 Tree        
 10 No        2019       764        6        99        19 No tree     
 # ℹ 5,320 more rows
-# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
+# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section><section id="the-testing-data" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="the-testing-data">The testing data</h2>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,777 × 19
+<pre><code># A tibble: 1,777 × 20
    forested  year elevation eastness northness roughness tree_no_tree
    &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       
  1 Yes       2005       736      -27       -96        53 Tree        
@@ -1243,11 +1097,11 @@ Warning
  9 No        2014       252       99         5       104 No tree     
 10 Yes       2014      1634       54        83        38 Tree        
 # ℹ 1,767 more rows
-# ℹ 12 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
+# ℹ 13 more variables: dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section></section><section id="exploratory-data-analysis" class="level1"><h1>Exploratory data analysis</h1>
@@ -1264,11 +1118,11 @@ Warning
 </section><section id="forested-1" class="level2 small"><h2 class="small anchored" data-anchor-id="forested-1"><code>forested</code></h2>
 <p>What’s the distribution of the outcome, <code>forested</code>?</p>
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">forested</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">forested</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1276,7 +1130,7 @@ Warning
 </section><section id="forested-2" class="level2 medium"><h2 class="medium anchored" data-anchor-id="forested-2"><code>forested</code></h2>
 <p>What’s the distribution of the outcome, <code>forested</code>?</p>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_train</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_train</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">forested</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
 <span>    p <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
@@ -1292,11 +1146,11 @@ Warning
 </section><section id="precip_annual" class="level2 small"><h2 class="small anchored" data-anchor-id="precip_annual"><code>precip_annual</code></h2>
 <p>What’s the distribution of <code>precip_annual</code>?</p>
 <div class="cell">
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">precip_annual</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">precip_annual</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_histogram</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1305,7 +1159,7 @@ Warning
 <code>forested</code> and <code>precip_annual</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span></span>
 <span>  <span class="va">forested_train</span>,</span>
 <span>  <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">precip_annual</span>, fill <span class="op">=</span> <span class="va">forested</span>, group <span class="op">=</span> <span class="va">forested</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
@@ -1314,7 +1168,7 @@ Warning
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1323,16 +1177,16 @@ Warning
 <code>forested</code> and <code>precip_annual</code>
 </h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb49-2"><a href="#cb49-2"></a>  forested_train,</span>
-<span id="cb49-3"><a href="#cb49-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> precip_annual, <span class="at">fill =</span> forested, <span class="at">group =</span> forested)</span>
-<span id="cb49-4"><a href="#cb49-4"></a>  ) <span class="sc">+</span></span>
-<span id="cb49-5"><a href="#cb49-5"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">200</span>, <span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb49-6"><a href="#cb49-6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Yes"</span> <span class="ot">=</span> <span class="st">"forestgreen"</span>, <span class="st">"No"</span> <span class="ot">=</span> <span class="st">"gold2"</span>)) <span class="sc">+</span></span>
-<span id="cb49-7"><a href="#cb49-7"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb43-2"><a href="#cb43-2"></a>  forested_train,</span>
+<span id="cb43-3"><a href="#cb43-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> precip_annual, <span class="at">fill =</span> forested, <span class="at">group =</span> forested)</span>
+<span id="cb43-4"><a href="#cb43-4"></a>  ) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">200</span>, <span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Yes"</span> <span class="ot">=</span> <span class="st">"forestgreen"</span>, <span class="st">"No"</span> <span class="ot">=</span> <span class="st">"gold2"</span>)) <span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1341,13 +1195,13 @@ Warning
 <code>forested</code> and <code>tree_no_tree</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">tree_no_tree</span>, fill <span class="op">=</span> <span class="va">forested</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">tree_no_tree</span>, fill <span class="op">=</span> <span class="va">forested</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_bar</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span>, alpha <span class="op">=</span> <span class="fl">.7</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Yes"</span> <span class="op">=</span> <span class="st">"forestgreen"</span>, <span class="st">"No"</span> <span class="op">=</span> <span class="st">"gold2"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1356,13 +1210,13 @@ Warning
 <code>forested</code> and <code>lat</code> / <code>lon</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, color <span class="op">=</span> <span class="va">forested</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, color <span class="op">=</span> <span class="va">forested</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Yes"</span> <span class="op">=</span> <span class="st">"forestgreen"</span>, <span class="st">"No"</span> <span class="op">=</span> <span class="st">"gold2"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1371,13 +1225,13 @@ Warning
 <code>precip_annual</code> and <code>lat</code> / <code>lon</code>
 </h2>
 <div class="cell">
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, color <span class="op">=</span> <span class="va">precip_annual</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">forested_train</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, color <span class="op">=</span> <span class="va">precip_annual</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"annual\nprecipitation\n(mm × 100)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1386,11 +1240,11 @@ Warning
 <section id="fyi-the-response-variable-must-be-a-factor" class="level2"><h2 class="anchored" data-anchor-id="fyi-the-response-variable-must-be-a-factor">FYI: the response variable <em>must</em> be a factor</h2>
 <p><code>forested</code> already comes as a factor, so we’re lucky:</p>
 <div class="cell">
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "factor"</code></pre>
 </div>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Yes" "No" </code></pre>
 </div>
@@ -1398,10 +1252,10 @@ Warning
 <p>. . .</p>
 <p>But if it didn’t, things would not work:</p>
 <div class="cell">
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">forested</span><span class="op">)</span> <span class="op">~</span> <span class="va">precip_annual</span>, data <span class="op">=</span> <span class="va">forested_train</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in `check_outcome()`:
+<pre><code>Error in `check_outcome()` at parsnip/R/fit_helpers.R:9:7:
 ! For a classification model, the outcome should be a
   &lt;factor&gt;, not a double vector.</code></pre>
 </div>
@@ -1409,7 +1263,7 @@ Warning
 </section><section id="fyi-the-base-level-is-treated-as-failure-0" class="level2 medium"><h2 class="medium anchored" data-anchor-id="fyi-the-base-level-is-treated-as-failure-0">FYI: the base level is treated as “failure” (0)</h2>
 <p>The base level here is “Yes”, so “No” is treated as “success” (1):</p>
 <div class="cell">
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Yes" "No" </code></pre>
 </div>
@@ -1417,7 +1271,7 @@ Warning
 <p>. . .</p>
 <p>As a result, this code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">forested</span> <span class="op">~</span> <span class="va">precip_annual</span>, data <span class="op">=</span> <span class="va">forested_train</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>. . .</p>
@@ -1441,50 +1295,12 @@ Warning
 </div>
 <p>. . .</p>
 <p>Do these two things agree? If not, that isn’t an <em>error</em>, but you might make mistakes when interpreting. Be careful!</p>
-</section></section><section id="todays-ae" class="level1"><h1>Today’s AE</h1>
-<section id="next-steps" class="level2 small scrollable"><h2 class="small scrollable anchored" data-anchor-id="next-steps">Next steps</h2>
-<div class="incremental">
-<ul class="incremental">
-<li><p>Fit models on training data</p></li>
-<li><p>Make predictions on testing data</p></li>
-<li>
-<p>Evaluate predictions on testing data:</p>
-<ul class="incremental">
-<li>Linear models: R-squared, adjusted R-squared, RMSE (root mean squared error), etc.</li>
-<li>Logistic models: False negative and positive rates, AUC (area under the curve), etc.</li>
-</ul>
-</li>
-<li><p>Make decisions based on model predictive performance, validity across various testing/training splits (aka “cross validation”), explainability</p></li>
-</ul>
-</div>
-<p>. . .</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We will only learn about a subset of these in this course, but you can go further into these ideas in STA 210 or STA 221 as well as in various machine learning courses.</p>
-</div>
-</div>
-</section><section id="ae-16-forest-classification" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="ae-16-forest-classification">ae-16-forest-classification</h2>
-<div class="appex">
-<ul>
-<li><p>Go to your ae project in RStudio.</p></li>
-<li><p>If you haven’t yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there’s nothing left in your Git pane.</p></li>
-<li><p>If you haven’t yet done so, click Pull to get today’s application exercise file: <em>ae-16-forest-classification.qmd</em>. You might be prompted to install <strong>forested</strong>, say yes.</p></li>
-<li><p>Work through the application exercise in class, and render, commit, and push your edits.</p></li>
-</ul>
-</div>
-</section></section><section id="logistic-wrap-up" class="level1"><h1>Logistic wrap-up</h1>
+</section></section><section id="ae" class="level1"><h1>AE</h1>
+</section><section id="logistic-wrap-up-review" class="level1"><h1>Logistic wrap-up (Review)</h1>
 <section id="fitting-a-logistic-regression-model" class="level2"><h2 class="anchored" data-anchor-id="fitting-a-logistic-regression-model">Fitting a logistic regression model</h2>
 <p>Similar syntax to linear regression:</p>
 <div class="cell">
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">forested</span> <span class="op">~</span> <span class="va">precip_annual</span>, data <span class="op">=</span> <span class="va">forested_train</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tidy</span><span class="op">(</span><span class="va">forested_precip_fit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1510,8 +1326,8 @@ precip.
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
-<col style="width: 34%">
-<col style="width: 19%">
+<col style="width: 29%">
+<col style="width: 23%">
 <col style="width: 23%">
 </colgroup>
 <thead><tr class="header">
@@ -1550,7 +1366,7 @@ precip.
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1636,10 +1452,10 @@ precip}}}
 </section><section id="generate-predictions-for-the-test-data" class="level2 small"><h2 class="small anchored" data-anchor-id="generate-predictions-for-the-test-data">Generate predictions for the test data</h2>
 <p><em>Augment</em> the test data frame with three new columns on the left that include model predictions (classifications and probabilities) for each row:</p>
 <div class="cell">
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">forested_precip_fit</span>, <span class="va">forested_test</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">forested_precip_fit</span>, <span class="va">forested_test</span><span class="op">)</span></span>
 <span><span class="va">forested_precip_aug</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,777 × 22
+<pre><code># A tibble: 1,777 × 23
    .pred_class .pred_Yes .pred_No forested  year elevation eastness
    &lt;fct&gt;           &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
  1 No              0.366  0.634   Yes       2005       736      -27
@@ -1653,12 +1469,12 @@ precip}}}
  9 No              0.280  0.720   No        2014       252       99
 10 Yes             0.577  0.423   Yes       2014      1634       54
 # ℹ 1,767 more rows
-# ℹ 15 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,
+# ℹ 16 more variables: northness &lt;dbl&gt;, roughness &lt;dbl&gt;,
 #   tree_no_tree &lt;fct&gt;, dew_temp &lt;dbl&gt;, precip_annual &lt;dbl&gt;,
 #   temp_annual_mean &lt;dbl&gt;, temp_annual_min &lt;dbl&gt;,
 #   temp_annual_max &lt;dbl&gt;, temp_january_min &lt;dbl&gt;, vapor_min &lt;dbl&gt;,
 #   vapor_max &lt;dbl&gt;, canopy_cover &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;,
-#   land_type &lt;fct&gt;</code></pre>
+#   land_type &lt;fct&gt;, county &lt;fct&gt;</code></pre>
 </div>
 </div>
 </section><section id="how-did-the-model-perform" class="level2 medium"><h2 class="medium anchored" data-anchor-id="how-did-the-model-perform">How did the model perform?</h2>
@@ -1673,7 +1489,7 @@ precip}}}
 </ul></section><section id="getting-the-error-rates" class="level2 small"><h2 class="small anchored" data-anchor-id="getting-the-error-rates">Getting the error rates</h2>
 <p>Count how many predictions fell into the four bins:</p>
 <div class="cell">
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">forested</span>, <span class="va">.pred_class</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -1689,7 +1505,7 @@ precip}}}
 </section><section id="getting-the-error-rates-1" class="level2 small"><h2 class="small anchored" data-anchor-id="getting-the-error-rates-1">Getting the error rates</h2>
 <p>Compute the error rates:</p>
 <div class="cell">
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">forested</span>, <span class="va">.pred_class</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">forested</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
@@ -1710,7 +1526,7 @@ precip}}}
 </section><section id="getting-the-error-rates-2" class="level2 small"><h2 class="small anchored" data-anchor-id="getting-the-error-rates-2">Getting the error rates</h2>
 <p>Label the rows so we don’t go crazy:</p>
 <div class="cell">
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">forested</span>, <span class="va">.pred_class</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">forested</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
@@ -1770,15 +1586,15 @@ precip}}}
 </ul></section><section id="change-threshold-to-0.75" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="change-threshold-to-0.75">Change threshold to 0.75</h2>
 <p>New threshold <span class="math inline">\(\rightarrow\)</span> New classifications <span class="math inline">\(\rightarrow\)</span> New error rates</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>forested_precip_aug <span class="sc">|&gt;</span></span>
-<span id="cb72-2"><a href="#cb72-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb72-3"><a href="#cb72-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_Yes <span class="sc">&gt;</span> <span class="fl">0.75</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span>
-<span id="cb72-4"><a href="#cb72-4"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb72-5"><a href="#cb72-5"></a>  <span class="fu">count</span>(forested, .pred_class) <span class="sc">|&gt;</span></span>
-<span id="cb72-6"><a href="#cb72-6"></a>  <span class="fu">group_by</span>(forested) <span class="sc">|&gt;</span></span>
-<span id="cb72-7"><a href="#cb72-7"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb72-8"><a href="#cb72-8"></a>    <span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
-<span id="cb72-9"><a href="#cb72-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>forested_precip_aug <span class="sc">|&gt;</span></span>
+<span id="cb66-2"><a href="#cb66-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb66-3"><a href="#cb66-3"></a>    <span class="at">.pred_class =</span> <span class="fu">if_else</span>(.pred_Yes <span class="sc">&gt;</span> <span class="fl">0.75</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span>
+<span id="cb66-4"><a href="#cb66-4"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb66-5"><a href="#cb66-5"></a>  <span class="fu">count</span>(forested, .pred_class) <span class="sc">|&gt;</span></span>
+<span id="cb66-6"><a href="#cb66-6"></a>  <span class="fu">group_by</span>(forested) <span class="sc">|&gt;</span></span>
+<span id="cb66-7"><a href="#cb66-7"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb66-8"><a href="#cb66-8"></a>    <span class="at">p =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
+<span id="cb66-9"><a href="#cb66-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
 # Groups:   forested [2]
@@ -1796,7 +1612,7 @@ precip}}}
 <div class="column" style="width:60%;">
 <p>Recall the <em>augmented</em> data frame:</p>
 <div class="cell">
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_aug</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">.pred_class</span><span class="op">:</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,777 × 4
@@ -1817,7 +1633,7 @@ precip}}}
 </div>
 <p>Recall how <code>forested</code> is leveled:</p>
 <div class="cell">
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested_precip_aug</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">forested_precip_aug</span><span class="op">$</span><span class="va">forested</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Yes" "No" </code></pre>
 </div>
@@ -1825,7 +1641,7 @@ precip}}}
 </div>
 <div class="column fragment" style="width:40%;">
 <div class="cell">
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">roc_curve</span><span class="op">(</span><span class="va">forested_precip_aug</span>, </span>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">roc_curve</span><span class="op">(</span><span class="va">forested_precip_aug</span>, </span>
 <span>          truth <span class="op">=</span> <span class="va">forested</span>, </span>
 <span>          <span class="va">.pred_Yes</span>, </span>
 <span>          event_level <span class="op">=</span> <span class="st">"first"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1855,7 +1671,7 @@ Warning
 </div>
 </section><section id="the-roc-curve" class="level2 smaller scrollable"><h2 class="smaller scrollable anchored" data-anchor-id="the-roc-curve">The ROC curve</h2>
 <div class="cell">
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_roc</span> <span class="op">&lt;-</span> <span class="fu">roc_curve</span><span class="op">(</span><span class="va">forested_precip_aug</span>, </span>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">forested_precip_roc</span> <span class="op">&lt;-</span> <span class="fu">roc_curve</span><span class="op">(</span><span class="va">forested_precip_aug</span>, </span>
 <span>                                 truth <span class="op">=</span> <span class="va">forested</span>, </span>
 <span>                                 <span class="va">.pred_Yes</span>, </span>
 <span>                                 event_level <span class="op">=</span> <span class="st">"first"</span><span class="op">)</span></span>
@@ -1867,7 +1683,7 @@ Warning
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1891,7 +1707,7 @@ Warning
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1901,7 +1717,7 @@ Warning
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1911,14 +1727,14 @@ Warning
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="18-logistic-regression-2_files/figure-revealjs/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </section><section id="auc-for-the-model-we-fit" class="level2"><h2 class="anchored" data-anchor-id="auc-for-the-model-we-fit">AUC for the model we fit</h2>
 <div class="cell">
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">roc_auc</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">roc_auc</span><span class="op">(</span></span>
 <span>  <span class="va">forested_precip_aug</span>, </span>
 <span>  truth <span class="op">=</span> <span class="va">forested</span>, </span>
 <span>  <span class="va">.pred_Yes</span>, </span>
