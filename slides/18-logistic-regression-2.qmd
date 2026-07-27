@@ -10,7 +10,6 @@ format:
 auto-stretch: false
 ---
 
-
 ```{r}
 #| label: load-packages
 #| message: false
@@ -25,135 +24,6 @@ todays_ae <- "ae-16-forest-classification"
 
 # Recap
 
-## Last time: regression with a binary response {.smaller}
-
-$$
-y = 
-\begin{cases}
-1 & &&\text{eg. Yes, Win, True, Heads, Success, Spam}\\
-0 & &&\text{eg. No, Lose, False, Tails, Failure, Legit}.
-\end{cases}
-$$
-
-```{r}
-#| echo: false
-ggplot(email, aes(x = exclaim_mess, y = as.numeric(spam) - 1)) + 
-  geom_point() + 
-  labs(
-    x = "# of exclamation marks in email",
-    y = "e-mail type"
-  ) +
-  scale_y_continuous(breaks = c(0, 1),
-                   labels = c("legit (0)", "spam (1)"))
-```
-
-## New model: logistic regression
-
-S-curve for the probability of "success":
-
-$$
-\widehat{p}
-=
-\widehat{\text{Prob}(y=1)}
-=
-\frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}.
-$$
-
-Linear model for the log-odds:
-
-$$
-\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
-=
-b_0+b_1x.
-$$
-
-These are equivalent.
-
-## R syntax is largely unchanged {.small}
-
-Just use `logistic_reg` instead of `linear_reg`:
-
-. . .
-
-```{r}
-simple_logistic_fit <- logistic_reg() |>
-  fit(spam ~ exclaim_mess, data = email)
-
-tidy(simple_logistic_fit)
-```
-
-. . .
-
-Fitted equation for the log-odds:
-
-$$
-\log\left(\frac{\hat{p}}{1-\hat{p}}\right)
-=
--2.27
-+
-0.000272\times exclaim~mess
-$$
-
-## Interpretations are strange and delicate {.small .scrollable}
-
-::: incremental
--   If `exclaim_mess = 0`, then $$
-    \widehat{p}=\widehat{P(y=1)}=\frac{e^{-2.27}}{1+e^{-2.27}}\approx 0.09.
-    $$ So, our model predicts that an email with no exclamation marks has a 9% probability of being spam.
-
--   If the email has an additional exclamation mark, we predict the *odds* of the email being spam to be **higher** by a factor of $e^{b_1} = e^{0.000272}\approx 1.000272$, on average.
-:::
-
-. . .
-
--   The odds are *higher* because the scale factor is greater than one. If it had been 0.98, then the odds shrink and the interpretation would change to "we predict the odds to be **lower** by a factor of 0.98"
-
--   For any slope estimate > 0 (i.e., $b_1 > 0$), the multiplicative factor will be larger than 1 (use "higher" or "increase" by a factor of $e^{b_1}$); for any slope estimate < 0, the multiplicative factor will be 0 < $e^{b_1}$ < 1 (use "lower" or "decrease" by a factor of ...); for a slope estimate of exactly 0, the multiplicative factor is $e^0 = 1$, and so the odds remain unchanged
-
-## Compute predicted *probabilities* with the expit function {.small .scrollable}
-
-```{r}
-tidy(simple_logistic_fit) |>
-  filter(term == "(Intercept)") |>
-  summarize(
-    prob0 = exp(estimate) / (1 + exp(estimate))
-  )
-```
-
--   Note: When interpreting an intercept term, be mindful of which representation of the outcome the instructions / question asks for the interpretation with respect to
-
--   Ex: "Interpret the intercept with respect to the *probability* of success..."
-
-    -   You should be using the expit function to get just $\widehat{p}$ on the LHS!
-    
--   If a particular outcome is not specified, you can choose which to interpret with respect to, but be sure you're doing the right math!
-
-    -   Ex: It would be **incorrect** to state the following here: "For an email with 0 exclamation points, we predict the odds of that email being spam to be -2.27."
-    
-    -   Why? -2.27 is the predicted *log-odds*. If you want to say something about the predicted odds, you must "un-log" your outcome i.e., compute $e^{-2.27}$
-    
-## Print exponentiated estimates to screen  {.medium .scrollable}
-
-```{r}
-tidy(simple_logistic_fit) |>
-  mutate(exp_estimate = exp(estimate)) |>
-  select(term, estimate, exp_estimate, std.error, statistic, p.value)
-```
-
-## Here's an alternative model {.small .scrollable}
-
-Dump all the predictors in:
-
-> Using a `.` on the RHS of the `~` in fit() will throw all columns in the data frame you supply into the model (except for the outcome column itself) as predictors. This is a time-saver and avoids the need for listing every variable manually
-
-```{r}
-#| warning: false
-full_logistic_fit <- logistic_reg() |>
-  fit(spam ~ ., data = email)
-
-tidy(full_logistic_fit)
-```
-
 ## Classification error
 
 There are two kinds of mistakes:
@@ -166,11 +36,11 @@ We want to avoid both, but there's a trade-off.
 
 -   **False negative rate (FNR)** is the *proportion* of actual positives that were classified as negatives.
 
-    - FNR = (FN) / (FN + TP), where FN = # false negatives, TP = # true positives
+    -   FNR = (FN) / (FN + TP), where FN = \# false negatives, TP = \# true positives
 
 -   **False positive rate (FPR)** is the *proportion* of actual negatives that were classified as positives.
 
-    - FPR = (FP) / (FP + TN), where FP = # false positives, TN = # true negatives
+    -   FPR = (FP) / (FP + TN), where FP = \# false positives, TN = \# true negatives
 
 ::: callout-tip
 We want these **both** to be low!
@@ -539,7 +409,7 @@ Do not use, or even peek at, the test set during training.
 ## How much to spend?
 
 ::: incremental
--   The more data we spend (use in training), the better estimates we’ll get.
+-   The more data we spend (use in training), the better estimates we'll get.
 
 -   Spending too much data in training prevents us from computing a good assessment of predictive performance.
 
@@ -563,15 +433,15 @@ forested_split
 What does `set.seed()` do?
 :::
 
-TLDR: The testing/training split is random, but we want the results to be reproducible, so we "freeze the random numbers in time" by setting a seed. If we don't tell you exactly what seed to use on an assignment, you can pick any positive integer you want.
+TLDR: The testing/training split is random, but we want the results to be reproducible, so we "freeze the random numbers in time" by setting a seed.
+If we don't tell you exactly what seed to use on an assignment, you can pick any positive integer you want.
 
 ::: incremental
--   To create that split of the data, R generates “pseudo-random” numbers: while they are made to behave like random numbers, their generation is deterministic given a “seed”.
+-   To create that split of the data, R generates "pseudo-random" numbers: while they are made to behave like random numbers, their generation is deterministic given a "seed".
 
 -   This allows us to reproduce results by setting that seed.
 
--   Which seed you pick doesn’t matter, as long as you don’t try a bunch of seeds and pick the one that gives you the best performance.
-
+-   Which seed you pick doesn't matter, as long as you don't try a bunch of seeds and pick the one that gives you the best performance.
 :::
 
 ## Accessing the data
@@ -598,9 +468,9 @@ forested_test
 
 ## Initial questions {.smaller}
 
--   What’s the distribution of the outcome, `forested`?
+-   What's the distribution of the outcome, `forested`?
 
--   What’s the distribution of numeric variables like `precip_annual`?
+-   What's the distribution of numeric variables like `precip_annual`?
 
 -   How does the distribution of forested differ across the categorical and numerical variables?
 
@@ -613,7 +483,7 @@ The entire data `forested`, the training data `forested_train`, or the testing d
 
 ## `forested` {.small}
 
-What’s the distribution of the outcome, `forested`?
+What's the distribution of the outcome, `forested`?
 
 ```{r}
 ggplot(forested_train, aes(x = forested)) +
@@ -622,7 +492,7 @@ ggplot(forested_train, aes(x = forested)) +
 
 ## `forested` {.medium}
 
-What’s the distribution of the outcome, `forested`?
+What's the distribution of the outcome, `forested`?
 
 ```{r}
 forested_train |>
@@ -634,7 +504,7 @@ forested_train |>
 
 ## `precip_annual` {.small}
 
-What’s the distribution of `precip_annual`?
+What's the distribution of `precip_annual`?
 
 ```{r}
 #| message: false
@@ -766,43 +636,9 @@ Do these two things agree?
 If not, that isn't an *error*, but you might make mistakes when interpreting.
 Be careful!
 
-# Today's AE
+# AE
 
-## Next steps {.small .scrollable}
-
-::: incremental
--   Fit models on training data
-
--   Make predictions on testing data
-
--   Evaluate predictions on testing data:
-
-    -   Linear models: R-squared, adjusted R-squared, RMSE (root mean squared error), etc.
-    -   Logistic models: False negative and positive rates, AUC (area under the curve), etc.
-
--   Make decisions based on model predictive performance, validity across various testing/training splits (aka "cross validation"), explainability
-:::
-
-. . .
-
-::: callout-note
-We will only learn about a subset of these in this course, but you can go further into these ideas in STA 210 or STA 221 as well as in various machine learning courses.
-:::
-
-## `{r} todays_ae` {.smaller}
-
-::: appex
--   Go to your ae project in RStudio.
-
--   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your Git pane.
-
--   If you haven't yet done so, click Pull to get today's application exercise file: *`{r} paste0(todays_ae, ".qmd")`*.
-    You might be prompted to install **forested**, say yes.
-
--   Work through the application exercise in class, and render, commit, and push your edits.
-:::
-
-# Logistic wrap-up
+# Logistic wrap-up (Review)
 
 ## Fitting a logistic regression model
 
@@ -829,19 +665,18 @@ $$
 
 ## Three equivalent representations {.smaller .scrollable}
 
-| Version | equation | Friendly LHS? | Friendly RHS? |
-|------|---------|-----|------|
-| Probability: (0, 1) | $$\widehat{p}=\frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}$$      |  ✅  |      ❌  |
-| Odds: $(0,\,\infty)$ | $$\frac{\widehat{p}}{1-\widehat{p}}=e^{b_0+b_1x}$$     |  🥴    |    🥴   |
-| Log-odds: $(-\infty,\,\infty)$ | $$\log\left(\frac{\widehat{p}}{1-\widehat{p}}\right)=b_0+b_1x$$       |  ❌  |  ✅  | |
+| Version                        | equation                                                        | Friendly LHS? | Friendly RHS? |
+|-----------------|-----------------------|-----------------|-----------------|
+| Probability: (0, 1)            | $$\widehat{p}=\frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}$$             | ✅            | ❌            |
+| Odds: $(0,\,\infty)$           | $$\frac{\widehat{p}}{1-\widehat{p}}=e^{b_0+b_1x}$$              | 🥴            | 🥴            |
+| Log-odds: $(-\infty,\,\infty)$ | $$\log\left(\frac{\widehat{p}}{1-\widehat{p}}\right)=b_0+b_1x$$ | ❌            | ✅            |
 
 Take your pick depending on what you're trying to do.
 
 ## Probability to log-odds {.small}
 
-:::::: columns
-:::: {.column width="60%"}
-
+::: columns
+::: {.column width="60%"}
 ```{r}
 #| echo: false
 #| fig-asp: 1
@@ -851,20 +686,17 @@ curve(log(x / (1 - x)), from = 0, to = 1, n = 1000,
       xlab = "Probability: p", ylab = "log-odds: log[p / (1 - p)]", cex.lab = 2, cex.axis = 1.5)
 axis(1, pos = 0, cex.axis = 1.5)
 ```
+:::
 
-::::
-
-:::: {.column width="40%"}
-
-- $p = 0 \to \text{log-odds}=-\infty$;
-- $p = 1/2 \to \text{log-odds}=0$;
-- $p = 1 \to \text{log-odds}=\infty$;
-- And everything in between.
+::: {.column width="40%"}
+-   $p = 0 \to \text{log-odds}=-\infty$;
+-   $p = 1/2 \to \text{log-odds}=0$;
+-   $p = 1 \to \text{log-odds}=\infty$;
+-   And everything in between.
 
 The log-odds transformation takes probabilities between 0 and 1 and streeetches them out to numbers between $-\infty$ and $\infty$, for which the linear model is appropriate.
-
-::::
-::::::
+:::
+:::
 
 ## Interpreting the intercept
 
@@ -878,11 +710,11 @@ $$
 \frac{e^{1.57}}{1 + e^{1.57}}\approx 0.83
 $$
 
-
 So when $precip = 0$, the model predicts that the *probability* of `forested = "No"` is about 83%.
 
 ::: callout-note
-We didn't interpret the intercept $b_0=1.57$ directly. We transformed it into an interpretable quantity using the *probability* version of the logsitic regression model.
+We didn't interpret the intercept $b_0=1.57$ directly.
+We transformed it into an interpretable quantity using the *probability* version of the logsitic regression model.
 :::
 
 ## Interpreting the slope {.medium .scrollable}
@@ -1001,25 +833,25 @@ forested_precip_aug |>
 ## FYI: error rates sum to 1 within the levels of the true outcome {.smaller .scrollable}
 
 ::: incremental
-- For these two, the *denominator* is the number of truly "zero" cases:
-    - TNR: proportion of "zero" cases correctly classified as "zero;"
-    - FPR: proportion of "zero" cases incorrectly classified as "one;"
-- For these two, the *denominator* is the number of truly "one" cases:
-    - FNR: proportion of "one" cases incorrectly classified as "zero,"
-    - TPR: proportion of "one" cases correctly classified as "one."
+-   For these two, the *denominator* is the number of truly "zero" cases:
+    -   TNR: proportion of "zero" cases correctly classified as "zero;"
+    -   FPR: proportion of "zero" cases incorrectly classified as "one;"
+-   For these two, the *denominator* is the number of truly "one" cases:
+    -   FNR: proportion of "one" cases incorrectly classified as "zero,"
+    -   TPR: proportion of "one" cases correctly classified as "one."
 :::
 
 . . .
 
-So TNR + FPR = 1 and FNR + TPR = 1. 
+So TNR + FPR = 1 and FNR + TPR = 1.
 
-That's why we did `group_by(forested)`. 
+That's why we did `group_by(forested)`.
 
 ## FYI: the default threshold is 50% {.small .scrollable}
 
-- The model produces probabilities: `.pred_Yes` and `.pred_No`; 
+-   The model produces probabilities: `.pred_Yes` and `.pred_No`;
 
-- The concrete classifications in the `.pred_class` column come from applying a 50% threshold to these probabilities:
+-   The concrete classifications in the `.pred_class` column come from applying a 50% threshold to these probabilities:
 
 $$
 \widehat{\text{forested}}=
@@ -1029,7 +861,7 @@ $$
 \end{cases}
 $$
 
-- If you want to override that default, you must do so manually.
+-   If you want to override that default, you must do so manually.
 
 ## Change threshold to 0.75 {.smaller}
 
@@ -1050,8 +882,8 @@ forested_precip_aug |>
 
 ## Unpacking `roc_curve` {.smaller .scrollable}
 
-:::::: columns
-:::: {.column width="60%"}
+::: columns
+::: {.column width="60%"}
 Recall the *augmented* data frame:
 
 ```{r}
@@ -1064,10 +896,9 @@ Recall how `forested` is leveled:
 ```{r}
 levels(forested_precip_aug$forested)
 ```
-::::
+:::
 
 ::: {.column .fragment width="40%"}
-
 ```{r}
 #| eval: false
 roc_curve(forested_precip_aug, 
@@ -1077,18 +908,17 @@ roc_curve(forested_precip_aug,
 ```
 
 ::: incremental
-1. Supply *augmented* data frame;
-2. Tell it which column contains *true* classifications;
-3. Tell it which column contains the predicted probabilities for the level you care about
-4. Tell it which level of `truth` is the one you care about
+1.  Supply *augmented* data frame;
+2.  Tell it which column contains *true* classifications;
+3.  Tell it which column contains the predicted probabilities for the level you care about
+4.  Tell it which level of `truth` is the one you care about
 :::
 
 ::: {.callout-warning .fragment}
 Those last two arguments need to match!
 :::
-
 :::
-::::::
+:::
 
 ## The ROC curve {.smaller .scrollable}
 
@@ -1142,7 +972,8 @@ tibble(
 
 ## AUC = 1 / 2
 
-Don't waste time fitting a model. Just flip a coin:
+Don't waste time fitting a model.
+Just flip a coin:
 
 ```{r}
 #| echo: false
@@ -1201,7 +1032,7 @@ Not bad!
 -   The function `roc_auc` computes it for you, and it takes the same set of arguments as `roc_curve`.
 :::
 
-## New commands 
+## New commands
 
 -   `logistic_reg`
 -   `augment`
@@ -1210,4 +1041,3 @@ Not bad!
 -   `set.seed`
 -   `initial_split`, `training`, `test`
 -   `geom_path`
-
