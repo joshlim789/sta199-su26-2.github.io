@@ -1,6 +1,5 @@
 ---
 title: "AE 17: Diving back into Paris 2024"
-draft: true
 subtitle: "Suggested answers"
 format:
   html:
