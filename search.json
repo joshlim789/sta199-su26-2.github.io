@@ -364,6 +364,13 @@
     "text": "For this application exercise, we will work with data on fish. The dataset we will use, called fish, is on two common fish species in fish market sales.\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\nfish &lt;- read_csv(\"data/fish.csv\")\n\nThe data dictionary is below:\n\n\nvariable\ndescription\n\n\n\nspecies\nSpecies name of fish\n\n\nweight\nWeight, in grams\n\n\nlength_vertical\nVertical length, in cm\n\n\nlength_diagonal\nDiagonal length, in cm\n\n\nlength_cross\nCross length, in cm\n\n\nheight\nHeight, in cm\n\n\nwidth\nDiagonal width, in cm\n\n\n\nVisualizing the model\nWe’re going to investigate the relationship between the weights and heights of fish.\n\nCreate an appropriate plot to investigate this relationship. Add appropriate labels to the plot.\n\n\n# add code here\n\n\nIf you were to draw a a straight line to best represent the relationship between the heights and weights of fish, where would it go? Why?\nNow, let R draw the line for you.\n\n\n# add code here\n\n\nWhat types of questions can this plot help answer?\n\nAdd response here.\n\nWe can use this line to make predictions. Predict what you think the weight of a fish would be with a height of 10 cm, 15 cm, and 20 cm. Which prediction is considered extrapolation?\n\nAdd response here.\n\nWhat is a residual?\n\nAdd response here.\nModel fitting\n\n\nDemo: Fit a model to predict fish weights from their heights.\n\n\n# add code here\n\n\nPredict what the weight of a fish would be with a height of 10 cm, 15 cm, and 20 cm using this model.\n\n\n# add code here\n\n\n\nDemo: Calculate predicted weights for all fish in the data and visualize the residuals under this model.\n\n\n# add code here\n\nModel summary\n\n\nDemo: Display the model summary including estimates for the slope and intercept along with measurements of uncertainty around them. Show how you can extract these values from the model output.\n\n\n# add code here\n\n\n\nDemo: Write out your model using mathematical notation.\n\nAdd response here.\nCorrelation\nWe can also assess correlation between two quantitative variables.\n\nWhat is correlation? What are values correlation can take?\n\nAdd response here.\n\n\nDemo: What is the correlation between heights and weights of fish?\n\n\n# add code here\n\nAdding a third variable\n\n\nDemo: Does the relationship between heights and weights of fish change if we take into consideration species? Plot two separate straight lines for the Bream and Roach species.\n\n\n# add code here\n\nFitting other models\n\n\nDemo: We can fit more models than just a straight line. Change the following code below to read method = \"loess\". What is different from the plot created before?\n\n\n# add code here"
   },
   {
+    "objectID": "ae/ae-18-github.html",
+    "href": "ae/ae-18-github.html",
+    "title": "AE 18: Pokemon Inference",
+    "section": "",
+    "text": "Today we’ll explore the question “Are taller Pokémon speedier than shorter Pokémon?”\nPackages\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\nData\nThe data for this application exercise was originally gathered using the Complete Pokémon Dataset from Kaggle.\nFirst, let’s load the data:\n\npokemon &lt;- read_csv(\"data/pokemon.csv\")\n\nTo keep things simple, we’ll work with a subset of the data, the generation 4 Pokémon.\n\npokemon &lt;- pokemon |&gt;\n  filter(generation == 4)\n\nglimpse(pokemon)\n\nRows: 121\nColumns: 17\n$ name            &lt;chr&gt; \"Turtwig\", \"Grotle\", \"Torterra\", \"Chimchar\", \"Monferno…\n$ generation      &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ type_1          &lt;chr&gt; \"Grass\", \"Grass\", \"Grass\", \"Fire\", \"Fire\", \"Fire\", \"Wa…\n$ type_2          &lt;chr&gt; NA, NA, \"Ground\", NA, \"Fighting\", \"Fighting\", NA, NA, …\n$ height_m        &lt;dbl&gt; 0.4, 1.1, 2.2, 0.5, 0.9, 1.2, 0.4, 0.8, 1.7, 0.3, 0.6,…\n$ weight_kg       &lt;dbl&gt; 10.2, 97.0, 310.0, 6.2, 22.0, 55.0, 5.2, 23.0, 84.5, 2…\n$ total_points    &lt;dbl&gt; 318, 405, 525, 309, 405, 534, 314, 405, 530, 245, 340,…\n$ hp              &lt;dbl&gt; 55, 75, 95, 44, 64, 76, 53, 64, 84, 40, 55, 85, 59, 79…\n$ attack          &lt;dbl&gt; 68, 89, 109, 58, 78, 104, 51, 66, 86, 55, 75, 120, 45,…\n$ defense         &lt;dbl&gt; 64, 85, 105, 44, 52, 71, 53, 68, 88, 30, 50, 70, 40, 6…\n$ sp_attack       &lt;dbl&gt; 45, 55, 75, 58, 78, 104, 61, 81, 111, 30, 40, 50, 35, …\n$ sp_defense      &lt;dbl&gt; 55, 65, 85, 44, 52, 71, 56, 76, 101, 30, 40, 60, 40, 6…\n$ speed           &lt;dbl&gt; 31, 36, 56, 61, 81, 108, 40, 50, 60, 60, 80, 100, 31, …\n$ catch_rate      &lt;dbl&gt; 45, 45, 45, 45, 45, 45, 45, 45, 45, 255, 120, 45, 255,…\n$ base_friendship &lt;dbl&gt; 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70…\n$ base_experience &lt;dbl&gt; 64, 142, 236, 62, 142, 240, 63, 142, 239, 49, 119, 218…\n$ is_legendary    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…\n\n\nWe are interested in whether a Pokémon’s log height (measured in meters) can predict its speed (how fast it is).\nVisualize\n\nReview! Create a new variable for the Pokémon’s log height.\n\n\npokemon &lt;- pokemon |&gt;\n  mutate(log_height = log(height_m))\n\n\n\nYour turn: Plot the data and the line of best fit.\n\n\n# add code here\n\nPoint Estimation\n\n\nYour turn: Fit the linear model to these data:\n\n\nobserved_fit &lt;- pokemon |&gt;\n  specify(speed ~ log_height) |&gt;\n  fit()\nobserved_fit\n\n# A tibble: 2 × 2\n  term       estimate\n  &lt;chr&gt;         &lt;dbl&gt;\n1 intercept     72.4 \n2 log_height     7.39\n\n\n\n\n\n\n\n\nNote\n\n\n\nThis gives the exact same numbers that you get if you use linear_reg() |&gt; fit(), but we need this new syntax because it plays nice with the tools we have for confidence intervals and hypothesis tests.\n\n\n\n\nYour turn: Typeset the equation for the model fit:\n\n\\[\n\\widehat{\\text{speed}} = \\_\\_\\_ + \\_\\_\\_ \\times \\log(\\text{height})\n\\]\n\n\nYour turn: Interpret the slope and the intercept estimates:\n\nAdd your answer here.\nAdd your answer here.\n\n\nHypothesis Testing\nLet’s consider the hypotheses:\n\\[\nH_0:\\beta_1=0\\quad vs\\quad H_A: \\beta_1\\neq 0.\n\\]\nThe null hypothesis corresponds to the claim that log_height and speed are uncorrelated.\n\nSimulate and plot the null distribution for the slope:\n\n\nset.seed(24601)\nnull_dist &lt;- pokemon |&gt;\n  specify(speed ~ log_height) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 500, type = \"permute\") |&gt;\n  fit()\n\n# add code to plot here\n\n\nAdd a vertical line to your plot indicating the point estimate of the slope from your original data analysis:\n\n\n# add code here\n\n\nCompute the \\(p\\)-value for this test and interpret it:\n\n\n# add code here\n\nAdd your interpretation here.\nInterval Estimation\n\n\nDemo: Using seed 24601, generate 500 bootstrap samples, and store them in a new data frame called bstrap_samples.\n\n\nset.seed(24601)\nbstrap_samples &lt;- pokemon |&gt;\n  specify(speed ~ log_height) |&gt;\n  generate(reps = 500, type = \"bootstrap\")\n\n\n\nDemo: Fit a linear model to each of these bootstrap samples and store the estimates in a new data frame called bstrap_fits.\n\n\nbstrap_fits &lt;- bstrap_samples |&gt;\n  fit()\n\n\n\nYour turn: Use linear_reg() |&gt; fit(...) to fit a linear model to bootstrap sample number 347, and verify that you get the same estimates as the ones contained in bstrap_fits.\n\n\n# add code here\n\n\n\n\n\n\n\nNote\n\n\n\nThe only point I’m making here is that this new bootstrap code is not performing a fundamentally new task. It’s performing an old task (fitting the linear model), but it’s repeating it A LOT.\n\n\n\n\nDemo: Compute 95% confidence intervals for the slope and the intercept using the get_confidence_interval command.\n\n\nci_95 &lt;- get_confidence_interval(\n  bstrap_fits,\n  point_estimate = observed_fit,\n  level = 0.95,\n  type = \"percentile\"\n)\nci_95\n\n# A tibble: 2 × 3\n  term       lower_ci upper_ci\n  &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept    67.4       76.6\n2 log_height    0.942     13.3\n\n\n\n\nYour turn: Verify that you get the same numbers when you manually calculate the quantiles of the slope estimates using summarize and quantile. Pay attention to the grouping.\n\n\n# add code here\n\n\n\n\n\n\n\nNote\n\n\n\nSame point as before. There’s no magic here. get_confidence_interval is just a convenient way of doing something that you already knew how to do.\n\n\n\n\nBONUS: You can visualize the confidence interval:\n\n\nvisualize(bstrap_fits) +\n  shade_confidence_interval(ci_95)"
+  },
+  {
     "objectID": "ae/ae-04-github-A.html",
     "href": "ae/ae-04-github-A.html",
     "title": "AE 04: Gerrymandering + data exploration I",
@@ -390,6 +397,13 @@
     "title": "AE 04: Gerrymandering + data exploration I",
     "section": "Flips",
     "text": "Flips\nIs a Congressional District more likely to have high prevalance of gerrymandering if a Democrat was able to flip the seat in the 2018 election? Support your answer with a visualization as well as summary statistics. Hint: Calculate the conditional distribution of prevalance of gerrymandering based on whether a Democrat was able to flip the seat in the 2018 election.\nBased on our visual analysis, there is not strong evidence that a Congressional District was more likely to have high prevalance of gerrymandering if a Democrat was able to flip the seat in the 2018 election.\n\nggplot(gerrymander, aes(x = flip18, fill = gerry)) +\n  geom_bar(position = \"fill\") +\n  labs(title = \"'Flip' status by level of gerrymandering\",\n       x = \"'Flip' status following the 2018 House election\",\n       y = \"Proportion of observations\",\n       fill = \"Gerrymandering\") +\n  theme_minimal()\n\n\n\n\n\n\ngerrymander |&gt;\n  count(flip18, gerry) |&gt;\n  group_by(flip18) |&gt;\n  mutate(prop = n / sum(n))\n\n# A tibble: 8 × 4\n# Groups:   flip18 [3]\n  flip18 gerry     n  prop\n   &lt;dbl&gt; &lt;fct&gt; &lt;int&gt; &lt;dbl&gt;\n1     -1 low       2 0.4  \n2     -1 mid       3 0.6  \n3      0 low      52 0.133\n4      0 mid     242 0.617\n5      0 high     98 0.25 \n6      1 low       8 0.211\n7      1 mid      25 0.658\n8      1 high      5 0.132"
+  },
+  {
+    "objectID": "ae/ae-18-github-A.html",
+    "href": "ae/ae-18-github-A.html",
+    "title": "AE 18: Pokemon Inference",
+    "section": "",
+    "text": "Today we’ll explore the question “Are taller Pokémon speedier than shorter Pokémon?”\nPackages\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\nData\nThe data for this application exercise was originally gathered using the Complete Pokémon Dataset from Kaggle.\nFirst, let’s load the data:\n\npokemon &lt;- read_csv(\"data/pokemon.csv\")\n\nTo keep things simple, we’ll work with a subset of the data, the generation 4 Pokémon.\n\npokemon &lt;- pokemon |&gt;\n  filter(generation == 4)\n\nglimpse(pokemon)\n\nRows: 121\nColumns: 17\n$ name            &lt;chr&gt; \"Turtwig\", \"Grotle\", \"Torterra\", \"Chimchar\", \"Monferno…\n$ generation      &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …\n$ type_1          &lt;chr&gt; \"Grass\", \"Grass\", \"Grass\", \"Fire\", \"Fire\", \"Fire\", \"Wa…\n$ type_2          &lt;chr&gt; NA, NA, \"Ground\", NA, \"Fighting\", \"Fighting\", NA, NA, …\n$ height_m        &lt;dbl&gt; 0.4, 1.1, 2.2, 0.5, 0.9, 1.2, 0.4, 0.8, 1.7, 0.3, 0.6,…\n$ weight_kg       &lt;dbl&gt; 10.2, 97.0, 310.0, 6.2, 22.0, 55.0, 5.2, 23.0, 84.5, 2…\n$ total_points    &lt;dbl&gt; 318, 405, 525, 309, 405, 534, 314, 405, 530, 245, 340,…\n$ hp              &lt;dbl&gt; 55, 75, 95, 44, 64, 76, 53, 64, 84, 40, 55, 85, 59, 79…\n$ attack          &lt;dbl&gt; 68, 89, 109, 58, 78, 104, 51, 66, 86, 55, 75, 120, 45,…\n$ defense         &lt;dbl&gt; 64, 85, 105, 44, 52, 71, 53, 68, 88, 30, 50, 70, 40, 6…\n$ sp_attack       &lt;dbl&gt; 45, 55, 75, 58, 78, 104, 61, 81, 111, 30, 40, 50, 35, …\n$ sp_defense      &lt;dbl&gt; 55, 65, 85, 44, 52, 71, 56, 76, 101, 30, 40, 60, 40, 6…\n$ speed           &lt;dbl&gt; 31, 36, 56, 61, 81, 108, 40, 50, 60, 60, 80, 100, 31, …\n$ catch_rate      &lt;dbl&gt; 45, 45, 45, 45, 45, 45, 45, 45, 45, 255, 120, 45, 255,…\n$ base_friendship &lt;dbl&gt; 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70…\n$ base_experience &lt;dbl&gt; 64, 142, 236, 62, 142, 240, 63, 142, 239, 49, 119, 218…\n$ is_legendary    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…\n\n\nWe are interested in whether a Pokémon’s log height (measured in meters) can predict its speed (how fast it is).\nVisualize\n\nReview! Create a new variable for the Pokémon’s log height.\n\n\npokemon &lt;- pokemon |&gt;\n  mutate(log_height = log(height_m))\n\n\n\nYour turn: Plot the data and the line of best fit.\n\n\nggplot(pokemon, aes(x = log_height, y = speed)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\n\n\n\n\nPoint Estimation\n\n\nYour turn: Fit the linear model to these data:\n\n\nobserved_fit &lt;- pokemon |&gt;\n  specify(speed ~ log_height) |&gt;\n  fit()\nobserved_fit\n\n# A tibble: 2 × 2\n  term       estimate\n  &lt;chr&gt;         &lt;dbl&gt;\n1 intercept     72.4 \n2 log_height     7.39\n\n\n\n\n\n\n\n\nNote\n\n\n\nThis gives the exact same numbers that you get if you use linear_reg() |&gt; fit(), but we need this new syntax because it plays nice with the tools we have for confidence intervals and hypothesis tests.\n\n\n\n\nYour turn: Typeset the equation for the model fit:\n\n\\[\n\\widehat{\\text{speed}} = 72.41 + 7.39\\times \\log(\\text{height})\n\\]\n\n\nYour turn: Interpret the slope and the intercept estimates:\n\nIf a Pokémon had 0 log(height) (equivalently 1 m tall), we predict that it would have a 72.41 speed stat on average.\nA 1 unit increase in log(height) is associated with a 7.39 increase in speed, on average.\n\n\nHypothesis Testing\nLet’s consider the hypotheses:\n\\[\nH_0:\\beta_1=0\\quad vs\\quad H_A: \\beta_1\\neq 0.\n\\]\nThe null hypothesis corresponds to the claim that log_height and speed are uncorrelated.\n\nSimulate and plot the null distribution for the slope:\n\n\nset.seed(24601)\nnull_dist &lt;- pokemon |&gt;\n  specify(speed ~ log_height) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 500, type = \"permute\") |&gt;\n  fit()\n\nnull_dist |&gt;\n  filter(term == \"log_height\") |&gt;\n  ggplot(aes(x = estimate)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\nAdd a vertical line to your plot indicating the point estimate of the slope from your original data analysis:\n\n\nvisualize(null_dist) +\n  shade_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\n\n\n\n\n\n\n\nCompute the \\(p\\)-value for this test and interpret it:\n\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\n# A tibble: 2 × 2\n  term       p_value\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept    0.028\n2 log_height   0.028\n\n\nAnswer: If the null were true and \\(\\beta_1=0\\) (meaning log_height and speed are uncorrelated), the probability of getting an estimate as or more extreme than the one we got (\\(b_1=7.39\\)) is 0.028. So we reject the null hypothesis. Evidence is sufficient to conclude that \\(\\beta_1\\), whatever it is, is not equal to zero.\nInterval Estimation\n\n\nDemo: Using seed 24601, generate 500 bootstrap samples, and store them in a new data frame called bstrap_samples.\n\n\nset.seed(24601)\nbstrap_samples &lt;- pokemon |&gt;\n  specify(speed ~ log_height) |&gt;\n  generate(reps = 500, type = \"bootstrap\")\n\n\n\nDemo: Fit a linear model to each of these bootstrap samples and store the estimates in a new data frame called bstrap_fits.\n\n\nbstrap_fits &lt;- bstrap_samples |&gt;\n  fit()\n\n\n\nYour turn: Use linear_reg() |&gt; fit(...) to fit a linear model to bootstrap sample number 347, and verify that you get the same estimates as the ones contained in bstrap_fits.\n\n\nreplicate_347 &lt;- bstrap_samples |&gt;\n  filter(replicate == 347)\n\nlinear_reg() |&gt;\n  fit(speed ~ log_height, data = replicate_347) |&gt;\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    71.6       2.61     27.4  2.64e-53\n2 log_height      6.46      3.09      2.09 3.84e- 2\n\nbstrap_fits |&gt;\n  filter(replicate == 347)\n\n# A tibble: 2 × 3\n# Groups:   replicate [1]\n  replicate term       estimate\n      &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;\n1       347 intercept     71.6 \n2       347 log_height     6.46\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe only point I’m making here is that this new bootstrap code is not performing a fundamentally new task. It’s performing an old task (fitting the linear model), but it’s repeating it A LOT.\n\n\n\n\nDemo: Compute 95% confidence intervals for the slope and the intercept using the get_confidence_interval command.\n\n\nci_95 &lt;- get_confidence_interval(\n  bstrap_fits,\n  point_estimate = observed_fit,\n  level = 0.95,\n  type = \"percentile\"\n)\nci_95\n\n# A tibble: 2 × 3\n  term       lower_ci upper_ci\n  &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept    67.4       76.6\n2 log_height    0.942     13.3\n\n\n\n\nYour turn: Verify that you get the same numbers when you manually calculate the quantiles of the slope estimates using summarize and quantile. Pay attention to the grouping.\n\n\nbstrap_fits |&gt;\n  ungroup() |&gt;\n  group_by(term) |&gt;\n  summarize(\n    lower_ci = quantile(estimate, 0.025),\n    upper_ci = quantile(estimate, 0.975)\n  )\n\n# A tibble: 2 × 3\n  term       lower_ci upper_ci\n  &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept    67.4       76.6\n2 log_height    0.942     13.3\n\n\n\n\n\n\n\n\nNote\n\n\n\nSame point as before. There’s no magic here. get_confidence_interval is just a convenient way of doing something that you already knew how to do.\n\n\n\n\nBONUS: You can visualize the confidence interval:\n\n\nvisualize(bstrap_fits) +\n  shade_confidence_interval(ci_95)"
   },
   {
     "objectID": "ae/ae-04-github.html",
@@ -4242,174 +4256,6 @@
     "text": "Summary\n\nRepresent percentages as parts of a whole\nPlace variables representing time on the x-axis when possible\nPay attention to data types; e.g., represent time as time on a continuous scale, not years as levels of a categorical variable\nPrefer direct labeling over legends\nUse accessible colors\nUse color to draw attention\nPick a purpose and label, color, annotate for that purpose\nCommunicate your main message directly in the plot labels\nSimplify before you call it done (a.k.a. “Before you leave the house, look in the mirror and take one thing off”)"
   },
   {
-    "objectID": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-dataset",
-    "href": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-dataset",
-    "title": "Hypothesis Testing",
-    "section": "What if this was my dataset?",
-    "text": "What if this was my dataset?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    2.94 \n2 log_inc        0.657"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-dataset-instead",
-    "href": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-dataset-instead",
-    "title": "Hypothesis Testing",
-    "section": "What if this was my dataset instead?",
-    "text": "What if this was my dataset instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    5.29 \n2 log_inc        0.486"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-dataset-instead-1",
-    "href": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-dataset-instead-1",
-    "title": "Hypothesis Testing",
-    "section": "What if this was my dataset instead?",
-    "text": "What if this was my dataset instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    1.62 \n2 log_inc        0.805"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#rinse-and-repeat-1000-times",
-    "href": "slides/20-hypothesis-testing-slides.html#rinse-and-repeat-1000-times",
-    "title": "Hypothesis Testing",
-    "section": "Rinse and repeat 1000 times…",
-    "text": "Rinse and repeat 1000 times…"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#sampling-uncertainty",
-    "href": "slides/20-hypothesis-testing-slides.html#sampling-uncertainty",
-    "title": "Hypothesis Testing",
-    "section": "Sampling uncertainty",
-    "text": "Sampling uncertainty\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow sensitive are the estimates to the data they are based on?\n- Very? Then uncertainty is high, results are unreliable;\n- Not very? Uncertainty is low, results are more reliable."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#that-was-for-n-50.-what-if-i-was-starting-with-n-1000",
-    "href": "slides/20-hypothesis-testing-slides.html#that-was-for-n-50.-what-if-i-was-starting-with-n-1000",
-    "title": "Hypothesis Testing",
-    "section": "That was for n = 50. What if I was starting with n = 1000?",
-    "text": "That was for n = 50. What if I was starting with n = 1000?"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#sampling-uncertainty-decreased",
-    "href": "slides/20-hypothesis-testing-slides.html#sampling-uncertainty-decreased",
-    "title": "Hypothesis Testing",
-    "section": "Sampling uncertainty decreased!",
-    "text": "Sampling uncertainty decreased!"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#bootstrapping",
-    "href": "slides/20-hypothesis-testing-slides.html#bootstrapping",
-    "title": "Hypothesis Testing",
-    "section": "Bootstrapping",
-    "text": "Bootstrapping\n\n\nData collection is costly, so we have to do our best with what we already have;\nWe approximate this idea of “alternative, hypothetical datasets I could have observed” by resampling our data with replacement;\n\nWe construct a new dataset of the same size by randomly picking rows out of the original one:\n\nSome rows will be duplicated;\nSome rows will not appear at all;\nHence, the new dataset is different from the original;\nDifferent dataset \\(\\rightarrow\\) different estimate\n\n\nRepeat this processes hundred or thousands of times, and observe how the estimates vary as you refit the model on alternative datasets.\nThis gives you a sense of the sampling variability of your estimates."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#bootstrap-samples-1",
-    "href": "slides/20-hypothesis-testing-slides.html#bootstrap-samples-1",
-    "title": "Hypothesis Testing",
-    "section": "Bootstrap samples 1",
-    "text": "Bootstrap samples 1\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     5  0.327  0.820\n2     6 -0.679 -0.961\n3     6 -0.679 -0.961\n4     1  0.432  1.53 \n5     6 -0.679 -0.961\n6     1  0.432  1.53 \n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.462\n2 x              2.11"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#bootstrap-samples-2",
-    "href": "slides/20-hypothesis-testing-slides.html#bootstrap-samples-2",
-    "title": "Hypothesis Testing",
-    "section": "Bootstrap samples 2",
-    "text": "Bootstrap samples 2\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id       x      y\n  &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1     2 -2.01    1.80 \n2     5  0.327   0.820\n3     1  0.432   1.53 \n4     6 -0.679  -0.961\n5     3 -0.0467  1.43 \n6     2 -2.01    1.80 \n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.913\n2 x             -0.236"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#bootstrap-samples-3",
-    "href": "slides/20-hypothesis-testing-slides.html#bootstrap-samples-3",
-    "title": "Hypothesis Testing",
-    "section": "Bootstrap samples 3",
-    "text": "Bootstrap samples 3\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     6 -0.679 -0.961\n2     1  0.432  1.53 \n3     5  0.327  0.820\n4     6 -0.679 -0.961\n5     6 -0.679 -0.961\n6     5  0.327  0.820\n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.357\n2 x              1.96"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#confidence-intervals",
-    "href": "slides/20-hypothesis-testing-slides.html#confidence-intervals",
-    "title": "Hypothesis Testing",
-    "section": "Confidence intervals",
-    "text": "Confidence intervals\n\nPoint estimation: report your single number best guess for the unknown quantity;\n\nInterval estimation: report a range, or interval, or values where you think the unknown quantity is likely to live;\n\nInterval should be wide enough to capture the truth with high probability;\nInterval should be narrow enough to be informative;\n\n\nUnfortunately, there is a trade-off. You adjust the confidence level to try to negotiate the trade-off;\nCommon choices: 90%, 95%, 99%."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#precision-vs.-accuracy",
-    "href": "slides/20-hypothesis-testing-slides.html#precision-vs.-accuracy",
-    "title": "Hypothesis Testing",
-    "section": "Precision vs. accuracy",
-    "text": "Precision vs. accuracy"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#data-houses-in-duke-forest",
-    "href": "slides/20-hypothesis-testing-slides.html#data-houses-in-duke-forest",
-    "title": "Hypothesis Testing",
-    "section": "Data: Houses in Duke Forest",
-    "text": "Data: Houses in Duke Forest\n\n\n\nData on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020\nScraped from Zillow\nSource: openintro::duke_forest\n\n\n\n\n\nGoal: Use the area (in square feet) to understand variability in the price of houses in Duke Forest."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#modeling",
-    "href": "slides/20-hypothesis-testing-slides.html#modeling",
-    "title": "Hypothesis Testing",
-    "section": "Modeling",
-    "text": "Modeling\n\ndf_fit &lt;- linear_reg() |&gt;\n  fit(price ~ area, data = duke_forest)\n\ntidy(df_fit) |&gt;\n  kable(digits = 2) # neatly format table to 2 digits\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n116652.33\n53302.46\n2.19\n0.03\n\n\narea\n159.48\n18.17\n8.78\n0.00"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#confidence-interval-for-the-slope",
-    "href": "slides/20-hypothesis-testing-slides.html#confidence-interval-for-the-slope",
-    "title": "Hypothesis Testing",
-    "section": "Confidence interval for the slope",
-    "text": "Confidence interval for the slope\nA confidence interval will allow us to make a statement like “For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus X dollars.”"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#confidence-interval",
-    "href": "slides/20-hypothesis-testing-slides.html#confidence-interval",
-    "title": "Hypothesis Testing",
-    "section": "95% confidence interval",
-    "text": "95% confidence interval\n\n\n\n\n\n\n\n\n\n\nA 95% confidence interval is bounded by the middle 95% of the bootstrap distribution\nWe are 95% confident that for each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $90.43 to $205.77."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#where-do-the-bounds-come-from",
-    "href": "slides/20-hypothesis-testing-slides.html#where-do-the-bounds-come-from",
-    "title": "Hypothesis Testing",
-    "section": "Where do the bounds come from?",
-    "text": "Where do the bounds come from?\n\n\nQuantiles!\n90% of the bootstrap distribution is between the 5% quantile on the left and the 95% quantile on the right;\n95% of the bootstrap distribution is between the 2.5% quantile on the left and the 97.5% quantile on the right;\nAnd so on."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-i",
-    "href": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-i",
-    "title": "Hypothesis Testing",
-    "section": "Computing the CI for the slope I",
-    "text": "Computing the CI for the slope I\nCalculate the observed slope:\n\nobserved_fit &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept  116652.\n2 area          159."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-ii",
-    "href": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-ii",
-    "title": "Hypothesis Testing",
-    "section": "Computing the CI for the slope II",
-    "text": "Computing the CI for the slope II\nTake 100 bootstrap samples and fit models to each one:\n\nset.seed(1120)\n\nboot_fits &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 200 × 3\n# Groups:   replicate [100]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept   47819.\n 2         1 area          191.\n 3         2 intercept  144645.\n 4         2 area          134.\n 5         3 intercept  114008.\n 6         3 area          161.\n 7         4 intercept  100639.\n 8         4 area          166.\n 9         5 intercept  215264.\n10         5 area          125.\n# ℹ 190 more rows"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-iii",
-    "href": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-iii",
-    "title": "Hypothesis Testing",
-    "section": "Computing the CI for the slope III",
-    "text": "Computing the CI for the slope III\nPercentile method: Compute the 95% CI as the middle 95% of the bootstrap distribution:\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\" # default method\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-iv",
-    "href": "slides/20-hypothesis-testing-slides.html#computing-the-ci-for-the-slope-iv",
-    "title": "Hypothesis Testing",
-    "section": "Computing the CI for the slope IV",
-    "text": "Computing the CI for the slope IV\nIf we did it manually…\n\nboot_fits |&gt;\n  filter(term == \"area\") |&gt;\n  ungroup() |&gt;\n  summarize(\n    lower_ci = quantile(estimate, 0.025),\n    upper_ci = quantile(estimate, 0.975),\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     92.1     223."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#changing-confidence-level",
-    "href": "slides/20-hypothesis-testing-slides.html#changing-confidence-level",
-    "title": "Hypothesis Testing",
-    "section": "Changing confidence level",
-    "text": "Changing confidence level\n\nHow would you modify the following code to calculate a 90% confidence interval? How would you modify it for a 99% confidence interval?\n\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#changing-confidence-level-1",
-    "href": "slides/20-hypothesis-testing-slides.html#changing-confidence-level-1",
-    "title": "Hypothesis Testing",
-    "section": "Changing confidence level",
-    "text": "Changing confidence level\n\n## confidence level: 90%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.90, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          104.     212.\n2 intercept  -24380.  256730.\n\n## confidence level: 99%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.99, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          56.3     226.\n2 intercept -61950.   370395."
-  },
-  {
     "objectID": "slides/20-hypothesis-testing-slides.html#recap",
     "href": "slides/20-hypothesis-testing-slides.html#recap",
     "title": "Hypothesis Testing",
@@ -4421,21 +4267,35 @@
     "href": "slides/20-hypothesis-testing-slides.html#hypothesis-testing-1",
     "title": "Hypothesis Testing",
     "section": "Hypothesis testing",
-    "text": "Hypothesis testing\nA hypothesis test is a statistical technique used to evaluate competing claims using data\n\n\nNull hypothesis, \\(H_0\\): An assumption about the population. With respect to the slope parameter, our null hypothesis is one of “no relationship”\nAlternative hypothesis, \\(H_A\\): A research question about the population. With respect to the slope parameter, our alternative hypothesis is that “there is some relationship”\n\n\n\nNote: Hypotheses are always at the population level!"
+    "text": "Hypothesis testing\nA hypothesis test is a statistical technique used to evaluate competing claims using data\n\n\nNull hypothesis, \\(H_0\\): An assumption about the population. “There is nothing going on.”\nAlternative hypothesis, \\(H_A\\): A research question about the population. “There is something going on”.\n\n\n\nNote: Hypotheses are always at the population level!"
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing-slides.html#running-example",
+    "href": "slides/20-hypothesis-testing-slides.html#running-example",
+    "title": "Hypothesis Testing",
+    "section": "Running Example",
+    "text": "Running Example\n\nglimpse(volleyball)\n\nRows: 25\nColumns: 4\n$ name   &lt;chr&gt; \"Maguilaura Frias\", \"Maria Elena Aguilera\", \"Mitzy Na…\n$ height &lt;dbl&gt; 186, 153, 168, 173, 162, 190, 180, 184, 188, 195, 186…\n$ spike  &lt;dbl&gt; 291, 260, 211, 296, 263, 290, 308, 298, 305, 312, 298…\n$ block  &lt;dbl&gt; 280, 240, 209, 286, 253, 285, 231, 295, 295, 300, 285…\n\n\n\n\nVolleyball Dataset on FIVB Athletes\nSpike: How high an athlete touches on a spike (cm)\nBlock: How high an athlete touches on a block (cm)\nHeight (cm)"
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing-slides.html#running-example-cont",
+    "href": "slides/20-hypothesis-testing-slides.html#running-example-cont",
+    "title": "Hypothesis Testing",
+    "section": "Running Example cont",
+    "text": "Running Example cont\nQuestion: Is an athlete’s spike touch significantly related to their height?\n\nobserved_fit &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept   0.0540\n2 height      1.62"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#setting-hypotheses",
     "href": "slides/20-hypothesis-testing-slides.html#setting-hypotheses",
     "title": "Hypothesis Testing",
     "section": "Setting hypotheses",
-    "text": "Setting hypotheses\n\nNull hypothesis, \\(H_0\\): “There is no relationship.” The slope of the model for predicting the prices of houses in Duke Forest from their areas is 0, \\(\\beta_1 = 0\\).\nAlternative hypothesis, \\(H_A\\): “There is some relationship”. The slope of the model for predicting the prices of houses in Duke Forest from their areas is different than 0, \\(\\beta_1 \\ne 0\\)."
+    "text": "Setting hypotheses\n\nNull hypothesis, \\(H_0\\): “There is nothing going on.” The slope of the model for predicting the spike touch of FIVB athletes from their heights is 0, \\(\\beta_1 = 0\\).\nAlternative hypothesis, \\(H_A\\): “There is something going on”. The slope of the model for predicting the spike touch of FIVB athletes from their heights is different than 0, \\(\\beta_1 \\ne 0\\)."
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#hypothesis-testing-mindset",
     "href": "slides/20-hypothesis-testing-slides.html#hypothesis-testing-mindset",
     "title": "Hypothesis Testing",
     "section": "Hypothesis testing “mindset”",
-    "text": "Hypothesis testing “mindset”\n\nAssume you live in a world where null hypothesis is true: \\(\\beta_1 = 0\\).\nAsk yourself how likely you are to observe the sample statistic, or something even more extreme, in this world: \\(P(b_1 \\leq -159.48~or~b_1 \\geq 159.48 | \\beta_1 = 0)\\) = ?\nIn words: “Given the null hypothesis is true and \\(\\beta_1 = 0\\), what is the probability of observing \\(b_1 \\leq -159.48\\) or \\(b_1 \\geq 159.48\\)?”"
+    "text": "Hypothesis testing “mindset”\n\nAssume you live in a world where null hypothesis is true: \\(\\beta_1 = 0\\).\nAsk yourself how likely you are to observe the sample statistic, or something even more extreme, in this world: \\(P(b_1 \\leq -1.62~or~b_1 \\geq 1.62 | \\beta_1 = 0)\\) = ?"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#hypothesis-testing-as-a-court-trial",
@@ -4463,70 +4323,70 @@
     "href": "slides/20-hypothesis-testing-slides.html#calculate-observed-slope",
     "title": "Hypothesis Testing",
     "section": "Calculate observed slope",
-    "text": "Calculate observed slope\n… which we have already done:\n\nobserved_fit &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept  116652.\n2 area          159.\n\n\nAgain, for inference-related tasks, we do this with specify(y ~ x) |&gt; fit()"
+    "text": "Calculate observed slope\n… which we have already done:\n\nobserved_fit &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept   0.0540\n2 height      1.62"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#simulate-null-distribution",
     "href": "slides/20-hypothesis-testing-slides.html#simulate-null-distribution",
     "title": "Hypothesis Testing",
     "section": "Simulate null distribution",
-    "text": "Simulate null distribution\n\nset.seed(847)\nnull_dist &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 1000, type = \"permute\") |&gt;\n  fit()"
+    "text": "Simulate null distribution\n\nset.seed(24601)\nnull_dist &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 10000, type = \"permute\") |&gt;\n  fit()"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#wait-so-whats-a-null-distribution",
     "href": "slides/20-hypothesis-testing-slides.html#wait-so-whats-a-null-distribution",
     "title": "Hypothesis Testing",
     "section": "Wait, so what’s a null distribution?",
-    "text": "Wait, so what’s a null distribution?\n\n\nSimulating a universe under \\(H_0\\): the slope of the model for predicting the price of a house in the Duke Forest area from its square footage is 0, \\(\\beta_1 = 0\\). AKA, there is no relationship between our x and y.\nIf I “shuffle” the order of only the values in the area column, would I expect to find a relationship between area and price? Could area reasonably predict price?\nNo! In theory, I have broken whatever relationship may (or may have not) existed between my predictor and my outcome."
+    "text": "Wait, so what’s a null distribution?\n\n\nSimulating a universe under \\(H_0\\): the slope of the model for predicting the spike touch of FIVB athletes from their heights is 0, \\(\\beta_1 = 0\\). I.e., no relationship between spike and height.\nIf I “shuffle” the order of the spike variable, is there a relationship between spike and height? Could height predict spike touch?"
   },
   {
-    "objectID": "slides/20-hypothesis-testing-slides.html#shuffling-vs.-sampling-with-replacement",
-    "href": "slides/20-hypothesis-testing-slides.html#shuffling-vs.-sampling-with-replacement",
+    "objectID": "slides/20-hypothesis-testing-slides.html#shuffling-is-cool-trust",
+    "href": "slides/20-hypothesis-testing-slides.html#shuffling-is-cool-trust",
     "title": "Hypothesis Testing",
-    "section": "Shuffling (vs. sampling with replacement)",
-    "text": "Shuffling (vs. sampling with replacement)\n\n\nShuffling breaks any existing link between our x and our y (on average)\ntype = \"permute\" (yesterday, type = \"bootstrap\")\nShuffle the area variable, fit a model and get a slope, record the slope, repeat!\nIf the null is true, the distribution of these slopes should be centered at zero!\nThink of shuffling a deck of cards; all you are doing is randomizing the order of your deck\nvs. sampling with replacement allows you to change the composition of your deck entirely; remember the deck of entirely King of Hearts?"
+    "section": "Shuffling is cool, trust",
+    "text": "Shuffling is cool, trust\n\n\nOn average, no\nShuffling breaks any link between spike and height (on average)\ntype = \"permute\"\nShuffle the spike variable, fit a model and get a slope, record the slope, repeat!\nIf the null is true, the distribution of these slopes should be centered on zero!\nMore on this in STA 221L\nWhat if we shuffled height instead? Both?"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#every-day-im-shuffling",
     "href": "slides/20-hypothesis-testing-slides.html#every-day-im-shuffling",
     "title": "Hypothesis Testing",
     "section": "Every day I’m shuffling",
-    "text": "Every day I’m shuffling\n\nggplot(duke_forest, aes(x = area, y = price)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")"
+    "text": "Every day I’m shuffling\n\nggplot(volleyball, aes(x = height, y = spike)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#every-day-im-shuffling-1",
     "href": "slides/20-hypothesis-testing-slides.html#every-day-im-shuffling-1",
     "title": "Hypothesis Testing",
     "section": "Every day I’m shuffling",
-    "text": "Every day I’m shuffling\n\nset.seed(847)\nggplot(duke_forest, aes(x = sample(area), y = price)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")"
+    "text": "Every day I’m shuffling\n\nggplot(volleyball, aes(x = height, y = sample(spike))) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
-    "objectID": "slides/20-hypothesis-testing-slides.html#new-function-alert",
-    "href": "slides/20-hypothesis-testing-slides.html#new-function-alert",
+    "objectID": "slides/20-hypothesis-testing-slides.html#wait-whats-that-new-function",
+    "href": "slides/20-hypothesis-testing-slides.html#wait-whats-that-new-function",
     "title": "Hypothesis Testing",
-    "section": "New function alert!",
-    "text": "New function alert!\n\noffice_cast &lt;- c(\"Michael Scott\", \"Jim Halpert\", \"Pam Beesly\", \"Dwight Schrute\")\noffice_cast\n\n[1] \"Michael Scott\"  \"Jim Halpert\"    \"Pam Beesly\"    \n[4] \"Dwight Schrute\"\n\n\n\n\nset.seed(847)\nsample(office_cast)\n\n[1] \"Jim Halpert\"    \"Dwight Schrute\" \"Pam Beesly\"    \n[4] \"Michael Scott\""
+    "section": "Wait, what’s that new function",
+    "text": "Wait, what’s that new function\n\nrouges_gallery &lt;- c(\"Josh Lim\", \"John Zito\", \"Sarah Wu\", \"Katie Solarz\")\nrouges_gallery\n\n[1] \"Josh Lim\"     \"John Zito\"    \"Sarah Wu\"     \"Katie Solarz\"\n\n\n\n\nset.seed(8675309)\n\nsample(rouges_gallery)\n\n[1] \"Katie Solarz\" \"Sarah Wu\"     \"John Zito\"    \"Josh Lim\""
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-shuffle",
     "href": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-shuffle",
     "title": "Hypothesis Testing",
     "section": "What if this was my shuffle?",
-    "text": "What if this was my shuffle?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept) 603842. \n2 area_sh        -15.8"
+    "text": "What if this was my shuffle?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)  336.   \n2 height        -0.231"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-shuffle-instead",
     "href": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-shuffle-instead",
     "title": "Hypothesis Testing",
     "section": "What if this was my shuffle instead?",
-    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept) 631641. \n2 area_sh        -25.8"
+    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)  389.   \n2 height        -0.526"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-shuffle-instead-1",
     "href": "slides/20-hypothesis-testing-slides.html#what-if-this-was-my-shuffle-instead-1",
     "title": "Hypothesis Testing",
     "section": "What if this was my shuffle instead?",
-    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term          estimate\n  &lt;chr&gt;            &lt;dbl&gt;\n1 (Intercept) 559207.   \n2 area_sh          0.249"
+    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)  242.   \n2 height         0.291"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#rinse-and-repeat-10000-times",
@@ -4540,14 +4400,21 @@
     "href": "slides/20-hypothesis-testing-slides.html#view-null-distribution",
     "title": "Hypothesis Testing",
     "section": "View null distribution",
-    "text": "View null distribution\n\nnull_dist\n\n# A tibble: 2,000 × 3\n# Groups:   replicate [1,000]\n   replicate term       estimate\n       &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;\n 1         1 intercept 551475.  \n 2         1 area           3.03\n 3         2 intercept 478969.  \n 4         2 area          29.1 \n 5         3 intercept 581602.  \n 6         3 area          -7.81\n 7         4 intercept 492889.  \n 8         4 area          24.1 \n 9         5 intercept 484819.  \n10         5 area          27.0 \n# ℹ 1,990 more rows"
+    "text": "View null distribution\n\nnull_dist\n\n# A tibble: 20,000 × 3\n# Groups:   replicate [10,000]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept 292.    \n 2         1 height      0.0132\n 3         2 intercept 301.    \n 4         2 height     -0.0377\n 5         3 intercept 402.    \n 6         3 height     -0.594 \n 7         4 intercept 366.    \n 8         4 height     -0.395 \n 9         5 intercept 449.    \n10         5 height     -0.853 \n# ℹ 19,990 more rows"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#visualize-null-distribution",
     "href": "slides/20-hypothesis-testing-slides.html#visualize-null-distribution",
     "title": "Hypothesis Testing",
     "section": "Visualize null distribution",
-    "text": "Visualize null distribution\n\nnull_dist |&gt;\n  filter(term == \"area\") |&gt;\n  ggplot(aes(x = estimate)) +\n  geom_histogram(binwidth = 15)"
+    "text": "Visualize null distribution\n\nnull_dist |&gt;\n  filter(term == \"height\") |&gt;\n  ggplot(aes(x = estimate)) +\n  geom_histogram(binwidth = 0.2)"
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing-slides.html#reminder-observed-fit",
+    "href": "slides/20-hypothesis-testing-slides.html#reminder-observed-fit",
+    "title": "Hypothesis Testing",
+    "section": "Reminder: observed fit",
+    "text": "Reminder: observed fit\nWhat was our estimate to begin with?\n\nobserved_fit &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept   0.0540\n2 height      1.62"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#visualize-null-distribution-alternative",
@@ -4561,14 +4428,21 @@
     "href": "slides/20-hypothesis-testing-slides.html#get-p-value",
     "title": "Hypothesis Testing",
     "section": "Get p-value",
-    "text": "Get p-value\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\nWarning: Please be cautious in reporting a p-value of 0. This result is an\napproximation based on the number of `reps` chosen in the\n`generate()` step.\nℹ See `get_p_value()` (`?infer::get_p_value()`) for more information.\nPlease be cautious in reporting a p-value of 0. This result is an\napproximation based on the number of `reps` chosen in the\n`generate()` step.\nℹ See `get_p_value()` (`?infer::get_p_value()`) for more information.\n\n\n# A tibble: 2 × 2\n  term      p_value\n  &lt;chr&gt;       &lt;dbl&gt;\n1 area            0\n2 intercept       0"
+    "text": "Get p-value\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\n# A tibble: 2 × 2\n  term      p_value\n  &lt;chr&gt;       &lt;dbl&gt;\n1 height      0.002\n2 intercept   0.002"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#make-a-decision",
     "href": "slides/20-hypothesis-testing-slides.html#make-a-decision",
     "title": "Hypothesis Testing",
     "section": "Make a decision",
-    "text": "Make a decision\n\nBased on the p-value calculated, what is the conclusion of the hypothesis test?"
+    "text": "Make a decision\n\nBased on the p-value calculated, what is the conclusion of the hypothesis test?\n\n\n\nProbability of observing your data or something more extreme given the null is true\nSince \\(p = 0.002\\), we reject the null hypothesis and have evidence that there is a statistically significant relationship between an FIVB players spike touch and height."
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing-slides.html#how-small-is-small-enough",
+    "href": "slides/20-hypothesis-testing-slides.html#how-small-is-small-enough",
+    "title": "Hypothesis Testing",
+    "section": "How small is small enough?",
+    "text": "How small is small enough?\n\nPick a threshold \\(\\alpha\\in[0,\\,1]\\) called the discernibility level and threshold the \\(p\\)-value:\n\nIf \\(p\\text{-value} &lt; \\alpha\\), reject null and accept alternative;\nIf \\(p\\text{-value} \\geq \\alpha\\), fail to reject null;"
   },
   {
     "objectID": "slides/20-hypothesis-testing-slides.html#sometimes-the-test-will-be-wrong",
@@ -4592,165 +4466,18 @@
     "text": "Think about the doctor\n\\(H_0\\) person well vs \\(H_A\\) person sick."
   },
   {
-    "objectID": "slides/20-hypothesis-testing-slides.html#how-do-we-negotiate-the-trade-off",
-    "href": "slides/20-hypothesis-testing-slides.html#how-do-we-negotiate-the-trade-off",
+    "objectID": "slides/20-hypothesis-testing-slides.html#where-does-alpha-come-in-to-this",
+    "href": "slides/20-hypothesis-testing-slides.html#where-does-alpha-come-in-to-this",
     "title": "Hypothesis Testing",
-    "section": "How do we negotiate the trade-off?",
-    "text": "How do we negotiate the trade-off?\n\nPick a threshold \\(\\alpha\\in[0,\\,1]\\) called the discernibility level (you may also hear it called the significance level) and threshold the \\(p\\)-value:\n\nIf \\(p\\text{-value} &lt; \\alpha\\), reject null; in the context of our hypothesis test of \\(\\beta_1\\), we would say “there is sufficient evidence that \\(\\beta_1 \\neq 0\\) and that there is some relationship between x and y.”\nIf \\(p\\text{-value} \\geq \\alpha\\), fail to reject null; “there is not sufficient evidence that \\(\\beta_1\\) differs from 0.”"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing-slides.html#how-do-we-negotiate-the-trade-off-1",
-    "href": "slides/20-hypothesis-testing-slides.html#how-do-we-negotiate-the-trade-off-1",
-    "title": "Hypothesis Testing",
-    "section": "How do we negotiate the trade-off?",
-    "text": "How do we negotiate the trade-off?\nUnless otherwise specified, we will use a discernibility level \\(\\alpha = 0.05\\); you may see this worded as “What is your conclusion at the 5% discernibility level?” or functionally similar"
+    "section": "Where does alpha come in to this?",
+    "text": "Where does alpha come in to this?"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html",
     "href": "slides/20-hypothesis-testing.html",
     "title": "Hypothesis Testing",
     "section": "",
-    "text": "# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    2.94 \n2 log_inc        0.657\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    5.29 \n2 log_inc        0.486\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    1.62 \n2 log_inc        0.805\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow sensitive are the estimates to the data they are based on?\n- Very? Then uncertainty is high, results are unreliable;\n- Not very? Uncertainty is low, results are more reliable.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData collection is costly, so we have to do our best with what we already have;\nWe approximate this idea of “alternative, hypothetical datasets I could have observed” by resampling our data with replacement;\n\nWe construct a new dataset of the same size by randomly picking rows out of the original one:\n\nSome rows will be duplicated;\nSome rows will not appear at all;\nHence, the new dataset is different from the original;\nDifferent dataset \\(\\rightarrow\\) different estimate\n\n\nRepeat this processes hundred or thousands of times, and observe how the estimates vary as you refit the model on alternative datasets.\nThis gives you a sense of the sampling variability of your estimates.\n\n\n\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     5  0.327  0.820\n2     6 -0.679 -0.961\n3     6 -0.679 -0.961\n4     1  0.432  1.53 \n5     6 -0.679 -0.961\n6     1  0.432  1.53 \n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.462\n2 x              2.11 \n\n\n\n\n\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id       x      y\n  &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1     2 -2.01    1.80 \n2     5  0.327   0.820\n3     1  0.432   1.53 \n4     6 -0.679  -0.961\n5     3 -0.0467  1.43 \n6     2 -2.01    1.80 \n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.913\n2 x             -0.236\n\n\n\n\n\n\n\nOriginal data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     6 -0.679 -0.961\n2     1  0.432  1.53 \n3     5  0.327  0.820\n4     6 -0.679 -0.961\n5     6 -0.679 -0.961\n6     5  0.327  0.820\n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.357\n2 x              1.96 \n\n\n\n\n\n\nPoint estimation: report your single number best guess for the unknown quantity;\n\nInterval estimation: report a range, or interval, or values where you think the unknown quantity is likely to live;\n\nInterval should be wide enough to capture the truth with high probability;\nInterval should be narrow enough to be informative;\n\n\nUnfortunately, there is a trade-off. You adjust the confidence level to try to negotiate the trade-off;\nCommon choices: 90%, 95%, 99%.\n\n\n\n\n\n\nData on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020\nScraped from Zillow\nSource: openintro::duke_forest\n\n\n\n\n\n\nGoal: Use the area (in square feet) to understand variability in the price of houses in Duke Forest.\n\n\ndf_fit &lt;- linear_reg() |&gt;\n  fit(price ~ area, data = duke_forest)\n\ntidy(df_fit) |&gt;\n  kable(digits = 2) # neatly format table to 2 digits\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n116652.33\n53302.46\n2.19\n0.03\n\n\narea\n159.48\n18.17\n8.78\n0.00\n\n\n\n\n\n\nA confidence interval will allow us to make a statement like “For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus X dollars.”\n\n\n\n\n\n\n\n\n\n\n\nA 95% confidence interval is bounded by the middle 95% of the bootstrap distribution\nWe are 95% confident that for each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $90.43 to $205.77.\n\n\n\n\n\nQuantiles!\n90% of the bootstrap distribution is between the 5% quantile on the left and the 95% quantile on the right;\n95% of the bootstrap distribution is between the 2.5% quantile on the left and the 97.5% quantile on the right;\nAnd so on.\n\n\n\nCalculate the observed slope:\n\nobserved_fit &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept  116652.\n2 area          159.\n\n\n\nTake 100 bootstrap samples and fit models to each one:\n\nset.seed(1120)\n\nboot_fits &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 200 × 3\n# Groups:   replicate [100]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept   47819.\n 2         1 area          191.\n 3         2 intercept  144645.\n 4         2 area          134.\n 5         3 intercept  114008.\n 6         3 area          161.\n 7         4 intercept  100639.\n 8         4 area          166.\n 9         5 intercept  215264.\n10         5 area          125.\n# ℹ 190 more rows\n\n\n\nPercentile method: Compute the 95% CI as the middle 95% of the bootstrap distribution:\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\" # default method\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528.\n\n\n\nIf we did it manually…\n\nboot_fits |&gt;\n  filter(term == \"area\") |&gt;\n  ungroup() |&gt;\n  summarize(\n    lower_ci = quantile(estimate, 0.025),\n    upper_ci = quantile(estimate, 0.975),\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     92.1     223.\n\n\n\n\nHow would you modify the following code to calculate a 90% confidence interval? How would you modify it for a 99% confidence interval?\n\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528.\n\n\n\n\n## confidence level: 90%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.90, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          104.     212.\n2 intercept  -24380.  256730.\n\n## confidence level: 99%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.99, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          56.3     226.\n2 intercept -61950.   370395.\n\n\n\n\n\nPopulation: Complete set of observations of whatever we are studying, e.g., people, tweets, photographs, etc. (population size = \\(N\\))\nSample: Subset of the population, ideally random and representative (sample size = \\(n\\))\nSample statistic \\(\\ne\\) population parameter, but if the sample is good, it can be a good estimate\nStatistical inference: Discipline that concerns itself with the development of procedures, methods, and theorems that allow us to extract meaning and information from data that has been generated by stochastic (random) process\nWe report the estimate with a confidence interval, and the width of this interval depends on the variability of sample statistics from different samples from the population\nSince we can’t continue sampling from the population, we bootstrap from the one sample we have to estimate sampling variability"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#what-if-this-was-my-dataset",
-    "href": "slides/20-hypothesis-testing.html#what-if-this-was-my-dataset",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    2.94 \n2 log_inc        0.657"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#what-if-this-was-my-dataset-instead",
-    "href": "slides/20-hypothesis-testing.html#what-if-this-was-my-dataset-instead",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    5.29 \n2 log_inc        0.486"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#what-if-this-was-my-dataset-instead-1",
-    "href": "slides/20-hypothesis-testing.html#what-if-this-was-my-dataset-instead-1",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    1.62 \n2 log_inc        0.805"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#sampling-uncertainty",
-    "href": "slides/20-hypothesis-testing.html#sampling-uncertainty",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "How sensitive are the estimates to the data they are based on?\n- Very? Then uncertainty is high, results are unreliable;\n- Not very? Uncertainty is low, results are more reliable."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#bootstrapping",
-    "href": "slides/20-hypothesis-testing.html#bootstrapping",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Data collection is costly, so we have to do our best with what we already have;\nWe approximate this idea of “alternative, hypothetical datasets I could have observed” by resampling our data with replacement;\n\nWe construct a new dataset of the same size by randomly picking rows out of the original one:\n\nSome rows will be duplicated;\nSome rows will not appear at all;\nHence, the new dataset is different from the original;\nDifferent dataset \\(\\rightarrow\\) different estimate\n\n\nRepeat this processes hundred or thousands of times, and observe how the estimates vary as you refit the model on alternative datasets.\nThis gives you a sense of the sampling variability of your estimates."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#bootstrap-samples-1",
-    "href": "slides/20-hypothesis-testing.html#bootstrap-samples-1",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Original data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     5  0.327  0.820\n2     6 -0.679 -0.961\n3     6 -0.679 -0.961\n4     1  0.432  1.53 \n5     6 -0.679 -0.961\n6     1  0.432  1.53 \n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.462\n2 x              2.11"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#bootstrap-samples-2",
-    "href": "slides/20-hypothesis-testing.html#bootstrap-samples-2",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Original data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id       x      y\n  &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1     2 -2.01    1.80 \n2     5  0.327   0.820\n3     1  0.432   1.53 \n4     6 -0.679  -0.961\n5     3 -0.0467  1.43 \n6     2 -2.01    1.80 \n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.913\n2 x             -0.236"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#bootstrap-samples-3",
-    "href": "slides/20-hypothesis-testing.html#bootstrap-samples-3",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Original data\n\n\n# A tibble: 6 × 3\n     id       x       y\n  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1  0.432   1.53  \n2     2 -2.01    1.80  \n3     3 -0.0467  1.43  \n4     4 -1.05    0.0518\n5     5  0.327   0.820 \n6     6 -0.679  -0.961 \n\n\nOriginal estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)   0.801 \n2 x             0.0450\n\n\n\nSample with replacement:\n\n\n# A tibble: 6 × 3\n     id      x      y\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     6 -0.679 -0.961\n2     1  0.432  1.53 \n3     5  0.327  0.820\n4     6 -0.679 -0.961\n5     6 -0.679 -0.961\n6     5  0.327  0.820\n\n\nDifferent data \\(\\rightarrow\\) new estimates:\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)    0.357\n2 x              1.96"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#confidence-intervals",
-    "href": "slides/20-hypothesis-testing.html#confidence-intervals",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Point estimation: report your single number best guess for the unknown quantity;\n\nInterval estimation: report a range, or interval, or values where you think the unknown quantity is likely to live;\n\nInterval should be wide enough to capture the truth with high probability;\nInterval should be narrow enough to be informative;\n\n\nUnfortunately, there is a trade-off. You adjust the confidence level to try to negotiate the trade-off;\nCommon choices: 90%, 95%, 99%."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#data-houses-in-duke-forest",
-    "href": "slides/20-hypothesis-testing.html#data-houses-in-duke-forest",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Data on houses that were sold in the Duke Forest neighborhood of Durham, NC around November 2020\nScraped from Zillow\nSource: openintro::duke_forest\n\n\n\n\n\n\nGoal: Use the area (in square feet) to understand variability in the price of houses in Duke Forest."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#modeling",
-    "href": "slides/20-hypothesis-testing.html#modeling",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "df_fit &lt;- linear_reg() |&gt;\n  fit(price ~ area, data = duke_forest)\n\ntidy(df_fit) |&gt;\n  kable(digits = 2) # neatly format table to 2 digits\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n(Intercept)\n116652.33\n53302.46\n2.19\n0.03\n\n\narea\n159.48\n18.17\n8.78\n0.00"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#confidence-interval-for-the-slope",
-    "href": "slides/20-hypothesis-testing.html#confidence-interval-for-the-slope",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "A confidence interval will allow us to make a statement like “For each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $159, plus or minus X dollars.”"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#confidence-interval",
-    "href": "slides/20-hypothesis-testing.html#confidence-interval",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "A 95% confidence interval is bounded by the middle 95% of the bootstrap distribution\nWe are 95% confident that for each additional square foot, the model predicts the sale price of Duke Forest houses to be higher, on average, by $90.43 to $205.77."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#where-do-the-bounds-come-from",
-    "href": "slides/20-hypothesis-testing.html#where-do-the-bounds-come-from",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Quantiles!\n90% of the bootstrap distribution is between the 5% quantile on the left and the 95% quantile on the right;\n95% of the bootstrap distribution is between the 2.5% quantile on the left and the 97.5% quantile on the right;\nAnd so on."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-i",
-    "href": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-i",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Calculate the observed slope:\n\nobserved_fit &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept  116652.\n2 area          159."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-ii",
-    "href": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-ii",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Take 100 bootstrap samples and fit models to each one:\n\nset.seed(1120)\n\nboot_fits &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  generate(reps = 100, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 200 × 3\n# Groups:   replicate [100]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept   47819.\n 2         1 area          191.\n 3         2 intercept  144645.\n 4         2 area          134.\n 5         3 intercept  114008.\n 6         3 area          161.\n 7         4 intercept  100639.\n 8         4 area          166.\n 9         5 intercept  215264.\n10         5 area          125.\n# ℹ 190 more rows"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-iii",
-    "href": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-iii",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Percentile method: Compute the 95% CI as the middle 95% of the bootstrap distribution:\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\" # default method\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-iv",
-    "href": "slides/20-hypothesis-testing.html#computing-the-ci-for-the-slope-iv",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "If we did it manually…\n\nboot_fits |&gt;\n  filter(term == \"area\") |&gt;\n  ungroup() |&gt;\n  summarize(\n    lower_ci = quantile(estimate, 0.025),\n    upper_ci = quantile(estimate, 0.975),\n  )\n\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     &lt;dbl&gt;    &lt;dbl&gt;\n1     92.1     223."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#changing-confidence-level",
-    "href": "slides/20-hypothesis-testing.html#changing-confidence-level",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "How would you modify the following code to calculate a 90% confidence interval? How would you modify it for a 99% confidence interval?\n\n\nget_confidence_interval(\n  boot_fits, \n  point_estimate = observed_fit, \n  level = 0.95,\n  type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          92.1     223.\n2 intercept -36765.   296528."
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#changing-confidence-level-1",
-    "href": "slides/20-hypothesis-testing.html#changing-confidence-level-1",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "## confidence level: 90%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.90, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          104.     212.\n2 intercept  -24380.  256730.\n\n## confidence level: 99%\nget_confidence_interval(\n  boot_fits, point_estimate = observed_fit, \n  level = 0.99, type = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 area          56.3     226.\n2 intercept -61950.   370395."
+    "text": "Population: Complete set of observations of whatever we are studying, e.g., people, tweets, photographs, etc. (population size = \\(N\\))\nSample: Subset of the population, ideally random and representative (sample size = \\(n\\))\nSample statistic \\(\\ne\\) population parameter, but if the sample is good, it can be a good estimate\nStatistical inference: Discipline that concerns itself with the development of procedures, methods, and theorems that allow us to extract meaning and information from data that has been generated by stochastic (random) process\nWe report the estimate with a confidence interval, and the width of this interval depends on the variability of sample statistics from different samples from the population\nSince we can’t continue sampling from the population, we bootstrap from the one sample we have to estimate sampling variability"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#recap",
@@ -4764,21 +4491,35 @@
     "href": "slides/20-hypothesis-testing.html#hypothesis-testing-1",
     "title": "Hypothesis Testing",
     "section": "Hypothesis testing",
-    "text": "Hypothesis testing\nA hypothesis test is a statistical technique used to evaluate competing claims using data\n\n\nNull hypothesis, \\(H_0\\): An assumption about the population. With respect to the slope parameter, our null hypothesis is one of “no relationship”\nAlternative hypothesis, \\(H_A\\): A research question about the population. With respect to the slope parameter, our alternative hypothesis is that “there is some relationship”\n\n\n. . .\nNote: Hypotheses are always at the population level!"
+    "text": "Hypothesis testing\nA hypothesis test is a statistical technique used to evaluate competing claims using data\n\n\nNull hypothesis, \\(H_0\\): An assumption about the population. “There is nothing going on.”\nAlternative hypothesis, \\(H_A\\): A research question about the population. “There is something going on”.\n\n\n. . .\nNote: Hypotheses are always at the population level!"
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing.html#running-example",
+    "href": "slides/20-hypothesis-testing.html#running-example",
+    "title": "Hypothesis Testing",
+    "section": "Running Example",
+    "text": "Running Example\n\nglimpse(volleyball)\n\nRows: 25\nColumns: 4\n$ name   &lt;chr&gt; \"Maguilaura Frias\", \"Maria Elena Aguilera\", \"Mitzy Na…\n$ height &lt;dbl&gt; 186, 153, 168, 173, 162, 190, 180, 184, 188, 195, 186…\n$ spike  &lt;dbl&gt; 291, 260, 211, 296, 263, 290, 308, 298, 305, 312, 298…\n$ block  &lt;dbl&gt; 280, 240, 209, 286, 253, 285, 231, 295, 295, 300, 285…\n\n\n\n\nVolleyball Dataset on FIVB Athletes\nSpike: How high an athlete touches on a spike (cm)\nBlock: How high an athlete touches on a block (cm)\nHeight (cm)"
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing.html#running-example-cont",
+    "href": "slides/20-hypothesis-testing.html#running-example-cont",
+    "title": "Hypothesis Testing",
+    "section": "Running Example cont",
+    "text": "Running Example cont\nQuestion: Is an athlete’s spike touch significantly related to their height?\n\nobserved_fit &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept   0.0540\n2 height      1.62"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#setting-hypotheses",
     "href": "slides/20-hypothesis-testing.html#setting-hypotheses",
     "title": "Hypothesis Testing",
     "section": "Setting hypotheses",
-    "text": "Setting hypotheses\n\nNull hypothesis, \\(H_0\\): “There is no relationship.” The slope of the model for predicting the prices of houses in Duke Forest from their areas is 0, \\(\\beta_1 = 0\\).\nAlternative hypothesis, \\(H_A\\): “There is some relationship”. The slope of the model for predicting the prices of houses in Duke Forest from their areas is different than 0, \\(\\beta_1 \\ne 0\\)."
+    "text": "Setting hypotheses\n\nNull hypothesis, \\(H_0\\): “There is nothing going on.” The slope of the model for predicting the spike touch of FIVB athletes from their heights is 0, \\(\\beta_1 = 0\\).\nAlternative hypothesis, \\(H_A\\): “There is something going on”. The slope of the model for predicting the spike touch of FIVB athletes from their heights is different than 0, \\(\\beta_1 \\ne 0\\)."
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#hypothesis-testing-mindset",
     "href": "slides/20-hypothesis-testing.html#hypothesis-testing-mindset",
     "title": "Hypothesis Testing",
     "section": "Hypothesis testing “mindset”",
-    "text": "Hypothesis testing “mindset”\n\nAssume you live in a world where null hypothesis is true: \\(\\beta_1 = 0\\).\nAsk yourself how likely you are to observe the sample statistic, or something even more extreme, in this world: \\(P(b_1 \\leq -159.48~or~b_1 \\geq 159.48 | \\beta_1 = 0)\\) = ?\nIn words: “Given the null hypothesis is true and \\(\\beta_1 = 0\\), what is the probability of observing \\(b_1 \\leq -159.48\\) or \\(b_1 \\geq 159.48\\)?”"
+    "text": "Hypothesis testing “mindset”\n\nAssume you live in a world where null hypothesis is true: \\(\\beta_1 = 0\\).\nAsk yourself how likely you are to observe the sample statistic, or something even more extreme, in this world: \\(P(b_1 \\leq -1.62~or~b_1 \\geq 1.62 | \\beta_1 = 0)\\) = ?"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#hypothesis-testing-as-a-court-trial",
@@ -4806,70 +4547,70 @@
     "href": "slides/20-hypothesis-testing.html#calculate-observed-slope",
     "title": "Hypothesis Testing",
     "section": "Calculate observed slope",
-    "text": "Calculate observed slope\n… which we have already done:\n\nobserved_fit &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept  116652.\n2 area          159.\n\n\nAgain, for inference-related tasks, we do this with specify(y ~ x) |&gt; fit()"
+    "text": "Calculate observed slope\n… which we have already done:\n\nobserved_fit &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept   0.0540\n2 height      1.62"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#simulate-null-distribution",
     "href": "slides/20-hypothesis-testing.html#simulate-null-distribution",
     "title": "Hypothesis Testing",
     "section": "Simulate null distribution",
-    "text": "Simulate null distribution\n\nset.seed(847)\nnull_dist &lt;- duke_forest |&gt;\n  specify(price ~ area) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 1000, type = \"permute\") |&gt;\n  fit()"
+    "text": "Simulate null distribution\n\nset.seed(24601)\nnull_dist &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 10000, type = \"permute\") |&gt;\n  fit()"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#wait-so-whats-a-null-distribution",
     "href": "slides/20-hypothesis-testing.html#wait-so-whats-a-null-distribution",
     "title": "Hypothesis Testing",
     "section": "Wait, so what’s a null distribution?",
-    "text": "Wait, so what’s a null distribution?\n\n\nSimulating a universe under \\(H_0\\): the slope of the model for predicting the price of a house in the Duke Forest area from its square footage is 0, \\(\\beta_1 = 0\\). AKA, there is no relationship between our x and y.\nIf I “shuffle” the order of only the values in the area column, would I expect to find a relationship between area and price? Could area reasonably predict price?\nNo! In theory, I have broken whatever relationship may (or may have not) existed between my predictor and my outcome."
+    "text": "Wait, so what’s a null distribution?\n\n\nSimulating a universe under \\(H_0\\): the slope of the model for predicting the spike touch of FIVB athletes from their heights is 0, \\(\\beta_1 = 0\\). I.e., no relationship between spike and height.\nIf I “shuffle” the order of the spike variable, is there a relationship between spike and height? Could height predict spike touch?"
   },
   {
-    "objectID": "slides/20-hypothesis-testing.html#shuffling-vs.-sampling-with-replacement",
-    "href": "slides/20-hypothesis-testing.html#shuffling-vs.-sampling-with-replacement",
+    "objectID": "slides/20-hypothesis-testing.html#shuffling-is-cool-trust",
+    "href": "slides/20-hypothesis-testing.html#shuffling-is-cool-trust",
     "title": "Hypothesis Testing",
-    "section": "Shuffling (vs. sampling with replacement)",
-    "text": "Shuffling (vs. sampling with replacement)\n\n\nShuffling breaks any existing link between our x and our y (on average)\ntype = \"permute\" (yesterday, type = \"bootstrap\")\nShuffle the area variable, fit a model and get a slope, record the slope, repeat!\nIf the null is true, the distribution of these slopes should be centered at zero!\nThink of shuffling a deck of cards; all you are doing is randomizing the order of your deck\nvs. sampling with replacement allows you to change the composition of your deck entirely; remember the deck of entirely King of Hearts?"
+    "section": "Shuffling is cool, trust",
+    "text": "Shuffling is cool, trust\n\n\nOn average, no\nShuffling breaks any link between spike and height (on average)\ntype = \"permute\"\nShuffle the spike variable, fit a model and get a slope, record the slope, repeat!\nIf the null is true, the distribution of these slopes should be centered on zero!\nMore on this in STA 221L\nWhat if we shuffled height instead? Both?"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#every-day-im-shuffling",
     "href": "slides/20-hypothesis-testing.html#every-day-im-shuffling",
     "title": "Hypothesis Testing",
     "section": "Every day I’m shuffling",
-    "text": "Every day I’m shuffling\n\nggplot(duke_forest, aes(x = area, y = price)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")"
+    "text": "Every day I’m shuffling\n\nggplot(volleyball, aes(x = height, y = spike)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#every-day-im-shuffling-1",
     "href": "slides/20-hypothesis-testing.html#every-day-im-shuffling-1",
     "title": "Hypothesis Testing",
     "section": "Every day I’m shuffling",
-    "text": "Every day I’m shuffling\n\nset.seed(847)\nggplot(duke_forest, aes(x = sample(area), y = price)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")"
+    "text": "Every day I’m shuffling\n\nggplot(volleyball, aes(x = height, y = sample(spike))) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'"
   },
   {
-    "objectID": "slides/20-hypothesis-testing.html#new-function-alert",
-    "href": "slides/20-hypothesis-testing.html#new-function-alert",
+    "objectID": "slides/20-hypothesis-testing.html#wait-whats-that-new-function",
+    "href": "slides/20-hypothesis-testing.html#wait-whats-that-new-function",
     "title": "Hypothesis Testing",
-    "section": "New function alert!",
-    "text": "New function alert!\n\noffice_cast &lt;- c(\"Michael Scott\", \"Jim Halpert\", \"Pam Beesly\", \"Dwight Schrute\")\noffice_cast\n\n[1] \"Michael Scott\"  \"Jim Halpert\"    \"Pam Beesly\"    \n[4] \"Dwight Schrute\"\n\n\n. . .\n\nset.seed(847)\nsample(office_cast)\n\n[1] \"Jim Halpert\"    \"Dwight Schrute\" \"Pam Beesly\"    \n[4] \"Michael Scott\""
+    "section": "Wait, what’s that new function",
+    "text": "Wait, what’s that new function\n\nrouges_gallery &lt;- c(\"Josh Lim\", \"John Zito\", \"Sarah Wu\", \"Katie Solarz\")\nrouges_gallery\n\n[1] \"Josh Lim\"     \"John Zito\"    \"Sarah Wu\"     \"Katie Solarz\"\n\n\n. . .\n\nset.seed(8675309)\n\nsample(rouges_gallery)\n\n[1] \"Katie Solarz\" \"Sarah Wu\"     \"John Zito\"    \"Josh Lim\""
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#what-if-this-was-my-shuffle",
     "href": "slides/20-hypothesis-testing.html#what-if-this-was-my-shuffle",
     "title": "Hypothesis Testing",
     "section": "What if this was my shuffle?",
-    "text": "What if this was my shuffle?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept) 603842. \n2 area_sh        -15.8"
+    "text": "What if this was my shuffle?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)  336.   \n2 height        -0.231"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#what-if-this-was-my-shuffle-instead",
     "href": "slides/20-hypothesis-testing.html#what-if-this-was-my-shuffle-instead",
     "title": "Hypothesis Testing",
     "section": "What if this was my shuffle instead?",
-    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept) 631641. \n2 area_sh        -25.8"
+    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)  389.   \n2 height        -0.526"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#what-if-this-was-my-shuffle-instead-1",
     "href": "slides/20-hypothesis-testing.html#what-if-this-was-my-shuffle-instead-1",
     "title": "Hypothesis Testing",
     "section": "What if this was my shuffle instead?",
-    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term          estimate\n  &lt;chr&gt;            &lt;dbl&gt;\n1 (Intercept) 559207.   \n2 area_sh          0.249"
+    "text": "What if this was my shuffle instead?\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  term        estimate\n  &lt;chr&gt;          &lt;dbl&gt;\n1 (Intercept)  242.   \n2 height         0.291"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#rinse-and-repeat-10000-times",
@@ -4883,14 +4624,21 @@
     "href": "slides/20-hypothesis-testing.html#view-null-distribution",
     "title": "Hypothesis Testing",
     "section": "View null distribution",
-    "text": "View null distribution\n\nnull_dist\n\n# A tibble: 2,000 × 3\n# Groups:   replicate [1,000]\n   replicate term       estimate\n       &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;\n 1         1 intercept 551475.  \n 2         1 area           3.03\n 3         2 intercept 478969.  \n 4         2 area          29.1 \n 5         3 intercept 581602.  \n 6         3 area          -7.81\n 7         4 intercept 492889.  \n 8         4 area          24.1 \n 9         5 intercept 484819.  \n10         5 area          27.0 \n# ℹ 1,990 more rows"
+    "text": "View null distribution\n\nnull_dist\n\n# A tibble: 20,000 × 3\n# Groups:   replicate [10,000]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept 292.    \n 2         1 height      0.0132\n 3         2 intercept 301.    \n 4         2 height     -0.0377\n 5         3 intercept 402.    \n 6         3 height     -0.594 \n 7         4 intercept 366.    \n 8         4 height     -0.395 \n 9         5 intercept 449.    \n10         5 height     -0.853 \n# ℹ 19,990 more rows"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#visualize-null-distribution",
     "href": "slides/20-hypothesis-testing.html#visualize-null-distribution",
     "title": "Hypothesis Testing",
     "section": "Visualize null distribution",
-    "text": "Visualize null distribution\n\nnull_dist |&gt;\n  filter(term == \"area\") |&gt;\n  ggplot(aes(x = estimate)) +\n  geom_histogram(binwidth = 15)"
+    "text": "Visualize null distribution\n\nnull_dist |&gt;\n  filter(term == \"height\") |&gt;\n  ggplot(aes(x = estimate)) +\n  geom_histogram(binwidth = 0.2)"
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing.html#reminder-observed-fit",
+    "href": "slides/20-hypothesis-testing.html#reminder-observed-fit",
+    "title": "Hypothesis Testing",
+    "section": "Reminder: observed fit",
+    "text": "Reminder: observed fit\nWhat was our estimate to begin with?\n\nobserved_fit &lt;- volleyball |&gt;\n  specify(spike ~ height) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept   0.0540\n2 height      1.62"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#visualize-null-distribution-alternative",
@@ -4904,14 +4652,21 @@
     "href": "slides/20-hypothesis-testing.html#get-p-value",
     "title": "Hypothesis Testing",
     "section": "Get p-value",
-    "text": "Get p-value\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\nWarning: Please be cautious in reporting a p-value of 0. This result is an\napproximation based on the number of `reps` chosen in the\n`generate()` step.\nℹ See `get_p_value()` (`?infer::get_p_value()`) for more information.\nPlease be cautious in reporting a p-value of 0. This result is an\napproximation based on the number of `reps` chosen in the\n`generate()` step.\nℹ See `get_p_value()` (`?infer::get_p_value()`) for more information.\n\n\n# A tibble: 2 × 2\n  term      p_value\n  &lt;chr&gt;       &lt;dbl&gt;\n1 area            0\n2 intercept       0"
+    "text": "Get p-value\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\n# A tibble: 2 × 2\n  term      p_value\n  &lt;chr&gt;       &lt;dbl&gt;\n1 height      0.002\n2 intercept   0.002"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#make-a-decision",
     "href": "slides/20-hypothesis-testing.html#make-a-decision",
     "title": "Hypothesis Testing",
     "section": "Make a decision",
-    "text": "Make a decision\n\nBased on the p-value calculated, what is the conclusion of the hypothesis test?"
+    "text": "Make a decision\n\nBased on the p-value calculated, what is the conclusion of the hypothesis test?\n\n\n\nProbability of observing your data or something more extreme given the null is true\nSince \\(p = 0.002\\), we reject the null hypothesis and have evidence that there is a statistically significant relationship between an FIVB players spike touch and height."
+  },
+  {
+    "objectID": "slides/20-hypothesis-testing.html#how-small-is-small-enough",
+    "href": "slides/20-hypothesis-testing.html#how-small-is-small-enough",
+    "title": "Hypothesis Testing",
+    "section": "How small is small enough?",
+    "text": "How small is small enough?\n\nPick a threshold \\(\\alpha\\in[0,\\,1]\\) called the discernibility level and threshold the \\(p\\)-value:\n\nIf \\(p\\text{-value} &lt; \\alpha\\), reject null and accept alternative;\nIf \\(p\\text{-value} \\geq \\alpha\\), fail to reject null;"
   },
   {
     "objectID": "slides/20-hypothesis-testing.html#sometimes-the-test-will-be-wrong",
@@ -4935,18 +4690,11 @@
     "text": "Think about the doctor\n\\(H_0\\) person well vs \\(H_A\\) person sick."
   },
   {
-    "objectID": "slides/20-hypothesis-testing.html#how-do-we-negotiate-the-trade-off",
-    "href": "slides/20-hypothesis-testing.html#how-do-we-negotiate-the-trade-off",
+    "objectID": "slides/20-hypothesis-testing.html#where-does-alpha-come-in-to-this",
+    "href": "slides/20-hypothesis-testing.html#where-does-alpha-come-in-to-this",
     "title": "Hypothesis Testing",
-    "section": "How do we negotiate the trade-off?",
-    "text": "How do we negotiate the trade-off?\n\nPick a threshold \\(\\alpha\\in[0,\\,1]\\) called the discernibility level (you may also hear it called the significance level) and threshold the \\(p\\)-value:\n\nIf \\(p\\text{-value} &lt; \\alpha\\), reject null; in the context of our hypothesis test of \\(\\beta_1\\), we would say “there is sufficient evidence that \\(\\beta_1 \\neq 0\\) and that there is some relationship between x and y.”\nIf \\(p\\text{-value} \\geq \\alpha\\), fail to reject null; “there is not sufficient evidence that \\(\\beta_1\\) differs from 0.”"
-  },
-  {
-    "objectID": "slides/20-hypothesis-testing.html#how-do-we-negotiate-the-trade-off-1",
-    "href": "slides/20-hypothesis-testing.html#how-do-we-negotiate-the-trade-off-1",
-    "title": "Hypothesis Testing",
-    "section": "How do we negotiate the trade-off?",
-    "text": "How do we negotiate the trade-off?\nUnless otherwise specified, we will use a discernibility level \\(\\alpha = 0.05\\); you may see this worded as “What is your conclusion at the 5% discernibility level?” or functionally similar"
+    "section": "Where does alpha come in to this?",
+    "text": "Where does alpha come in to this?"
   },
   {
     "objectID": "slides/19-interval-estimation-slides.html#so-far",
@@ -7200,7 +6948,7 @@
     "href": "slides/03-grammar-of-data-transformation-slides.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Knocked Up       2007  413369911    30897446 13.4  PASS   ok        \n2 Hollywood Homi…  2003  102952583    94956522  1.08 FAIL   notalk    \n3 Cloudy with a …  2009  392706895   108573160  3.62 FAIL   notalk    \n4 It's Complicat…  2009  366271684    92287186  3.97 PASS   ok        \n5 Herbie Fully L…  2005  250681748    59651656  4.20 PASS   ok"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Knight and Day   2010  361666001   124983125 2.89  FAIL   men       \n2 Idlewild         2006   29287680    17336945 1.69  PASS   ok        \n3 The Quiet Amer…  2002   50946975    25903584 1.97  FAIL   men       \n4 Vera Drake       2004   21097046    13565122 1.56  PASS   ok        \n5 The Boat That …  2009   49390058    54286580 0.910 FAIL   nowomen"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation-slides.html#filter",
@@ -7459,7 +7207,7 @@
     "href": "slides/03-grammar-of-data-transformation.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Knocked Up       2007  413369911    30897446 13.4  PASS   ok        \n2 Hollywood Homi…  2003  102952583    94956522  1.08 FAIL   notalk    \n3 Cloudy with a …  2009  392706895   108573160  3.62 FAIL   notalk    \n4 It's Complicat…  2009  366271684    92287186  3.97 PASS   ok        \n5 Herbie Fully L…  2005  250681748    59651656  4.20 PASS   ok"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Knight and Day   2010  361666001   124983125 2.89  FAIL   men       \n2 Idlewild         2006   29287680    17336945 1.69  PASS   ok        \n3 The Quiet Amer…  2002   50946975    25903584 1.97  FAIL   men       \n4 Vera Drake       2004   21097046    13565122 1.56  PASS   ok        \n5 The Boat That …  2009   49390058    54286580 0.910 FAIL   nowomen"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation.html#filter",
@@ -7789,7 +7537,7 @@
     "href": "ae.html",
     "title": "Application Exercises",
     "section": "",
-    "text": "All application exercises (AEs) are due by the end of lecture (or, precisely, by 10:45 am) on the day they’re covered in lecture. To submit your AE, make at least one change to your AE, commit and then push your change to your AE repo. AEs are graded for engagement, not accuracy.\nMore AEs to be added as the semester progresses.\n\n\n\n\n\n\nTitle\n\n\nSubtitle\n\n\n\n\n\n\nAE 00: Make a GitHub\n\n\n \n\n\n\n\nAE 01: Meet the penguins\n\n\n \n\n\n\n\nAE 02: Penguin peekaboo\n\n\nSuggested answers\n\n\n\n\nAE 02: Penguin peekaboo\n\n\n \n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\nSuggested answers\n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\n \n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\n \n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\nSuggested answers\n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\n \n\n\n\n\nAE 06: Tidying Stat Sci\n\n\nSuggested answers\n\n\n\n\nAE 06: Tidying Stat Sci\n\n\n \n\n\n\n\nAE 07: Joining\n\n\nSuggested answers\n\n\n\n\nAE 07: Joining\n\n\n \n\n\n\n\nAE 08: Durham climate + factors\n\n\nSuggested answers\n\n\n\n\nAE 08: Durham climate + factors\n\n\n \n\n\n\n\nAE 09: Data Imports & Exports\n\n\nSuggested answers\n\n\n\n\nAE 09: Data Imports & Exports\n\n\n \n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\nSuggested answers\n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\n \n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\nSuggested answers\n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\n \n\n\n\n\nAE 12: Modeling fish 🐟\n\n\nSuggested answers\n\n\n\n\nAE 12: Modeling fish 🐟\n\n\n \n\n\n\n\nAE 13: Modeling penguins\n\n\nSuggested answers\n\n\n\n\nAE 13: Modeling penguins\n\n\n \n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\nSuggested answers\n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\n \n\n\n\n\nAE 15: Building a spam filter\n\n\nSuggested answers\n\n\n\n\nAE 15: Building a spam filter\n\n\n \n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\nSuggested answers\n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\n \n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\nSuggested answers\n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\n \n\n\n\n\n\nNo matching items",
+    "text": "All application exercises (AEs) are due by the end of lecture (or, precisely, by 10:45 am) on the day they’re covered in lecture. To submit your AE, make at least one change to your AE, commit and then push your change to your AE repo. AEs are graded for engagement, not accuracy.\nMore AEs to be added as the semester progresses.\n\n\n\n\n\n\nTitle\n\n\nSubtitle\n\n\n\n\n\n\nAE 00: Make a GitHub\n\n\n \n\n\n\n\nAE 01: Meet the penguins\n\n\n \n\n\n\n\nAE 02: Penguin peekaboo\n\n\nSuggested answers\n\n\n\n\nAE 02: Penguin peekaboo\n\n\n \n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\nSuggested answers\n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\n \n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\n \n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\nSuggested answers\n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\n \n\n\n\n\nAE 06: Tidying Stat Sci\n\n\nSuggested answers\n\n\n\n\nAE 06: Tidying Stat Sci\n\n\n \n\n\n\n\nAE 07: Joining\n\n\nSuggested answers\n\n\n\n\nAE 07: Joining\n\n\n \n\n\n\n\nAE 08: Durham climate + factors\n\n\nSuggested answers\n\n\n\n\nAE 08: Durham climate + factors\n\n\n \n\n\n\n\nAE 09: Data Imports & Exports\n\n\nSuggested answers\n\n\n\n\nAE 09: Data Imports & Exports\n\n\n \n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\nSuggested answers\n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\n \n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\nSuggested answers\n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\n \n\n\n\n\nAE 12: Modeling fish 🐟\n\n\nSuggested answers\n\n\n\n\nAE 12: Modeling fish 🐟\n\n\n \n\n\n\n\nAE 13: Modeling penguins\n\n\nSuggested answers\n\n\n\n\nAE 13: Modeling penguins\n\n\n \n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\nSuggested answers\n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\n \n\n\n\n\nAE 15: Building a spam filter\n\n\nSuggested answers\n\n\n\n\nAE 15: Building a spam filter\n\n\n \n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\nSuggested answers\n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\n \n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\nSuggested answers\n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\n \n\n\n\n\nAE 18: Pokemon Inference\n\n\nSuggested answers\n\n\n\n\nAE 18: Pokemon Inference\n\n\n \n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Application Exercises"
     ]
@@ -9491,7 +9239,11 @@
     "href": "project/4-peer-review.html",
     "title": "Peer review",
     "section": "",
-    "text": "Important\n\n\n\nYou must attend this lab in person and participate in the peer review in person to be eligible for the points for this milestone. Team members who are not in lab in person for this milestone will not be eligible for these points, regardless of their contribution throughout the rest of the project.\n\n\nDuring the peer feedback process, you will be provided read-only access to your partner team’s GitHub repo. You will provide your feedback in the form of GitHub issues to your partner team’s GitHub repo.\nGoals\nThe goals of this milestone are as follows:\n\nReview others’ project drafts as a team and provide feedback\nPost issues on GitHub using an issue template\nLearn from others’ projects and improve your own project based on their strengths and weaknesses\nInstructions\nReview one other teams’ project. As a team you should spend ~30 minutes on the review.\n\nFind the names of the team whose project you’re reviewing below. You should already have access to this team’s repo.\nEach team member should go to the repo of the team you’re reviewing.\n\nThen,\n\n1-2 team members clone the team’s project and renders it to check for reproducibility.\nAll team members open the team’s project in their browser and starts reading through the project draft.\n1 team member opens an issue on the team’s repo using the peer review template.\nAll team members discuss the project based on the prompts on the issue template and one team member records the feedback and submits the issue.\n\n\n\nTo open an issue in the repo you’re reviewing, click on New issue, and click on Get started for the Peer review issue. Fill out this issue, answering the following questions:\n\nPeer review by: [NAME OF TEAM DOING THE REVIEW]\nNames of team members that participated in this review: [FULL NAMES OF TEAM MEMBERS DOING THE REVIEW]\nDescribe the goal of the project.\nDescribe the data used or collected, if any. If the proposal does not include the use of a specific dataset, comment on whether the project would be strengthened by the inclusion of a dataset.\nDescribe the approaches, tools, and methods that will be used.\nProvide constructive feedback on how the team might be able to improve their project. Make sure your feedback includes at least one comment on the statistical reasoning aspect of the project, but do feel free to comment on aspects beyond the reasoning as well.\nWhat aspect of this project are you most interested in and would like to see highlighted in the presentation?\nWere you able to reproduce the project by clicking on Render Website once you cloned it? Were there any issues with reproducibility?\nProvide constructive feedback on any issues with file and/or code organization.\nWhat have you learned from this team’s project that you are considering implementing in your own project?\n(Optional) Any further comments or feedback?\n\n\nReview pairings\n\nPeer Review Assignments\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\ndata denominators\nr-stars\n\n\nr-stars\ndata-denominators\n\n\nr-tists\ncode-conquerors\n\n\ncode-conquerors\nr-tists\n\n\n\n\n\n\n\n\n\nGrading\nPeer reviews will be graded on the extent to which it comprehensively and constructively addresses the components of the reviewee’s team’s report.\nOnly the team members participating in the review during the lab session are eligible for points for the peer review. If you’re unable to make it to lab in person, you should arrange to virtually connect with your team during your lab session.\n\n0 points: No peer review\n1 point: Feedback provided is not constructive or actionable\n2-4 points: Feedback provided is not sufficiently thorough\n5 points: Peer review is constructive, actionable, and sufficiently thorough\n\n\n\n\n\n\n\nNote\n\n\n\nThe feedback issue will come from one team member on GitHub since you can’t collectively edit an issue. However it must represent the opinions of the entire team. It is not a single team member’s responsibility to provide feedback, they’re just the record keeper for the team."
+    "text": "Important\n\n\n\nYou must attend this lab in person and participate in the peer review in person to be eligible for the points for this milestone. Team members who are not in lab in person for this milestone will not be eligible for these points, regardless of their contribution throughout the rest of the project.\n\n\nDuring the peer feedback process, you will be provided read-only access to your partner team’s GitHub repo. You will provide your feedback in the form of GitHub issues to your partner team’s GitHub repo.\nGoals\nThe goals of this milestone are as follows:\n\nReview others’ project drafts as a team and provide feedback\nPost issues on GitHub using an issue template\nLearn from others’ projects and improve your own project based on their strengths and weaknesses\nInstructions\nReview one other teams’ project. As a team you should spend ~30 minutes on the review.\n\nFind the names of the team whose project you’re reviewing below. You should already have access to this team’s repo.\nEach team member should go to the repo of the team you’re reviewing.\n\nThen,\n\n1-2 team members clone the team’s project and renders it to check for reproducibility.\nAll team members open the team’s project in their browser and starts reading through the project draft.\n1 team member opens an issue on the team’s repo using the peer review template.\nAll team members discuss the project based on the prompts on the issue template and one team member records the feedback and submits the issue.\n\n\n\nTo open an issue in the repo you’re reviewing, click on New issue, and click on Get started for the Peer review issue. Fill out this issue, answering the following questions:\n\nPeer review by: [NAME OF TEAM DOING THE REVIEW]\nNames of team members that participated in this review: [FULL NAMES OF TEAM MEMBERS DOING THE REVIEW]\nDescribe the goal of the project.\nDescribe the data used or collected, if any. If the proposal does not include the use of a specific dataset, comment on whether the project would be strengthened by the inclusion of a dataset.\nDescribe the approaches, tools, and methods that will be used.\nProvide constructive feedback on how the team might be able to improve their project. Make sure your feedback includes at least one comment on the statistical reasoning aspect of the project, but do feel free to comment on aspects beyond the reasoning as well.\nWhat aspect of this project are you most interested in and would like to see highlighted in the presentation?\nWere you able to reproduce the project by clicking on Render Website once you cloned it? Were there any issues with reproducibility?\nProvide constructive feedback on any issues with file and/or code organization.\nWhat have you learned from this team’s project that you are considering implementing in your own project?\n(Optional) Any further comments or feedback?\n\n\nReview pairings\n\nPeer Review Assignments\n\n\n\n\n\n\n\n\nYour team name\nTeam to review\n\n\n\ndata denominators\nr-stars\n\n\nr-stars\ndata-denominators\n\n\nr-tists\ncode-conquerors\n\n\ncode-conquerors\nr-tists\n\n\n\n\n\n\n\n\n\nGrading\nPeer reviews will be graded on the extent to which it comprehensively and constructively addresses the components of the reviewee’s team’s report.\nOnly the team members participating in the review during the lab session are eligible for points for the peer review. If you’re unable to make it to lab in person, you should arrange to virtually connect with your team during your lab session.\n\n0 points: No peer review\n1 point: Feedback provided is not constructive or actionable\n2-4 points: Feedback provided is not sufficiently thorough\n5 points: Peer review is constructive, actionable, and sufficiently thorough\n\n\n\n\n\n\n\nNote\n\n\n\nThe feedback issue will come from one team member on GitHub since you can’t collectively edit an issue. However it must represent the opinions of the entire team. It is not a single team member’s responsibility to provide feedback, they’re just the record keeper for the team.",
+    "crumbs": [
+      "Project",
+      "Milestone 4"
+    ]
   },
   {
     "objectID": "project/3-improvement-progress.html",
@@ -9641,7 +9393,7 @@
     "href": "index.html",
     "title": "STA 199: Introduction to Data Science & Statistical Thinking",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester! Entries for future dates are tentative; the timeline of topics, assignments, and due dates might be changed throughout the session at the instructor’s discretion. All material changes will be communicated with the students in a timely manner.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nDUE\nPREPARE\n\n\n\n1\nMon, Jun 29\nWelcome\n🖥️ slides 00  ⌨️ ae 00\n\nGitHub username - End of Lecture\n\n\n\n\nMon, Jun 29\nLab 0\n💻 lab 0\n\nLab 0 - End of Lab\n\n\n\n\nTue, Jun 30\nMeet the Toolkit\n🖥️ slides 01  🗒️ notes 01  ⌨️ ae 01\n\n\n📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto \n\n\n\n\nWed, Jul 1\nGrammar of Data Visualization\n🖥️ slides 02  🗒️ notes 02  ⌨️ ae 02  ✅ ae 02\n\nDrop/Add Deadline 11:59pm\n📗 r4ds - chp 1  📘 ims - chp 4 \n\n\n\n\nThu, Jul 2\nGrammar of Data Transformation\n🖥️ slides 03  🗒️ notes 03  ⌨️ ae 03  ✅ ae 03\n\n\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\nThu, Jul 2\nLab 1\n💻 lab 1\n\n\n📗 r4ds - chp 2  📘 ims - chp 5\n\n\n\n\nFri, Jul 3\nNO CLASS - Independence Day\n\n\n\n\n\n2\nMon, Jul 6\nExploratory Data Analysis I\n🖥️ slides 04  🗒️ notes 04  ⌨️ ae 04  ✅ ae 04\n\n\n📗 r4ds - chp 3.6-3.7  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships  🎥 Code along :: Star Wars characters\n\n\n\n\nTue, Jul 7\nExploratory Data Analysis II\n🖥️ slides 05  🗒️ notes 05  ⌨️ ae 05  ✅ ae 05\n\n\n📘 ims - chp 5  📘 ims - chp 6  🎥 Code along :: Diving deeper with Palmer Penguins\n\n\n\n\nWed, Jul 8\nTidying Data\n🖥️ slides 06  🗒️ notes 06  ⌨️ ae 06  ✅ ae 06\n\nLab 1 - 11:59PM ET\n📗 r4ds - chp 5  📘 ims - chp 6\n\n\n\n\nThu, Jul 9\nJoining Data\n🖥️ slides 07  🗒️ notes 07  ⌨️ ae 07  ✅ ae 07\n\n\n🎥 Joining data  🎥 Code along :: Continent populations  📗 r4ds - chp 19.1-19.3\n\n\n\n\nThu, Jul 9\nLab 2\n💻 lab 2\n\n\n📗 r4ds - chp 4 🎥 Tidy data 🎥 Tidying data 🎥 Code Along: Population over time\n\n\n\n\nFri, Jul 10\nData Types and Classes\n🖥️ slides 08  🗒️ notes 08  ⌨️ ae 08  ✅ ae 08\n\n\n🎥 Data types  🎥 Data classes  🎥 Code along :: That’s my type  📗 r4ds - chp 16\n\n\n\n\nSun, Jul 12\n\n\n\n\n\n\n3\nMon, Jul 13\nImporting and Recoding Data\n🖥️ slides 09  🗒️ notes 09  ⌨️ ae 09  ✅ ae 09\n\nLab 2 - 11:59PM ET\n🎥 Importing data  🎥 Code along :: Halving CO2 emissions  🎥 Code along :: Student survey  📗 r4ds - chp 7  📗 r4ds - chp 17.1 - 17.3\n\n\n\n\nMon, Jul 13\nLab 3\n💻 lab 3\n\n\n\n\n\n\nTue, Jul 14\nCommunication via Data Science\n🖥️ slides 10  🗒️ notes 10  ⌨️ ae 10  ✅ ae 10\n\n\n\n\n\n\nWed, Jul 15\nData Ethics + Midterm Review\n🖥️ slides 11  🗒️ notes 11  ⌨️ ae 11  ✅ ae 11\n\n\n📕 mdsr - chp 8  📝 How to make a racist AI in R without really trying  🎥 Alberto Cairo - How charts lie  🎥 Joy Buolamwini - How I’m fighting bias in algorithms\n\n\n\n\nThu, Jul 16\nMidterm (lecture + lab sessions)\n\n\n\n\n\n\nFri, Jul 17\nProject Milestone 1 - Collaboration\n🏁milestone 1 \n\nProject Milestone 1 - 11:00AM ET\n\n\n\n\nSun, Jul 19\n\n\nLab 3 - 11:59PM ET\n\n\n\n4\nMon, Jul 20\nThe Language of Models\n🖥️ slides 12  🗒️ notes 12  ⌨️ ae 12  ✅ ae 12\n\n\n🎥 The language of models  📘 ims - chp 7.1  🎥 Fitting and interpreting models  🎥 Modeling nonlinear relationships\n\n\n\n\nMon, Jul 20\nProject Milestone 2 - Proposals\n🏁milestone 2 \n\n\n\n\n\n\nTue, Jul 21\nSimple Linear Regression\n🖥️ slides 13  🗒️ notes 13  ⌨️ ae 13  ✅ ae 13\n\n\n🎥 Linear regression with a categorical predictor  🎥 Outliers in linear regression  🎥 Code along :: Modeling fish  📘 ims - chp 7.2\n\n\n\n\nWed, Jul 22\nMultiple Linear Regression I\n🖥️ slides 14  🗒️ notes 14\n\nProject Milestone 2 - 11:59PM ET\n🎥 Linear regression with multiple predictors  🎥 Main and interaction effects  📘 ims - chp 8.1-8.2  📘 ims - chp 8.3-8.5\n\n\n\n\nThu, Jul 23\nMultiple Linear Regression II\n🖥️ slides 15  🗒️ notes 15  ⌨️ ae 14  ✅ ae 14\n\n\n🎥 Code along :: Modeling interest rates\n\n\n\n\nThu, Jul 23\nLab 4\n💻 lab 4\n\n\n\n\n\n\nFri, Jul 24\nLinear Regression Diagnostics\n🖥️ slides 16  🗒️ notes 16\n\n\n\n\n\n\nSun, Jul 26\n\n\nLab 4 - 11:59PM ET \n\n\n\n\n5\nMon, Jul 27\nLogistic Regression I\n🖥️ slides 17  🗒️ notes 17  ⌨️ ae 15  ✅ ae 15\n\n\n🎥 Logistic regression  🎥 Code along :: Building a spam filter  📘 ims - chp 9\n\n\n\n\nMon, Jul 27\nLab 5\n💻 lab 5\n\n\n\n\n\n\nTue, Jul 28\nLogistic Regression II / Modeling Wrap-Up\n🖥️ slides 18  🗒️ notes 18  ⌨️ ae 16  ✅ ae 16\n\n\n🎥 Clasification and decision errors  🎥 Overfitting and spending your data\n\n\n\n\nWed, Jul 29\nInterval Estimation\n🖥️ slides 19  🗒️ notes 19  ⌨️ ae 17  ✅ ae 17\n\nProject Milestone 3 - 11:59PM ET\n🎥 Quantifying uncertainty  🎥 Bootstrapping  🎥 Code along :: Bootstrapping Duke Forest houses  📘 ims - chp 11  📘 ims - chp 12\n\n\n\n\nThu, Jul 30\nHypothesis Testing\n\n\n🎥 Hypothesis testing  📘 ims - chp 11\n\n\n\n\nThu, Jul 30\nProject Milestone 4 - Peer Review\n\nProject Milestone 4 - 12:30PM ET \n\n\n\n\n\nFri, Jul 31\nMore Inference\n\n\n\n\n\n\nSun, Aug 2\n\n\nLab 5 - 11:59PM ET \n\n\n\n\n6\nMon, Aug 3\nCausality from Randomized Experiments\n\n\n\n\n\n\nMon, Aug 3\nLab 6\n\n\n\n\n\n\nTue, Aug 4\nCausality from Observational Studies\n\n\n\n\n\n\nWed, Aug 5\nProject Workday\n\n\n\n\n\n\nThu, Aug 6\nReview\n\n\n\n\n\n\nThu, Aug 6\nProject Milestone 5 - Presentations\n\nProject - 11:00 AM\n\n\n\n\nFri, Aug 7\nReview\n\nLab 6 - 11:59pm ET\n\n\n\n\nSun, Aug 9\nFINAL EXAM (9am - 12pm)",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester! Entries for future dates are tentative; the timeline of topics, assignments, and due dates might be changed throughout the session at the instructor’s discretion. All material changes will be communicated with the students in a timely manner.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nDUE\nPREPARE\n\n\n\n1\nMon, Jun 29\nWelcome\n🖥️ slides 00  ⌨️ ae 00\n\nGitHub username - End of Lecture\n\n\n\n\nMon, Jun 29\nLab 0\n💻 lab 0\n\nLab 0 - End of Lab\n\n\n\n\nTue, Jun 30\nMeet the Toolkit\n🖥️ slides 01  🗒️ notes 01  ⌨️ ae 01\n\n\n📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto \n\n\n\n\nWed, Jul 1\nGrammar of Data Visualization\n🖥️ slides 02  🗒️ notes 02  ⌨️ ae 02  ✅ ae 02\n\nDrop/Add Deadline 11:59pm\n📗 r4ds - chp 1  📘 ims - chp 4 \n\n\n\n\nThu, Jul 2\nGrammar of Data Transformation\n🖥️ slides 03  🗒️ notes 03  ⌨️ ae 03  ✅ ae 03\n\n\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\nThu, Jul 2\nLab 1\n💻 lab 1\n\n\n📗 r4ds - chp 2  📘 ims - chp 5\n\n\n\n\nFri, Jul 3\nNO CLASS - Independence Day\n\n\n\n\n\n2\nMon, Jul 6\nExploratory Data Analysis I\n🖥️ slides 04  🗒️ notes 04  ⌨️ ae 04  ✅ ae 04\n\n\n📗 r4ds - chp 3.6-3.7  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships  🎥 Code along :: Star Wars characters\n\n\n\n\nTue, Jul 7\nExploratory Data Analysis II\n🖥️ slides 05  🗒️ notes 05  ⌨️ ae 05  ✅ ae 05\n\n\n📘 ims - chp 5  📘 ims - chp 6  🎥 Code along :: Diving deeper with Palmer Penguins\n\n\n\n\nWed, Jul 8\nTidying Data\n🖥️ slides 06  🗒️ notes 06  ⌨️ ae 06  ✅ ae 06\n\nLab 1 - 11:59PM ET\n📗 r4ds - chp 5  📘 ims - chp 6\n\n\n\n\nThu, Jul 9\nJoining Data\n🖥️ slides 07  🗒️ notes 07  ⌨️ ae 07  ✅ ae 07\n\n\n🎥 Joining data  🎥 Code along :: Continent populations  📗 r4ds - chp 19.1-19.3\n\n\n\n\nThu, Jul 9\nLab 2\n💻 lab 2\n\n\n📗 r4ds - chp 4 🎥 Tidy data 🎥 Tidying data 🎥 Code Along: Population over time\n\n\n\n\nFri, Jul 10\nData Types and Classes\n🖥️ slides 08  🗒️ notes 08  ⌨️ ae 08  ✅ ae 08\n\n\n🎥 Data types  🎥 Data classes  🎥 Code along :: That’s my type  📗 r4ds - chp 16\n\n\n\n\nSun, Jul 12\n\n\n\n\n\n\n3\nMon, Jul 13\nImporting and Recoding Data\n🖥️ slides 09  🗒️ notes 09  ⌨️ ae 09  ✅ ae 09\n\nLab 2 - 11:59PM ET\n🎥 Importing data  🎥 Code along :: Halving CO2 emissions  🎥 Code along :: Student survey  📗 r4ds - chp 7  📗 r4ds - chp 17.1 - 17.3\n\n\n\n\nMon, Jul 13\nLab 3\n💻 lab 3\n\n\n\n\n\n\nTue, Jul 14\nCommunication via Data Science\n🖥️ slides 10  🗒️ notes 10  ⌨️ ae 10  ✅ ae 10\n\n\n\n\n\n\nWed, Jul 15\nData Ethics + Midterm Review\n🖥️ slides 11  🗒️ notes 11  ⌨️ ae 11  ✅ ae 11\n\n\n📕 mdsr - chp 8  📝 How to make a racist AI in R without really trying  🎥 Alberto Cairo - How charts lie  🎥 Joy Buolamwini - How I’m fighting bias in algorithms\n\n\n\n\nThu, Jul 16\nMidterm (lecture + lab sessions)\n\n\n\n\n\n\nFri, Jul 17\nProject Milestone 1 - Collaboration\n🏁milestone 1 \n\nProject Milestone 1 - 11:00AM ET\n\n\n\n\nSun, Jul 19\n\n\nLab 3 - 11:59PM ET\n\n\n\n4\nMon, Jul 20\nThe Language of Models\n🖥️ slides 12  🗒️ notes 12  ⌨️ ae 12  ✅ ae 12\n\n\n🎥 The language of models  📘 ims - chp 7.1  🎥 Fitting and interpreting models  🎥 Modeling nonlinear relationships\n\n\n\n\nMon, Jul 20\nProject Milestone 2 - Proposals\n🏁milestone 2 \n\n\n\n\n\n\nTue, Jul 21\nSimple Linear Regression\n🖥️ slides 13  🗒️ notes 13  ⌨️ ae 13  ✅ ae 13\n\n\n🎥 Linear regression with a categorical predictor  🎥 Outliers in linear regression  🎥 Code along :: Modeling fish  📘 ims - chp 7.2\n\n\n\n\nWed, Jul 22\nMultiple Linear Regression I\n🖥️ slides 14  🗒️ notes 14\n\nProject Milestone 2 - 11:59PM ET\n🎥 Linear regression with multiple predictors  🎥 Main and interaction effects  📘 ims - chp 8.1-8.2  📘 ims - chp 8.3-8.5\n\n\n\n\nThu, Jul 23\nMultiple Linear Regression II\n🖥️ slides 15  🗒️ notes 15  ⌨️ ae 14  ✅ ae 14\n\n\n🎥 Code along :: Modeling interest rates\n\n\n\n\nThu, Jul 23\nLab 4\n💻 lab 4\n\n\n\n\n\n\nFri, Jul 24\nLinear Regression Diagnostics\n🖥️ slides 16  🗒️ notes 16\n\n\n\n\n\n\nSun, Jul 26\n\n\nLab 4 - 11:59PM ET \n\n\n\n\n5\nMon, Jul 27\nLogistic Regression I\n🖥️ slides 17  🗒️ notes 17  ⌨️ ae 15  ✅ ae 15\n\n\n🎥 Logistic regression  🎥 Code along :: Building a spam filter  📘 ims - chp 9\n\n\n\n\nMon, Jul 27\nLab 5\n💻 lab 5\n\n\n\n\n\n\nTue, Jul 28\nLogistic Regression II / Modeling Wrap-Up\n🖥️ slides 18  🗒️ notes 18  ⌨️ ae 16  ✅ ae 16\n\n\n🎥 Clasification and decision errors  🎥 Overfitting and spending your data\n\n\n\n\nWed, Jul 29\nInterval Estimation\n🖥️ slides 19  🗒️ notes 19  ⌨️ ae 17  ✅ ae 17\n\nProject Milestone 3 - 11:59PM ET\n🎥 Quantifying uncertainty  🎥 Bootstrapping  🎥 Code along :: Bootstrapping Duke Forest houses  📘 ims - chp 11  📘 ims - chp 12\n\n\n\n\nThu, Jul 30\nHypothesis Testing\n🖥️ slides 20  🗒️ notes 20  ⌨️ ae 18  ✅ ae 18\n\n\n🎥 Hypothesis testing  📘 ims - chp 11\n\n\n\n\nThu, Jul 30\nProject Milestone 4 - Peer Review\n🏁milestone 4 \n\nProject Milestone 4 - 12:30PM ET \n\n\n\n\n\nFri, Jul 31\nMore Inference\n\n\n\n\n\n\nSun, Aug 2\n\n\nLab 5 - 11:59PM ET \n\n\n\n\n6\nMon, Aug 3\nCausality from Randomized Experiments\n\n\n\n\n\n\nMon, Aug 3\nLab 6\n\n\n\n\n\n\nTue, Aug 4\nCausality from Observational Studies\n\n\n\n\n\n\nWed, Aug 5\nProject Workday\n\n\n\n\n\n\nThu, Aug 6\nReview\n\n\n\n\n\n\nThu, Aug 6\nProject Milestone 5 - Presentations\n\nProject - 11:00 AM\n\n\n\n\nFri, Aug 7\nReview\n\nLab 6 - 11:59pm ET\n\n\n\n\nSun, Aug 9\nFINAL EXAM (9am - 12pm)",
     "crumbs": [
       "Course Information",
       "Schedule"
