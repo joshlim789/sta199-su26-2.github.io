@@ -10,7 +10,6 @@ execute:
 ::: callout-important
 You must attend this lab in person and participate in the peer review in person to be eligible for the points for this milestone.
 Team members who are not in lab in person for this milestone will not be eligible for these points, regardless of their contribution throughout the rest of the project.
-
 :::
 
 During the peer feedback process, you will be provided read-only access to your partner team's GitHub repo.
@@ -104,11 +103,10 @@ make_pairing_table <- function(df) {
 
 ```{r}
 #| message: false
-teams <- read_sheet("https://docs.google.com/spreadsheets/d/19HAzRXmCpR5hTWGvG7pPsUTYCqpME7gkt1swQE-5ol4/edit?usp=sharing", 
-                    sheet = paste0("lab_", 1))
+teams <- read_sheet("https://docs.google.com/spreadsheets/d/1HeY9Rqo2byQeWKnU_OmQe45QR7EKcYW-xKTmp25R2hw/edit?gid=722119601#gid=722119601", 
+                    sheet = "review")
 make_pairing_table(teams)
 ```
-
 :::
 
 # Grading
