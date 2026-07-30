@@ -104,7 +104,7 @@ observed_fit
 
 -   Ask yourself how likely you are to observe the sample statistic, or something even more extreme, in this world: $P(b_1 \leq -1.62~or~b_1 \geq 1.62 | \beta_1 = 0)$ = ?
 
-## Hypothesis testing as a court trial
+## Hypothesis testing as a court trial {.smaller}
 
 Innocent until proven guilty!
 
@@ -185,7 +185,7 @@ null_dist <- volleyball |>
     Could height predict spike touch?
 :::
 
-## Shuffling is cool, trust
+## Shuffling is cool, trust {.smaller}
 
 ::: incremental
 -   On average, no
