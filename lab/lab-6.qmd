@@ -2,13 +2,14 @@
 title: Lab 6
 subtitle: Lemurs
 categories: Lab
-description: "Due to Gradescope by Wed. Aug 5 11:59 PM"
+description: "Due to Gradescope by Fri. Aug 7 11:59 PM"
 draft: false
 ---
 
 # Introduction
 
 In this lab, you'll gain practice with interval estimation and hypothesis testing while continuing to reinforce data science / coding best practices mastered in the first half of the course.
+**Please note that as I have pushed the due date back on this assignment, there is no late work accepted for this lab so I can get your final grades out on time.**
 
 ## Getting Started
 
