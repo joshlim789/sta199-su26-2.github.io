@@ -32,10 +32,9 @@ todays_ae <- "ae-19-card-krueger"
 ## The population model (greek letters, no hats) {.scrollable}
 
 ::: incremental
--   This is an *idealized* representation of the data: 
-$$
-y = \beta_0+\beta_1x +\varepsilon;
-$$
+-   This is an *idealized* representation of the data: $$
+    y = \beta_0+\beta_1x +\varepsilon;
+    $$
 
 -   There is some "true line" floating out there with a "true slope" $\beta_1$ and "true intercept" $\beta_0$;
 
@@ -315,9 +314,7 @@ Are these results in harmony or in conflict with the null?
 ## Question {.small}
 
 ::: question
-
 What is a *p*-value?
-
 :::
 
 a.  The probability that the null hypothesis is true given your result.
@@ -463,7 +460,7 @@ ggplot(df, aes(x = x, y = y)) +
   theme(axis.text = element_text(size = 20))
 ```
 
-::::: columns
+::: columns
 ::: column
 a.  -1 / 2
 b.  0
@@ -475,7 +472,7 @@ d.  1 / 2
 e.  1
 f.  2
 :::
-:::::
+:::
 
 ## What is $b_0$? {.scrollable}
 
@@ -499,7 +496,7 @@ ggplot(df, aes(x = x, y = y)) +
   theme(axis.text = element_text(size = 20))
 ```
 
-::::: columns
+::: columns
 ::: column
 a.  1
 b.  1.75
@@ -509,15 +506,14 @@ b.  1.75
 c.  2
 d.  3
 :::
-:::::
+:::
 
 ## Back to the Hotels! {.smaller .scrollable}
 
 ::: question
-
-The following model predicts `adr` from `adults` and `hotel` type. Which of the following is the best interpretation of the slope coefficient for `adults`?
-
-::: 
+The following model predicts `adr` from `adults` and `hotel` type.
+Which of the following is the best interpretation of the slope coefficient for `adults`?
+:::
 
 ```{r}
 #| echo: false
@@ -547,24 +543,22 @@ adr_aug_1 <- augment(adr_fit_1, hotels_train)
 tidy(adr_fit_1)
 ```
 
-"For each additional adult in the booking, the average daily rate is predicted to be higher by $29.00..."
+"For each additional adult in the booking, the average daily rate is predicted to be higher by \$29.00..."
 
 . . .
 
 a.  on average, holding hotel type constant.
 
 b.  for Resort Hotels compared to City Hotels, on average.
-    
+
 c.  for City Hotels compared to Resort Hotels, on average.
-    
+
 d.  on average, not holding any other variables constant.
 
 ## Back to the Hotels! {.smaller .scrollable}
 
 ::: question
-
 Which of the following is the correct interpretation of the slope coefficient for `hotel`?
-
 :::
 
 ```{r}
@@ -574,20 +568,18 @@ Which of the following is the correct interpretation of the slope coefficient fo
 tidy(adr_fit_1)
 ```
 
-a.  For each additional Resort Hotel booking, the predicted average daily rate is $10.80 lower, holding number of adults constant.
-    
-b.  For each additional adult in the booking, the average daily rate is predicted to be lower by $10.80 for resort hotels compared to City Hotels, on average.
-    
-c.  Resort Hotels bookings are predicted to have an average daily rate that is $10.80 lower than City Hotels, on average, holding number of adults constant.
-    
-d.  Resort Hotels bookings are predicted to have an average daily rate that is $10.80 higher than City Hotels, on average, holding number of adults constant.
+a.  For each additional Resort Hotel booking, the predicted average daily rate is \$10.80 lower, holding number of adults constant.
+
+b.  For each additional adult in the booking, the average daily rate is predicted to be lower by \$10.80 for resort hotels compared to City Hotels, on average.
+
+c.  Resort Hotels bookings are predicted to have an average daily rate that is \$10.80 lower than City Hotels, on average, holding number of adults constant.
+
+d.  Resort Hotels bookings are predicted to have an average daily rate that is \$10.80 higher than City Hotels, on average, holding number of adults constant.
 
 ## Back to the Hotels! {.smaller .scrollable}
 
 ::: question
-
 Which of the following is the correct interpretation of the intercept?
-
 :::
 
 ```{r}
@@ -597,20 +589,18 @@ Which of the following is the correct interpretation of the intercept?
 tidy(adr_fit_1)
 ```
 
-a.  The predicted average daily rate for a bookings with 0 adults at a Resort Hotel is $51.70, on average.
-    
-b.  The predicted average daily rate for a bookings with 0 adults at a City Hotel is $51.70, on average.
-    
-c.  For each additional adult and Resort Hotel in the booking, the average daily rate is predicted to be $51.70 higher, on average.
-    
-d.  For each additional adult and City Hotel in the booking, the average daily rate is predicted to be $51.70 higher, on average.
+a.  The predicted average daily rate for a bookings with 0 adults at a Resort Hotel is \$51.70, on average.
+
+b.  The predicted average daily rate for a bookings with 0 adults at a City Hotel is \$51.70, on average.
+
+c.  For each additional adult and Resort Hotel in the booking, the average daily rate is predicted to be \$51.70 higher, on average.
+
+d.  For each additional adult and City Hotel in the booking, the average daily rate is predicted to be \$51.70 higher, on average.
 
 ## Back to the Hotels! {.smaller .scrollable}
 
 ::: question
-
 Which of the following (Plot A or Plot B) is the correct visual representation of this model?
-
 :::
 
 ```{r}
@@ -653,7 +643,6 @@ ggplot(adr_aug_1, aes(x = adults, color = hotel)) +
   theme_minimal() +
   theme(legend.position = "inside", legend.position.inside = c(0.15, 0.80))
 ```
-
 
 ## Which of these could be a bootstrap sample? {.scrollable}
 
@@ -711,7 +700,7 @@ axis(1, at = quantile(x, probs = c(0.01, 0.05, 0.09, 0.5, 0.91, 0.95, 0.99)),
      cex.axis = 1.5)
 ```
 
-::::: columns
+::: columns
 ::: column
 a.  $(q_{0.01},\,q_{0.91})$
 b.  $(q_{0.01},\,q_{0.99})$
@@ -721,7 +710,7 @@ b.  $(q_{0.01},\,q_{0.99})$
 c.  $(q_{0.09},\,q_{0.95})$
 d.  $(q_{0.05},\,q_{0.99})$
 :::
-:::::
+:::
 
 ## Match the picture to the p-value. {.scrollable}
 
@@ -747,7 +736,7 @@ normTail(0, 1, xlim = c(-4, 4), main = "Plot 4", U = v[4], L = -v[4])
 abline(v = v[4], lty = 2, col = "red")
 ```
 
-::::: columns
+::: columns
 ::: column
 a.  0
 b.  0.045
@@ -757,7 +746,7 @@ b.  0.045
 c.  0.32
 d.  0.62
 :::
-:::::
+:::
 
 ## Which could be the null distribution of the test? {.medium .scrollable}
 
@@ -797,16 +786,18 @@ ggplot(df, aes(x = draws)) +
   )
 ```
 
+## Some final thoughts on inference {.medium}
+
+- Our whole goal is trying to make a statement about the population
+- Make sure to be able to articulate your population!
+- In our diving dataset, we assumed that out "sample" were all the finalist divers at the 2024 Olympics
+- What does that generalize to?
+- Key challenge when designing any sample, survey, experiment etc: get a sample that is representative of your population. 
+
+## Final thoughts part 2 (foreshadowing)
+
+- We conducted inference mainly on one thing: the slope for a simple linear regression
+- Could we do something similar for other models?
+- What would inference for a logistic regression model look like?
+
 # AE-19
-
-## `{r} todays_ae`
-
-::: appex
--   Go to your ae project in RStudio.
-
--   If you haven't yet done so, make sure all of your changes up to this point are committed and pushed, i.e., there's nothing left in your Git pane.
-
--   If you haven't yet done so, click Pull to get today's application exercise file: *`{r} paste0(todays_ae, ".qmd")`*.
-
--   Work through the application exercise in class, and render, commit, and push your edits.
-:::

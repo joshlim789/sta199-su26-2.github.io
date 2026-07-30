@@ -99,8 +99,8 @@ website:
             text: "Midterm Review Answer Key"
           - href: exam-review/final.qmd
             text: "Final Review"
-          # - href: exam-review/final-key.qmd
-          #   text: "Final Review Answer Key"
+          - href: exam-review/final-key.qmd
+            text: "Final Review Answer Key"
             
   page-footer:
     right: 'This page is built with [{{< fa heart >}}]{style="color: #FFD100;"} and [Quarto](https://quarto.org/).'
