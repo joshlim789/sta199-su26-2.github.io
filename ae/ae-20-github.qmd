@@ -1,0 +1,178 @@
+---
+title: "AE 20: Causal Inference from a Randomized Experiment"
+format:
+  html:
+    self-contained: true
+---
+
+Nowak-Węgrzyn et al. (2019) conducted a multicenter, randomized, double-blind, placebo-controlled clinical trial to evaluate whether vital wheat gluten (VWG) oral immunotherapy (OIT) is effective at increasing wheat tolerance in children and young adults with wheat allergy.
+In today's AE, you will analyze a dataset simulated to represent this study using the tools from lecture.
+
+(<https://pubmed.ncbi.nlm.nih.gov/30389226/>)
+
+# Packages
+
+```{r}
+#| label: load-packages
+#| message: false
+library(tidyverse)
+library(tidymodels)
+```
+
+# Data
+
+```{r}
+#| message: false
+set.seed(42)
+n <- 46
+wheat_trial <- tibble(
+  id                 = 1:n,
+  age                = round(runif(n, 4, 22), 1),
+  baseline_wheat_ige = round(rexp(n, rate = 1/30), 1),
+  vwg_oit            = c(rep(1, 23), rep(0, 23))
+) |>
+  mutate(
+    max_dose_mg = pmax(0, round(
+      150 + 950 * vwg_oit - 3 * baseline_wheat_ige + 12 * age + rnorm(n, sd = 90)
+    ))
+  )
+
+glimpse(wheat_trial)
+```
+
+Variables:
+
+| Variable             | Description                                                            |
+|------------------------------------|------------------------------------|
+| `id`                 | Unique participant identifier                                          |
+| `age`                | Participant age (years)                                                |
+| `baseline_wheat_ige` | Baseline wheat IgE level (kU/L) --- a measure of allergy severity      |
+| `vwg_oit`            | Treatment indicator: 1 = VWG OIT, 0 = Placebo                          |
+| `max_dose_mg`        | Maximum tolerated wheat protein dose (mg) at the year-1 food challenge |
+
+# Exercise 1: Study design
+
+With your teammate, fill in the following based on the paper and today's lecture:
+
+-   **Treatment indicator** ($Z$):
+
+-   **Treatment group** ($Z = 1$):
+
+-   **Control group** ($Z = 0$):
+
+-   **Outcome** ($Y$):
+
+-   **Covariates** ($X$):
+
+# Exercise 2: Exploratory data analysis
+
+**a.** Create a visualization comparing the distribution of `max_dose_mg` across the two treatment groups.
+What do you notice?
+
+```{r}
+# add code here
+```
+
+*Describe what you see:*
+
+**b.** Compute the mean and standard deviation of `max_dose_mg` for each treatment group.
+
+```{r}
+# add code here
+```
+
+# Exercise 3: Modeling
+
+**a.** Fit a linear regression model predicting `max_dose_mg` from `vwg_oit`.
+
+```{r}
+# add code here
+```
+
+**b.** Interpret the slope coefficient for `vwg_oit` in context.
+Since this is a randomized experiment, use **causal** language in your interpretation (e.g., "causes," "leads to").
+
+*Write your answer here.*
+
+# Exercise 4: Inference
+
+Choose **one** of the following approaches to assess the evidence for a treatment effect on `max_dose_mg`.
+Complete all parts of your chosen option.
+
+------------------------------------------------------------------------
+
+## Option A: Bootstrap confidence interval
+
+**a.** Calculate the observed fit using `specify() |> fit()`.
+
+```{r}
+# add code here
+```
+
+**b.** Generate 1000 bootstrap samples and fit a model to each one.
+
+```{r}
+set.seed(1120)
+# add code here
+```
+
+**c.** Compute the 95% confidence interval using the percentile method.
+
+```{r}
+# add code here
+```
+
+**d.** Interpret the confidence interval for `vwg_oit` in context.
+Use causal language.
+
+*Write your answer here.*
+
+------------------------------------------------------------------------
+
+## Option B: Hypothesis test
+
+**a.** State the null and alternative hypotheses.
+
+$H_0$:
+
+$H_A$:
+
+**b.** Calculate the observed fit and simulate the null distribution using 1000 permutations.
+
+```{r}
+set.seed(24601)
+# add code here
+```
+
+**c.** Visualize the null distribution and shade the p-value region.
+
+```{r}
+# add code here
+```
+
+**d.** Calculate the p-value.
+
+```{r}
+# add code here
+```
+
+**e.** State your conclusion in context.
+
+*Write your answer here.*
+
+------------------------------------------------------------------------
+
+# Exercise 5: Further covariate adjustment
+
+**a.** Fit a model that adds `baseline_wheat_ige` as an additional predictor.
+How does the `vwg_oit` estimate compare to the model in Exercise 3?
+
+```{r}
+# add code here
+```
+
+*Write your answer here.*
+
+**b.** Why might we include `baseline_wheat_ige` in our model even if the two groups are already balanced on this variable?
+
+*Write your answer here.*
