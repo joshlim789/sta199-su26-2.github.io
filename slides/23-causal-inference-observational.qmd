@@ -1,0 +1,277 @@
+---
+title: "Foundations of Causal Inference: Observational Studies"
+subtitle: "Lecture 23"
+date: "2026-08-04"
+format: 
+  revealjs:
+    output-file: 23-causal-inference-observational-slides.html
+  html: 
+    output-file: 23-causal-inference-observational.html
+auto-stretch: false
+---
+
+```{r}
+#| label: load-packages
+#| message: false
+#| echo: false
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+library(MatchIt)
+```
+
+# Revisiting confounding
+
+## What changes without randomization?
+
+::: incremental
+-   In an **observational study**, the researcher does not assign treatment --- subjects choose (or are assigned by nature)
+
+-   This means $Z$ is **not** independent of $X$: people who receive treatment differ systematically from those who do not
+
+-   The backdoor path $X \to Z \to Y$ is open, and the naive difference in means **conflates** the treatment effect with confounding
+
+-   $E[\bar{Y}_{\text{treated}} - \bar{Y}_{\text{control}}] \neq \tau$
+:::
+
+## The core problem
+
+::: incremental
+-   Students who seek tutoring tend to be those who are struggling --- lower prior GPA
+
+-   If we compare exam scores, tutored students may *still* score lower even if tutoring helps
+
+-   Conversely, employees who get promoted might be higher performers to begin with --- making the promotion look more effective than it is
+
+-   We need a way to make treated and control groups **comparable** on $X$ without running an experiment
+:::
+
+# Matching on covariates
+
+## The idea of matching
+
+::: incremental
+-   For each **treated** unit, find one (or more) **control** units that look similar on $X$
+
+-   Compare outcomes within matched pairs --- differences now reflect treatment, not confounding
+
+-   We are trying to **mimic** a randomized experiment by constructing comparable groups from observational data
+:::
+
+## Formally
+
+::: incremental
+-   The key assumption: **conditional ignorability**
+
+$$Y(0), Y(1) \perp Z \mid X$$
+
+-   Given covariates $X$, treatment assignment is "as good as random"
+
+-   This is also called **no unmeasured confounders** --- a strong, untestable assumption
+
+-   If it holds, matching on $X$ recovers the causal effect
+:::
+
+# An example with matching
+
+## The data
+
+We use the **LaLonde dataset**: a study of a 1970s job training program.
+Participants were not randomly assigned.
+
+```{r}
+#| echo: true
+data("lalonde", package = "MatchIt")
+glimpse(lalonde)
+```
+
+-   `treat`: 1 = job training, 0 = no training
+-   `re78`: earnings in 1978 (outcome $Y$)
+-   `age`, `educ`, `re74`, `re75`, etc.: covariates $X$
+
+## Naive estimate (no matching)
+
+```{r}
+#| echo: true
+lalonde |>
+  group_by(treat) |>
+  summarise(mean_earnings = mean(re78))
+```
+
+::: incremental
+-   The naive difference suggests training *increases* earnings
+
+-   But treated and control groups may differ on pre-treatment characteristics --- we can't trust this yet
+:::
+
+## Check for imbalance
+
+```{r}
+#| echo: true
+lalonde |>
+  group_by(treat) |>
+  summarise(mean_age  = mean(age),
+            mean_educ = mean(educ),
+            mean_re74 = mean(re74),
+            mean_re75 = mean(re75))
+```
+
+::: incremental
+-   Treated individuals have lower prior earnings (`re74`, `re75`) --- confounding is present
+
+-   We need to adjust for this before drawing causal conclusions
+:::
+
+## Nearest-neighbor matching
+
+```{r}
+#| echo: true
+m_out <- matchit(treat ~ age + educ + re74 + re75,
+                 data   = lalonde,
+                 method = "nearest")
+summary(m_out, un = FALSE)
+```
+
+## Estimate on matched data
+
+```{r}
+#| echo: true
+m_data <- match.data(m_out)
+
+lm(re78 ~ treat, data = m_data, weights = weights) |> tidy()
+```
+
+::: incremental
+-   After matching, the estimate is our best causal estimate under the ignorability assumption
+
+-   Compare this to the naive estimate --- confounding matters!
+:::
+
+# The high-dimension problem
+
+## Curse of dimensionality
+
+::: incremental
+-   Matching works well when $X$ has only a few variables
+
+-   With many covariates, it becomes nearly impossible to find good matches --- the space is too sparse
+
+-   Example: match exactly on age (35), education (12 years), prior earnings (\$8,000), race, marital status...
+
+-   The probability of finding a near-identical control unit vanishes as the dimension of $X$ grows
+:::
+
+## We need a smarter approach
+
+::: incremental
+-   Instead of matching on the full $X$ vector, collapse it to a **single number**
+
+-   The **propensity score**:
+
+$$e(X) = P(Z = 1 \mid X)$$
+
+-   The probability of receiving treatment, given covariates
+
+-   **Rosenbaum & Rubin (1983)**: if $Y(0), Y(1) \perp Z \mid X$, then also $Y(0), Y(1) \perp Z \mid e(X)$
+
+-   Matching on this one number is sufficient!
+:::
+
+# Propensity score matching
+
+## Estimating the propensity score
+
+We estimate $e(X)$ via **logistic regression**:
+
+$$\log\frac{P(Z=1 \mid X)}{1 - P(Z=1 \mid X)} = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$$
+
+::: incremental
+-   Fit logistic regression of $Z$ on $X$
+
+-   Predicted probabilities $\hat{e}(X_i)$ are the estimated propensity scores
+
+-   Match treated and control units with similar $\hat{e}(X)$ values
+:::
+
+## The workflow
+
+1.  Fit a logistic regression model: $Z \sim X_1 + \cdots + X_p$
+2.  Extract predicted probabilities as propensity scores
+3.  Match treated to control units with similar scores
+4.  Check **balance** on $X$ in the matched sample
+5.  Estimate the treatment effect on the matched data
+
+# Propensity score matching example
+
+## Step 1 & 2: fit model, get scores
+
+```{r}
+#| echo: true
+ps_model <- glm(treat ~ age + educ + re74 + re75,
+                data   = lalonde,
+                family = binomial)
+
+lalonde <- lalonde |>
+  mutate(ps = predict(ps_model, type = "response"))
+
+lalonde |>
+  group_by(treat) |>
+  summarise(mean_ps = mean(ps), sd_ps = sd(ps))
+```
+
+## Visualize the scores
+
+```{r}
+#| echo: false
+ggplot(lalonde, aes(x = ps, fill = factor(treat))) +
+  geom_density(alpha = 0.5) +
+  labs(x = "Propensity Score",
+       y = "Density",
+       fill = "Treatment",
+       title = "Distribution of Propensity Scores by Group") +
+  scale_fill_manual(values = c("steelblue", "tomato"),
+                    labels = c("Control", "Treated"))
+```
+
+## Step 3 & 4: match and check balance
+
+```{r}
+#| echo: true
+ps_match <- matchit(treat ~ age + educ + re74 + re75,
+                    data     = lalonde,
+                    method   = "nearest",
+                    distance = "glm")
+
+summary(ps_match, un = FALSE)
+```
+
+## Step 5: estimate the effect
+
+```{r}
+#| echo: true
+ps_data <- match.data(ps_match)
+
+lm(re78 ~ treat, data = ps_data, weights = weights) |> tidy()
+```
+
+::: incremental
+-   After propensity score matching, we have a valid causal estimate (under ignorability)
+
+-   The propensity score approach scales to many covariates, unlike direct matching
+
+-   Always check balance after matching --- if it's poor, consider a different model for the propensity score
+:::
+
+## Key takeaways
+
+::: incremental
+-   Observational studies require careful adjustment for confounders $X$
+
+-   Matching reconstructs comparability between treated and control groups
+
+-   **Direct matching** works with few covariates; **propensity score matching** scales to high dimensions
+
+-   All methods require **no unmeasured confounders** --- this assumption cannot be tested from data alone
+
+-   Sensitivity analyses can assess how robust conclusions are to potential unmeasured confounding
+:::
