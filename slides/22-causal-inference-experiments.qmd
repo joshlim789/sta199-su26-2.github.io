@@ -331,17 +331,11 @@ $$\widehat{\text{max dose}} = \widehat{\beta_0} + \widehat{\beta_1} \times \text
 ## Wait — our interpretation changed! {.medium}
 
 ::: incremental
--   In every previous lecture, we said: *"For a one-unit increase in X, Y is **predicted** to change by $\widehat{\beta_1}$, on average."*
+-   In every previous lecture, we said: *"For a one-unit increase in Z, Y is **predicted** to change by $\widehat{\beta_1}$, on average."*
 
--   Here, we used the word **causes** instead of *predicted*
+-   Now, we say *"A one-unit increase in Z causes Y to change by $\widehat{\beta_1}$, on average."*
 
--   Why can we do that now?
-
--   Because $Z$ was **randomly assigned** — not chosen by participants, not influenced by their health or preferences
-
--   Randomization breaks every back-door path from confounders to $Z$, so the only explanation for a difference in $Y$ between groups **is** the treatment
-
--   This is exactly what an RCT buys us: the license to say *causes*
+- We've eliminated the effect of confounding via randomization, so any changes in $Y$ are attributatble from the change in $Z$
 :::
 
 ## Computing the CI for the treatment effect I {.scrollable}
@@ -473,5 +467,26 @@ tidy(wheat_fit_adj)
 
 `r todays_ae`
 
-## Bonus
+# Hmm, but why is this study interesting
+
+## Recall
+
+- Participants aged 4-22
+- Study was dated in 2018
+- Took 2 years to complete all data collection
+
+## Well
+
+![](img/22/bonus.png){width="80%" fig-align="center"}
+
+## Lore {.smaller}
+
+::: incremental
+- I was part of the study cohort when I was 12 years old
+- Learned what a treatment and control was the "hard way"
+- Some of the scariest moments of my life
+- But one of the most life-changing experiences ever
+- Drastically improved my quality of life (I can eat bread, pasta etc now)
+- And that's my why (I research)
+:::
 

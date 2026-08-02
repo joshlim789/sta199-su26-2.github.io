@@ -74,6 +74,25 @@
             ],
             "Hash": "a41d0fc833ea756a1136b60a437efe26"
         },
+        "MatchIt": {
+            "Package": "MatchIt",
+            "Version": "4.7.2",
+            "Source": "Repository",
+            "Repository": "CRAN",
+            "Requirements": [
+                "R",
+                "Rcpp",
+                "RcppProgress",
+                "backports",
+                "chk",
+                "grDevices",
+                "graphics",
+                "rlang",
+                "stats",
+                "utils"
+            ],
+            "Hash": "4605e6e151faa5275ee1eaae441c5f24"
+        },
         "Matrix": {
             "Package": "Matrix",
             "Version": "1.7-4",
