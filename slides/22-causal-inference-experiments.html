@@ -440,7 +440,14 @@ window.Quarto = {
   <li><a href="#further-covariate-adjustment" id="toc-further-covariate-adjustment" class="nav-link" data-scroll-target="#further-covariate-adjustment">Further covariate adjustment</a></li>
   <li><a href="#limitations-of-rcts" id="toc-limitations-of-rcts" class="nav-link" data-scroll-target="#limitations-of-rcts">Limitations of RCTs</a></li>
   <li><a href="#application-exercise" id="toc-application-exercise" class="nav-link" data-scroll-target="#application-exercise">Application Exercise</a></li>
-  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">Bonus</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#hmm-but-why-is-this-study-interesting" id="toc-hmm-but-why-is-this-study-interesting" class="nav-link" data-scroll-target="#hmm-but-why-is-this-study-interesting">Hmm, but why is this study interesting</a>
+  <ul class="collapse">
+<li><a href="#recall" id="toc-recall" class="nav-link" data-scroll-target="#recall">Recall</a></li>
+  <li><a href="#well" id="toc-well" class="nav-link" data-scroll-target="#well">Well</a></li>
+  <li><a href="#lore" id="toc-lore" class="nav-link" data-scroll-target="#lore">Lore</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/edit/main/slides/22-causal-inference-experiments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="22-causal-inference-experiments-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
@@ -777,12 +784,9 @@ Note
 </ul></section><section id="wait-our-interpretation-changed" class="level2 medium"><h2 class="medium anchored" data-anchor-id="wait-our-interpretation-changed">Wait — our interpretation changed!</h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p>In every previous lecture, we said: <em>“For a one-unit increase in X, Y is <strong>predicted</strong> to change by <span class="math inline">\(\widehat{\beta_1}\)</span>, on average.”</em></p></li>
-<li><p>Here, we used the word <strong>causes</strong> instead of <em>predicted</em></p></li>
-<li><p>Why can we do that now?</p></li>
-<li><p>Because <span class="math inline">\(Z\)</span> was <strong>randomly assigned</strong> — not chosen by participants, not influenced by their health or preferences</p></li>
-<li><p>Randomization breaks every back-door path from confounders to <span class="math inline">\(Z\)</span>, so the only explanation for a difference in <span class="math inline">\(Y\)</span> between groups <strong>is</strong> the treatment</p></li>
-<li><p>This is exactly what an RCT buys us: the license to say <em>causes</em></p></li>
+<li><p>In every previous lecture, we said: <em>“For a one-unit increase in Z, Y is <strong>predicted</strong> to change by <span class="math inline">\(\widehat{\beta_1}\)</span>, on average.”</em></p></li>
+<li><p>Now, we say <em>“A one-unit increase in Z causes Y to change by <span class="math inline">\(\widehat{\beta_1}\)</span>, on average.”</em></p></li>
+<li><p>We’ve eliminated the effect of confounding via randomization, so any changes in <span class="math inline">\(Y\)</span> are attributatble from the change in <span class="math inline">\(Z\)</span></p></li>
 </ul>
 </div>
 </section><section id="computing-the-ci-for-the-treatment-effect-i" class="level2 scrollable"><h2 class="scrollable anchored" data-anchor-id="computing-the-ci-for-the-treatment-effect-i">Computing the CI for the treatment effect I</h2>
@@ -926,7 +930,28 @@ Note
 </div>
 </section><section id="application-exercise" class="level2"><h2 class="anchored" data-anchor-id="application-exercise">Application Exercise</h2>
 <p>ae-20</p>
-</section><section id="bonus" class="level2"><h2 class="anchored" data-anchor-id="bonus">Bonus</h2>
+</section></section><section id="hmm-but-why-is-this-study-interesting" class="level1"><h1>Hmm, but why is this study interesting</h1>
+<section id="recall" class="level2"><h2 class="anchored" data-anchor-id="recall">Recall</h2>
+<ul>
+<li>Participants aged 4-22</li>
+<li>Study was dated in 2018</li>
+<li>Took 2 years to complete all data collection</li>
+</ul></section><section id="well" class="level2"><h2 class="anchored" data-anchor-id="well">Well</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/22/bonus.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</section><section id="lore" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="lore">Lore</h2>
+<div class="incremental">
+<ul class="incremental">
+<li>I was part of the study cohort when I was 12 years old</li>
+<li>Learned what a treatment and control was the “hard way”</li>
+<li>Some of the scariest moments of my life</li>
+<li>But one of the most life-changing experiences ever</li>
+<li>Drastically improved my quality of life (I can eat bread, pasta etc now)</li>
+<li>And that’s my why (I research)</li>
+</ul>
+</div>
 
 
 </section></section></main><!-- /main --><script>

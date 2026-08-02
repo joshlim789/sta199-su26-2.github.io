@@ -1,5 +1,17 @@
 [
   {
+    "listing": "/lab.html",
+    "items": [
+      "/lab/lab-0.html",
+      "/lab/lab-1.html",
+      "/lab/lab-2.html",
+      "/lab/lab-3.html",
+      "/lab/lab-4.html",
+      "/lab/lab-5.html",
+      "/lab/lab-6.html"
+    ]
+  },
+  {
     "listing": "/ae.html",
     "items": [
       "/ae/ae-00-github.html",
@@ -42,18 +54,6 @@
       "/ae/ae-19-github.html",
       "/ae/ae-20-github-A.html",
       "/ae/ae-20-github.html"
-    ]
-  },
-  {
-    "listing": "/lab.html",
-    "items": [
-      "/lab/lab-0.html",
-      "/lab/lab-1.html",
-      "/lab/lab-2.html",
-      "/lab/lab-3.html",
-      "/lab/lab-4.html",
-      "/lab/lab-5.html",
-      "/lab/lab-6.html"
     ]
   }
 ]
