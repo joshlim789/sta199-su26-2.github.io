@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>AE 20: Causal Inference from a Randomized Experiment – STA 199</title>
+<title>AE 20: Wheat Oral Immunotherapy – STA 199</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -10326,10 +10326,10 @@ window.Quarto = {
   typesetMath
 };
 </script><link href="data:application/octet-stream;base64,LyotLSBzY3NzOmRlZmF1bHRzIC0tKi8KCkBpbXBvcnQgJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9QXRraW5zb24rSHlwZXJsZWdpYmxlJmRpc3BsYXk9c3dhcCc7CkBpbXBvcnQgJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9Um9ib3RvJmRpc3BsYXk9c3dhcCc7CgokZm9udC1mYW1pbHk6ICJSb2JvdG8iLCBzYW5zLXNlcmlmOwoKLyotLSBzY3NzOnJ1bGVzIC0tKi8KCi5yZW5kZXItY29tbWl0LXB1c2ggewogIHBhZGRpbmc6IDAuNWVtIDAuNWVtIDBlbSAzZW07CiAgbWFyZ2luLXRvcDogNXB4OwogIG1hcmdpbi1ib3R0b206IDVweDsKICBiYWNrZ3JvdW5kOiAjZjhmOGY4IDVweCBjZW50ZXIvM2VtIG5vLXJlcGVhdDsKICBib3JkZXItdG9wOiAxcHggc29saWQgIzVENzM3RTsKICBib3JkZXItYm90dG9tOiAxcHggc29saWQgIzVENzM3RTsKICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoImltZy9yZW5kZXItY29tbWl0LXB1c2gucG5nIik7CiAgYmFja2dyb3VuZC1zaXplOiAyZW07CiAgYmFja2dyb3VuZC1wb3NpdGlvbjogMC41ZW0gMC41ZW07Cn0KCi5wdWxsIHsKICBwYWRkaW5nOiAwLjVlbSAwLjVlbSAwZW0gM2VtOwogIG1hcmdpbi10b3A6IDVweDsKICBtYXJnaW4tYm90dG9tOiA1cHg7CiAgYmFja2dyb3VuZDogI2Y4ZjhmOCA1cHggY2VudGVyLzNlbSBuby1yZXBlYXQ7CiAgYm9yZGVyLXRvcDogMXB4IHNvbGlkICNjNTc2NDQ7CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNjNTc2NDQ7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCJpbWcvcHVsbC5wbmciKTsKICBiYWNrZ3JvdW5kLXNpemU6IDFlbTsKICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiAxZW0gMC41ZW07Cn0KCgouc2lkZWJhci1uYXZpZ2F0aW9uIC5xdWFydG8tbmF2aWdhdGlvbi10b29sIHsKICBjb2xvcjogI0ZGRkZGRjsKfQoKLnF1YXJ0by1jb2xvci1zY2hlbWUtdG9nZ2xlOm5vdCguYWx0ZXJuYXRlKSAuYmk6OmJlZm9yZSB7CiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCdkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAxKSIgY2xhc3M9ImJpIGJpLXRvZ2dsZS1vZmYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZD0iTTExIDRhNCA0IDAgMCAxIDAgOEg4YTQuOTkyIDQuOTkyIDAgMCAwIDItNCA0Ljk5MiA0Ljk5MiAwIDAgMC0yLTRoM3ptLTYgOGE0IDQgMCAxIDEgMC04IDQgNCAwIDAgMSAwIDh6TTAgOGE1IDUgMCAwIDAgNSA1aDZhNSA1IDAgMCAwIDAtMTBINWE1IDUgMCAwIDAtNSA1eiIvPjwvc3ZnPicpICFpbXBvcnRhbnQ7Cn0KCiN0ZWFjaGluZy1hc3Npc3RhbnRzIC5saXN0aW5nLWltYWdlIGltZyB7CiAgcG9zaXRpb246IHJlbGF0aXZlOyAKICB3aWR0aDogODBweDsgCiAgaGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7IAogIG92ZXJmbG93OiBoaWRkZW47IAogIGJvcmRlci1yYWRpdXM6IDUwJTsKfQoKLmNpcmN1bGFyLXBvcnRyYWl0LW1hcnkgeyAKICBwb3NpdGlvbjogcmVsYXRpdmU7IAogIHdpZHRoOiAxMjBweDsgCiAgaGVpZ2h0OiAxMjBweDsgCiAgb3ZlcmZsb3c6IGhpZGRlbjsgCiAgYm9yZGVyLXJhZGl1czogNTAlOwp9IAoKLmNpcmN1bGFyLXBvcnRyYWl0LW1pbmUgeyAKICBwb3NpdGlvbjogcmVsYXRpdmU7IAogIHdpZHRoOiAyMDBweDsgCiAgaGVpZ2h0OiAyMDBweDsgCiAgb3ZlcmZsb3c6IGhpZGRlbjsgCiAgYm9yZGVyLXJhZGl1czogNTAlOwp9IAoKLmNpcmN1bGFyLXBvcnRyYWl0IGltZyB7IAogIHdpZHRoOiAxMDAlOyBoZWlnaHQ6IGF1dG87IAp9CgpkaXYuc291cmNlQ29kZSBwcmUuc291cmNlQ29kZSB7CiAgYmFja2dyb3VuZC1jb2xvcjogI2U5ZTllOTsKfQ==" rel="stylesheet">
-<meta property="og:title" content="AE 20: Causal Inference from a Randomized Experiment – STA 199">
+<meta property="og:title" content="AE 20: Wheat Oral Immunotherapy – STA 199">
 <meta property="og:description" content="Homepage for STA 199 - Introduction to Data Science at Duke University, Summer 2026: Session 2.">
 <meta property="og:site_name" content="STA 199">
-<meta name="twitter:title" content="AE 20: Causal Inference from a Randomized Experiment – STA 199">
+<meta name="twitter:title" content="AE 20: Wheat Oral Immunotherapy – STA 199">
 <meta name="twitter:description" content="Homepage for STA 199 - Introduction to Data Science at Duke University, Summer 2026: Session 2.">
 <meta name="twitter:image" content="https://sta199-su26-2.github.io/ae/img/twitter-card-ks.pdf">
 <meta name="twitter:creator" content="@minebocek">
@@ -10342,7 +10342,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">AE 20: Causal Inference from a Randomized Experiment</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">AE 20: Wheat Oral Immunotherapy</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -10614,7 +10614,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">AE 20: Causal Inference from a Randomized Experiment</h1>
+<h1 class="title">AE 20: Wheat Oral Immunotherapy</h1>
 </div>
 
 
@@ -10665,8 +10665,8 @@ $ max_dose_mg        &lt;dbl&gt; 1331, 1391, 1126, 960, 1197, 1175, 1052, 1184, 
 <p>Variables:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 23%">
+<col style="width: 76%">
 </colgroup>
 <thead><tr class="header">
 <th>Variable</th>

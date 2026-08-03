@@ -8484,7 +8484,7 @@
     "href": "index.html",
     "title": "STA 199: Introduction to Data Science & Statistical Thinking",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester! Entries for future dates are tentative; the timeline of topics, assignments, and due dates might be changed throughout the session at the instructor’s discretion. All material changes will be communicated with the students in a timely manner.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nDUE\nPREPARE\n\n\n\n1\nMon, Jun 29\nWelcome\n🖥️ slides 00  ⌨️ ae 00\n\nGitHub username - End of Lecture\n\n\n\n\nMon, Jun 29\nLab 0\n💻 lab 0\n\nLab 0 - End of Lab\n\n\n\n\nTue, Jun 30\nMeet the Toolkit\n🖥️ slides 01  🗒️ notes 01  ⌨️ ae 01\n\n\n📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto \n\n\n\n\nWed, Jul 1\nGrammar of Data Visualization\n🖥️ slides 02  🗒️ notes 02  ⌨️ ae 02  ✅ ae 02\n\nDrop/Add Deadline 11:59pm\n📗 r4ds - chp 1  📘 ims - chp 4 \n\n\n\n\nThu, Jul 2\nGrammar of Data Transformation\n🖥️ slides 03  🗒️ notes 03  ⌨️ ae 03  ✅ ae 03\n\n\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\nThu, Jul 2\nLab 1\n💻 lab 1\n\n\n📗 r4ds - chp 2  📘 ims - chp 5\n\n\n\n\nFri, Jul 3\nNO CLASS - Independence Day\n\n\n\n\n\n2\nMon, Jul 6\nExploratory Data Analysis I\n🖥️ slides 04  🗒️ notes 04  ⌨️ ae 04  ✅ ae 04\n\n\n📗 r4ds - chp 3.6-3.7  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships  🎥 Code along :: Star Wars characters\n\n\n\n\nTue, Jul 7\nExploratory Data Analysis II\n🖥️ slides 05  🗒️ notes 05  ⌨️ ae 05  ✅ ae 05\n\n\n📘 ims - chp 5  📘 ims - chp 6  🎥 Code along :: Diving deeper with Palmer Penguins\n\n\n\n\nWed, Jul 8\nTidying Data\n🖥️ slides 06  🗒️ notes 06  ⌨️ ae 06  ✅ ae 06\n\nLab 1 - 11:59PM ET\n📗 r4ds - chp 5  📘 ims - chp 6\n\n\n\n\nThu, Jul 9\nJoining Data\n🖥️ slides 07  🗒️ notes 07  ⌨️ ae 07  ✅ ae 07\n\n\n🎥 Joining data  🎥 Code along :: Continent populations  📗 r4ds - chp 19.1-19.3\n\n\n\n\nThu, Jul 9\nLab 2\n💻 lab 2\n\n\n📗 r4ds - chp 4 🎥 Tidy data 🎥 Tidying data 🎥 Code Along: Population over time\n\n\n\n\nFri, Jul 10\nData Types and Classes\n🖥️ slides 08  🗒️ notes 08  ⌨️ ae 08  ✅ ae 08\n\n\n🎥 Data types  🎥 Data classes  🎥 Code along :: That’s my type  📗 r4ds - chp 16\n\n\n\n\nSun, Jul 12\n\n\n\n\n\n\n3\nMon, Jul 13\nImporting and Recoding Data\n🖥️ slides 09  🗒️ notes 09  ⌨️ ae 09  ✅ ae 09\n\nLab 2 - 11:59PM ET\n🎥 Importing data  🎥 Code along :: Halving CO2 emissions  🎥 Code along :: Student survey  📗 r4ds - chp 7  📗 r4ds - chp 17.1 - 17.3\n\n\n\n\nMon, Jul 13\nLab 3\n💻 lab 3\n\n\n\n\n\n\nTue, Jul 14\nCommunication via Data Science\n🖥️ slides 10  🗒️ notes 10  ⌨️ ae 10  ✅ ae 10\n\n\n\n\n\n\nWed, Jul 15\nData Ethics + Midterm Review\n🖥️ slides 11  🗒️ notes 11  ⌨️ ae 11  ✅ ae 11\n\n\n📕 mdsr - chp 8  📝 How to make a racist AI in R without really trying  🎥 Alberto Cairo - How charts lie  🎥 Joy Buolamwini - How I’m fighting bias in algorithms\n\n\n\n\nThu, Jul 16\nMidterm (lecture + lab sessions)\n\n\n\n\n\n\nFri, Jul 17\nProject Milestone 1 - Collaboration\n🏁milestone 1 \n\nProject Milestone 1 - 11:00AM ET\n\n\n\n\nSun, Jul 19\n\n\nLab 3 - 11:59PM ET\n\n\n\n4\nMon, Jul 20\nThe Language of Models\n🖥️ slides 12  🗒️ notes 12  ⌨️ ae 12  ✅ ae 12\n\n\n🎥 The language of models  📘 ims - chp 7.1  🎥 Fitting and interpreting models  🎥 Modeling nonlinear relationships\n\n\n\n\nMon, Jul 20\nProject Milestone 2 - Proposals\n🏁milestone 2 \n\n\n\n\n\n\nTue, Jul 21\nSimple Linear Regression\n🖥️ slides 13  🗒️ notes 13  ⌨️ ae 13  ✅ ae 13\n\n\n🎥 Linear regression with a categorical predictor  🎥 Outliers in linear regression  🎥 Code along :: Modeling fish  📘 ims - chp 7.2\n\n\n\n\nWed, Jul 22\nMultiple Linear Regression I\n🖥️ slides 14  🗒️ notes 14\n\nProject Milestone 2 - 11:59PM ET\n🎥 Linear regression with multiple predictors  🎥 Main and interaction effects  📘 ims - chp 8.1-8.2  📘 ims - chp 8.3-8.5\n\n\n\n\nThu, Jul 23\nMultiple Linear Regression II\n🖥️ slides 15  🗒️ notes 15  ⌨️ ae 14  ✅ ae 14\n\n\n🎥 Code along :: Modeling interest rates\n\n\n\n\nThu, Jul 23\nLab 4\n💻 lab 4\n\n\n\n\n\n\nFri, Jul 24\nLinear Regression Diagnostics\n🖥️ slides 16  🗒️ notes 16\n\n\n\n\n\n\nSun, Jul 26\n\n\nLab 4 - 11:59PM ET \n\n\n\n\n5\nMon, Jul 27\nLogistic Regression I\n🖥️ slides 17  🗒️ notes 17  ⌨️ ae 15  ✅ ae 15\n\n\n🎥 Logistic regression  🎥 Code along :: Building a spam filter  📘 ims - chp 9\n\n\n\n\nMon, Jul 27\nLab 5\n💻 lab 5\n\n\n\n\n\n\nTue, Jul 28\nLogistic Regression II / Modeling Wrap-Up\n🖥️ slides 18  🗒️ notes 18  ⌨️ ae 16  ✅ ae 16\n\n\n🎥 Clasification and decision errors  🎥 Overfitting and spending your data\n\n\n\n\nWed, Jul 29\nInterval Estimation\n🖥️ slides 19  🗒️ notes 19  ⌨️ ae 17  ✅ ae 17\n\nProject Milestone 3 - 11:59PM ET\n🎥 Quantifying uncertainty  🎥 Bootstrapping  🎥 Code along :: Bootstrapping Duke Forest houses  📘 ims - chp 11  📘 ims - chp 12\n\n\n\n\nThu, Jul 30\nHypothesis Testing\n🖥️ slides 20  🗒️ notes 20  ⌨️ ae 18  ✅ ae 18\n\n\n🎥 Hypothesis testing  📘 ims - chp 11\n\n\n\n\nThu, Jul 30\nProject Milestone 4 - Peer Review\n🏁milestone 4 \n\nProject Milestone 4 - 12:30PM ET \n\n\n\n\n\nFri, Jul 31\nMore Inference\n🖥️ slides 21  🗒️ notes 21  ⌨️ ae 19  ✅ ae 19\n\n\n\n\n\n\nSun, Aug 2\n\n\nLab 5 - 11:59PM ET \n\n\n\n\n6\nMon, Aug 3\nCausality from Randomized Experiments\n🖥️ slides 22  🗒️ notes 21  ⌨️ ae 20  ✅ ae 20\n\n\n\n\n\n\nMon, Aug 3\nLab 6\n\n\n\n\n\n\nTue, Aug 4\nCausality from Observational Studies\n\n\n\n\n\n\nWed, Aug 5\nProject Workday\n\n\n\n\n\n\nThu, Aug 6\nProject Milestone 5 - Presentations\n\nProject - 9:30 AM\n\n\n\n\nFri, Aug 7\nReview\n\nLab 6 - 11:59pm ET\n\n\n\n\nSun, Aug 9\nFINAL EXAM (9am - 12pm)",
+    "text": "This page contains an outline of the topics, content, and assignments for the semester! Entries for future dates are tentative; the timeline of topics, assignments, and due dates might be changed throughout the session at the instructor’s discretion. All material changes will be communicated with the students in a timely manner.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nDUE\nPREPARE\n\n\n\n1\nMon, Jun 29\nWelcome\n🖥️ slides 00  ⌨️ ae 00\n\nGitHub username - End of Lecture\n\n\n\n\nMon, Jun 29\nLab 0\n💻 lab 0\n\nLab 0 - End of Lab\n\n\n\n\nTue, Jun 30\nMeet the Toolkit\n🖥️ slides 01  🗒️ notes 01  ⌨️ ae 01\n\n\n📗 r4ds - intro  📘 ims - chp 1  🎥 Meet the toolkit :: R and RStudio  🎥 Meet the toolkit :: Quarto \n\n\n\n\nWed, Jul 1\nGrammar of Data Visualization\n🖥️ slides 02  🗒️ notes 02  ⌨️ ae 02  ✅ ae 02\n\nDrop/Add Deadline 11:59pm\n📗 r4ds - chp 1  📘 ims - chp 4 \n\n\n\n\nThu, Jul 2\nGrammar of Data Transformation\n🖥️ slides 03  🗒️ notes 03  ⌨️ ae 03  ✅ ae 03\n\n\n📗 r4ds - chp 2  📗 r4ds - chp 3.1-3.5  🎥 Grammar of data transformation  🎥 Code along :: Flights and pipes\n\n\n\n\nThu, Jul 2\nLab 1\n💻 lab 1\n\n\n📗 r4ds - chp 2  📘 ims - chp 5\n\n\n\n\nFri, Jul 3\nNO CLASS - Independence Day\n\n\n\n\n\n2\nMon, Jul 6\nExploratory Data Analysis I\n🖥️ slides 04  🗒️ notes 04  ⌨️ ae 04  ✅ ae 04\n\n\n📗 r4ds - chp 3.6-3.7  🎥 Visualizing and summarizing categorical data  🎥 Visualizing and summarizing numerical data  🎥 Visualizing and summarizing relationships  🎥 Code along :: Star Wars characters\n\n\n\n\nTue, Jul 7\nExploratory Data Analysis II\n🖥️ slides 05  🗒️ notes 05  ⌨️ ae 05  ✅ ae 05\n\n\n📘 ims - chp 5  📘 ims - chp 6  🎥 Code along :: Diving deeper with Palmer Penguins\n\n\n\n\nWed, Jul 8\nTidying Data\n🖥️ slides 06  🗒️ notes 06  ⌨️ ae 06  ✅ ae 06\n\nLab 1 - 11:59PM ET\n📗 r4ds - chp 5  📘 ims - chp 6\n\n\n\n\nThu, Jul 9\nJoining Data\n🖥️ slides 07  🗒️ notes 07  ⌨️ ae 07  ✅ ae 07\n\n\n🎥 Joining data  🎥 Code along :: Continent populations  📗 r4ds - chp 19.1-19.3\n\n\n\n\nThu, Jul 9\nLab 2\n💻 lab 2\n\n\n📗 r4ds - chp 4 🎥 Tidy data 🎥 Tidying data 🎥 Code Along: Population over time\n\n\n\n\nFri, Jul 10\nData Types and Classes\n🖥️ slides 08  🗒️ notes 08  ⌨️ ae 08  ✅ ae 08\n\n\n🎥 Data types  🎥 Data classes  🎥 Code along :: That’s my type  📗 r4ds - chp 16\n\n\n\n\nSun, Jul 12\n\n\n\n\n\n\n3\nMon, Jul 13\nImporting and Recoding Data\n🖥️ slides 09  🗒️ notes 09  ⌨️ ae 09  ✅ ae 09\n\nLab 2 - 11:59PM ET\n🎥 Importing data  🎥 Code along :: Halving CO2 emissions  🎥 Code along :: Student survey  📗 r4ds - chp 7  📗 r4ds - chp 17.1 - 17.3\n\n\n\n\nMon, Jul 13\nLab 3\n💻 lab 3\n\n\n\n\n\n\nTue, Jul 14\nCommunication via Data Science\n🖥️ slides 10  🗒️ notes 10  ⌨️ ae 10  ✅ ae 10\n\n\n\n\n\n\nWed, Jul 15\nData Ethics + Midterm Review\n🖥️ slides 11  🗒️ notes 11  ⌨️ ae 11  ✅ ae 11\n\n\n📕 mdsr - chp 8  📝 How to make a racist AI in R without really trying  🎥 Alberto Cairo - How charts lie  🎥 Joy Buolamwini - How I’m fighting bias in algorithms\n\n\n\n\nThu, Jul 16\nMidterm (lecture + lab sessions)\n\n\n\n\n\n\nFri, Jul 17\nProject Milestone 1 - Collaboration\n🏁milestone 1 \n\nProject Milestone 1 - 11:00AM ET\n\n\n\n\nSun, Jul 19\n\n\nLab 3 - 11:59PM ET\n\n\n\n4\nMon, Jul 20\nThe Language of Models\n🖥️ slides 12  🗒️ notes 12  ⌨️ ae 12  ✅ ae 12\n\n\n🎥 The language of models  📘 ims - chp 7.1  🎥 Fitting and interpreting models  🎥 Modeling nonlinear relationships\n\n\n\n\nMon, Jul 20\nProject Milestone 2 - Proposals\n🏁milestone 2 \n\n\n\n\n\n\nTue, Jul 21\nSimple Linear Regression\n🖥️ slides 13  🗒️ notes 13  ⌨️ ae 13  ✅ ae 13\n\n\n🎥 Linear regression with a categorical predictor  🎥 Outliers in linear regression  🎥 Code along :: Modeling fish  📘 ims - chp 7.2\n\n\n\n\nWed, Jul 22\nMultiple Linear Regression I\n🖥️ slides 14  🗒️ notes 14\n\nProject Milestone 2 - 11:59PM ET\n🎥 Linear regression with multiple predictors  🎥 Main and interaction effects  📘 ims - chp 8.1-8.2  📘 ims - chp 8.3-8.5\n\n\n\n\nThu, Jul 23\nMultiple Linear Regression II\n🖥️ slides 15  🗒️ notes 15  ⌨️ ae 14  ✅ ae 14\n\n\n🎥 Code along :: Modeling interest rates\n\n\n\n\nThu, Jul 23\nLab 4\n💻 lab 4\n\n\n\n\n\n\nFri, Jul 24\nLinear Regression Diagnostics\n🖥️ slides 16  🗒️ notes 16\n\n\n\n\n\n\nSun, Jul 26\n\n\nLab 4 - 11:59PM ET \n\n\n\n\n5\nMon, Jul 27\nLogistic Regression I\n🖥️ slides 17  🗒️ notes 17  ⌨️ ae 15  ✅ ae 15\n\n\n🎥 Logistic regression  🎥 Code along :: Building a spam filter  📘 ims - chp 9\n\n\n\n\nMon, Jul 27\nLab 5\n💻 lab 5\n\n\n\n\n\n\nTue, Jul 28\nLogistic Regression II / Modeling Wrap-Up\n🖥️ slides 18  🗒️ notes 18  ⌨️ ae 16  ✅ ae 16\n\n\n🎥 Clasification and decision errors  🎥 Overfitting and spending your data\n\n\n\n\nWed, Jul 29\nInterval Estimation\n🖥️ slides 19  🗒️ notes 19  ⌨️ ae 17  ✅ ae 17\n\nProject Milestone 3 - 11:59PM ET\n🎥 Quantifying uncertainty  🎥 Bootstrapping  🎥 Code along :: Bootstrapping Duke Forest houses  📘 ims - chp 11  📘 ims - chp 12\n\n\n\n\nThu, Jul 30\nHypothesis Testing\n🖥️ slides 20  🗒️ notes 20  ⌨️ ae 18  ✅ ae 18\n\n\n🎥 Hypothesis testing  📘 ims - chp 11\n\n\n\n\nThu, Jul 30\nProject Milestone 4 - Peer Review\n🏁milestone 4 \n\nProject Milestone 4 - 12:30PM ET \n\n\n\n\n\nFri, Jul 31\nMore Inference\n🖥️ slides 21  🗒️ notes 21  ⌨️ ae 19  ✅ ae 19\n\n\n\n\n\n\nSun, Aug 2\n\n\nLab 5 - 11:59PM ET \n\n\n\n\n6\nMon, Aug 3\nCausality from Randomized Experiments\n🖥️ slides 22  🗒️ notes 22  ⌨️ ae 20  ✅ ae 20\n\n\n\n\n\n\nMon, Aug 3\nLab 6\n\n\n\n\n\n\nTue, Aug 4\nCausality from Observational Studies\n\n\n\n\n\n\nWed, Aug 5\nProject Workday\n\n\n\n\n\n\nThu, Aug 6\nProject Milestone 5 - Presentations\n\nProject - 9:30 AM\n\n\n\n\nFri, Aug 7\nReview\n\nLab 6 - 11:59pm ET\n\n\n\n\nSun, Aug 9\nFINAL EXAM (9am - 12pm)",
     "crumbs": [
       "Course Information",
       "Schedule"
@@ -10449,7 +10449,7 @@
     "href": "ae.html",
     "title": "Application Exercises",
     "section": "",
-    "text": "All application exercises (AEs) are due by the end of lecture (or, precisely, by 10:45 am) on the day they’re covered in lecture. To submit your AE, make at least one change to your AE, commit and then push your change to your AE repo. AEs are graded for engagement, not accuracy.\nMore AEs to be added as the semester progresses.\n\n\n\n\n\n\nTitle\n\n\nSubtitle\n\n\n\n\n\n\nAE 00: Make a GitHub\n\n\n \n\n\n\n\nAE 01: Meet the penguins\n\n\n \n\n\n\n\nAE 02: Penguin peekaboo\n\n\nSuggested answers\n\n\n\n\nAE 02: Penguin peekaboo\n\n\n \n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\nSuggested answers\n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\n \n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\n \n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\nSuggested answers\n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\n \n\n\n\n\nAE 06: Tidying Stat Sci\n\n\nSuggested answers\n\n\n\n\nAE 06: Tidying Stat Sci\n\n\n \n\n\n\n\nAE 07: Joining\n\n\nSuggested answers\n\n\n\n\nAE 07: Joining\n\n\n \n\n\n\n\nAE 08: Durham climate + factors\n\n\nSuggested answers\n\n\n\n\nAE 08: Durham climate + factors\n\n\n \n\n\n\n\nAE 09: Data Imports & Exports\n\n\nSuggested answers\n\n\n\n\nAE 09: Data Imports & Exports\n\n\n \n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\nSuggested answers\n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\n \n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\nSuggested answers\n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\n \n\n\n\n\nAE 12: Modeling fish 🐟\n\n\nSuggested answers\n\n\n\n\nAE 12: Modeling fish 🐟\n\n\n \n\n\n\n\nAE 13: Modeling penguins\n\n\nSuggested answers\n\n\n\n\nAE 13: Modeling penguins\n\n\n \n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\nSuggested answers\n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\n \n\n\n\n\nAE 15: Building a spam filter\n\n\nSuggested answers\n\n\n\n\nAE 15: Building a spam filter\n\n\n \n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\nSuggested answers\n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\n \n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\nSuggested answers\n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\n \n\n\n\n\nAE 18: Pokemon Inference\n\n\nSuggested answers\n\n\n\n\nAE 18: Pokemon Inference\n\n\n \n\n\n\n\nAE 19: Minimum wage\n\n\nSuggested answers\n\n\n\n\nAE 19: Minimum wage\n\n\n \n\n\n\n\nAE 20: Causal Inference from a Randomized Experiment\n\n\nSuggested answers\n\n\n\n\nAE 20: Causal Inference from a Randomized Experiment\n\n\n \n\n\n\n\n\nNo matching items",
+    "text": "All application exercises (AEs) are due by the end of lecture (or, precisely, by 10:45 am) on the day they’re covered in lecture. To submit your AE, make at least one change to your AE, commit and then push your change to your AE repo. AEs are graded for engagement, not accuracy.\nMore AEs to be added as the semester progresses.\n\n\n\n\n\n\nTitle\n\n\nSubtitle\n\n\n\n\n\n\nAE 00: Make a GitHub\n\n\n \n\n\n\n\nAE 01: Meet the penguins\n\n\n \n\n\n\n\nAE 02: Penguin peekaboo\n\n\nSuggested answers\n\n\n\n\nAE 02: Penguin peekaboo\n\n\n \n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\nSuggested answers\n\n\n\n\nAE 03: NYC flights + data wrangling\n\n\n \n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\nSuggested answers\n\n\n\n\nAE 04: Gerrymandering + data exploration I\n\n\n \n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\nSuggested answers\n\n\n\n\nAE 05: Gerrymandering + data exploration II\n\n\n \n\n\n\n\nAE 06: Tidying Stat Sci\n\n\nSuggested answers\n\n\n\n\nAE 06: Tidying Stat Sci\n\n\n \n\n\n\n\nAE 07: Joining\n\n\nSuggested answers\n\n\n\n\nAE 07: Joining\n\n\n \n\n\n\n\nAE 08: Durham climate + factors\n\n\nSuggested answers\n\n\n\n\nAE 08: Durham climate + factors\n\n\n \n\n\n\n\nAE 09: Data Imports & Exports\n\n\nSuggested answers\n\n\n\n\nAE 09: Data Imports & Exports\n\n\n \n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\nSuggested answers\n\n\n\n\nAE 10: Trends in instructional staff employees in universities\n\n\n \n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\nSuggested answers\n\n\n\n\nAE 11: Midterm Pokémon Practice\n\n\n \n\n\n\n\nAE 12: Modeling fish 🐟\n\n\nSuggested answers\n\n\n\n\nAE 12: Modeling fish 🐟\n\n\n \n\n\n\n\nAE 13: Modeling penguins\n\n\nSuggested answers\n\n\n\n\nAE 13: Modeling penguins\n\n\n \n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\nSuggested answers\n\n\n\n\nAE 14: Modeling Housing Prices 🏠\n\n\n \n\n\n\n\nAE 15: Building a spam filter\n\n\nSuggested answers\n\n\n\n\nAE 15: Building a spam filter\n\n\n \n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\nSuggested answers\n\n\n\n\nAE 16: Forest classification 🌳🌲\n\n\n \n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\nSuggested answers\n\n\n\n\nAE 17: Diving back into Paris 2024\n\n\n \n\n\n\n\nAE 18: Pokemon Inference\n\n\nSuggested answers\n\n\n\n\nAE 18: Pokemon Inference\n\n\n \n\n\n\n\nAE 19: Minimum wage\n\n\nSuggested answers\n\n\n\n\nAE 19: Minimum wage\n\n\n \n\n\n\n\nAE 20: Wheat Oral Immunotherapy\n\n\nSuggested answers\n\n\n\n\nAE 20: Wheat Oral Immunotherapy\n\n\n \n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Application Exercises"
     ]
@@ -10740,7 +10740,7 @@
     "href": "slides/03-grammar-of-data-transformation.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 G.I. Joe: Reta…  2013  494446120   140000000  3.53 PASS   ok        \n2 We Are Marshall  2006  100659146    75126763  1.34 FAIL   notalk    \n3 Legends of the…  1994  356775974    47149941  7.57 PASS   ok        \n4 August: Osage …  2013   87609748    25000000  3.50 PASS   ok        \n5 Maid in Manhat…  2002  333859788    71234857  4.69 PASS   ok"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 The Last Stati…  2009   24227029    19543169  1.24 PASS   ok        \n2 Tropa de Elite   2007   16098062     7345604  2.19 PASS   ok        \n3 The Sorcerer's…  2010  297291038   170917095  1.74 FAIL   notalk    \n4 Contraband       2012  167349264    25365964  6.60 PASS   ok        \n5 The Crazies      2010  100498963    20296405  4.95 PASS   ok"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation.html#filter",
@@ -10992,7 +10992,7 @@
     "href": "slides/03-grammar-of-data-transformation-slides.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 G.I. Joe: Reta…  2013  494446120   140000000  3.53 PASS   ok        \n2 We Are Marshall  2006  100659146    75126763  1.34 FAIL   notalk    \n3 Legends of the…  1994  356775974    47149941  7.57 PASS   ok        \n4 August: Osage …  2013   87609748    25000000  3.50 PASS   ok        \n5 Maid in Manhat…  2002  333859788    71234857  4.69 PASS   ok"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 The Last Stati…  2009   24227029    19543169  1.24 PASS   ok        \n2 Tropa de Elite   2007   16098062     7345604  2.19 PASS   ok        \n3 The Sorcerer's…  2010  297291038   170917095  1.74 FAIL   notalk    \n4 Contraband       2012  167349264    25365964  6.60 PASS   ok        \n5 The Crazies      2010  100498963    20296405  4.95 PASS   ok"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation-slides.html#filter",
@@ -11144,261 +11144,373 @@
   {
     "objectID": "slides/23-causal-inference-observational.html",
     "href": "slides/23-causal-inference-observational.html",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "",
-    "text": "In an observational study, the researcher does not assign treatment — subjects choose (or are assigned by nature)\nThis means \\(Z\\) is not independent of \\(X\\): people who receive treatment differ systematically from those who do not\nThe backdoor path \\(X \\to Z \\to Y\\) is open, and the naive difference in means conflates the treatment effect with confounding\n\\(E[\\bar{Y}_{\\text{treated}} - \\bar{Y}_{\\text{control}}] \\neq \\tau\\)\n\n\n\n\n\nStudents who seek tutoring tend to be those who are struggling — lower prior GPA\nIf we compare exam scores, tutored students may still score lower even if tutoring helps\nConversely, employees who get promoted might be higher performers to begin with — making the promotion look more effective than it is\nWe need a way to make treated and control groups comparable on \\(X\\) without running an experiment"
+    "text": "We showed that randomization is incredibly powerful: it makes \\(Z \\perp X\\), so any difference in \\(Y\\) between groups must be due to treatment\nThis gave us the license to say causes: “receiving VWG OIT causes an increase in max tolerated wheat protein dose”\nToday: what happens when we can’t randomize?\n\n\n\n\n\nEthical: you cannot randomly assign people to smoke, to not receive healthcare, or to experience childhood poverty\nPractical: policy changes happen at scale. You can’t “randomize” a country’s minimum wage law\nHistorical: many causal questions are about events that already happened (retrospective)\nMost real-world causal questions are answered with observational data."
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#what-changes-without-randomization",
-    "href": "slides/23-causal-inference-observational.html#what-changes-without-randomization",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "objectID": "slides/23-causal-inference-observational.html#last-lecture-rcts",
+    "href": "slides/23-causal-inference-observational.html#last-lecture-rcts",
+    "title": "Observational Studies",
     "section": "",
-    "text": "In an observational study, the researcher does not assign treatment — subjects choose (or are assigned by nature)\nThis means \\(Z\\) is not independent of \\(X\\): people who receive treatment differ systematically from those who do not\nThe backdoor path \\(X \\to Z \\to Y\\) is open, and the naive difference in means conflates the treatment effect with confounding\n\\(E[\\bar{Y}_{\\text{treated}} - \\bar{Y}_{\\text{control}}] \\neq \\tau\\)"
+    "text": "We showed that randomization is incredibly powerful: it makes \\(Z \\perp X\\), so any difference in \\(Y\\) between groups must be due to treatment\nThis gave us the license to say causes: “receiving VWG OIT causes an increase in max tolerated wheat protein dose”\nToday: what happens when we can’t randomize?"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#the-core-problem",
-    "href": "slides/23-causal-inference-observational.html#the-core-problem",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "objectID": "slides/23-causal-inference-observational.html#when-randomization-isnt-possible",
+    "href": "slides/23-causal-inference-observational.html#when-randomization-isnt-possible",
+    "title": "Observational Studies",
     "section": "",
-    "text": "Students who seek tutoring tend to be those who are struggling — lower prior GPA\nIf we compare exam scores, tutored students may still score lower even if tutoring helps\nConversely, employees who get promoted might be higher performers to begin with — making the promotion look more effective than it is\nWe need a way to make treated and control groups comparable on \\(X\\) without running an experiment"
+    "text": "Ethical: you cannot randomly assign people to smoke, to not receive healthcare, or to experience childhood poverty\nPractical: policy changes happen at scale. You can’t “randomize” a country’s minimum wage law\nHistorical: many causal questions are about events that already happened (retrospective)\nMost real-world causal questions are answered with observational data."
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#what-is-an-observational-study",
+    "href": "slides/23-causal-inference-observational.html#what-is-an-observational-study",
+    "title": "Observational Studies",
+    "section": "What is an Observational Study?",
+    "text": "What is an Observational Study?\n\n\nIn an observational study, treatment is not assigned by the researcher, Subjects choose, or are assigned by nature or circumstance\nSurveys (including the census)\nElectronic Health Records\nMost sources of data can be thought of an observational study! Just have to define what the treatment is\nOne key advantage over randomized experiments is the ease in collecting data! Usually has a much bigger sample size.\n\nThe issues\n\n\\(Z\\) is not independent of \\(X\\): people who receive treatment differ systematically from those who don’t\nChanges in \\(Y\\) not directly attributable to changes in \\(Z\\)\n\n[create small example table with like all of the x’s matching the treatment Z, maybe like something about the new odyssey movie] Y is corisol levels, Z is whether watched movie, X is"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#the-issues",
+    "href": "slides/23-causal-inference-observational.html#the-issues",
+    "title": "Observational Studies",
+    "section": "The issues",
+    "text": "The issues\n\n\\(Z\\) is not independent of \\(X\\): people who receive treatment differ systematically from those who don’t\nChanges in \\(Y\\) not directly attributable to changes in \\(Z\\)\n\n[create small example table with like all of the x’s matching the treatment Z, maybe like something about the new odyssey movie] Y is corisol levels, Z is whether watched movie, X is"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#a-concrete-example",
+    "href": "slides/23-causal-inference-observational.html#a-concrete-example",
+    "title": "Observational Studies",
+    "section": "A concrete example",
+    "text": "A concrete example\n\n\nStudents who seek tutoring tend to be those who are struggling — lower prior GPA\nIf we compare exam scores, tutored students may still score lower on average, even if tutoring genuinely helps\nThe confounder (prior ability) affects both who gets tutoring (\\(Z\\)) and the outcome (\\(Y\\))\nSolution: we need a way to make treated and control groups comparable on \\(X\\), without running an experiment"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#key-takeaway",
+    "href": "slides/23-causal-inference-observational.html#key-takeaway",
+    "title": "Observational Studies",
+    "section": "Key takeaway",
+    "text": "Key takeaway\n\n\nIn an observational study, a naive difference in group means is not a valid causal estimate\nWe need to adjust for confounders \\(X\\) to recover the treatment effect\nThe rest of today is about two strategies for doing that"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#the-idea-of-matching",
     "href": "slides/23-causal-inference-observational.html#the-idea-of-matching",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "The idea of matching",
-    "text": "The idea of matching\n\n\nFor each treated unit, find one (or more) control units that look similar on \\(X\\)\nCompare outcomes within matched pairs — differences now reflect treatment, not confounding\nWe are trying to mimic a randomized experiment by constructing comparable groups from observational data"
+    "text": "The idea of matching\nrecall covariate balance in a randomized study:\nrandomization balanced the covariates so that the only possible thing that changed was the treatment\n\n\nFor each treated unit, find one (or more) control units that look similar on \\(X\\)\nCompare outcomes within matched pairs — differences now reflect treatment, not confounding\nWe are trying to mimic a randomized experiment by constructing comparable groups from observational data\nAfter matching: treated and control units have similar \\(X\\) distributions, so \\(Z \\perp X\\) holds approximately"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#formally",
-    "href": "slides/23-causal-inference-observational.html#formally",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Formally",
-    "text": "Formally\n\n\nThe key assumption: conditional ignorability\n\n\n\\[Y(0), Y(1) \\perp Z \\mid X\\]\n\nGiven covariates \\(X\\), treatment assignment is “as good as random”\nThis is also called no unmeasured confounders — a strong, untestable assumption\nIf it holds, matching on \\(X\\) recovers the causal effect"
+    "objectID": "slides/23-causal-inference-observational.html#the-key-assumption",
+    "href": "slides/23-causal-inference-observational.html#the-key-assumption",
+    "title": "Observational Studies",
+    "section": "The key assumption",
+    "text": "The key assumption\n\n\nMatching only works if we have measured all important confounders\n\nFormally: conditional ignorability\n\\[Y(0), Y(1) \\perp Z \\mid X\\]\n\nGiven \\(X\\), treatment assignment is “as good as random”\nAlso called no unmeasured confounders — a strong, untestable assumption\nThis is the observational equivalent of randomization: we can’t guarantee it, we have to argue for it"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#the-data",
-    "href": "slides/23-causal-inference-observational.html#the-data",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "The data",
-    "text": "The data\nWe use the LaLonde dataset: a study of a 1970s job training program. Participants were not randomly assigned.\n\ndata(\"lalonde\", package = \"MatchIt\")\nglimpse(lalonde)\n\nRows: 614\nColumns: 9\n$ treat    &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ age      &lt;int&gt; 37, 22, 30, 27, 33, 22, 23, 32, 22, 33, 19, 21, 18,…\n$ educ     &lt;int&gt; 11, 9, 12, 11, 8, 9, 12, 11, 16, 12, 9, 13, 8, 10, …\n$ race     &lt;fct&gt; black, hispan, black, black, black, black, black, b…\n$ married  &lt;int&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, …\n$ nodegree &lt;int&gt; 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, …\n$ re74     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re75     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…\n\n\n\n\ntreat: 1 = job training, 0 = no training\n\nre78: earnings in 1978 (outcome \\(Y\\))\n\nage, educ, re74, re75, etc.: covariates \\(X\\)"
+    "objectID": "slides/23-causal-inference-observational.html#context",
+    "href": "slides/23-causal-inference-observational.html#context",
+    "title": "Observational Studies",
+    "section": "Context",
+    "text": "Context\nLaLonde (1986) evaluated the National Supported Work (NSW) program: a 1970s job training intervention for disadvantaged workers.\n\n\nCohort: Disadvantaged workers (long-term unemployed, ex-offenders, welfare recipients)\nDesign: The original NSW had a randomized arm, but LaLonde compared its estimates against observational comparison groups drawn from national surveys — showing how badly naive methods can fail\nTreatment (\\(Z = 1\\)): Participation in the NSW job training program\nControl (\\(Z = 0\\)): Non-participants drawn from observational comparison groups\nOutcome (\\(Y\\)): Earnings in 1978 (re78)\nCovariates (\\(X\\)): Age, education, race, marital status, prior earnings (re74, re75)"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#naive-estimate-no-matching",
-    "href": "slides/23-causal-inference-observational.html#naive-estimate-no-matching",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Naive estimate (no matching)",
-    "text": "Naive estimate (no matching)\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_earnings = mean(re78))\n\n# A tibble: 2 × 2\n  treat mean_earnings\n  &lt;int&gt;         &lt;dbl&gt;\n1     0         6984.\n2     1         6349.\n\n\n\n\nThe naive difference suggests training increases earnings\nBut treated and control groups may differ on pre-treatment characteristics — we can’t trust this yet"
+    "objectID": "slides/23-causal-inference-observational.html#data",
+    "href": "slides/23-causal-inference-observational.html#data",
+    "title": "Observational Studies",
+    "section": "Data",
+    "text": "Data\n\ndata(\"lalonde\", package = \"MatchIt\")\nglimpse(lalonde)\n\nRows: 614\nColumns: 9\n$ treat    &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ age      &lt;int&gt; 37, 22, 30, 27, 33, 22, 23, 32, 22, 33, 19, 21, 18,…\n$ educ     &lt;int&gt; 11, 9, 12, 11, 8, 9, 12, 11, 16, 12, 9, 13, 8, 10, …\n$ race     &lt;fct&gt; black, hispan, black, black, black, black, black, b…\n$ married  &lt;int&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, …\n$ nodegree &lt;int&gt; 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, …\n$ re74     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re75     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…\n\n\n\n\ntreat: 1 = job training, 0 = no training\n\nre78: earnings in 1978 (outcome \\(Y\\))\n\nage, educ, re74, re75, …: pre-treatment covariates (\\(X\\))"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#check-for-imbalance",
-    "href": "slides/23-causal-inference-observational.html#check-for-imbalance",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Check for imbalance",
-    "text": "Check for imbalance\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_age  = mean(age),\n            mean_educ = mean(educ),\n            mean_re74 = mean(re74),\n            mean_re75 = mean(re75))\n\n# A tibble: 2 × 5\n  treat mean_age mean_educ mean_re74 mean_re75\n  &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1     0     28.0      10.2     5619.     2466.\n2     1     25.8      10.3     2096.     1532.\n\n\n\n\nTreated individuals have lower prior earnings (re74, re75) — confounding is present\nWe need to adjust for this before drawing causal conclusions"
+    "objectID": "slides/23-causal-inference-observational.html#naive-estimate",
+    "href": "slides/23-causal-inference-observational.html#naive-estimate",
+    "title": "Observational Studies",
+    "section": "Naive estimate",
+    "text": "Naive estimate\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_earnings = mean(re78))\n\n# A tibble: 2 × 2\n  treat mean_earnings\n  &lt;int&gt;         &lt;dbl&gt;\n1     0         6984.\n2     1         6349.\n\n\n\n\nThe naive difference suggests training increases earnings\nBut are the two groups actually comparable before treatment?"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#your-turn",
+    "href": "slides/23-causal-inference-observational.html#your-turn",
+    "title": "Observational Studies",
+    "section": "Your turn",
+    "text": "Your turn\n\nLook at the balance table below. Which variables show the largest differences between treated and control groups? What does this tell us about the naive estimate?\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(\n    mean_age  = mean(age),\n    mean_educ = mean(educ),\n    mean_re74 = mean(re74),\n    mean_re75 = mean(re75)\n  )\n\n# A tibble: 2 × 5\n  treat mean_age mean_educ mean_re74 mean_re75\n  &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1     0     28.0      10.2     5619.     2466.\n2     1     25.8      10.3     2096.     1532."
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#what-the-imbalance-tells-us",
+    "href": "slides/23-causal-inference-observational.html#what-the-imbalance-tells-us",
+    "title": "Observational Studies",
+    "section": "What the imbalance tells us",
+    "text": "What the imbalance tells us\n\n\nTreated individuals have substantially lower prior earnings (re74, re75) than controls\nThe control group (from national surveys) is richer and more educated on average\nA naive comparison overstates the earnings gap — the treated group is catching up from a lower baseline, not just benefiting from training\nWe need to adjust for these differences before drawing causal conclusions"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#nearest-neighbor-matching",
     "href": "slides/23-causal-inference-observational.html#nearest-neighbor-matching",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Nearest-neighbor matching",
-    "text": "Nearest-neighbor matching\n\nm_out &lt;- matchit(treat ~ age + educ + re74 + re75,\n                 data   = lalonde,\n                 method = \"nearest\")\nsummary(m_out, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
+    "text": "Nearest-neighbor matching\n\nm_out &lt;- matchit(\n  treat ~ age + educ + re74 + re75,\n  data   = lalonde,\n  method = \"nearest\"\n)\nsummary(m_out, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#estimate-on-matched-data",
     "href": "slides/23-causal-inference-observational.html#estimate-on-matched-data",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Estimate on matched data",
-    "text": "Estimate on matched data\n\nm_data &lt;- match.data(m_out)\n\nlm(re78 ~ treat, data = m_data, weights = weights) |&gt; tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter matching, the estimate is our best causal estimate under the ignorability assumption\nCompare this to the naive estimate — confounding matters!"
+    "text": "Estimate on matched data\n\nm_data &lt;- match.data(m_out)\n\nlinear_reg() |&gt;\n  fit(re78 ~ treat, data = m_data) |&gt;\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter matching, treated and control units are much more comparable on \\(X\\)\nThis estimate is our best causal guess under the ignorability assumption\nCompare to the naive estimate — confounding matters!"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#curse-of-dimensionality",
-    "href": "slides/23-causal-inference-observational.html#curse-of-dimensionality",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Curse of dimensionality",
-    "text": "Curse of dimensionality\n\n\nMatching works well when \\(X\\) has only a few variables\nWith many covariates, it becomes nearly impossible to find good matches — the space is too sparse\nExample: match exactly on age (35), education (12 years), prior earnings ($8,000), race, marital status…\nThe probability of finding a near-identical control unit vanishes as the dimension of \\(X\\) grows"
+    "objectID": "slides/23-causal-inference-observational.html#the-curse-of-dimensionality",
+    "href": "slides/23-causal-inference-observational.html#the-curse-of-dimensionality",
+    "title": "Observational Studies",
+    "section": "The curse of dimensionality",
+    "text": "The curse of dimensionality\n\n\nCovariate matching works well when \\(X\\) has only a few variables\nWith many covariates, it becomes nearly impossible to find good matches — the covariate space is too sparse\nExample: match exactly on age, education, prior earnings, race, marital status, region, …\nThe probability of finding a near-identical control unit vanishes as the number of covariates grows\nWe need a smarter approach"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#we-need-a-smarter-approach",
-    "href": "slides/23-causal-inference-observational.html#we-need-a-smarter-approach",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "We need a smarter approach",
-    "text": "We need a smarter approach\n\n\nInstead of matching on the full \\(X\\) vector, collapse it to a single number\nThe propensity score:\n\n\\[e(X) = P(Z = 1 \\mid X)\\]\n\nThe probability of receiving treatment, given covariates\nRosenbaum & Rubin (1983): if \\(Y(0), Y(1) \\perp Z \\mid X\\), then also \\(Y(0), Y(1) \\perp Z \\mid e(X)\\)\nMatching on this one number is sufficient!"
+    "objectID": "slides/23-causal-inference-observational.html#the-propensity-score",
+    "href": "slides/23-causal-inference-observational.html#the-propensity-score",
+    "title": "Observational Studies",
+    "section": "The propensity score",
+    "text": "The propensity score\n\n\nInstead of matching on the full \\(X\\) vector, collapse it to a single number\n\nThe propensity score:\n\\[e(X) = P(Z = 1 \\mid X)\\]\n\nThe probability of receiving treatment, given covariates\nRosenbaum & Rubin (1983): if \\(Y(0), Y(1) \\perp Z \\mid X\\), then also \\(Y(0), Y(1) \\perp Z \\mid e(X)\\)\nMatching on this one number is sufficient!"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#key-takeaway-1",
+    "href": "slides/23-causal-inference-observational.html#key-takeaway-1",
+    "title": "Observational Studies",
+    "section": "Key takeaway",
+    "text": "Key takeaway\n\n\nThe propensity score reduces a high-dimensional matching problem to a one-dimensional one\nWe estimate \\(e(X)\\) with logistic regression, then match on the predicted probability\nBalance on \\(e(X)\\) implies (approximate) balance on all of \\(X\\)"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#estimating-the-propensity-score",
     "href": "slides/23-causal-inference-observational.html#estimating-the-propensity-score",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Estimating the propensity score",
-    "text": "Estimating the propensity score\nWe estimate \\(e(X)\\) via logistic regression:\n\\[\\log\\frac{P(Z=1 \\mid X)}{1 - P(Z=1 \\mid X)} = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\]\n\n\nFit logistic regression of \\(Z\\) on \\(X\\)\nPredicted probabilities \\(\\hat{e}(X_i)\\) are the estimated propensity scores\nMatch treated and control units with similar \\(\\hat{e}(X)\\) values"
+    "text": "Estimating the propensity score\nWe estimate \\(e(X)\\) via logistic regression (which we already know!):\n\\[\\log\\frac{P(Z=1 \\mid X)}{1 - P(Z=1 \\mid X)} = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\]\n\n\nFit logistic regression of \\(Z\\) on \\(X\\)\nPredicted probabilities \\(\\hat{e}(X_i)\\) are the estimated propensity scores\nMatch treated and control units with similar \\(\\hat{e}(X)\\)"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#the-workflow",
     "href": "slides/23-causal-inference-observational.html#the-workflow",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "The workflow",
     "text": "The workflow\n\nFit a logistic regression model: \\(Z \\sim X_1 + \\cdots + X_p\\)\n\nExtract predicted probabilities as propensity scores\nMatch treated to control units with similar scores\nCheck balance on \\(X\\) in the matched sample\nEstimate the treatment effect on the matched data"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#step-1-2-fit-model-get-scores",
     "href": "slides/23-causal-inference-observational.html#step-1-2-fit-model-get-scores",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Step 1 & 2: fit model, get scores",
-    "text": "Step 1 & 2: fit model, get scores\n\nps_model &lt;- glm(treat ~ age + educ + re74 + re75,\n                data   = lalonde,\n                family = binomial)\n\nlalonde &lt;- lalonde |&gt;\n  mutate(ps = predict(ps_model, type = \"response\"))\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_ps = mean(ps), sd_ps = sd(ps))\n\n# A tibble: 2 × 3\n  treat mean_ps  sd_ps\n  &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1     0   0.279 0.126 \n2     1   0.354 0.0901"
+    "text": "Step 1 & 2: fit model, get scores\n\nps_model &lt;- glm(\n  treat ~ age + educ + re74 + re75,\n  data   = lalonde,\n  family = binomial\n)\n\nlalonde &lt;- lalonde |&gt;\n  mutate(ps = predict(ps_model, type = \"response\"))\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_ps = mean(ps), sd_ps = sd(ps))\n\n# A tibble: 2 × 3\n  treat mean_ps  sd_ps\n  &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1     0   0.279 0.126 \n2     1   0.354 0.0901"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#visualize-the-scores",
     "href": "slides/23-causal-inference-observational.html#visualize-the-scores",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Visualize the scores",
-    "text": "Visualize the scores"
+    "text": "Visualize the scores\n\nggplot(\n  lalonde,\n  aes(x = ps, fill = factor(treat, labels = c(\"Control\", \"Treated\")))\n) +\n  geom_density(alpha = 0.5) +\n  labs(\n    x     = \"Propensity score\",\n    y     = \"Density\",\n    fill  = \"Group\",\n    title = \"Distribution of propensity scores by group\"\n  )"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#step-3-4-match-and-check-balance",
     "href": "slides/23-causal-inference-observational.html#step-3-4-match-and-check-balance",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Step 3 & 4: match and check balance",
-    "text": "Step 3 & 4: match and check balance\n\nps_match &lt;- matchit(treat ~ age + educ + re74 + re75,\n                    data     = lalonde,\n                    method   = \"nearest\",\n                    distance = \"glm\")\n\nsummary(ps_match, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\", distance = \"glm\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
+    "text": "Step 3 & 4: match and check balance\n\nps_match &lt;- matchit(\n  treat ~ age + educ + re74 + re75,\n  data     = lalonde,\n  method   = \"nearest\",\n  distance = \"glm\"\n)\n\nsummary(ps_match, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\", distance = \"glm\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
   },
   {
-    "objectID": "slides/23-causal-inference-observational.html#step-5-estimate-the-effect",
-    "href": "slides/23-causal-inference-observational.html#step-5-estimate-the-effect",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Step 5: estimate the effect",
-    "text": "Step 5: estimate the effect\n\nps_data &lt;- match.data(ps_match)\n\nlm(re78 ~ treat, data = ps_data, weights = weights) |&gt; tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter propensity score matching, we have a valid causal estimate (under ignorability)\nThe propensity score approach scales to many covariates, unlike direct matching\nAlways check balance after matching — if it’s poor, consider a different model for the propensity score"
+    "objectID": "slides/23-causal-inference-observational.html#step-5-estimate-the-treatment-effect",
+    "href": "slides/23-causal-inference-observational.html#step-5-estimate-the-treatment-effect",
+    "title": "Observational Studies",
+    "section": "Step 5: estimate the treatment effect",
+    "text": "Step 5: estimate the treatment effect\n\nps_data &lt;- match.data(ps_match)\n\nlinear_reg() |&gt;\n  fit(re78 ~ treat, data = ps_data) |&gt;\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter propensity score matching, we have a valid causal estimate (under ignorability)\nThis scales to many covariates, unlike direct covariate matching\nAlways check balance after matching — if balance is poor, improve the propensity score model"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational.html#limitations-of-observational-studies",
+    "href": "slides/23-causal-inference-observational.html#limitations-of-observational-studies",
+    "title": "Observational Studies",
+    "section": "Limitations of observational studies",
+    "text": "Limitations of observational studies\n\n\nNo unmeasured confounders: the key assumption is untestable — if an important confounder is missing from \\(X\\), our estimate is still biased\nBad controls: we need to choose \\(X\\) carefully — only include pre-treatment variables, never variables caused by \\(Z\\)\nGeneralizability: matching typically estimates the treatment effect on the treated (ATT), not the full population\nModel dependence: the propensity score model matters — wrong specification leads to poor balance and biased estimates\nRCTs are still the gold standard; observational methods are our best option when experiments are impossible"
   },
   {
     "objectID": "slides/23-causal-inference-observational.html#key-takeaways",
     "href": "slides/23-causal-inference-observational.html#key-takeaways",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Key takeaways",
-    "text": "Key takeaways\n\n\nObservational studies require careful adjustment for confounders \\(X\\)\nMatching reconstructs comparability between treated and control groups\nDirect matching works with few covariates; propensity score matching scales to high dimensions\nAll methods require no unmeasured confounders — this assumption cannot be tested from data alone\nSensitivity analyses can assess how robust conclusions are to potential unmeasured confounding"
+    "text": "Key takeaways\n\n\nObservational studies require careful adjustment for confounders \\(X\\)\nCovariate matching: find control units similar on \\(X\\) directly — works well with few covariates\nPropensity score matching: match on \\(P(Z = 1 \\mid X)\\) — scales to high dimensions\nBoth require no unmeasured confounders — an assumption that must be argued for, not tested from data\nWhen you see an observational study making a causal claim, ask: what confounders might they have missed?"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#what-changes-without-randomization",
-    "href": "slides/23-causal-inference-observational-slides.html#what-changes-without-randomization",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "What changes without randomization?",
-    "text": "What changes without randomization?\n\n\nIn an observational study, the researcher does not assign treatment — subjects choose (or are assigned by nature)\nThis means \\(Z\\) is not independent of \\(X\\): people who receive treatment differ systematically from those who do not\nThe backdoor path \\(X \\to Z \\to Y\\) is open, and the naive difference in means conflates the treatment effect with confounding\n\\(E[\\bar{Y}_{\\text{treated}} - \\bar{Y}_{\\text{control}}] \\neq \\tau\\)"
+    "objectID": "slides/23-causal-inference-observational-slides.html#last-lecture-rcts",
+    "href": "slides/23-causal-inference-observational-slides.html#last-lecture-rcts",
+    "title": "Observational Studies",
+    "section": "Last lecture: RCTs",
+    "text": "Last lecture: RCTs\n\n\nWe showed that randomization is incredibly powerful: it makes \\(Z \\perp X\\), so any difference in \\(Y\\) between groups must be due to treatment\nThis gave us the license to say causes: “receiving VWG OIT causes an increase in max tolerated wheat protein dose”\nToday: what happens when we can’t randomize?"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#the-core-problem",
-    "href": "slides/23-causal-inference-observational-slides.html#the-core-problem",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "The core problem",
-    "text": "The core problem\n\n\nStudents who seek tutoring tend to be those who are struggling — lower prior GPA\nIf we compare exam scores, tutored students may still score lower even if tutoring helps\nConversely, employees who get promoted might be higher performers to begin with — making the promotion look more effective than it is\nWe need a way to make treated and control groups comparable on \\(X\\) without running an experiment"
+    "objectID": "slides/23-causal-inference-observational-slides.html#when-randomization-isnt-possible",
+    "href": "slides/23-causal-inference-observational-slides.html#when-randomization-isnt-possible",
+    "title": "Observational Studies",
+    "section": "When randomization isn’t possible",
+    "text": "When randomization isn’t possible\n\n\nEthical: you cannot randomly assign people to smoke, to not receive healthcare, or to experience childhood poverty\nPractical: policy changes happen at scale. You can’t “randomize” a country’s minimum wage law\nHistorical: many causal questions are about events that already happened (retrospective)\nMost real-world causal questions are answered with observational data."
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#what-is-an-observational-study",
+    "href": "slides/23-causal-inference-observational-slides.html#what-is-an-observational-study",
+    "title": "Observational Studies",
+    "section": "What is an Observational Study?",
+    "text": "What is an Observational Study?\n\n\nIn an observational study, treatment is not assigned by the researcher, Subjects choose, or are assigned by nature or circumstance\nSurveys (including the census)\nElectronic Health Records\nMost sources of data can be thought of an observational study! Just have to define what the treatment is\nOne key advantage over randomized experiments is the ease in collecting data! Usually has a much bigger sample size.\n\nThe issues\n\n\\(Z\\) is not independent of \\(X\\): people who receive treatment differ systematically from those who don’t\nChanges in \\(Y\\) not directly attributable to changes in \\(Z\\)\n\n[create small example table with like all of the x’s matching the treatment Z, maybe like something about the new odyssey movie] Y is corisol levels, Z is whether watched movie, X is"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#the-issues",
+    "href": "slides/23-causal-inference-observational-slides.html#the-issues",
+    "title": "Observational Studies",
+    "section": "The issues",
+    "text": "The issues\n\n\\(Z\\) is not independent of \\(X\\): people who receive treatment differ systematically from those who don’t\nChanges in \\(Y\\) not directly attributable to changes in \\(Z\\)\n\n[create small example table with like all of the x’s matching the treatment Z, maybe like something about the new odyssey movie] Y is corisol levels, Z is whether watched movie, X is"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#a-concrete-example",
+    "href": "slides/23-causal-inference-observational-slides.html#a-concrete-example",
+    "title": "Observational Studies",
+    "section": "A concrete example",
+    "text": "A concrete example\n\n\nStudents who seek tutoring tend to be those who are struggling — lower prior GPA\nIf we compare exam scores, tutored students may still score lower on average, even if tutoring genuinely helps\nThe confounder (prior ability) affects both who gets tutoring (\\(Z\\)) and the outcome (\\(Y\\))\nSolution: we need a way to make treated and control groups comparable on \\(X\\), without running an experiment"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#key-takeaway",
+    "href": "slides/23-causal-inference-observational-slides.html#key-takeaway",
+    "title": "Observational Studies",
+    "section": "Key takeaway",
+    "text": "Key takeaway\n\n\nIn an observational study, a naive difference in group means is not a valid causal estimate\nWe need to adjust for confounders \\(X\\) to recover the treatment effect\nThe rest of today is about two strategies for doing that"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#the-idea-of-matching",
     "href": "slides/23-causal-inference-observational-slides.html#the-idea-of-matching",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "The idea of matching",
-    "text": "The idea of matching\n\n\nFor each treated unit, find one (or more) control units that look similar on \\(X\\)\nCompare outcomes within matched pairs — differences now reflect treatment, not confounding\nWe are trying to mimic a randomized experiment by constructing comparable groups from observational data"
+    "text": "The idea of matching\nrecall covariate balance in a randomized study:\nrandomization balanced the covariates so that the only possible thing that changed was the treatment\n\n\nFor each treated unit, find one (or more) control units that look similar on \\(X\\)\nCompare outcomes within matched pairs — differences now reflect treatment, not confounding\nWe are trying to mimic a randomized experiment by constructing comparable groups from observational data\nAfter matching: treated and control units have similar \\(X\\) distributions, so \\(Z \\perp X\\) holds approximately"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#formally",
-    "href": "slides/23-causal-inference-observational-slides.html#formally",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Formally",
-    "text": "Formally\n\n\nThe key assumption: conditional ignorability\n\n\n\\[Y(0), Y(1) \\perp Z \\mid X\\]\n\nGiven covariates \\(X\\), treatment assignment is “as good as random”\nThis is also called no unmeasured confounders — a strong, untestable assumption\nIf it holds, matching on \\(X\\) recovers the causal effect"
+    "objectID": "slides/23-causal-inference-observational-slides.html#the-key-assumption",
+    "href": "slides/23-causal-inference-observational-slides.html#the-key-assumption",
+    "title": "Observational Studies",
+    "section": "The key assumption",
+    "text": "The key assumption\n\n\nMatching only works if we have measured all important confounders\n\nFormally: conditional ignorability\n\\[Y(0), Y(1) \\perp Z \\mid X\\]\n\nGiven \\(X\\), treatment assignment is “as good as random”\nAlso called no unmeasured confounders — a strong, untestable assumption\nThis is the observational equivalent of randomization: we can’t guarantee it, we have to argue for it"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#the-data",
-    "href": "slides/23-causal-inference-observational-slides.html#the-data",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "The data",
-    "text": "The data\nWe use the LaLonde dataset: a study of a 1970s job training program. Participants were not randomly assigned.\n\ndata(\"lalonde\", package = \"MatchIt\")\nglimpse(lalonde)\n\nRows: 614\nColumns: 9\n$ treat    &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ age      &lt;int&gt; 37, 22, 30, 27, 33, 22, 23, 32, 22, 33, 19, 21, 18,…\n$ educ     &lt;int&gt; 11, 9, 12, 11, 8, 9, 12, 11, 16, 12, 9, 13, 8, 10, …\n$ race     &lt;fct&gt; black, hispan, black, black, black, black, black, b…\n$ married  &lt;int&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, …\n$ nodegree &lt;int&gt; 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, …\n$ re74     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re75     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…\n\n\n\n\ntreat: 1 = job training, 0 = no training\n\nre78: earnings in 1978 (outcome \\(Y\\))\n\nage, educ, re74, re75, etc.: covariates \\(X\\)"
+    "objectID": "slides/23-causal-inference-observational-slides.html#context",
+    "href": "slides/23-causal-inference-observational-slides.html#context",
+    "title": "Observational Studies",
+    "section": "Context",
+    "text": "Context\nLaLonde (1986) evaluated the National Supported Work (NSW) program: a 1970s job training intervention for disadvantaged workers.\n\n\nCohort: Disadvantaged workers (long-term unemployed, ex-offenders, welfare recipients)\nDesign: The original NSW had a randomized arm, but LaLonde compared its estimates against observational comparison groups drawn from national surveys — showing how badly naive methods can fail\nTreatment (\\(Z = 1\\)): Participation in the NSW job training program\nControl (\\(Z = 0\\)): Non-participants drawn from observational comparison groups\nOutcome (\\(Y\\)): Earnings in 1978 (re78)\nCovariates (\\(X\\)): Age, education, race, marital status, prior earnings (re74, re75)"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#naive-estimate-no-matching",
-    "href": "slides/23-causal-inference-observational-slides.html#naive-estimate-no-matching",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Naive estimate (no matching)",
-    "text": "Naive estimate (no matching)\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_earnings = mean(re78))\n\n# A tibble: 2 × 2\n  treat mean_earnings\n  &lt;int&gt;         &lt;dbl&gt;\n1     0         6984.\n2     1         6349.\n\n\n\n\nThe naive difference suggests training increases earnings\nBut treated and control groups may differ on pre-treatment characteristics — we can’t trust this yet"
+    "objectID": "slides/23-causal-inference-observational-slides.html#data",
+    "href": "slides/23-causal-inference-observational-slides.html#data",
+    "title": "Observational Studies",
+    "section": "Data",
+    "text": "Data\n\ndata(\"lalonde\", package = \"MatchIt\")\nglimpse(lalonde)\n\nRows: 614\nColumns: 9\n$ treat    &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ age      &lt;int&gt; 37, 22, 30, 27, 33, 22, 23, 32, 22, 33, 19, 21, 18,…\n$ educ     &lt;int&gt; 11, 9, 12, 11, 8, 9, 12, 11, 16, 12, 9, 13, 8, 10, …\n$ race     &lt;fct&gt; black, hispan, black, black, black, black, black, b…\n$ married  &lt;int&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, …\n$ nodegree &lt;int&gt; 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, …\n$ re74     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re75     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…\n\n\n\n\ntreat: 1 = job training, 0 = no training\n\nre78: earnings in 1978 (outcome \\(Y\\))\n\nage, educ, re74, re75, …: pre-treatment covariates (\\(X\\))"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#check-for-imbalance",
-    "href": "slides/23-causal-inference-observational-slides.html#check-for-imbalance",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Check for imbalance",
-    "text": "Check for imbalance\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_age  = mean(age),\n            mean_educ = mean(educ),\n            mean_re74 = mean(re74),\n            mean_re75 = mean(re75))\n\n# A tibble: 2 × 5\n  treat mean_age mean_educ mean_re74 mean_re75\n  &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1     0     28.0      10.2     5619.     2466.\n2     1     25.8      10.3     2096.     1532.\n\n\n\n\nTreated individuals have lower prior earnings (re74, re75) — confounding is present\nWe need to adjust for this before drawing causal conclusions"
+    "objectID": "slides/23-causal-inference-observational-slides.html#naive-estimate",
+    "href": "slides/23-causal-inference-observational-slides.html#naive-estimate",
+    "title": "Observational Studies",
+    "section": "Naive estimate",
+    "text": "Naive estimate\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_earnings = mean(re78))\n\n# A tibble: 2 × 2\n  treat mean_earnings\n  &lt;int&gt;         &lt;dbl&gt;\n1     0         6984.\n2     1         6349.\n\n\n\n\nThe naive difference suggests training increases earnings\nBut are the two groups actually comparable before treatment?"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#your-turn",
+    "href": "slides/23-causal-inference-observational-slides.html#your-turn",
+    "title": "Observational Studies",
+    "section": "Your turn",
+    "text": "Your turn\n\nLook at the balance table below. Which variables show the largest differences between treated and control groups? What does this tell us about the naive estimate?\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(\n    mean_age  = mean(age),\n    mean_educ = mean(educ),\n    mean_re74 = mean(re74),\n    mean_re75 = mean(re75)\n  )\n\n# A tibble: 2 × 5\n  treat mean_age mean_educ mean_re74 mean_re75\n  &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1     0     28.0      10.2     5619.     2466.\n2     1     25.8      10.3     2096.     1532."
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#what-the-imbalance-tells-us",
+    "href": "slides/23-causal-inference-observational-slides.html#what-the-imbalance-tells-us",
+    "title": "Observational Studies",
+    "section": "What the imbalance tells us",
+    "text": "What the imbalance tells us\n\n\nTreated individuals have substantially lower prior earnings (re74, re75) than controls\nThe control group (from national surveys) is richer and more educated on average\nA naive comparison overstates the earnings gap — the treated group is catching up from a lower baseline, not just benefiting from training\nWe need to adjust for these differences before drawing causal conclusions"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#nearest-neighbor-matching",
     "href": "slides/23-causal-inference-observational-slides.html#nearest-neighbor-matching",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Nearest-neighbor matching",
-    "text": "Nearest-neighbor matching\n\nm_out &lt;- matchit(treat ~ age + educ + re74 + re75,\n                 data   = lalonde,\n                 method = \"nearest\")\nsummary(m_out, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
+    "text": "Nearest-neighbor matching\n\nm_out &lt;- matchit(\n  treat ~ age + educ + re74 + re75,\n  data   = lalonde,\n  method = \"nearest\"\n)\nsummary(m_out, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#estimate-on-matched-data",
     "href": "slides/23-causal-inference-observational-slides.html#estimate-on-matched-data",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Estimate on matched data",
-    "text": "Estimate on matched data\n\nm_data &lt;- match.data(m_out)\n\nlm(re78 ~ treat, data = m_data, weights = weights) |&gt; tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter matching, the estimate is our best causal estimate under the ignorability assumption\nCompare this to the naive estimate — confounding matters!"
+    "text": "Estimate on matched data\n\nm_data &lt;- match.data(m_out)\n\nlinear_reg() |&gt;\n  fit(re78 ~ treat, data = m_data) |&gt;\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter matching, treated and control units are much more comparable on \\(X\\)\nThis estimate is our best causal guess under the ignorability assumption\nCompare to the naive estimate — confounding matters!"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#curse-of-dimensionality",
-    "href": "slides/23-causal-inference-observational-slides.html#curse-of-dimensionality",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Curse of dimensionality",
-    "text": "Curse of dimensionality\n\n\nMatching works well when \\(X\\) has only a few variables\nWith many covariates, it becomes nearly impossible to find good matches — the space is too sparse\nExample: match exactly on age (35), education (12 years), prior earnings ($8,000), race, marital status…\nThe probability of finding a near-identical control unit vanishes as the dimension of \\(X\\) grows"
+    "objectID": "slides/23-causal-inference-observational-slides.html#the-curse-of-dimensionality",
+    "href": "slides/23-causal-inference-observational-slides.html#the-curse-of-dimensionality",
+    "title": "Observational Studies",
+    "section": "The curse of dimensionality",
+    "text": "The curse of dimensionality\n\n\nCovariate matching works well when \\(X\\) has only a few variables\nWith many covariates, it becomes nearly impossible to find good matches — the covariate space is too sparse\nExample: match exactly on age, education, prior earnings, race, marital status, region, …\nThe probability of finding a near-identical control unit vanishes as the number of covariates grows\nWe need a smarter approach"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#we-need-a-smarter-approach",
-    "href": "slides/23-causal-inference-observational-slides.html#we-need-a-smarter-approach",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "We need a smarter approach",
-    "text": "We need a smarter approach\n\n\nInstead of matching on the full \\(X\\) vector, collapse it to a single number\nThe propensity score:\n\n\\[e(X) = P(Z = 1 \\mid X)\\]\n\nThe probability of receiving treatment, given covariates\nRosenbaum & Rubin (1983): if \\(Y(0), Y(1) \\perp Z \\mid X\\), then also \\(Y(0), Y(1) \\perp Z \\mid e(X)\\)\nMatching on this one number is sufficient!"
+    "objectID": "slides/23-causal-inference-observational-slides.html#the-propensity-score",
+    "href": "slides/23-causal-inference-observational-slides.html#the-propensity-score",
+    "title": "Observational Studies",
+    "section": "The propensity score",
+    "text": "The propensity score\n\n\nInstead of matching on the full \\(X\\) vector, collapse it to a single number\n\nThe propensity score:\n\\[e(X) = P(Z = 1 \\mid X)\\]\n\nThe probability of receiving treatment, given covariates\nRosenbaum & Rubin (1983): if \\(Y(0), Y(1) \\perp Z \\mid X\\), then also \\(Y(0), Y(1) \\perp Z \\mid e(X)\\)\nMatching on this one number is sufficient!"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#key-takeaway-1",
+    "href": "slides/23-causal-inference-observational-slides.html#key-takeaway-1",
+    "title": "Observational Studies",
+    "section": "Key takeaway",
+    "text": "Key takeaway\n\n\nThe propensity score reduces a high-dimensional matching problem to a one-dimensional one\nWe estimate \\(e(X)\\) with logistic regression, then match on the predicted probability\nBalance on \\(e(X)\\) implies (approximate) balance on all of \\(X\\)"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#estimating-the-propensity-score",
     "href": "slides/23-causal-inference-observational-slides.html#estimating-the-propensity-score",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Estimating the propensity score",
-    "text": "Estimating the propensity score\nWe estimate \\(e(X)\\) via logistic regression:\n\\[\\log\\frac{P(Z=1 \\mid X)}{1 - P(Z=1 \\mid X)} = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\]\n\n\nFit logistic regression of \\(Z\\) on \\(X\\)\nPredicted probabilities \\(\\hat{e}(X_i)\\) are the estimated propensity scores\nMatch treated and control units with similar \\(\\hat{e}(X)\\) values"
+    "text": "Estimating the propensity score\nWe estimate \\(e(X)\\) via logistic regression (which we already know!):\n\\[\\log\\frac{P(Z=1 \\mid X)}{1 - P(Z=1 \\mid X)} = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\]\n\n\nFit logistic regression of \\(Z\\) on \\(X\\)\nPredicted probabilities \\(\\hat{e}(X_i)\\) are the estimated propensity scores\nMatch treated and control units with similar \\(\\hat{e}(X)\\)"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#the-workflow",
     "href": "slides/23-causal-inference-observational-slides.html#the-workflow",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "The workflow",
     "text": "The workflow\n\nFit a logistic regression model: \\(Z \\sim X_1 + \\cdots + X_p\\)\n\nExtract predicted probabilities as propensity scores\nMatch treated to control units with similar scores\nCheck balance on \\(X\\) in the matched sample\nEstimate the treatment effect on the matched data"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#step-1-2-fit-model-get-scores",
     "href": "slides/23-causal-inference-observational-slides.html#step-1-2-fit-model-get-scores",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Step 1 & 2: fit model, get scores",
-    "text": "Step 1 & 2: fit model, get scores\n\nps_model &lt;- glm(treat ~ age + educ + re74 + re75,\n                data   = lalonde,\n                family = binomial)\n\nlalonde &lt;- lalonde |&gt;\n  mutate(ps = predict(ps_model, type = \"response\"))\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_ps = mean(ps), sd_ps = sd(ps))\n\n# A tibble: 2 × 3\n  treat mean_ps  sd_ps\n  &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1     0   0.279 0.126 \n2     1   0.354 0.0901"
+    "text": "Step 1 & 2: fit model, get scores\n\nps_model &lt;- glm(\n  treat ~ age + educ + re74 + re75,\n  data   = lalonde,\n  family = binomial\n)\n\nlalonde &lt;- lalonde |&gt;\n  mutate(ps = predict(ps_model, type = \"response\"))\n\nlalonde |&gt;\n  group_by(treat) |&gt;\n  summarise(mean_ps = mean(ps), sd_ps = sd(ps))\n\n# A tibble: 2 × 3\n  treat mean_ps  sd_ps\n  &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1     0   0.279 0.126 \n2     1   0.354 0.0901"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#visualize-the-scores",
     "href": "slides/23-causal-inference-observational-slides.html#visualize-the-scores",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Visualize the scores",
-    "text": "Visualize the scores"
+    "text": "Visualize the scores\n\nggplot(\n  lalonde,\n  aes(x = ps, fill = factor(treat, labels = c(\"Control\", \"Treated\")))\n) +\n  geom_density(alpha = 0.5) +\n  labs(\n    x     = \"Propensity score\",\n    y     = \"Density\",\n    fill  = \"Group\",\n    title = \"Distribution of propensity scores by group\"\n  )"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#step-3-4-match-and-check-balance",
     "href": "slides/23-causal-inference-observational-slides.html#step-3-4-match-and-check-balance",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Step 3 & 4: match and check balance",
-    "text": "Step 3 & 4: match and check balance\n\nps_match &lt;- matchit(treat ~ age + educ + re74 + re75,\n                    data     = lalonde,\n                    method   = \"nearest\",\n                    distance = \"glm\")\n\nsummary(ps_match, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\", distance = \"glm\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
+    "text": "Step 3 & 4: match and check balance\n\nps_match &lt;- matchit(\n  treat ~ age + educ + re74 + re75,\n  data     = lalonde,\n  method   = \"nearest\",\n  distance = \"glm\"\n)\n\nsummary(ps_match, un = FALSE)\n\n\nCall:\nmatchit(formula = treat ~ age + educ + re74 + re75, data = lalonde, \n    method = \"nearest\", distance = \"glm\")\n\nSummary of Balance for Matched Data:\n         Means Treated Means Control Std. Mean Diff. Var. Ratio\ndistance        0.3536        0.3523          0.0141     1.0160\nage            25.8162       25.2811          0.0748     0.4690\neduc           10.3459       10.4486         -0.0511     0.6392\nre74         2095.5737     2137.7507         -0.0086     1.2576\nre75         1532.0553     1385.2355          0.0456     1.7520\n         eCDF Mean eCDF Max Std. Pair Dist.\ndistance    0.0088   0.0757          0.0179\nage         0.0801   0.2486          1.4014\neduc        0.0208   0.0973          1.0673\nre74        0.0365   0.2541          0.1778\nre75        0.0379   0.1946          0.6412\n\nSample Sizes:\n          Control Treated\nAll           429     185\nMatched       185     185\nUnmatched     244       0\nDiscarded       0       0"
   },
   {
-    "objectID": "slides/23-causal-inference-observational-slides.html#step-5-estimate-the-effect",
-    "href": "slides/23-causal-inference-observational-slides.html#step-5-estimate-the-effect",
-    "title": "Foundations of Causal Inference: Observational Studies",
-    "section": "Step 5: estimate the effect",
-    "text": "Step 5: estimate the effect\n\nps_data &lt;- match.data(ps_match)\n\nlm(re78 ~ treat, data = ps_data, weights = weights) |&gt; tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter propensity score matching, we have a valid causal estimate (under ignorability)\nThe propensity score approach scales to many covariates, unlike direct matching\nAlways check balance after matching — if it’s poor, consider a different model for the propensity score"
+    "objectID": "slides/23-causal-inference-observational-slides.html#step-5-estimate-the-treatment-effect",
+    "href": "slides/23-causal-inference-observational-slides.html#step-5-estimate-the-treatment-effect",
+    "title": "Observational Studies",
+    "section": "Step 5: estimate the treatment effect",
+    "text": "Step 5: estimate the treatment effect\n\nps_data &lt;- match.data(ps_match)\n\nlinear_reg() |&gt;\n  fit(re78 ~ treat, data = ps_data) |&gt;\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    5988.      533.    11.2   2.38e-25\n2 treat           362.      754.     0.479 6.32e- 1\n\n\n\n\nAfter propensity score matching, we have a valid causal estimate (under ignorability)\nThis scales to many covariates, unlike direct covariate matching\nAlways check balance after matching — if balance is poor, improve the propensity score model"
+  },
+  {
+    "objectID": "slides/23-causal-inference-observational-slides.html#limitations-of-observational-studies",
+    "href": "slides/23-causal-inference-observational-slides.html#limitations-of-observational-studies",
+    "title": "Observational Studies",
+    "section": "Limitations of observational studies",
+    "text": "Limitations of observational studies\n\n\nNo unmeasured confounders: the key assumption is untestable — if an important confounder is missing from \\(X\\), our estimate is still biased\nBad controls: we need to choose \\(X\\) carefully — only include pre-treatment variables, never variables caused by \\(Z\\)\nGeneralizability: matching typically estimates the treatment effect on the treated (ATT), not the full population\nModel dependence: the propensity score model matters — wrong specification leads to poor balance and biased estimates\nRCTs are still the gold standard; observational methods are our best option when experiments are impossible"
   },
   {
     "objectID": "slides/23-causal-inference-observational-slides.html#key-takeaways",
     "href": "slides/23-causal-inference-observational-slides.html#key-takeaways",
-    "title": "Foundations of Causal Inference: Observational Studies",
+    "title": "Observational Studies",
     "section": "Key takeaways",
-    "text": "Key takeaways\n\n\nObservational studies require careful adjustment for confounders \\(X\\)\nMatching reconstructs comparability between treated and control groups\nDirect matching works with few covariates; propensity score matching scales to high dimensions\nAll methods require no unmeasured confounders — this assumption cannot be tested from data alone\nSensitivity analyses can assess how robust conclusions are to potential unmeasured confounding"
+    "text": "Key takeaways\n\n\nObservational studies require careful adjustment for confounders \\(X\\)\nCovariate matching: find control units similar on \\(X\\) directly — works well with few covariates\nPropensity score matching: match on \\(P(Z = 1 \\mid X)\\) — scales to high dimensions\nBoth require no unmeasured confounders — an assumption that must be argued for, not tested from data\nWhen you see an observational study making a causal claim, ask: what confounders might they have missed?"
   },
   {
     "objectID": "slides/08-data-types.html",
@@ -17059,21 +17171,21 @@
   {
     "objectID": "ae/ae-20-github.html",
     "href": "ae/ae-20-github.html",
-    "title": "AE 20: Causal Inference from a Randomized Experiment",
+    "title": "AE 20: Wheat Oral Immunotherapy",
     "section": "",
     "text": "Nowak-Węgrzyn et al. (2019) conducted a multicenter, randomized, double-blind, placebo-controlled clinical trial to evaluate whether vital wheat gluten (VWG) oral immunotherapy (OIT) is effective at increasing wheat tolerance in children and young adults with wheat allergy. In today’s AE, you will analyze a dataset simulated to represent this study using the tools from lecture.\n(https://pubmed.ncbi.nlm.nih.gov/30389226/)"
   },
   {
     "objectID": "ae/ae-20-github.html#option-a-bootstrap-confidence-interval",
     "href": "ae/ae-20-github.html#option-a-bootstrap-confidence-interval",
-    "title": "AE 20: Causal Inference from a Randomized Experiment",
+    "title": "AE 20: Wheat Oral Immunotherapy",
     "section": "Option A: Bootstrap confidence interval",
     "text": "Option A: Bootstrap confidence interval\na. Calculate the observed fit using specify() |&gt; fit().\n\n# add code here\n\nb. Generate 1000 bootstrap samples and fit a model to each one.\n\nset.seed(1120)\n# add code here\n\nc. Compute the 95% confidence interval using the percentile method.\n\n# add code here\n\nd. Interpret the confidence interval for vwg_oit in context. Use causal language.\nWrite your answer here."
   },
   {
     "objectID": "ae/ae-20-github.html#option-b-hypothesis-test",
     "href": "ae/ae-20-github.html#option-b-hypothesis-test",
-    "title": "AE 20: Causal Inference from a Randomized Experiment",
+    "title": "AE 20: Wheat Oral Immunotherapy",
     "section": "Option B: Hypothesis test",
     "text": "Option B: Hypothesis test\na. State the null and alternative hypotheses.\n\\(H_0\\):\n\\(H_A\\):\nb. Calculate the observed fit and simulate the null distribution using 1000 permutations.\n\nset.seed(24601)\n# add code here\n\nc. Visualize the null distribution and shade the p-value region.\n\n# add code here\n\nd. Calculate the p-value.\n\n# add code here\n\ne. State your conclusion in context.\nWrite your answer here."
   },
@@ -17346,21 +17458,21 @@
   {
     "objectID": "ae/ae-20-github-A.html",
     "href": "ae/ae-20-github-A.html",
-    "title": "AE 20: Causal Inference from a Randomized Experiment",
+    "title": "AE 20: Wheat Oral Immunotherapy",
     "section": "",
     "text": "Nowak-Węgrzyn et al. (2019) conducted a multicenter, randomized, double-blind, placebo-controlled clinical trial to evaluate whether vital wheat gluten (VWG) oral immunotherapy (OIT) is effective at increasing wheat tolerance in children and young adults with wheat allergy. In today’s AE, you will analyze a dataset simulated to represent this study using the tools from lecture.\n(https://pubmed.ncbi.nlm.nih.gov/30389226/)"
   },
   {
     "objectID": "ae/ae-20-github-A.html#option-a-bootstrap-confidence-interval",
     "href": "ae/ae-20-github-A.html#option-a-bootstrap-confidence-interval",
-    "title": "AE 20: Causal Inference from a Randomized Experiment",
+    "title": "AE 20: Wheat Oral Immunotherapy",
     "section": "Option A: Bootstrap confidence interval",
     "text": "Option A: Bootstrap confidence interval\na. Calculate the observed fit using specify() |&gt; fit().\n\nobserved_fit &lt;- wheat_trial |&gt;\n  specify(max_dose_mg ~ vwg_oit) |&gt;\n  fit()\n\nobserved_fit\n\n# A tibble: 2 × 2\n  term      estimate\n  &lt;chr&gt;        &lt;dbl&gt;\n1 intercept     234.\n2 vwg_oit       967.\n\n\nb. Generate 1000 bootstrap samples and fit a model to each one.\n\nset.seed(1120)\n\nboot_fits &lt;- wheat_trial |&gt;\n  specify(max_dose_mg ~ vwg_oit) |&gt;\n  generate(reps = 1000, type = \"bootstrap\") |&gt;\n  fit()\n\nboot_fits\n\n# A tibble: 2,000 × 3\n# Groups:   replicate [1,000]\n   replicate term      estimate\n       &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1         1 intercept     225.\n 2         1 vwg_oit       942.\n 3         2 intercept     246.\n 4         2 vwg_oit       932.\n 5         3 intercept     269.\n 6         3 vwg_oit       943.\n 7         4 intercept     201.\n 8         4 vwg_oit      1021.\n 9         5 intercept     277.\n10         5 vwg_oit       955.\n# ℹ 1,990 more rows\n\n\nc. Compute the 95% confidence interval using the percentile method.\n\nget_confidence_interval(\n  boot_fits,\n  point_estimate = observed_fit,\n  level          = 0.95,\n  type           = \"percentile\"\n)\n\n# A tibble: 2 × 3\n  term      lower_ci upper_ci\n  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;\n1 intercept     173.     299.\n2 vwg_oit       877.    1053.\n\n\nd. Interpret the confidence interval for vwg_oit in context. Use causal language.\nWe are 95% confident that receiving VWG OIT causes an increase of between approximately [lower bound] mg and [upper bound] mg in max tolerated wheat protein dose compared to placebo, on average. Because the interval does not include 0, this is consistent with a statistically significant treatment effect."
   },
   {
     "objectID": "ae/ae-20-github-A.html#option-b-hypothesis-test",
     "href": "ae/ae-20-github-A.html#option-b-hypothesis-test",
-    "title": "AE 20: Causal Inference from a Randomized Experiment",
+    "title": "AE 20: Wheat Oral Immunotherapy",
     "section": "Option B: Hypothesis test",
     "text": "Option B: Hypothesis test\na. State the null and alternative hypotheses.\n\\(H_0\\): The slope predicting max tolerated dose from VWG OIT treatment is 0 — VWG OIT has no effect on max tolerated dose, \\(\\beta_1 = 0\\).\n\\(H_A\\): The slope is not 0 — VWG OIT has a significant effect on max tolerated dose, \\(\\beta_1 \\neq 0\\).\nb. Calculate the observed fit and simulate the null distribution using 1000 permutations.\n\nobserved_fit &lt;- wheat_trial |&gt;\n  specify(max_dose_mg ~ vwg_oit) |&gt;\n  fit()\n\nset.seed(24601)\nnull_dist &lt;- wheat_trial |&gt;\n  specify(max_dose_mg ~ vwg_oit) |&gt;\n  hypothesize(null = \"independence\") |&gt;\n  generate(reps = 1000, type = \"permute\") |&gt;\n  fit()\n\nc. Visualize the null distribution and shade the p-value region.\n\nvisualize(null_dist) +\n  shade_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\n\n\n\n\n\n\nd. Calculate the p-value.\n\nnull_dist |&gt;\n  get_p_value(obs_stat = observed_fit, direction = \"two-sided\")\n\n# A tibble: 2 × 2\n  term      p_value\n  &lt;chr&gt;       &lt;dbl&gt;\n1 intercept       0\n2 vwg_oit         0\n\n\ne. State your conclusion in context.\nSince \\(p &lt; 0.05\\), we reject \\(H_0\\). We have sufficient evidence of a statistically significant treatment effect: VWG OIT causes a significant increase in maximum tolerated wheat protein dose compared to placebo."
   },

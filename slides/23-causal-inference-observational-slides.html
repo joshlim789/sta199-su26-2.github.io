@@ -11,7 +11,7 @@
 <meta name="generator" content="quarto-1.6.39">
 <meta name="author" content="Josh Lim">
 <meta name="dcterms.date" content="2026-08-04">
-<title>STA 199 – Foundations of Causal Inference: Observational Studies</title>
+<title>STA 199 – Observational Studies</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -187,10 +187,16 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Foundations of Causal Inference: Observational Studies – STA 199">
+<style>
+  .reveal .title-slide h1 { font-size: 1.8em !important; }
+  .reveal .title-slide .subtitle { font-size: 0.95em !important; }
+  .reveal .title-slide .date { font-size: 0.75em !important; }
+  .reveal .slides section.medium { font-size: 0.8em; }
+  </style>
+<meta property="og:title" content="Observational Studies – STA 199">
 <meta property="og:description" content="Lecture 23">
 <meta property="og:site_name" content="STA 199">
-<meta name="twitter:title" content="Foundations of Causal Inference: Observational Studies – STA 199">
+<meta name="twitter:title" content="Observational Studies – STA 199">
 <meta name="twitter:description" content="Lecture 23">
 <meta name="twitter:image" content="https://sta199-su26-2.github.io/slides/img/twitter-card-ks.pdf">
 <meta name="twitter:creator" content="@minebocek">
@@ -200,7 +206,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Foundations of Causal Inference: Observational Studies</h1>
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">Observational Studies</h1>
   <p class="subtitle">Lecture 23</p>
 
 <div class="quarto-title-authors">
@@ -215,53 +221,102 @@ Josh Lim
 </div>
 
   <p class="date">August 4, 2026</p>
-</section><section><section id="revisiting-confounding" class="title-slide slide level1 center"><h1>Revisiting confounding</h1>
+</section><section><section id="recap-where-we-left-off" class="title-slide slide level1 center"><h1>Recap: where we left off</h1>
 
-</section><section id="what-changes-without-randomization" class="slide level2"><h2>What changes without randomization?</h2>
+</section><section id="last-lecture-rcts" class="slide level2 medium"><h2>Last lecture: RCTs</h2>
 <div>
 <ul>
-<li class="fragment"><p>In an <strong>observational study</strong>, the researcher does not assign treatment — subjects choose (or are assigned by nature)</p></li>
-<li class="fragment"><p>This means <span class="math inline">\(Z\)</span> is <strong>not</strong> independent of <span class="math inline">\(X\)</span>: people who receive treatment differ systematically from those who do not</p></li>
-<li class="fragment"><p>The backdoor path <span class="math inline">\(X \to Z \to Y\)</span> is open, and the naive difference in means <strong>conflates</strong> the treatment effect with confounding</p></li>
-<li class="fragment"><p><span class="math inline">\(E[\bar{Y}_{\text{treated}} - \bar{Y}_{\text{control}}] \neq \tau\)</span></p></li>
+<li class="fragment"><p>We showed that <strong>randomization</strong> is incredibly powerful: it makes <span class="math inline">\(Z \perp X\)</span>, so any difference in <span class="math inline">\(Y\)</span> between groups must be due to treatment</p></li>
+<li class="fragment"><p>This gave us the license to say <strong>causes</strong>: “receiving VWG OIT causes an increase in max tolerated wheat protein dose”</p></li>
+<li class="fragment"><p>Today: what happens when we <strong>can’t</strong> randomize?</p></li>
 </ul>
 </div>
-</section><section id="the-core-problem" class="slide level2"><h2>The core problem</h2>
+</section><section id="when-randomization-isnt-possible" class="slide level2 medium"><h2>When randomization isn’t possible</h2>
 <div>
 <ul>
-<li class="fragment"><p>Students who seek tutoring tend to be those who are struggling — lower prior GPA</p></li>
-<li class="fragment"><p>If we compare exam scores, tutored students may <em>still</em> score lower even if tutoring helps</p></li>
-<li class="fragment"><p>Conversely, employees who get promoted might be higher performers to begin with — making the promotion look more effective than it is</p></li>
-<li class="fragment"><p>We need a way to make treated and control groups <strong>comparable</strong> on <span class="math inline">\(X\)</span> without running an experiment</p></li>
+<li class="fragment"><p><strong>Ethical</strong>: you cannot randomly assign people to smoke, to not receive healthcare, or to experience childhood poverty</p></li>
+<li class="fragment"><p><strong>Practical</strong>: policy changes happen at scale. You can’t “randomize” a country’s minimum wage law</p></li>
+<li class="fragment"><p><strong>Historical</strong>: many causal questions are about events that already happened (retrospective)</p></li>
+<li class="fragment"><p>Most real-world causal questions are answered with <strong>observational data</strong>.</p></li>
 </ul>
 </div>
-</section></section><section><section id="matching-on-covariates" class="title-slide slide level1 center"><h1>Matching on covariates</h1>
+</section></section><section><section id="observational-studies" class="title-slide slide level1 center"><h1>Observational Studies</h1>
 
-</section><section id="the-idea-of-matching" class="slide level2"><h2>The idea of matching</h2>
+</section><section id="what-is-an-observational-study" class="slide level2 medium"><h2>What is an Observational Study?</h2>
+<div>
+<ul>
+<li class="fragment"><p>In an <strong>observational study</strong>, treatment is not assigned by the researcher, Subjects choose, or are assigned by nature or circumstance</p></li>
+<li class="fragment"><p>Surveys (including the census)</p></li>
+<li class="fragment"><p>Electronic Health Records</p></li>
+<li class="fragment"><p>Most sources of data can be thought of an observational study! Just have to define what the treatment is</p></li>
+<li class="fragment"><p>One key advantage over randomized experiments is the ease in collecting data! Usually has a much bigger sample size.</p></li>
+</ul>
+<section id="the-issues" class="slide level2"><h2>The issues</h2>
+<ul>
+<li class="fragment"><p><span class="math inline">\(Z\)</span> is <strong>not</strong> independent of <span class="math inline">\(X\)</span>: people who receive treatment differ systematically from those who don’t</p></li>
+<li class="fragment"><p>Changes in <span class="math inline">\(Y\)</span> not directly attributable to changes in <span class="math inline">\(Z\)</span></p></li>
+</ul>
+<p>[create small example table with like all of the x’s matching the treatment Z, maybe like something about the new odyssey movie] Y is corisol levels, Z is whether watched movie, X is</p>
+</section>
+</div>
+</section><section id="a-concrete-example" class="slide level2 medium"><h2>A concrete example</h2>
+<div>
+<ul>
+<li class="fragment"><p>Students who seek tutoring tend to be those who are <strong>struggling</strong> — lower prior GPA</p></li>
+<li class="fragment"><p>If we compare exam scores, tutored students may still score lower on average, <strong>even if tutoring genuinely helps</strong></p></li>
+<li class="fragment"><p>The confounder (prior ability) affects both who gets tutoring (<span class="math inline">\(Z\)</span>) and the outcome (<span class="math inline">\(Y\)</span>)</p></li>
+<li class="fragment"><p>Solution: we need a way to make treated and control groups <strong>comparable</strong> on <span class="math inline">\(X\)</span>, without running an experiment</p></li>
+</ul>
+</div>
+</section><section id="key-takeaway" class="slide level2"><h2>Key takeaway</h2>
+<div>
+<ul>
+<li class="fragment"><p>In an observational study, a naive difference in group means is <strong>not</strong> a valid causal estimate</p></li>
+<li class="fragment"><p>We need to adjust for confounders <span class="math inline">\(X\)</span> to recover the treatment effect</p></li>
+<li class="fragment"><p>The rest of today is about two strategies for doing that</p></li>
+</ul>
+</div>
+</section></section><section><section id="matching" class="title-slide slide level1 center"><h1>Matching</h1>
+
+</section><section id="the-idea-of-matching" class="slide level2 medium"><h2>The idea of matching</h2>
+<p>recall covariate balance in a randomized study:</p>
+<p>randomization balanced the covariates so that the only possible thing that changed was the treatment</p>
 <div>
 <ul>
 <li class="fragment"><p>For each <strong>treated</strong> unit, find one (or more) <strong>control</strong> units that look similar on <span class="math inline">\(X\)</span></p></li>
-<li class="fragment"><p>Compare outcomes within matched pairs — differences now reflect treatment, not confounding</p></li>
+<li class="fragment"><p>Compare outcomes <strong>within matched pairs</strong> — differences now reflect treatment, not confounding</p></li>
 <li class="fragment"><p>We are trying to <strong>mimic</strong> a randomized experiment by constructing comparable groups from observational data</p></li>
+<li class="fragment"><p>After matching: treated and control units have similar <span class="math inline">\(X\)</span> distributions, so <span class="math inline">\(Z \perp X\)</span> holds approximately</p></li>
 </ul>
 </div>
-</section><section id="formally" class="slide level2"><h2>Formally</h2>
+</section><section id="the-key-assumption" class="slide level2 medium"><h2>The key assumption</h2>
 <div>
 <ul>
-<li class="fragment">The key assumption: <strong>conditional ignorability</strong>
-</li>
-</ul>
+<li class="fragment"><p>Matching only works if we have measured <strong>all</strong> important confounders</p></li>
+<li class="fragment">
+<p>Formally: <strong>conditional ignorability</strong></p>
 <p><span class="math display">\[Y(0), Y(1) \perp Z \mid X\]</span></p>
-<ul>
-<li class="fragment"><p>Given covariates <span class="math inline">\(X\)</span>, treatment assignment is “as good as random”</p></li>
-<li class="fragment"><p>This is also called <strong>no unmeasured confounders</strong> — a strong, untestable assumption</p></li>
-<li class="fragment"><p>If it holds, matching on <span class="math inline">\(X\)</span> recovers the causal effect</p></li>
+</li>
+<li class="fragment"><p>Given <span class="math inline">\(X\)</span>, treatment assignment is “as good as random”</p></li>
+<li class="fragment"><p>Also called <strong>no unmeasured confounders</strong> — a strong, untestable assumption</p></li>
+<li class="fragment"><p>This is the observational equivalent of randomization: we can’t guarantee it, we have to argue for it</p></li>
 </ul>
 </div>
-</section></section><section><section id="an-example-with-matching" class="title-slide slide level1 center"><h1>An example with matching</h1>
+</section></section><section><section id="the-lalonde-study" class="title-slide slide level1 center"><h1>The LaLonde Study</h1>
 
-</section><section id="the-data" class="slide level2"><h2>The data</h2>
-<p>We use the <strong>LaLonde dataset</strong>: a study of a 1970s job training program. Participants were not randomly assigned.</p>
+</section><section id="context" class="slide level2 smaller"><h2>Context</h2>
+<p>LaLonde (1986) evaluated the <strong>National Supported Work (NSW)</strong> program: a 1970s job training intervention for disadvantaged workers.</p>
+<div>
+<ul>
+<li class="fragment"><p><strong>Cohort</strong>: Disadvantaged workers (long-term unemployed, ex-offenders, welfare recipients)</p></li>
+<li class="fragment"><p><strong>Design</strong>: The original NSW had a randomized arm, but LaLonde compared its estimates against observational comparison groups drawn from national surveys — showing how badly naive methods can fail</p></li>
+<li class="fragment"><p><strong>Treatment</strong> (<span class="math inline">\(Z = 1\)</span>): Participation in the NSW job training program</p></li>
+<li class="fragment"><p><strong>Control</strong> (<span class="math inline">\(Z = 0\)</span>): Non-participants drawn from observational comparison groups</p></li>
+<li class="fragment"><p><strong>Outcome</strong> (<span class="math inline">\(Y\)</span>): Earnings in 1978 (<code>re78</code>)</p></li>
+<li class="fragment"><p><strong>Covariates</strong> (<span class="math inline">\(X\)</span>): Age, education, race, marital status, prior earnings (<code>re74</code>, <code>re75</code>)</p></li>
+</ul>
+</div>
+</section><section id="data" class="slide level2 smaller"><h2>Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">data</span>(<span class="st">"lalonde"</span>, <span class="at">package =</span> <span class="st">"MatchIt"</span>)</span>
 <span id="cb1-2"><a></a><span class="fu">glimpse</span>(lalonde)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -285,9 +340,8 @@ $ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…</c
 <li>
 <code>re78</code>: earnings in 1978 (outcome <span class="math inline">\(Y\)</span>)</li>
 <li>
-<code>age</code>, <code>educ</code>, <code>re74</code>, <code>re75</code>, etc.: covariates <span class="math inline">\(X\)</span>
-</li>
-</ul></section><section id="naive-estimate-no-matching" class="slide level2"><h2>Naive estimate (no matching)</h2>
+<code>age</code>, <code>educ</code>, <code>re74</code>, <code>re75</code>, …: pre-treatment covariates (<span class="math inline">\(X\)</span>)</li>
+</ul></section><section id="naive-estimate" class="slide level2"><h2>Naive estimate</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>lalonde <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a></a>  <span class="fu">group_by</span>(treat) <span class="sc">|&gt;</span></span>
@@ -302,18 +356,22 @@ $ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…</c
 </div>
 <div>
 <ul>
-<li class="fragment"><p>The naive difference suggests training <em>increases</em> earnings</p></li>
-<li class="fragment"><p>But treated and control groups may differ on pre-treatment characteristics — we can’t trust this yet</p></li>
+<li class="fragment"><p>The naive difference suggests training increases earnings</p></li>
+<li class="fragment"><p>But are the two groups actually comparable before treatment?</p></li>
 </ul>
 </div>
-</section><section id="check-for-imbalance" class="slide level2"><h2>Check for imbalance</h2>
+</section><section id="your-turn" class="slide level2 smaller"><h2>Your turn</h2>
+<div class="task">
+<p>Look at the balance table below. Which variables show the largest differences between treated and control groups? What does this tell us about the naive estimate?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>lalonde <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a></a>  <span class="fu">group_by</span>(treat) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_age  =</span> <span class="fu">mean</span>(age),</span>
-<span id="cb5-4"><a></a>            <span class="at">mean_educ =</span> <span class="fu">mean</span>(educ),</span>
-<span id="cb5-5"><a></a>            <span class="at">mean_re74 =</span> <span class="fu">mean</span>(re74),</span>
-<span id="cb5-6"><a></a>            <span class="at">mean_re75 =</span> <span class="fu">mean</span>(re75))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a></a>    <span class="at">mean_age  =</span> <span class="fu">mean</span>(age),</span>
+<span id="cb5-5"><a></a>    <span class="at">mean_educ =</span> <span class="fu">mean</span>(educ),</span>
+<span id="cb5-6"><a></a>    <span class="at">mean_re74 =</span> <span class="fu">mean</span>(re74),</span>
+<span id="cb5-7"><a></a>    <span class="at">mean_re75 =</span> <span class="fu">mean</span>(re75)</span>
+<span id="cb5-8"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   treat mean_age mean_educ mean_re74 mean_re75
@@ -322,18 +380,24 @@ $ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…</c
 2     1     25.8      10.3     2096.     1532.</code></pre>
 </div>
 </div>
+</div>
+</section><section id="what-the-imbalance-tells-us" class="slide level2 medium"><h2>What the imbalance tells us</h2>
 <div>
 <ul>
-<li class="fragment"><p>Treated individuals have lower prior earnings (<code>re74</code>, <code>re75</code>) — confounding is present</p></li>
-<li class="fragment"><p>We need to adjust for this before drawing causal conclusions</p></li>
+<li class="fragment"><p>Treated individuals have substantially <strong>lower</strong> prior earnings (<code>re74</code>, <code>re75</code>) than controls</p></li>
+<li class="fragment"><p>The control group (from national surveys) is richer and more educated on average</p></li>
+<li class="fragment"><p>A naive comparison overstates the earnings gap — the treated group is catching up from a lower baseline, not just benefiting from training</p></li>
+<li class="fragment"><p>We need to adjust for these differences before drawing causal conclusions</p></li>
 </ul>
 </div>
-</section><section id="nearest-neighbor-matching" class="slide level2"><h2>Nearest-neighbor matching</h2>
+</section><section id="nearest-neighbor-matching" class="slide level2 smaller"><h2>Nearest-neighbor matching</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>m_out <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> educ <span class="sc">+</span> re74 <span class="sc">+</span> re75,</span>
-<span id="cb7-2"><a></a>                 <span class="at">data   =</span> lalonde,</span>
-<span id="cb7-3"><a></a>                 <span class="at">method =</span> <span class="st">"nearest"</span>)</span>
-<span id="cb7-4"><a></a><span class="fu">summary</span>(m_out, <span class="at">un =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>m_out <span class="ot">&lt;-</span> <span class="fu">matchit</span>(</span>
+<span id="cb7-2"><a></a>  treat <span class="sc">~</span> age <span class="sc">+</span> educ <span class="sc">+</span> re74 <span class="sc">+</span> re75,</span>
+<span id="cb7-3"><a></a>  <span class="at">data   =</span> lalonde,</span>
+<span id="cb7-4"><a></a>  <span class="at">method =</span> <span class="st">"nearest"</span></span>
+<span id="cb7-5"><a></a>)</span>
+<span id="cb7-6"><a></a><span class="fu">summary</span>(m_out, <span class="at">un =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -362,11 +426,13 @@ Unmatched     244       0
 Discarded       0       0</code></pre>
 </div>
 </div>
-</section><section id="estimate-on-matched-data" class="slide level2"><h2>Estimate on matched data</h2>
+</section><section id="estimate-on-matched-data" class="slide level2 smaller"><h2>Estimate on matched data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>m_data <span class="ot">&lt;-</span> <span class="fu">match.data</span>(m_out)</span>
 <span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="fu">lm</span>(re78 <span class="sc">~</span> treat, <span class="at">data =</span> m_data, <span class="at">weights =</span> weights) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">fit</span>(re78 <span class="sc">~</span> treat, <span class="at">data =</span> m_data) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -377,44 +443,52 @@ Discarded       0       0</code></pre>
 </div>
 <div>
 <ul>
-<li class="fragment"><p>After matching, the estimate is our best causal estimate under the ignorability assumption</p></li>
-<li class="fragment"><p>Compare this to the naive estimate — confounding matters!</p></li>
+<li class="fragment"><p>After matching, treated and control units are much more comparable on <span class="math inline">\(X\)</span></p></li>
+<li class="fragment"><p>This estimate is our best causal guess <strong>under the ignorability assumption</strong></p></li>
+<li class="fragment"><p>Compare to the naive estimate — confounding matters!</p></li>
 </ul>
 </div>
-</section></section><section><section id="the-high-dimension-problem" class="title-slide slide level1 center"><h1>The high-dimension problem</h1>
+</section></section><section><section id="propensity-scores" class="title-slide slide level1 center"><h1>Propensity scores</h1>
 
-</section><section id="curse-of-dimensionality" class="slide level2"><h2>Curse of dimensionality</h2>
+</section><section id="the-curse-of-dimensionality" class="slide level2 medium"><h2>The curse of dimensionality</h2>
 <div>
 <ul>
-<li class="fragment"><p>Matching works well when <span class="math inline">\(X\)</span> has only a few variables</p></li>
-<li class="fragment"><p>With many covariates, it becomes nearly impossible to find good matches — the space is too sparse</p></li>
-<li class="fragment"><p>Example: match exactly on age (35), education (12 years), prior earnings ($8,000), race, marital status…</p></li>
-<li class="fragment"><p>The probability of finding a near-identical control unit vanishes as the dimension of <span class="math inline">\(X\)</span> grows</p></li>
+<li class="fragment"><p>Covariate matching works well when <span class="math inline">\(X\)</span> has only a few variables</p></li>
+<li class="fragment"><p>With many covariates, it becomes nearly impossible to find good matches — the covariate space is too sparse</p></li>
+<li class="fragment"><p>Example: match exactly on age, education, prior earnings, race, marital status, region, …</p></li>
+<li class="fragment"><p>The probability of finding a near-identical control unit vanishes as the number of covariates grows</p></li>
+<li class="fragment"><p>We need a smarter approach</p></li>
 </ul>
 </div>
-</section><section id="we-need-a-smarter-approach" class="slide level2"><h2>We need a smarter approach</h2>
+</section><section id="the-propensity-score" class="slide level2 medium"><h2>The propensity score</h2>
 <div>
 <ul>
 <li class="fragment"><p>Instead of matching on the full <span class="math inline">\(X\)</span> vector, collapse it to a <strong>single number</strong></p></li>
-<li class="fragment"><p>The <strong>propensity score</strong>:</p></li>
-</ul>
+<li class="fragment">
+<p>The <strong>propensity score</strong>:</p>
 <p><span class="math display">\[e(X) = P(Z = 1 \mid X)\]</span></p>
-<ul>
+</li>
 <li class="fragment"><p>The probability of receiving treatment, given covariates</p></li>
 <li class="fragment"><p><strong>Rosenbaum &amp; Rubin (1983)</strong>: if <span class="math inline">\(Y(0), Y(1) \perp Z \mid X\)</span>, then also <span class="math inline">\(Y(0), Y(1) \perp Z \mid e(X)\)</span></p></li>
 <li class="fragment"><p>Matching on this one number is sufficient!</p></li>
 </ul>
 </div>
-</section></section><section><section id="propensity-score-matching" class="title-slide slide level1 center"><h1>Propensity score matching</h1>
-
-</section><section id="estimating-the-propensity-score" class="slide level2"><h2>Estimating the propensity score</h2>
-<p>We estimate <span class="math inline">\(e(X)\)</span> via <strong>logistic regression</strong>:</p>
+</section><section id="key-takeaway-1" class="slide level2"><h2>Key takeaway</h2>
+<div>
+<ul>
+<li class="fragment"><p>The propensity score <strong>reduces a high-dimensional matching problem to a one-dimensional one</strong></p></li>
+<li class="fragment"><p>We estimate <span class="math inline">\(e(X)\)</span> with logistic regression, then match on the predicted probability</p></li>
+<li class="fragment"><p>Balance on <span class="math inline">\(e(X)\)</span> implies (approximate) balance on all of <span class="math inline">\(X\)</span></p></li>
+</ul>
+</div>
+</section><section id="estimating-the-propensity-score" class="slide level2 medium"><h2>Estimating the propensity score</h2>
+<p>We estimate <span class="math inline">\(e(X)\)</span> via <strong>logistic regression</strong> (which we already know!):</p>
 <p><span class="math display">\[\log\frac{P(Z=1 \mid X)}{1 - P(Z=1 \mid X)} = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p\]</span></p>
 <div>
 <ul>
 <li class="fragment"><p>Fit logistic regression of <span class="math inline">\(Z\)</span> on <span class="math inline">\(X\)</span></p></li>
 <li class="fragment"><p>Predicted probabilities <span class="math inline">\(\hat{e}(X_i)\)</span> are the estimated propensity scores</p></li>
-<li class="fragment"><p>Match treated and control units with similar <span class="math inline">\(\hat{e}(X)\)</span> values</p></li>
+<li class="fragment"><p>Match treated and control units with similar <span class="math inline">\(\hat{e}(X)\)</span></p></li>
 </ul>
 </div>
 </section><section id="the-workflow" class="slide level2"><h2>The workflow</h2>
@@ -425,20 +499,20 @@ Discarded       0       0</code></pre>
 <li>Match treated to control units with similar scores</li>
 <li>Check <strong>balance</strong> on <span class="math inline">\(X\)</span> in the matched sample</li>
 <li>Estimate the treatment effect on the matched data</li>
-</ol></section></section><section><section id="propensity-score-matching-example" class="title-slide slide level1 center"><h1>Propensity score matching example</h1>
-
-</section><section id="step-1-2-fit-model-get-scores" class="slide level2"><h2>Step 1 &amp; 2: fit model, get scores</h2>
+</ol></section><section id="step-1-2-fit-model-get-scores" class="slide level2 smaller"><h2>Step 1 &amp; 2: fit model, get scores</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>ps_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(treat <span class="sc">~</span> age <span class="sc">+</span> educ <span class="sc">+</span> re74 <span class="sc">+</span> re75,</span>
-<span id="cb11-2"><a></a>                <span class="at">data   =</span> lalonde,</span>
-<span id="cb11-3"><a></a>                <span class="at">family =</span> binomial)</span>
-<span id="cb11-4"><a></a></span>
-<span id="cb11-5"><a></a>lalonde <span class="ot">&lt;-</span> lalonde <span class="sc">|&gt;</span></span>
-<span id="cb11-6"><a></a>  <span class="fu">mutate</span>(<span class="at">ps =</span> <span class="fu">predict</span>(ps_model, <span class="at">type =</span> <span class="st">"response"</span>))</span>
-<span id="cb11-7"><a></a></span>
-<span id="cb11-8"><a></a>lalonde <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a></a>  <span class="fu">group_by</span>(treat) <span class="sc">|&gt;</span></span>
-<span id="cb11-10"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_ps =</span> <span class="fu">mean</span>(ps), <span class="at">sd_ps =</span> <span class="fu">sd</span>(ps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>ps_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb11-2"><a></a>  treat <span class="sc">~</span> age <span class="sc">+</span> educ <span class="sc">+</span> re74 <span class="sc">+</span> re75,</span>
+<span id="cb11-3"><a></a>  <span class="at">data   =</span> lalonde,</span>
+<span id="cb11-4"><a></a>  <span class="at">family =</span> binomial</span>
+<span id="cb11-5"><a></a>)</span>
+<span id="cb11-6"><a></a></span>
+<span id="cb11-7"><a></a>lalonde <span class="ot">&lt;-</span> lalonde <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a></a>  <span class="fu">mutate</span>(<span class="at">ps =</span> <span class="fu">predict</span>(ps_model, <span class="at">type =</span> <span class="st">"response"</span>))</span>
+<span id="cb11-9"><a></a></span>
+<span id="cb11-10"><a></a>lalonde <span class="sc">|&gt;</span></span>
+<span id="cb11-11"><a></a>  <span class="fu">group_by</span>(treat) <span class="sc">|&gt;</span></span>
+<span id="cb11-12"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_ps =</span> <span class="fu">mean</span>(ps), <span class="at">sd_ps =</span> <span class="fu">sd</span>(ps))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   treat mean_ps  sd_ps
@@ -447,8 +521,19 @@ Discarded       0       0</code></pre>
 2     1   0.354 0.0901</code></pre>
 </div>
 </div>
-</section><section id="visualize-the-scores" class="slide level2"><h2>Visualize the scores</h2>
+</section><section id="visualize-the-scores" class="slide level2 smaller"><h2>Visualize the scores</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb13-2"><a></a>  lalonde,</span>
+<span id="cb13-3"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> <span class="fu">factor</span>(treat, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"Treated"</span>)))</span>
+<span id="cb13-4"><a></a>) <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-7"><a></a>    <span class="at">x     =</span> <span class="st">"Propensity score"</span>,</span>
+<span id="cb13-8"><a></a>    <span class="at">y     =</span> <span class="st">"Density"</span>,</span>
+<span id="cb13-9"><a></a>    <span class="at">fill  =</span> <span class="st">"Group"</span>,</span>
+<span id="cb13-10"><a></a>    <span class="at">title =</span> <span class="st">"Distribution of propensity scores by group"</span></span>
+<span id="cb13-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure><p><img data-src="23-causal-inference-observational_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
@@ -456,14 +541,16 @@ Discarded       0       0</code></pre>
 </div>
 </div>
 </div>
-</section><section id="step-3-4-match-and-check-balance" class="slide level2"><h2>Step 3 &amp; 4: match and check balance</h2>
+</section><section id="step-3-4-match-and-check-balance" class="slide level2 smaller"><h2>Step 3 &amp; 4: match and check balance</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>ps_match <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> educ <span class="sc">+</span> re74 <span class="sc">+</span> re75,</span>
-<span id="cb13-2"><a></a>                    <span class="at">data     =</span> lalonde,</span>
-<span id="cb13-3"><a></a>                    <span class="at">method   =</span> <span class="st">"nearest"</span>,</span>
-<span id="cb13-4"><a></a>                    <span class="at">distance =</span> <span class="st">"glm"</span>)</span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a><span class="fu">summary</span>(ps_match, <span class="at">un =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>ps_match <span class="ot">&lt;-</span> <span class="fu">matchit</span>(</span>
+<span id="cb14-2"><a></a>  treat <span class="sc">~</span> age <span class="sc">+</span> educ <span class="sc">+</span> re74 <span class="sc">+</span> re75,</span>
+<span id="cb14-3"><a></a>  <span class="at">data     =</span> lalonde,</span>
+<span id="cb14-4"><a></a>  <span class="at">method   =</span> <span class="st">"nearest"</span>,</span>
+<span id="cb14-5"><a></a>  <span class="at">distance =</span> <span class="st">"glm"</span></span>
+<span id="cb14-6"><a></a>)</span>
+<span id="cb14-7"><a></a></span>
+<span id="cb14-8"><a></a><span class="fu">summary</span>(ps_match, <span class="at">un =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -492,11 +579,13 @@ Unmatched     244       0
 Discarded       0       0</code></pre>
 </div>
 </div>
-</section><section id="step-5-estimate-the-effect" class="slide level2"><h2>Step 5: estimate the effect</h2>
+</section><section id="step-5-estimate-the-treatment-effect" class="slide level2 smaller"><h2>Step 5: estimate the treatment effect</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>ps_data <span class="ot">&lt;-</span> <span class="fu">match.data</span>(ps_match)</span>
-<span id="cb15-2"><a></a></span>
-<span id="cb15-3"><a></a><span class="fu">lm</span>(re78 <span class="sc">~</span> treat, <span class="at">data =</span> ps_data, <span class="at">weights =</span> weights) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>ps_data <span class="ot">&lt;-</span> <span class="fu">match.data</span>(ps_match)</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a><span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">fit</span>(re78 <span class="sc">~</span> treat, <span class="at">data =</span> ps_data) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -508,18 +597,28 @@ Discarded       0       0</code></pre>
 <div>
 <ul>
 <li class="fragment"><p>After propensity score matching, we have a valid causal estimate (under ignorability)</p></li>
-<li class="fragment"><p>The propensity score approach scales to many covariates, unlike direct matching</p></li>
-<li class="fragment"><p>Always check balance after matching — if it’s poor, consider a different model for the propensity score</p></li>
+<li class="fragment"><p>This scales to many covariates, unlike direct covariate matching</p></li>
+<li class="fragment"><p>Always check balance after matching — if balance is poor, improve the propensity score model</p></li>
 </ul>
 </div>
-</section><section id="key-takeaways" class="slide level2"><h2>Key takeaways</h2>
+</section><section id="limitations-of-observational-studies" class="slide level2 medium"><h2>Limitations of observational studies</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>No unmeasured confounders</strong>: the key assumption is untestable — if an important confounder is missing from <span class="math inline">\(X\)</span>, our estimate is still biased</p></li>
+<li class="fragment"><p><strong>Bad controls</strong>: we need to choose <span class="math inline">\(X\)</span> carefully — only include pre-treatment variables, never variables caused by <span class="math inline">\(Z\)</span></p></li>
+<li class="fragment"><p><strong>Generalizability</strong>: matching typically estimates the treatment effect on the <strong>treated</strong> (ATT), not the full population</p></li>
+<li class="fragment"><p><strong>Model dependence</strong>: the propensity score model matters — wrong specification leads to poor balance and biased estimates</p></li>
+<li class="fragment"><p>RCTs are still the gold standard; observational methods are our best option <strong>when experiments are impossible</strong></p></li>
+</ul>
+</div>
+</section><section id="key-takeaways" class="slide level2 medium"><h2>Key takeaways</h2>
 <div>
 <ul>
 <li class="fragment"><p>Observational studies require careful adjustment for confounders <span class="math inline">\(X\)</span></p></li>
-<li class="fragment"><p>Matching reconstructs comparability between treated and control groups</p></li>
-<li class="fragment"><p><strong>Direct matching</strong> works with few covariates; <strong>propensity score matching</strong> scales to high dimensions</p></li>
-<li class="fragment"><p>All methods require <strong>no unmeasured confounders</strong> — this assumption cannot be tested from data alone</p></li>
-<li class="fragment"><p>Sensitivity analyses can assess how robust conclusions are to potential unmeasured confounding</p></li>
+<li class="fragment"><p><strong>Covariate matching</strong>: find control units similar on <span class="math inline">\(X\)</span> directly — works well with few covariates</p></li>
+<li class="fragment"><p><strong>Propensity score matching</strong>: match on <span class="math inline">\(P(Z = 1 \mid X)\)</span> — scales to high dimensions</p></li>
+<li class="fragment"><p>Both require <strong>no unmeasured confounders</strong> — an assumption that must be argued for, not tested from data</p></li>
+<li class="fragment"><p>When you see an observational study making a causal claim, ask: <em>what confounders might they have missed?</em></p></li>
 </ul>
 </div>
 
