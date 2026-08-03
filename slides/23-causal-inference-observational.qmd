@@ -28,7 +28,7 @@ library(knitr)
 library(MatchIt)
 ```
 
-# Recap: where we left off
+# Recap
 
 ## Last lecture: RCTs {.medium}
 
@@ -47,46 +47,54 @@ library(MatchIt)
 
 -   **Practical**: policy changes happen at scale. You can't "randomize" a country's minimum wage law
 
--   **Historical**: many causal questions are about events that already happened (retrospective)
+-   **Historical**: many causal questions are about events that already happened
 
--   Most real-world causal questions are answered with **observational data**.
+-   Most real-world causal questions are answered with **observational data**
 :::
 
 # Observational Studies
 
-## What is an Observational Study? {.medium}
+## What is an observational study? {.medium}
 
 ::: incremental
--   In an **observational study**, treatment is not assigned by the researcher, Subjects choose, or are assigned by nature or circumstance
+-   In an **observational study**, treatment is not assigned by the researcher. Subjects choose, or are assigned by nature or circumstance
 
-- Surveys (including the census)
+-   Examples: surveys (including the Census), electronic health records, administrative data
 
-- Electronic Health Records
+-   Almost any dataset you encounter "in the wild" can be framed as an observational study. You just have to define what the treatment is
 
-- Most sources of data can be thought of an observational study! Just have to define what the treatment is
-
-- One key advantage over randomized experiments is the ease in collecting data! Usually has a much bigger sample size. 
-
-## The issues
-
--  $Z$ is **not** independent of $X$: people who receive treatment differ systematically from those who don't
-
-- Changes in $Y$ not directly attributable to changes in $Z$
-
-[create small example table with like all of the x's matching the treatment Z, maybe like something about the new odyssey movie] Y is corisol levels, Z is whether watched movie, X is 
-
+-   Key advantage over RCTs: **easier and cheaper to collect**, often with much larger sample sizes
 :::
 
-## A concrete example {.medium} [CHANGE]
+## The core issue {.medium}
+
+Without randomization, $Z$ is not independent of $X$: people who receive treatment differ systematically from those who don't.
+
+. . .
+
+| Person | $Z$ (Duke?) | $X$ (Read Percy Jackson?) | $Y$ (Odyssey rating) |
+|:------:|:-----------:|:-------------------------:|:--------------------:|
+| A      | 1           | Yes                       | 9                    |
+| B      | 1           | Yes                       | 8                    |
+| C      | 0           | No                        | 5                    |
+| D      | 0           | No                        | 6                    |
+
+. . .
+
+Is the difference in Odyssey ratings because of Duke vs. UNC, or because of Percy Jackson?
+
+## A concrete example {.medium}
 
 ::: incremental
--   Students who seek tutoring tend to be those who are **struggling** --- lower prior GPA
+-   $Z$: attended Duke (vs. UNC); $Y$: rating of the new Odyssey movie; $X$: read Percy Jackson as a kid
 
--   If we compare exam scores, tutored students may still score lower on average, **even if tutoring genuinely helps**
+-   Duke students happen to be much more likely to have read Percy Jackson. $Z$ and $X$ are perfectly aligned
 
--   The confounder (prior ability) affects both who gets tutoring ($Z$) and the outcome ($Y$)
+-   Percy Jackson fans also tend to rate the Odyssey higher. $X$ affects $Y$
 
--   Solution: we need a way to make treated and control groups **comparable** on $X$, without running an experiment
+-   So the naive comparison ("Duke students rate the Odyssey higher") actually reflects Percy Jackson fandom, not school identity
+
+-   This is **confounding**: $X \to Z$ and $X \to Y$, creating a spurious association between $Z$ and $Y$
 :::
 
 ## Key takeaway
@@ -94,55 +102,47 @@ library(MatchIt)
 ::: incremental
 -   In an observational study, a naive difference in group means is **not** a valid causal estimate
 
--   We need to adjust for confounders $X$ to recover the treatment effect
+-   We need to adjust for confounders $X$ to recover the true treatment effect
 
--   The rest of today is about two strategies for doing that
+-   The rest of today: two strategies for doing that
 :::
 
 # Matching
 
 ## The idea of matching {.medium}
 
-recall covariate balance in a randomized study:
+Recall from last lecture: randomization **balanced** the covariates. The only systematic difference between groups was the treatment.
 
-randomization balanced the covariates so that the only possible thing that changed was the treatment
+. . .
 
-::: incremental
--   For each **treated** unit, find one (or more) **control** units that look similar on $X$
+Our goal in observational studies: **emulate that balance** without running an experiment.
 
--   Compare outcomes **within matched pairs** --- differences now reflect treatment, not confounding
+. . .
 
--   We are trying to **mimic** a randomized experiment by constructing comparable groups from observational data
+**How?** Matching.
 
--   After matching: treated and control units have similar $X$ distributions, so $Z \perp X$ holds approximately
-:::
-
-## The key assumption {.medium}
+## Matching {.medium}
 
 ::: incremental
--   Matching only works if we have measured **all** important confounders
+-   For each **treated** unit, find one or more **control** units that look similar on $X$
 
--   Formally: **conditional ignorability**
+-   This creates two new comparable cohorts: a matched treated group and a matched control group
 
-    $$Y(0), Y(1) \perp Z \mid X$$
+-   Analyze the outcome across these cohorts, just as you would in a randomized experiment
 
--   Given $X$, treatment assignment is "as good as random"
-
--   Also called **no unmeasured confounders** --- a strong, untestable assumption
-
--   This is the observational equivalent of randomization: we can't guarantee it, we have to argue for it
+-   Key requirement: matching only works if we have measured **all** important confounders. This is a strong, untestable assumption
 :::
 
 # The LaLonde Study
 
 ## Context {.smaller}
 
-LaLonde (1986) evaluated the **National Supported Work (NSW)** program: a 1970s job training intervention for disadvantaged workers.
+LaLonde (1986) evaluated the **National Supported Work (NSW)** program, a 1970s job training intervention for disadvantaged workers.
 
 ::: incremental
 -   **Cohort**: Disadvantaged workers (long-term unemployed, ex-offenders, welfare recipients)
 
--   **Design**: The original NSW had a randomized arm, but LaLonde compared its estimates against observational comparison groups drawn from national surveys --- showing how badly naive methods can fail
+-   **Design**: The original NSW had a randomized arm, but LaLonde compared its estimates against observational comparison groups drawn from national surveys, showing how badly naive methods can fail
 
 -   **Treatment** ($Z = 1$): Participation in the NSW job training program
 
@@ -175,7 +175,7 @@ lalonde |>
 ```
 
 ::: incremental
--   The naive difference suggests training increases earnings
+-   The naive difference suggests training DECREASES earnings! (huh?)
 
 -   But are the two groups actually comparable before treatment?
 :::
@@ -205,7 +205,7 @@ lalonde |>
 
 -   The control group (from national surveys) is richer and more educated on average
 
--   A naive comparison overstates the earnings gap --- the treated group is catching up from a lower baseline, not just benefiting from training
+-   A naive comparison overstates the earnings gap. The treated group is catching up from a lower baseline, not just benefiting from training
 
 -   We need to adjust for these differences before drawing causal conclusions
 :::
@@ -236,9 +236,9 @@ linear_reg() |>
 ::: incremental
 -   After matching, treated and control units are much more comparable on $X$
 
--   This estimate is our best causal guess **under the ignorability assumption**
+-   This estimate is our best causal guess under the no-unmeasured-confounders assumption
 
--   Compare to the naive estimate --- confounding matters!
+-   Compare to the naive estimate. Confounding matters!
 :::
 
 # Propensity scores
@@ -248,7 +248,7 @@ linear_reg() |>
 ::: incremental
 -   Covariate matching works well when $X$ has only a few variables
 
--   With many covariates, it becomes nearly impossible to find good matches --- the covariate space is too sparse
+-   With many covariates, it becomes nearly impossible to find good matches. Imagine trying to match on 10 variables simultaneously!
 
 -   Example: match exactly on age, education, prior earnings, race, marital status, region, ...
 
@@ -268,26 +268,28 @@ linear_reg() |>
 
 -   The probability of receiving treatment, given covariates
 
--   **Rosenbaum & Rubin (1983)**: if $Y(0), Y(1) \perp Z \mid X$, then also $Y(0), Y(1) \perp Z \mid e(X)$
+-   Matching on this one number is sufficient to achieve balance on all of $X$
 
--   Matching on this one number is sufficient!
+-   In a randomized experiment, $e(X) = 0.5$ for everyone. Randomization makes treatment equally likely regardless of $X$
 :::
 
-## Key takeaway
+## But how do we estimate it? {.medium}
 
 ::: incremental
--   The propensity score **reduces a high-dimensional matching problem to a one-dimensional one**
+-   Every unit has a true $e(X) = P(Z = 1 \mid X)$. We don't observe it directly
 
--   We estimate $e(X)$ with logistic regression, then match on the predicted probability
+-   Goal: estimate $\hat{e}(X)$, the predicted probability of treatment given covariates
 
--   Balance on $e(X)$ implies (approximate) balance on all of $X$
+-   We want to model $P(Z = 1)$ from $X$ ... what does that sound like?
+
+-   **Logistic regression!** We already know how to do this
 :::
 
 ## Estimating the propensity score {.medium}
 
-We estimate $e(X)$ via **logistic regression** (which we already know!):
+We estimate $e(X)$ via **logistic regression**:
 
-$$\log\frac{P(Z=1 \mid X)}{1 - P(Z=1 \mid X)} = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$$
+$$\log\frac{P(Z=1 \mid X)}{1 - P(Z=1 \mid X)} = \widehat{\beta_0} + \widehat{\beta_1} X_1 + \cdots + \widehat{\beta_p} X_p$$
 
 ::: incremental
 -   Fit logistic regression of $Z$ on $X$
@@ -309,14 +311,11 @@ $$\log\frac{P(Z=1 \mid X)}{1 - P(Z=1 \mid X)} = \beta_0 + \beta_1 X_1 + \cdots +
 
 ```{r}
 #| echo: true
-ps_model <- glm(
-  treat ~ age + educ + re74 + re75,
-  data   = lalonde,
-  family = binomial
-)
+ps_fit <- logistic_reg() |>
+  fit(factor(treat) ~ age + educ + re74 + re75, data = lalonde)
 
 lalonde <- lalonde |>
-  mutate(ps = predict(ps_model, type = "response"))
+  mutate(ps = predict(ps_fit, type = "prob", new_data = lalonde)$.pred_1)
 
 lalonde |>
   group_by(treat) |>
@@ -327,6 +326,8 @@ lalonde |>
 
 ```{r}
 #| echo: true
+#| output-location: column
+#| fig-height: 5
 ggplot(
   lalonde,
   aes(x = ps, fill = factor(treat, labels = c("Control", "Treated")))
@@ -366,25 +367,23 @@ linear_reg() |>
 ```
 
 ::: incremental
--   After propensity score matching, we have a valid causal estimate (under ignorability)
+-   After propensity score matching, we have a valid causal estimate (under no unmeasured confounders)
 
 -   This scales to many covariates, unlike direct covariate matching
 
--   Always check balance after matching --- if balance is poor, improve the propensity score model
+-   Always check balance after matching. If balance is poor, improve the propensity score model
 :::
 
 ## Limitations of observational studies {.medium}
 
 ::: incremental
--   **No unmeasured confounders**: the key assumption is untestable --- if an important confounder is missing from $X$, our estimate is still biased
+-   **No unmeasured confounders**: the key assumption is untestable. If an important confounder is missing from $X$, our estimate is still biased
 
--   **Bad controls**: we need to choose $X$ carefully --- only include pre-treatment variables, never variables caused by $Z$
+-   **Bad controls**: only include pre-treatment variables in $X$. Never include variables caused by $Z$
 
--   **Generalizability**: matching typically estimates the treatment effect on the **treated** (ATT), not the full population
+-   **Model dependence**: the propensity score model matters. Wrong specification leads to poor balance and biased estimates
 
--   **Model dependence**: the propensity score model matters --- wrong specification leads to poor balance and biased estimates
-
--   RCTs are still the gold standard; observational methods are our best option **when experiments are impossible**
+-   RCTs are still the gold standard; observational methods are our best option when experiments are impossible
 :::
 
 ## Key takeaways {.medium}
@@ -392,11 +391,11 @@ linear_reg() |>
 ::: incremental
 -   Observational studies require careful adjustment for confounders $X$
 
--   **Covariate matching**: find control units similar on $X$ directly --- works well with few covariates
+-   **Covariate matching**: find control units similar on $X$ directly. Works well with few covariates
 
--   **Propensity score matching**: match on $P(Z = 1 \mid X)$ --- scales to high dimensions
+-   **Propensity score matching**: match on $P(Z = 1 \mid X)$. Scales to high dimensions
 
--   Both require **no unmeasured confounders** --- an assumption that must be argued for, not tested from data
+-   Both require **no unmeasured confounders**, an assumption that must be argued for, not tested from data
 
--   When you see an observational study making a causal claim, ask: *what confounders might they have missed?*
+-   Now you have two tools to draw causal conclusions!
 :::
