@@ -398,7 +398,7 @@ window.Quarto = {
    
   <ul>
 <li>
-<a href="#recap-where-we-left-off" id="toc-recap-where-we-left-off" class="nav-link active" data-scroll-target="#recap-where-we-left-off">Recap: where we left off</a>
+<a href="#recap" id="toc-recap" class="nav-link active" data-scroll-target="#recap">Recap</a>
   <ul class="collapse">
 <li><a href="#last-lecture-rcts" id="toc-last-lecture-rcts" class="nav-link" data-scroll-target="#last-lecture-rcts">Last lecture: RCTs</a></li>
   <li><a href="#when-randomization-isnt-possible" id="toc-when-randomization-isnt-possible" class="nav-link" data-scroll-target="#when-randomization-isnt-possible">When randomization isn’t possible</a></li>
@@ -407,8 +407,9 @@ window.Quarto = {
   <li>
 <a href="#observational-studies" id="toc-observational-studies" class="nav-link" data-scroll-target="#observational-studies">Observational Studies</a>
   <ul class="collapse">
-<li><a href="#what-is-an-observational-study" id="toc-what-is-an-observational-study" class="nav-link" data-scroll-target="#what-is-an-observational-study">What is an Observational Study?</a></li>
-  <li><a href="#a-concrete-example-.medium-change" id="toc-a-concrete-example-.medium-change" class="nav-link" data-scroll-target="#a-concrete-example-.medium-change">A concrete example {.medium} [CHANGE]</a></li>
+<li><a href="#what-is-an-observational-study" id="toc-what-is-an-observational-study" class="nav-link" data-scroll-target="#what-is-an-observational-study">What is an observational study?</a></li>
+  <li><a href="#the-core-issue" id="toc-the-core-issue" class="nav-link" data-scroll-target="#the-core-issue">The core issue</a></li>
+  <li><a href="#a-concrete-example" id="toc-a-concrete-example" class="nav-link" data-scroll-target="#a-concrete-example">A concrete example</a></li>
   <li><a href="#key-takeaway" id="toc-key-takeaway" class="nav-link" data-scroll-target="#key-takeaway">Key takeaway</a></li>
   </ul>
 </li>
@@ -416,7 +417,7 @@ window.Quarto = {
 <a href="#matching" id="toc-matching" class="nav-link" data-scroll-target="#matching">Matching</a>
   <ul class="collapse">
 <li><a href="#the-idea-of-matching" id="toc-the-idea-of-matching" class="nav-link" data-scroll-target="#the-idea-of-matching">The idea of matching</a></li>
-  <li><a href="#the-key-assumption" id="toc-the-key-assumption" class="nav-link" data-scroll-target="#the-key-assumption">The key assumption</a></li>
+  <li><a href="#matching-1" id="toc-matching-1" class="nav-link" data-scroll-target="#matching-1">Matching</a></li>
   </ul>
 </li>
   <li>
@@ -436,7 +437,7 @@ window.Quarto = {
   <ul class="collapse">
 <li><a href="#the-curse-of-dimensionality" id="toc-the-curse-of-dimensionality" class="nav-link" data-scroll-target="#the-curse-of-dimensionality">The curse of dimensionality</a></li>
   <li><a href="#the-propensity-score" id="toc-the-propensity-score" class="nav-link" data-scroll-target="#the-propensity-score">The propensity score</a></li>
-  <li><a href="#key-takeaway-1" id="toc-key-takeaway-1" class="nav-link" data-scroll-target="#key-takeaway-1">Key takeaway</a></li>
+  <li><a href="#but-how-do-we-estimate-it" id="toc-but-how-do-we-estimate-it" class="nav-link" data-scroll-target="#but-how-do-we-estimate-it">But how do we estimate it?</a></li>
   <li><a href="#estimating-the-propensity-score" id="toc-estimating-the-propensity-score" class="nav-link" data-scroll-target="#estimating-the-propensity-score">Estimating the propensity score</a></li>
   <li><a href="#the-workflow" id="toc-the-workflow" class="nav-link" data-scroll-target="#the-workflow">The workflow</a></li>
   <li><a href="#step-1-2-fit-model-get-scores" id="toc-step-1-2-fit-model-get-scores" class="nav-link" data-scroll-target="#step-1-2-fit-model-get-scores">Step 1 &amp; 2: fit model, get scores</a></li>
@@ -485,7 +486,7 @@ window.Quarto = {
   
 
 
-</header><section id="recap-where-we-left-off" class="level1"><h1>Recap: where we left off</h1>
+</header><section id="recap" class="level1"><h1>Recap</h1>
 <section id="last-lecture-rcts" class="level2 medium"><h2 class="medium anchored" data-anchor-id="last-lecture-rcts">Last lecture: RCTs</h2>
 <div class="incremental">
 <ul class="incremental">
@@ -499,77 +500,109 @@ window.Quarto = {
 <ul class="incremental">
 <li><p><strong>Ethical</strong>: you cannot randomly assign people to smoke, to not receive healthcare, or to experience childhood poverty</p></li>
 <li><p><strong>Practical</strong>: policy changes happen at scale. You can’t “randomize” a country’s minimum wage law</p></li>
-<li><p><strong>Historical</strong>: many causal questions are about events that already happened (retrospective)</p></li>
-<li><p>Most real-world causal questions are answered with <strong>observational data</strong>.</p></li>
+<li><p><strong>Historical</strong>: many causal questions are about events that already happened</p></li>
+<li><p>Most real-world causal questions are answered with <strong>observational data</strong></p></li>
 </ul>
 </div>
 </section></section><section id="observational-studies" class="level1"><h1>Observational Studies</h1>
-<section id="what-is-an-observational-study" class="level2 medium"><h2 class="medium anchored" data-anchor-id="what-is-an-observational-study">What is an Observational Study?</h2>
+<section id="what-is-an-observational-study" class="level2 medium"><h2 class="medium anchored" data-anchor-id="what-is-an-observational-study">What is an observational study?</h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p>In an <strong>observational study</strong>, treatment is not assigned by the researcher, Subjects choose, or are assigned by nature or circumstance</p></li>
-<li><p>Surveys (including the census)</p></li>
-<li><p>Electronic Health Records</p></li>
-<li><p>Most sources of data can be thought of an observational study! Just have to define what the treatment is</p></li>
-<li><p>One key advantage over randomized experiments is the ease in collecting data! Usually has a much bigger sample size.</p></li>
+<li><p>In an <strong>observational study</strong>, treatment is not assigned by the researcher. Subjects choose, or are assigned by nature or circumstance</p></li>
+<li><p>Examples: surveys (including the Census), electronic health records, administrative data</p></li>
+<li><p>Almost any dataset you encounter “in the wild” can be framed as an observational study. You just have to define what the treatment is</p></li>
+<li><p>Key advantage over RCTs: <strong>easier and cheaper to collect</strong>, often with much larger sample sizes</p></li>
 </ul>
-<section id="the-issues" class="level2"><h2 class="anchored" data-anchor-id="the-issues">The issues</h2>
-<ul class="incremental">
-<li><p><span class="math inline">\(Z\)</span> is <strong>not</strong> independent of <span class="math inline">\(X\)</span>: people who receive treatment differ systematically from those who don’t</p></li>
-<li><p>Changes in <span class="math inline">\(Y\)</span> not directly attributable to changes in <span class="math inline">\(Z\)</span></p></li>
-</ul>
-<p>[create small example table with like all of the x’s matching the treatment Z, maybe like something about the new odyssey movie] Y is corisol levels, Z is whether watched movie, X is</p>
-</section>
 </div>
-</section><section id="a-concrete-example-.medium-change" class="level2"><h2 class="anchored" data-anchor-id="a-concrete-example-.medium-change">A concrete example {.medium} [CHANGE]</h2>
+</section><section id="the-core-issue" class="level2 medium"><h2 class="medium anchored" data-anchor-id="the-core-issue">The core issue</h2>
+<p>Without randomization, <span class="math inline">\(Z\)</span> is not independent of <span class="math inline">\(X\)</span>: people who receive treatment differ systematically from those who don’t.</p>
+<p>. . .</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 18%">
+<col style="width: 38%">
+<col style="width: 31%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: center;">Person</th>
+<th style="text-align: center;">
+<span class="math inline">\(Z\)</span> (Duke?)</th>
+<th style="text-align: center;">
+<span class="math inline">\(X\)</span> (Read Percy Jackson?)</th>
+<th style="text-align: center;">
+<span class="math inline">\(Y\)</span> (Odyssey rating)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">6</td>
+</tr>
+</tbody>
+</table>
+<p>. . .</p>
+<p>Is the difference in Odyssey ratings because of Duke vs.&nbsp;UNC, or because of Percy Jackson?</p>
+</section><section id="a-concrete-example" class="level2 medium"><h2 class="medium anchored" data-anchor-id="a-concrete-example">A concrete example</h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p>Students who seek tutoring tend to be those who are <strong>struggling</strong> — lower prior GPA</p></li>
-<li><p>If we compare exam scores, tutored students may still score lower on average, <strong>even if tutoring genuinely helps</strong></p></li>
-<li><p>The confounder (prior ability) affects both who gets tutoring (<span class="math inline">\(Z\)</span>) and the outcome (<span class="math inline">\(Y\)</span>)</p></li>
-<li><p>Solution: we need a way to make treated and control groups <strong>comparable</strong> on <span class="math inline">\(X\)</span>, without running an experiment</p></li>
+<li><p><span class="math inline">\(Z\)</span>: attended Duke (vs.&nbsp;UNC); <span class="math inline">\(Y\)</span>: rating of the new Odyssey movie; <span class="math inline">\(X\)</span>: read Percy Jackson as a kid</p></li>
+<li><p>Duke students happen to be much more likely to have read Percy Jackson. <span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span> are perfectly aligned</p></li>
+<li><p>Percy Jackson fans also tend to rate the Odyssey higher. <span class="math inline">\(X\)</span> affects <span class="math inline">\(Y\)</span></p></li>
+<li><p>So the naive comparison (“Duke students rate the Odyssey higher”) actually reflects Percy Jackson fandom, not school identity</p></li>
+<li><p>This is <strong>confounding</strong>: <span class="math inline">\(X \to Z\)</span> and <span class="math inline">\(X \to Y\)</span>, creating a spurious association between <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span></p></li>
 </ul>
 </div>
 </section><section id="key-takeaway" class="level2"><h2 class="anchored" data-anchor-id="key-takeaway">Key takeaway</h2>
 <div class="incremental">
 <ul class="incremental">
 <li><p>In an observational study, a naive difference in group means is <strong>not</strong> a valid causal estimate</p></li>
-<li><p>We need to adjust for confounders <span class="math inline">\(X\)</span> to recover the treatment effect</p></li>
-<li><p>The rest of today is about two strategies for doing that</p></li>
+<li><p>We need to adjust for confounders <span class="math inline">\(X\)</span> to recover the true treatment effect</p></li>
+<li><p>The rest of today: two strategies for doing that</p></li>
 </ul>
 </div>
 </section></section><section id="matching" class="level1"><h1>Matching</h1>
 <section id="the-idea-of-matching" class="level2 medium"><h2 class="medium anchored" data-anchor-id="the-idea-of-matching">The idea of matching</h2>
-<p>recall covariate balance in a randomized study:</p>
-<p>randomization balanced the covariates so that the only possible thing that changed was the treatment</p>
+<p>Recall from last lecture: randomization <strong>balanced</strong> the covariates. The only systematic difference between groups was the treatment.</p>
+<p>. . .</p>
+<p>Our goal in observational studies: <strong>emulate that balance</strong> without running an experiment.</p>
+<p>. . .</p>
+<p><strong>How?</strong> Matching.</p>
+</section><section id="matching-1" class="level2 medium"><h2 class="medium anchored" data-anchor-id="matching-1">Matching</h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p>For each <strong>treated</strong> unit, find one (or more) <strong>control</strong> units that look similar on <span class="math inline">\(X\)</span></p></li>
-<li><p>Compare outcomes <strong>within matched pairs</strong> — differences now reflect treatment, not confounding</p></li>
-<li><p>We are trying to <strong>mimic</strong> a randomized experiment by constructing comparable groups from observational data</p></li>
-<li><p>After matching: treated and control units have similar <span class="math inline">\(X\)</span> distributions, so <span class="math inline">\(Z \perp X\)</span> holds approximately</p></li>
-</ul>
-</div>
-</section><section id="the-key-assumption" class="level2 medium"><h2 class="medium anchored" data-anchor-id="the-key-assumption">The key assumption</h2>
-<div class="incremental">
-<ul class="incremental">
-<li><p>Matching only works if we have measured <strong>all</strong> important confounders</p></li>
-<li>
-<p>Formally: <strong>conditional ignorability</strong></p>
-<p><span class="math display">\[Y(0), Y(1) \perp Z \mid X\]</span></p>
-</li>
-<li><p>Given <span class="math inline">\(X\)</span>, treatment assignment is “as good as random”</p></li>
-<li><p>Also called <strong>no unmeasured confounders</strong> — a strong, untestable assumption</p></li>
-<li><p>This is the observational equivalent of randomization: we can’t guarantee it, we have to argue for it</p></li>
+<li><p>For each <strong>treated</strong> unit, find one or more <strong>control</strong> units that look similar on <span class="math inline">\(X\)</span></p></li>
+<li><p>This creates two new comparable cohorts: a matched treated group and a matched control group</p></li>
+<li><p>Analyze the outcome across these cohorts, just as you would in a randomized experiment</p></li>
+<li><p>Key requirement: matching only works if we have measured <strong>all</strong> important confounders. This is a strong, untestable assumption</p></li>
 </ul>
 </div>
 </section></section><section id="the-lalonde-study" class="level1"><h1>The LaLonde Study</h1>
 <section id="context" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="context">Context</h2>
-<p>LaLonde (1986) evaluated the <strong>National Supported Work (NSW)</strong> program: a 1970s job training intervention for disadvantaged workers.</p>
+<p>LaLonde (1986) evaluated the <strong>National Supported Work (NSW)</strong> program, a 1970s job training intervention for disadvantaged workers.</p>
 <div class="incremental">
 <ul class="incremental">
 <li><p><strong>Cohort</strong>: Disadvantaged workers (long-term unemployed, ex-offenders, welfare recipients)</p></li>
-<li><p><strong>Design</strong>: The original NSW had a randomized arm, but LaLonde compared its estimates against observational comparison groups drawn from national surveys — showing how badly naive methods can fail</p></li>
+<li><p><strong>Design</strong>: The original NSW had a randomized arm, but LaLonde compared its estimates against observational comparison groups drawn from national surveys, showing how badly naive methods can fail</p></li>
 <li><p><strong>Treatment</strong> (<span class="math inline">\(Z = 1\)</span>): Participation in the NSW job training program</p></li>
 <li><p><strong>Control</strong> (<span class="math inline">\(Z = 0\)</span>): Non-participants drawn from observational comparison groups</p></li>
 <li><p><strong>Outcome</strong> (<span class="math inline">\(Y\)</span>): Earnings in 1978 (<code>re78</code>)</p></li>
@@ -616,7 +649,7 @@ $ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…</c
 </div>
 <div class="incremental">
 <ul class="incremental">
-<li><p>The naive difference suggests training increases earnings</p></li>
+<li><p>The naive difference suggests training DECREASES earnings! (huh?)</p></li>
 <li><p>But are the two groups actually comparable before treatment?</p></li>
 </ul>
 </div>
@@ -646,7 +679,7 @@ $ re78     &lt;dbl&gt; 9930.0460, 3595.8940, 24909.4500, 7506.1460, 289.78…</c
 <ul class="incremental">
 <li><p>Treated individuals have substantially <strong>lower</strong> prior earnings (<code>re74</code>, <code>re75</code>) than controls</p></li>
 <li><p>The control group (from national surveys) is richer and more educated on average</p></li>
-<li><p>A naive comparison overstates the earnings gap — the treated group is catching up from a lower baseline, not just benefiting from training</p></li>
+<li><p>A naive comparison overstates the earnings gap. The treated group is catching up from a lower baseline, not just benefiting from training</p></li>
 <li><p>We need to adjust for these differences before drawing causal conclusions</p></li>
 </ul>
 </div>
@@ -704,8 +737,8 @@ Discarded       0       0</code></pre>
 <div class="incremental">
 <ul class="incremental">
 <li><p>After matching, treated and control units are much more comparable on <span class="math inline">\(X\)</span></p></li>
-<li><p>This estimate is our best causal guess <strong>under the ignorability assumption</strong></p></li>
-<li><p>Compare to the naive estimate — confounding matters!</p></li>
+<li><p>This estimate is our best causal guess under the no-unmeasured-confounders assumption</p></li>
+<li><p>Compare to the naive estimate. Confounding matters!</p></li>
 </ul>
 </div>
 </section></section><section id="propensity-scores" class="level1"><h1>Propensity scores</h1>
@@ -713,7 +746,7 @@ Discarded       0       0</code></pre>
 <div class="incremental">
 <ul class="incremental">
 <li><p>Covariate matching works well when <span class="math inline">\(X\)</span> has only a few variables</p></li>
-<li><p>With many covariates, it becomes nearly impossible to find good matches — the covariate space is too sparse</p></li>
+<li><p>With many covariates, it becomes nearly impossible to find good matches. Imagine trying to match on 10 variables simultaneously!</p></li>
 <li><p>Example: match exactly on age, education, prior earnings, race, marital status, region, …</p></li>
 <li><p>The probability of finding a near-identical control unit vanishes as the number of covariates grows</p></li>
 <li><p>We need a smarter approach</p></li>
@@ -728,21 +761,22 @@ Discarded       0       0</code></pre>
 <p><span class="math display">\[e(X) = P(Z = 1 \mid X)\]</span></p>
 </li>
 <li><p>The probability of receiving treatment, given covariates</p></li>
-<li><p><strong>Rosenbaum &amp; Rubin (1983)</strong>: if <span class="math inline">\(Y(0), Y(1) \perp Z \mid X\)</span>, then also <span class="math inline">\(Y(0), Y(1) \perp Z \mid e(X)\)</span></p></li>
-<li><p>Matching on this one number is sufficient!</p></li>
+<li><p>Matching on this one number is sufficient to achieve balance on all of <span class="math inline">\(X\)</span></p></li>
+<li><p>In a randomized experiment, <span class="math inline">\(e(X) = 0.5\)</span> for everyone. Randomization makes treatment equally likely regardless of <span class="math inline">\(X\)</span></p></li>
 </ul>
 </div>
-</section><section id="key-takeaway-1" class="level2"><h2 class="anchored" data-anchor-id="key-takeaway-1">Key takeaway</h2>
+</section><section id="but-how-do-we-estimate-it" class="level2 medium"><h2 class="medium anchored" data-anchor-id="but-how-do-we-estimate-it">But how do we estimate it?</h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p>The propensity score <strong>reduces a high-dimensional matching problem to a one-dimensional one</strong></p></li>
-<li><p>We estimate <span class="math inline">\(e(X)\)</span> with logistic regression, then match on the predicted probability</p></li>
-<li><p>Balance on <span class="math inline">\(e(X)\)</span> implies (approximate) balance on all of <span class="math inline">\(X\)</span></p></li>
+<li><p>Every unit has a true <span class="math inline">\(e(X) = P(Z = 1 \mid X)\)</span>. We don’t observe it directly</p></li>
+<li><p>Goal: estimate <span class="math inline">\(\hat{e}(X)\)</span>, the predicted probability of treatment given covariates</p></li>
+<li><p>We want to model <span class="math inline">\(P(Z = 1)\)</span> from <span class="math inline">\(X\)</span> … what does that sound like?</p></li>
+<li><p><strong>Logistic regression!</strong> We already know how to do this</p></li>
 </ul>
 </div>
 </section><section id="estimating-the-propensity-score" class="level2 medium"><h2 class="medium anchored" data-anchor-id="estimating-the-propensity-score">Estimating the propensity score</h2>
-<p>We estimate <span class="math inline">\(e(X)\)</span> via <strong>logistic regression</strong> (which we already know!):</p>
-<p><span class="math display">\[\log\frac{P(Z=1 \mid X)}{1 - P(Z=1 \mid X)} = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p\]</span></p>
+<p>We estimate <span class="math inline">\(e(X)\)</span> via <strong>logistic regression</strong>:</p>
+<p><span class="math display">\[\log\frac{P(Z=1 \mid X)}{1 - P(Z=1 \mid X)} = \widehat{\beta_0} + \widehat{\beta_1} X_1 + \cdots + \widehat{\beta_p} X_p\]</span></p>
 <div class="incremental">
 <ul class="incremental">
 <li><p>Fit logistic regression of <span class="math inline">\(Z\)</span> on <span class="math inline">\(X\)</span></p></li>
@@ -760,14 +794,11 @@ Discarded       0       0</code></pre>
 <li>Estimate the treatment effect on the matched data</li>
 </ol></section><section id="step-1-2-fit-model-get-scores" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="step-1-2-fit-model-get-scores">Step 1 &amp; 2: fit model, get scores</h2>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ps_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span></span>
-<span>  <span class="va">treat</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">re74</span> <span class="op">+</span> <span class="va">re75</span>,</span>
-<span>  data   <span class="op">=</span> <span class="va">lalonde</span>,</span>
-<span>  family <span class="op">=</span> <span class="va">binomial</span></span>
-<span><span class="op">)</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ps_fit</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">fit</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">treat</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">re74</span> <span class="op">+</span> <span class="va">re75</span>, data <span class="op">=</span> <span class="va">lalonde</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">lalonde</span> <span class="op">&lt;-</span> <span class="va">lalonde</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>ps <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ps_model</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>ps <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ps_fit</span>, type <span class="op">=</span> <span class="st">"prob"</span>, new_data <span class="op">=</span> <span class="va">lalonde</span><span class="op">)</span><span class="op">$</span><span class="va">.pred_1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">lalonde</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">treat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -781,7 +812,7 @@ Discarded       0       0</code></pre>
 </div>
 </div>
 </section><section id="visualize-the-scores" class="level2 smaller"><h2 class="smaller anchored" data-anchor-id="visualize-the-scores">Visualize the scores</h2>
-<div class="cell">
+<div class="cell" data-output-location="column">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span></span>
 <span>  <span class="va">lalonde</span>,</span>
 <span>  <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">ps</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">treat</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Control"</span>, <span class="st">"Treated"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -855,29 +886,28 @@ Discarded       0       0</code></pre>
 </div>
 <div class="incremental">
 <ul class="incremental">
-<li><p>After propensity score matching, we have a valid causal estimate (under ignorability)</p></li>
+<li><p>After propensity score matching, we have a valid causal estimate (under no unmeasured confounders)</p></li>
 <li><p>This scales to many covariates, unlike direct covariate matching</p></li>
-<li><p>Always check balance after matching — if balance is poor, improve the propensity score model</p></li>
+<li><p>Always check balance after matching. If balance is poor, improve the propensity score model</p></li>
 </ul>
 </div>
 </section><section id="limitations-of-observational-studies" class="level2 medium"><h2 class="medium anchored" data-anchor-id="limitations-of-observational-studies">Limitations of observational studies</h2>
 <div class="incremental">
 <ul class="incremental">
-<li><p><strong>No unmeasured confounders</strong>: the key assumption is untestable — if an important confounder is missing from <span class="math inline">\(X\)</span>, our estimate is still biased</p></li>
-<li><p><strong>Bad controls</strong>: we need to choose <span class="math inline">\(X\)</span> carefully — only include pre-treatment variables, never variables caused by <span class="math inline">\(Z\)</span></p></li>
-<li><p><strong>Generalizability</strong>: matching typically estimates the treatment effect on the <strong>treated</strong> (ATT), not the full population</p></li>
-<li><p><strong>Model dependence</strong>: the propensity score model matters — wrong specification leads to poor balance and biased estimates</p></li>
-<li><p>RCTs are still the gold standard; observational methods are our best option <strong>when experiments are impossible</strong></p></li>
+<li><p><strong>No unmeasured confounders</strong>: the key assumption is untestable. If an important confounder is missing from <span class="math inline">\(X\)</span>, our estimate is still biased</p></li>
+<li><p><strong>Bad controls</strong>: only include pre-treatment variables in <span class="math inline">\(X\)</span>. Never include variables caused by <span class="math inline">\(Z\)</span></p></li>
+<li><p><strong>Model dependence</strong>: the propensity score model matters. Wrong specification leads to poor balance and biased estimates</p></li>
+<li><p>RCTs are still the gold standard; observational methods are our best option when experiments are impossible</p></li>
 </ul>
 </div>
 </section><section id="key-takeaways" class="level2 medium"><h2 class="medium anchored" data-anchor-id="key-takeaways">Key takeaways</h2>
 <div class="incremental">
 <ul class="incremental">
 <li><p>Observational studies require careful adjustment for confounders <span class="math inline">\(X\)</span></p></li>
-<li><p><strong>Covariate matching</strong>: find control units similar on <span class="math inline">\(X\)</span> directly — works well with few covariates</p></li>
-<li><p><strong>Propensity score matching</strong>: match on <span class="math inline">\(P(Z = 1 \mid X)\)</span> — scales to high dimensions</p></li>
-<li><p>Both require <strong>no unmeasured confounders</strong> — an assumption that must be argued for, not tested from data</p></li>
-<li><p>When you see an observational study making a causal claim, ask: <em>what confounders might they have missed?</em></p></li>
+<li><p><strong>Covariate matching</strong>: find control units similar on <span class="math inline">\(X\)</span> directly. Works well with few covariates</p></li>
+<li><p><strong>Propensity score matching</strong>: match on <span class="math inline">\(P(Z = 1 \mid X)\)</span>. Scales to high dimensions</p></li>
+<li><p>Both require <strong>no unmeasured confounders</strong>, an assumption that must be argued for, not tested from data</p></li>
+<li><p>Now you have two tools to draw causal conclusions!</p></li>
 </ul>
 </div>
 
