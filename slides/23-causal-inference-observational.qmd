@@ -77,7 +77,7 @@ library(MatchIt)
 
 :::
 
-## A concrete example {.medium}
+## A concrete example {.medium} [CHANGE]
 
 ::: incremental
 -   Students who seek tutoring tend to be those who are **struggling** --- lower prior GPA
