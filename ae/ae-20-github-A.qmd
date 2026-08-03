@@ -1,5 +1,5 @@
 ---
-title: "AE 20: Causal Inference from a Randomized Experiment"
+title: "AE 20: Wheat Oral Immunotherapy"
 subtitle: "Suggested answers"
 format:
   html:

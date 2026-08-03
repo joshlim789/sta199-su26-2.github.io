@@ -1,5 +1,5 @@
 ---
-title: "AE 20: Causal Inference from a Randomized Experiment"
+title: "AE 20: Wheat Oral Immunotherapy"
 format:
   html:
     self-contained: true
@@ -43,7 +43,7 @@ glimpse(wheat_trial)
 Variables:
 
 | Variable             | Description                                                            |
-|------------------------------------|------------------------------------|
+|----------------------|------------------------------------------------------------------------|
 | `id`                 | Unique participant identifier                                          |
 | `age`                | Participant age (years)                                                |
 | `baseline_wheat_ige` | Baseline wheat IgE level (kU/L) --- a measure of allergy severity      |
