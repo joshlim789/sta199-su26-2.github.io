@@ -1,0 +1,142 @@
+---
+title: "Final Review"
+subtitle: "Lecture 24"
+date: "2026-08-07"
+format:
+  revealjs:
+    output-file: 24-final-review-slides.html
+    include-in-header:
+      - text: |
+          <style>
+          .reveal .title-slide h1 { font-size: 1.8em !important; }
+          .reveal .title-slide .subtitle { font-size: 0.95em !important; }
+          .reveal .title-slide .date { font-size: 0.75em !important; }
+          .reveal .slides section.medium { font-size: 0.8em; }
+          .reveal .slides section.smaller { font-size: 0.7em; }
+          </style>
+  html:
+    output-file: 24-final-review.html
+auto-stretch: false
+---
+
+# What did we do this summer?
+
+## Data science & statistics {.medium}
+
+::: incremental
+-   Data science is the messy, real-world *art* of converting data into knowledge.
+
+-   Statistics is the mathematical study of quantifying uncertainty about that knowledge to help guide decision-making.
+
+-   This course covered the full data science life cycle: import, tidy, transform, visualize, **model**, communicate.
+
+-   The second half went deep on **modeling, inference, and causation**.
+:::
+
+# Three (and a half) major topics
+
+## The three (and a half) {.medium}
+
+::: incremental
+-   **Linear Regression**: modeling a numerical outcome
+
+-   **Logistic Regression**: modeling a binary outcome
+
+-   **Inference**: quantifying uncertainty, making decisions
+
+-   **Causal Inference** *(the half)*: moving from association to causation
+:::
+
+# Linear Regression
+
+## What to expect {.smaller .scrollable}
+
+::: incremental
+-   **Describe** the relationship between variables: direction, form, strength
+
+-   **Interpret the slope**: for a 1-unit increase in $x$, $\hat{y}$ is predicted to change by $b_1$, on average, holding all else constant
+
+-   **Interpret the intercept**: predicted value of $\hat{y}$ when all predictors are zero
+
+-   **Additive vs. interaction models**: additive = parallel lines; interaction = different slopes for different groups
+
+-   **Interpret** $R^2$: % of variability in $y$ explained by the model
+
+-   **Compare models** using adjusted $R^2$ (penalizes for extra predictors)
+
+-   **Make predictions** by plugging values into the fitted equation
+
+-   **Least squares**: the line that minimizes the sum of squared residuals; "adjusting for a variable" means removing its linear effect before estimating another coefficient
+
+-   **Residual checking**: fitted vs. residuals plot (linearity, constant variance); Q-Q plot (normality of residuals)
+:::
+
+# Logistic Regression
+
+## What to expect {.smaller .scrollable}
+
+::: incremental
+-   **Interpret the slope** on the odds scale: for a 1-unit increase in $x$, the odds of success are multiplied by $e^{b_1}$, holding all else constant
+
+-   **Interpret the intercept** on the probability scale: $\hat{p} = \frac{e^{b_0}}{1+e^{b_0}}$ when all predictors are zero
+
+-   **Convert between levels**: log-odds → odds ($e^{\text{log-odds}}$) → probability ($\frac{\text{odds}}{1+\text{odds}}$) → outcome (compare to threshold $p^*$)
+
+-   **Make predictions** for a new observation using the fitted equation
+
+-   **Thresholds**: changing $p^*$ trades off false positives and false negatives
+
+-   **Train-test split**: fit the model on training data, evaluate on held-out test data; avoids optimistic performance estimates
+
+-   **Classification metrics**: sensitivity (TPR), specificity (1 − FPR), false positive rate, false negative rate
+
+-   **ROC curve & AUC**: visualize performance across all thresholds; AUC = 1 is perfect, AUC = 0.5 is no better than guessing
+
+-   **Confidence intervals** on logistic regression coefficients: same bootstrap logic as linear regression
+:::
+
+# Inference
+
+## What to expect {.smaller .scrollable}
+
+::: incremental
+-   **Sampling uncertainty**: estimates from a sample vary; a different sample gives a different estimate
+
+-   **Bootstrapping**: resample (with replacement) from your data to approximate the sampling distribution of a statistic
+
+-   **Confidence intervals**: a range of plausible values for a population parameter; a 95% CI is bounded by the middle 95% of the bootstrap distribution
+
+-   **Interpreting a CI**: "We are 95% confident that \[parameter in context\], on average, by \[lower\] to \[upper\] \[units\]."
+
+-   **Hypothesis testing**: assume $H_0$ is true, generate a null distribution via permutation, ask how extreme the observed statistic is
+
+-   **Null and alternative hypotheses**: $H_0$ is the claim of no effect; $H_A$ is what we suspect instead; always defined in terms of a population parameter
+
+-   **Interpreting the p-value**: the probability of observing a statistic as extreme as ours *if* $H_0$ were true; small p-value = evidence against $H_0$
+
+-   **Decision**: reject $H_0$ if $p < \alpha$ (usually $\alpha = 0.05$); never "accept" $H_0$
+:::
+
+# Causal Inference
+
+## What to expect {.smaller .scrollable}
+
+::: incremental
+-   **Association ≠ causation**: confounding variables can create spurious relationships between $Z$ and $Y$
+
+-   **Randomized experiments (RCTs)**: random assignment of treatment $Z$ breaks all back-door paths, making $Z \perp X$; this licenses causal language ("causes")
+
+-   **Observational studies**: treatment is not assigned by the researcher; confounders $X$ can bias naive estimates
+
+-   **Covariate balance**: in an RCT, treated and control groups are balanced on $X$ by design; in an observational study, they often are not
+
+-   **Matching on covariates**: for each treated unit, find a control unit similar on $X$; creates two comparable cohorts; analyze as you would an experiment
+
+-   **Propensity score matching**: instead of matching on all of $X$ directly, match on $\hat{e}(X) = \hat{P}(Z=1 \mid X)$; a single number that summarizes covariate information; scales to many covariates
+
+-   **Key untestable assumption**: both methods require *no unmeasured confounders*; if an important variable is missing from $X$, estimates are still biased
+:::
+
+# KAHOOT
+
+## Final thoughts
