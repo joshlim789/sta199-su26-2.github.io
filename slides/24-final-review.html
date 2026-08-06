@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Josh Lim">
+<meta name="dcterms.date" content="2026-08-07">
 
-<title>Labs – STA 199</title>
+<title>Final Review – STA 199</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c3324cad1f6b6694cb2c923ed3b0169f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3e476e15ae565c222d94875412ae43a1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-cf3346264bcee837592f03f1b4461e5f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -129,13 +100,13 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="style/sta199.scss">
-<meta property="og:title" content="Labs – STA 199">
-<meta property="og:description" content="Homepage for STA 199 - Introduction to Data Science at Duke University, Summer 2026: Session 2.">
+<link rel="stylesheet" href="../style/sta199.scss">
+<meta property="og:title" content="Final Review – STA 199">
+<meta property="og:description" content="Lecture 24">
 <meta property="og:site_name" content="STA 199">
-<meta name="twitter:title" content="Labs – STA 199">
-<meta name="twitter:description" content="Homepage for STA 199 - Introduction to Data Science at Duke University, Summer 2026: Session 2.">
-<meta name="twitter:image" content="https://sta199-su26-2.github.io/img/twitter-card-ks.pdf">
+<meta name="twitter:title" content="Final Review – STA 199">
+<meta name="twitter:description" content="Lecture 24">
+<meta name="twitter:image" content="https://sta199-su26-2.github.io/slides/img/twitter-card-ks.pdf">
 <meta name="twitter:creator" content="@minebocek">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -149,7 +120,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Labs</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Final Review</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -163,8 +134,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../img/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
     <a href="https://github.com/sta199-su26-2" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
@@ -189,37 +160,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-team.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-team.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Team</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-support.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-support.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Support</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-links.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Useful Links</span></a>
   </div>
 </li>
@@ -236,25 +207,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing-access.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Access</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing-cheatsheets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cheatsheets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding-principles-oh.html" class="sidebar-item-text sidebar-link">
+  <a href="../coding-principles-oh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Coding principles</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
@@ -271,37 +242,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/description.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/description.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Description</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/1-working-collaboratively.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/1-working-collaboratively.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Milestone 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/2-proposal.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/2-proposal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Milestone 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/3-improvement-progress.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/3-improvement-progress.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Milestone 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/4-peer-review.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/4-peer-review.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Milestone 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./project/5-writeup-presentation.html" class="sidebar-item-text sidebar-link">
+  <a href="../project/5-writeup-presentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Milestone 5</span></a>
   </div>
 </li>
@@ -318,43 +289,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/lab-0.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/lab-0.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 0</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/lab-1.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/lab-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/lab-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/lab-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/lab-3.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/lab-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/lab-4.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/lab-4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/lab-5.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/lab-5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lab/lab-6.html" class="sidebar-item-text sidebar-link">
+  <a href="../lab/lab-6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 6</span></a>
   </div>
 </li>
@@ -362,7 +333,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ae.html" class="sidebar-item-text sidebar-link">
+  <a href="../ae.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Application Exercises</span></a>
   </div>
 </li>
@@ -377,25 +348,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exam-review/midterm.html" class="sidebar-item-text sidebar-link">
+  <a href="../exam-review/midterm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Midterm Review</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exam-review/midterm-key.html" class="sidebar-item-text sidebar-link">
+  <a href="../exam-review/midterm-key.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Midterm Review Answer Key</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exam-review/final.html" class="sidebar-item-text sidebar-link">
+  <a href="../exam-review/final.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Final Review</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exam-review/final-key.html" class="sidebar-item-text sidebar-link">
+  <a href="../exam-review/final-key.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Final Review Answer Key</span></a>
   </div>
 </li>
@@ -406,22 +377,75 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-did-we-do-this-summer" id="toc-what-did-we-do-this-summer" class="nav-link active" data-scroll-target="#what-did-we-do-this-summer">What did we do this summer?</a>
+  <ul class="collapse">
+  <li><a href="#data-science-statistics" id="toc-data-science-statistics" class="nav-link" data-scroll-target="#data-science-statistics">Data science &amp; statistics</a></li>
+  </ul></li>
+  <li><a href="#three-and-a-half-major-topics" id="toc-three-and-a-half-major-topics" class="nav-link" data-scroll-target="#three-and-a-half-major-topics">Three (and a half) major topics</a>
+  <ul class="collapse">
+  <li><a href="#the-three-and-a-half" id="toc-the-three-and-a-half" class="nav-link" data-scroll-target="#the-three-and-a-half">The three (and a half)</a></li>
+  </ul></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a>
+  <ul class="collapse">
+  <li><a href="#what-to-expect" id="toc-what-to-expect" class="nav-link" data-scroll-target="#what-to-expect">What to expect</a></li>
+  </ul></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#what-to-expect-1" id="toc-what-to-expect-1" class="nav-link" data-scroll-target="#what-to-expect-1">What to expect</a></li>
+  </ul></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a>
+  <ul class="collapse">
+  <li><a href="#what-to-expect-2" id="toc-what-to-expect-2" class="nav-link" data-scroll-target="#what-to-expect-2">What to expect</a></li>
+  </ul></li>
+  <li><a href="#causal-inference" id="toc-causal-inference" class="nav-link" data-scroll-target="#causal-inference">Causal Inference</a>
+  <ul class="collapse">
+  <li><a href="#what-to-expect-3" id="toc-what-to-expect-3" class="nav-link" data-scroll-target="#what-to-expect-3">What to expect</a></li>
+  </ul></li>
+  <li><a href="#kahoot" id="toc-kahoot" class="nav-link" data-scroll-target="#kahoot">KAHOOT</a>
+  <ul class="collapse">
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final thoughts</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/edit/main/slides/24-final-review.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="24-final-review-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Labs</h1>
+<h1 class="title">Final Review</h1>
+<p class="subtitle lead">Lecture 24</p>
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Josh Lim </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Duke University <br> STA 199 Summer 2026: Session 2 <br> Adapted from slides by Mine Çetinkaya-Rundel, Katie Solarz &amp; John Zito
+          </p>
+      </div>
+  </div>
 
 <div class="quarto-title-meta">
 
-    
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 7, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -431,110 +455,118 @@ window.Quarto = {
 </header>
 
 
-<p>More labs to be added as the semester progresses.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-No.
-</th>
-<th>
-Title
-</th>
-<th>
-Due date
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="TGFi" data-listing-file-modified-sort="1786057732825" data-listing-reading-time-sort="8" data-listing-word-count-sort="1456" data-listing-title-sort="Lab 0" data-listing-filename-sort="lab-0.qmd">
-<td>
-<a href="./lab/lab-0.html" class="title listing-title">Lab 0</a>
-</td>
-<td>
-<span class="listing-subtitle">Hello, World and STA 199!</span>
-</td>
-<td>
-<span class="listing-description">End of lab on Jun 29</span>
-</td>
-</tr>
-<tr data-index="1" data-categories="TGFi" data-listing-file-modified-sort="1786057732825" data-listing-reading-time-sort="16" data-listing-word-count-sort="3126" data-listing-title-sort="Lab 1" data-listing-filename-sort="lab-1.qmd">
-<td>
-<a href="./lab/lab-1.html" class="title listing-title">Lab 1</a>
-</td>
-<td>
-<span class="listing-subtitle">From the Midwest to Lego Sets!</span>
-</td>
-<td>
-<span class="listing-description">Due to Gradescope by Wed. Jul 8 11:59 PM</span>
-</td>
-</tr>
-<tr data-index="2" data-categories="TGFi" data-listing-file-modified-sort="1786057732825" data-listing-reading-time-sort="13" data-listing-word-count-sort="2471" data-listing-title-sort="Lab 2" data-listing-filename-sort="lab-2.qmd">
-<td>
-<a href="./lab/lab-2.html" class="title listing-title">Lab 2</a>
-</td>
-<td>
-<span class="listing-subtitle">Data Transformation + Tidying</span>
-</td>
-<td>
-<span class="listing-description">Due to Gradescope by Sun. Jul 12 11:59 PM</span>
-</td>
-</tr>
-<tr data-index="3" data-categories="TGFi" data-listing-file-modified-sort="1786057732825" data-listing-reading-time-sort="12" data-listing-word-count-sort="2309" data-listing-title-sort="Lab 3" data-listing-filename-sort="lab-3.qmd">
-<td>
-<a href="./lab/lab-3.html" class="title listing-title">Lab 3</a>
-</td>
-<td>
-<span class="listing-subtitle">Everything Thus Far</span>
-</td>
-<td>
-<span class="listing-description">Due to Gradescope by Sun. Jul 19 12:00 PM</span>
-</td>
-</tr>
-<tr data-index="4" data-categories="TGFi" data-listing-file-modified-sort="1786057732825" data-listing-reading-time-sort="14" data-listing-word-count-sort="2757" data-listing-title-sort="Lab 4" data-listing-filename-sort="lab-4.qmd">
-<td>
-<a href="./lab/lab-4.html" class="title listing-title">Lab 4</a>
-</td>
-<td>
-<span class="listing-subtitle">Linear Regression Modeling</span>
-</td>
-<td>
-<span class="listing-description">Due to Gradescope by Sun. Jul 26 11:59 PM</span>
-</td>
-</tr>
-<tr data-index="5" data-categories="TGFi" data-listing-file-modified-sort="1786057732825" data-listing-reading-time-sort="14" data-listing-word-count-sort="2721" data-listing-title-sort="Lab 5" data-listing-filename-sort="lab-5.qmd">
-<td>
-<a href="./lab/lab-5.html" class="title listing-title">Lab 5</a>
-</td>
-<td>
-<span class="listing-subtitle">More Modeling!</span>
-</td>
-<td>
-<span class="listing-description">Due to Gradescope by Sun. Aug 2 11:59 PM</span>
-</td>
-</tr>
-<tr data-index="6" data-categories="TGFi" data-listing-file-modified-sort="1786057732825" data-listing-reading-time-sort="11" data-listing-word-count-sort="2166" data-listing-title-sort="Lab 6" data-listing-filename-sort="lab-6.qmd">
-<td>
-<a href="./lab/lab-6.html" class="title listing-title">Lab 6</a>
-</td>
-<td>
-<span class="listing-subtitle">Lemurs</span>
-</td>
-<td>
-<span class="listing-description">Due to Gradescope by Fri. Aug 7 11:59 PM</span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<section id="what-did-we-do-this-summer" class="level1">
+<h1>What did we do this summer?</h1>
+<section id="data-science-statistics" class="level2 medium">
+<h2 class="medium anchored" data-anchor-id="data-science-statistics">Data science &amp; statistics</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Data science is the messy, real-world <em>art</em> of converting data into knowledge.</p></li>
+<li><p>Statistics is the mathematical study of quantifying uncertainty about that knowledge to help guide decision-making.</p></li>
+<li><p>This course covered the full data science life cycle: import, tidy, transform, visualize, <strong>model</strong>, communicate.</p></li>
+<li><p>The second half went deep on <strong>modeling, inference, and causation</strong>.</p></li>
+</ul>
 </div>
-</div></main> <!-- /main -->
+</section>
+</section>
+<section id="three-and-a-half-major-topics" class="level1">
+<h1>Three (and a half) major topics</h1>
+<section id="the-three-and-a-half" class="level2 medium">
+<h2 class="medium anchored" data-anchor-id="the-three-and-a-half">The three (and a half)</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p><strong>Linear Regression</strong>: modeling a numerical outcome</p></li>
+<li><p><strong>Logistic Regression</strong>: modeling a binary outcome</p></li>
+<li><p><strong>Inference</strong>: quantifying uncertainty, making decisions</p></li>
+<li><p><strong>Causal Inference</strong> <em>(the half)</em>: moving from association to causation</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="linear-regression" class="level1">
+<h1>Linear Regression</h1>
+<section id="what-to-expect" class="level2 smaller scrollable">
+<h2 class="smaller scrollable anchored" data-anchor-id="what-to-expect">What to expect</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p><strong>Describe</strong> the relationship between variables: direction, form, strength</p></li>
+<li><p><strong>Interpret the slope</strong>: for a 1-unit increase in <span class="math inline">\(x\)</span>, <span class="math inline">\(\hat{y}\)</span> is predicted to change by <span class="math inline">\(b_1\)</span>, on average, holding all else constant</p></li>
+<li><p><strong>Interpret the intercept</strong>: predicted value of <span class="math inline">\(\hat{y}\)</span> when all predictors are zero</p></li>
+<li><p><strong>Additive vs.&nbsp;interaction models</strong>: additive = parallel lines; interaction = different slopes for different groups</p></li>
+<li><p><strong>Interpret</strong> <span class="math inline">\(R^2\)</span>: % of variability in <span class="math inline">\(y\)</span> explained by the model</p></li>
+<li><p><strong>Compare models</strong> using adjusted <span class="math inline">\(R^2\)</span> (penalizes for extra predictors)</p></li>
+<li><p><strong>Make predictions</strong> by plugging values into the fitted equation</p></li>
+<li><p><strong>Least squares</strong>: the line that minimizes the sum of squared residuals; “adjusting for a variable” means removing its linear effect before estimating another coefficient</p></li>
+<li><p><strong>Residual checking</strong>: fitted vs.&nbsp;residuals plot (linearity, constant variance); Q-Q plot (normality of residuals)</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="logistic-regression" class="level1">
+<h1>Logistic Regression</h1>
+<section id="what-to-expect-1" class="level2 smaller scrollable">
+<h2 class="smaller scrollable anchored" data-anchor-id="what-to-expect-1">What to expect</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p><strong>Interpret the slope</strong> on the odds scale: for a 1-unit increase in <span class="math inline">\(x\)</span>, the odds of success are multiplied by <span class="math inline">\(e^{b_1}\)</span>, holding all else constant</p></li>
+<li><p><strong>Interpret the intercept</strong> on the probability scale: <span class="math inline">\(\hat{p} = \frac{e^{b_0}}{1+e^{b_0}}\)</span> when all predictors are zero</p></li>
+<li><p><strong>Convert between levels</strong>: log-odds → odds (<span class="math inline">\(e^{\text{log-odds}}\)</span>) → probability (<span class="math inline">\(\frac{\text{odds}}{1+\text{odds}}\)</span>) → outcome (compare to threshold <span class="math inline">\(p^*\)</span>)</p></li>
+<li><p><strong>Make predictions</strong> for a new observation using the fitted equation</p></li>
+<li><p><strong>Thresholds</strong>: changing <span class="math inline">\(p^*\)</span> trades off false positives and false negatives</p></li>
+<li><p><strong>Train-test split</strong>: fit the model on training data, evaluate on held-out test data; avoids optimistic performance estimates</p></li>
+<li><p><strong>Classification metrics</strong>: sensitivity (TPR), specificity (1 − FPR), false positive rate, false negative rate</p></li>
+<li><p><strong>ROC curve &amp; AUC</strong>: visualize performance across all thresholds; AUC = 1 is perfect, AUC = 0.5 is no better than guessing</p></li>
+<li><p><strong>Confidence intervals</strong> on logistic regression coefficients: same bootstrap logic as linear regression</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="inference" class="level1">
+<h1>Inference</h1>
+<section id="what-to-expect-2" class="level2 smaller scrollable">
+<h2 class="smaller scrollable anchored" data-anchor-id="what-to-expect-2">What to expect</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p><strong>Sampling uncertainty</strong>: estimates from a sample vary; a different sample gives a different estimate</p></li>
+<li><p><strong>Bootstrapping</strong>: resample (with replacement) from your data to approximate the sampling distribution of a statistic</p></li>
+<li><p><strong>Confidence intervals</strong>: a range of plausible values for a population parameter; a 95% CI is bounded by the middle 95% of the bootstrap distribution</p></li>
+<li><p><strong>Interpreting a CI</strong>: “We are 95% confident that [parameter in context], on average, by [lower] to [upper] [units].”</p></li>
+<li><p><strong>Hypothesis testing</strong>: assume <span class="math inline">\(H_0\)</span> is true, generate a null distribution via permutation, ask how extreme the observed statistic is</p></li>
+<li><p><strong>Null and alternative hypotheses</strong>: <span class="math inline">\(H_0\)</span> is the claim of no effect; <span class="math inline">\(H_A\)</span> is what we suspect instead; always defined in terms of a population parameter</p></li>
+<li><p><strong>Interpreting the p-value</strong>: the probability of observing a statistic as extreme as ours <em>if</em> <span class="math inline">\(H_0\)</span> were true; small p-value = evidence against <span class="math inline">\(H_0\)</span></p></li>
+<li><p><strong>Decision</strong>: reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p &lt; \alpha\)</span> (usually <span class="math inline">\(\alpha = 0.05\)</span>); never “accept” <span class="math inline">\(H_0\)</span></p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="causal-inference" class="level1">
+<h1>Causal Inference</h1>
+<section id="what-to-expect-3" class="level2 smaller scrollable">
+<h2 class="smaller scrollable anchored" data-anchor-id="what-to-expect-3">What to expect</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p><strong>Association ≠ causation</strong>: confounding variables can create spurious relationships between <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span></p></li>
+<li><p><strong>Randomized experiments (RCTs)</strong>: random assignment of treatment <span class="math inline">\(Z\)</span> breaks all back-door paths, making <span class="math inline">\(Z \perp X\)</span>; this licenses causal language (“causes”)</p></li>
+<li><p><strong>Observational studies</strong>: treatment is not assigned by the researcher; confounders <span class="math inline">\(X\)</span> can bias naive estimates</p></li>
+<li><p><strong>Covariate balance</strong>: in an RCT, treated and control groups are balanced on <span class="math inline">\(X\)</span> by design; in an observational study, they often are not</p></li>
+<li><p><strong>Matching on covariates</strong>: for each treated unit, find a control unit similar on <span class="math inline">\(X\)</span>; creates two comparable cohorts; analyze as you would an experiment</p></li>
+<li><p><strong>Propensity score matching</strong>: instead of matching on all of <span class="math inline">\(X\)</span> directly, match on <span class="math inline">\(\hat{e}(X) = \hat{P}(Z=1 \mid X)\)</span>; a single number that summarizes covariate information; scales to many covariates</p></li>
+<li><p><strong>Key untestable assumption</strong>: both methods require <em>no unmeasured confounders</em>; if an important variable is missing from <span class="math inline">\(X\)</span>, estimates are still biased</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="kahoot" class="level1">
+<h1>KAHOOT</h1>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
+<p>why not going</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -960,7 +992,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/edit/main/lab.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/edit/main/slides/24-final-review.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sta199-su26-2/sta199-su26-2.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <span style="color: #FFD100;"><i class="fa-solid fa-heart" aria-label="heart"></i></span> and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
