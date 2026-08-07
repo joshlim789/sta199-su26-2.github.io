@@ -7396,7 +7396,7 @@
     "href": "slides/03-grammar-of-data-transformation-slides.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Tinker Tailor …  2011  109371230    21749507 5.03  FAIL   notalk    \n2 Cyrus            2010   18703481     7477623 2.50  FAIL   notalk    \n3 St. Trinian's    2007   25236548    12808396 1.97  PASS   ok        \n4 The A-Team       2010  271825767   117505503 2.31  FAIL   nowomen   \n5 Miracle at St.…  2008   18427952    48701534 0.378 FAIL   men"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Monkeybone       2001   14236182    98688447 0.144 FAIL   dubious   \n2 Little Children  2006   23377180    16181149 1.44  PASS   ok        \n3 Cyrus            2010   18703481     7477623 2.50  FAIL   notalk    \n4 Wild Things      1998  122007881    28582646 4.27  FAIL   men       \n5 Maid in Manhat…  2002  333859788    71234857 4.69  PASS   ok"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation-slides.html#filter",
@@ -7655,7 +7655,7 @@
     "href": "slides/03-grammar-of-data-transformation.html#sample_n",
     "title": "Grammar of Data Transformation",
     "section": "sample_n()",
-    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Tinker Tailor …  2011  109371230    21749507 5.03  FAIL   notalk    \n2 Cyrus            2010   18703481     7477623 2.50  FAIL   notalk    \n3 St. Trinian's    2007   25236548    12808396 1.97  PASS   ok        \n4 The A-Team       2010  271825767   117505503 2.31  FAIL   nowomen   \n5 Miracle at St.…  2008   18427952    48701534 0.378 FAIL   men"
+    "text": "sample_n()\n\n\nsample_n(): take a random subset of the rows\n\nDisplay five random rows of bechdel:\n\nbechdel \n\n# A tibble: 1,615 × 7\n   title          year gross_2013 budget_2013    roi binary clean_test\n   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n 1 21 & Over      2013   67878146    13000000  5.22  FAIL   notalk    \n 2 Dredd 3D       2012   55078343    45658735  1.21  PASS   ok        \n 3 12 Years a S…  2013  211714070    20000000 10.6   FAIL   notalk    \n 4 2 Guns         2013  208105475    61000000  3.41  FAIL   notalk    \n 5 42             2013  190040426    40000000  4.75  FAIL   men       \n 6 47 Ronin       2013  184166317   225000000  0.819 FAIL   men       \n 7 A Good Day t…  2013  371598396    92000000  4.04  FAIL   notalk    \n 8 About Time     2013  102648667    12000000  8.55  PASS   ok        \n 9 Admission      2013   36014634    13000000  2.77  PASS   ok        \n10 After Earth    2013  304895295   130000000  2.35  FAIL   notalk    \n# ℹ 1,605 more rows\n\n\n\n\nbechdel |&gt;\n  sample_n(5)\n\n# A tibble: 5 × 7\n  title            year gross_2013 budget_2013   roi binary clean_test\n  &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Monkeybone       2001   14236182    98688447 0.144 FAIL   dubious   \n2 Little Children  2006   23377180    16181149 1.44  PASS   ok        \n3 Cyrus            2010   18703481     7477623 2.50  FAIL   notalk    \n4 Wild Things      1998  122007881    28582646 4.27  FAIL   men       \n5 Maid in Manhat…  2002  333859788    71234857 4.69  PASS   ok"
   },
   {
     "objectID": "slides/03-grammar-of-data-transformation.html#filter",
@@ -17124,7 +17124,14 @@
     "href": "slides/24-final-review.html#final-thoughts",
     "title": "Final Review",
     "section": "Final thoughts",
-    "text": "Final thoughts\nwhy not going"
+    "text": "Final thoughts\n\n\nFirst, I want all of you guys to realize how much you have learned in just 6 weeks\nNext, I want you guys to be proud of how great ya’ll showed up to class every day (made every day something to look forward to)\nPresentation were phenomenal\nSo thank you for a wonderful summer, it’s truly been a pleasure"
+  },
+  {
+    "objectID": "slides/24-final-review.html#keep-in-touch",
+    "href": "slides/24-final-review.html#keep-in-touch",
+    "title": "Final Review",
+    "section": "Keep in touch!",
+    "text": "Keep in touch!\n\njosh.lim@duke.edu\nInstagram: jgl789\nTiktok: josh789789"
   },
   {
     "objectID": "slides/24-final-review-slides.html#data-science-statistics",
@@ -17173,7 +17180,14 @@
     "href": "slides/24-final-review-slides.html#final-thoughts",
     "title": "Final Review",
     "section": "Final thoughts",
-    "text": "Final thoughts\nwhy not going"
+    "text": "Final thoughts\n\n\nFirst, I want all of you guys to realize how much you have learned in just 6 weeks\nNext, I want you guys to be proud of how great ya’ll showed up to class every day (made every day something to look forward to)\nPresentation were phenomenal\nSo thank you for a wonderful summer, it’s truly been a pleasure"
+  },
+  {
+    "objectID": "slides/24-final-review-slides.html#keep-in-touch",
+    "href": "slides/24-final-review-slides.html#keep-in-touch",
+    "title": "Final Review",
+    "section": "Keep in touch!",
+    "text": "Keep in touch!\n\njosh.lim@duke.edu\nInstagram: jgl789\nTiktok: josh789789"
   },
   {
     "objectID": "ae/ae-05-github.html",
