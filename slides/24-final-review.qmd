@@ -139,6 +139,17 @@ auto-stretch: false
 
 # KAHOOT
 
-## Final thoughts
+## Final thoughts {.medium}
 
-why not going
+::: incremental
+- First, I want all of you guys to realize how much you have learned in just 6 weeks
+- Next, I want you guys to be proud of how great ya'll showed up to class every day (made every day something to look forward to)
+- Presentation were phenomenal
+- So thank you for a wonderful summer, it's truly been a pleasure
+:::
+
+## Keep in touch!
+
+- josh.lim@duke.edu
+- Instagram: jgl789
+- Tiktok: josh789789
